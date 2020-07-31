@@ -22,4 +22,3 @@ own projects when developing on a Python/Jython IDE. This allows you to get code
 
 For more information, please refer to:
 * [Igntion 7.9 Scripting Functions](https://docs.inductiveautomation.com/display/DOC79/Scripting+Functions).
-* [Ignition 8 Scripting Functions](https://docs.inductiveautomation.com/display/DOC80/Scripting+Functions).
