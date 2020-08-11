@@ -1,8 +1,9 @@
-# Copyright (C) 2019
+# Copyright (C) 2020
 # Author: Cesar Roman
 # Contact: thecesrom@gmail.com
 
-"""Ignition date module."""
+"""Date Functions
+The following functions give you access to test and modify dates."""
 
 __all__ = [
     'addDays',

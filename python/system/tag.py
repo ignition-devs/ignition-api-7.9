@@ -1,4 +1,4 @@
-# Copyright (C) 2019
+# Copyright (C) 2020
 # Author: Cesar Roman
 # Contact: thecesrom@gmail.com
 
@@ -25,18 +25,19 @@ __all__ = [
     'read',
     'readAll',
     'removeTag',
+    'removeTags',
     'scan',
     'setOverlaysEnabled',
     'storeTagHistory',
     'write',
     'writeAll',
-    'writeAllAsynchronous',
+    'writeAllSynchronous',
     'writeSynchronous'
 ]
 
-import warnings
-
 import system.date
+from . import BrowseResults, QualifiedValue
+from java.lang import Object
 
 
 class AlarmProperty(object):
@@ -51,40 +52,38 @@ class AlarmProperty(object):
         self.value = value
 
 
-class BrowseResults(object):
-    """BrowseResults class."""
-
-    def getContinuationPoint(self):
-        pass
-
-    def getResults(self):
-        pass
-
-    def getReturnedSize(self):
-        print self
-        return 0
-
-
-class BrowseTag(object):
+class BrowseTag(Object):
     """BrowseTag class."""
 
     def __init__(self,
                  name=None,
                  path=None,
-                 type_=None,
+                 fullPath=None,
+                 type=None,
+                 valueSource=None,
                  dataType=None):
-        """BrowseTag initializer.
-
-        Args:
-            name (str): The name of the tag.
-            path (str): The path of the tag.
-            type_ (object): The type of the tag.
-            dataType (object): The data type of the tag.
-        """
+        super(BrowseTag, self).__init__()
         self.name = name
         self.path = path
-        self.type = type_
+        self.fullPath = fullPath
+        self.type = type
+        self.valueSource = valueSource
         self.dataType = dataType
+
+    def getDataType(self):
+        return self.dataType
+
+    def getFullPath(self):
+        return self.fullPath
+
+    def getPath(self):
+        return self.path
+
+    def getTagType(self):
+        return self.type
+
+    def getValueSource(self):
+        return self.valueSource
 
     def isDB(self):
         print self
@@ -114,32 +113,7 @@ class BrowseTag(object):
         print self
         return True
 
-
-class QualifiedValue(object):
-    """Represents a value with a DataQuality & timestamp attached to
-    it."""
-
-    def __init__(self,
-                 value=None,
-                 quality=None,
-                 timestamp=None):
-        self.value = value
-        self.quality = quality
-        self.timestamp = timestamp
-
-    def derive(self, diagnosticMessage):
-        pass
-
-    def equals(self, value, includeTimestamp):
-        pass
-
-    def getQuality(self):
-        pass
-
-    def getTimestamp(self):
-        pass
-
-    def getValue(self):
+    def toString(self):
         pass
 
 
@@ -328,10 +302,6 @@ def browseTags(parentPath, tagPath=None, tagType=None, dataType=None,
             and the following functions: isFolder(), isUDT(), isOPC(),
             isMemory(), isExpression(), isQuery().
     """
-    warnings.warn(
-        "browseTags is deprecated, use browse instead.",
-        DeprecationWarning
-    )
     print(parentPath, tagPath, tagType, dataType,
           udtParentType, recursive, sort)
     return [BrowseTag()]
@@ -357,10 +327,6 @@ def browseTagsSimple(parentPath, sort):
             and the following functions: isFolder(), isUDT(), isOPC(),
             isMemory(), isExpression(), isQuery().
     """
-    warnings.warn(
-        "browseTagsSimple is deprecated, use browse instead.",
-        DeprecationWarning
-    )
     print(parentPath, sort)
     return [BrowseTag()]
 
@@ -715,10 +681,6 @@ def read(tagPath):
         QualifiedValue: A qualified value. This object has three
             sub-members: value, quality, and timestamp.
     """
-    warnings.warn(
-        "read is deprecated, use readAsync or readBlocking instead.",
-        DeprecationWarning
-    )
     print tagPath
     return QualifiedValue()
 
@@ -739,10 +701,6 @@ def readAll(tagPaths):
             will have three sub-members: value, quality, and
             timestamp.
     """
-    warnings.warn(
-        "readAll is deprecated, use readAsync or readBlocking instead.",
-        DeprecationWarning
-    )
     print tagPaths
     items = []
     for i in range(len(tagPaths)):
@@ -856,10 +814,6 @@ def write(tagPath, value, suppressErrors=False):
         int: 0 if the write failed immediately, 1 if it succeeded
             immediately, and 2 if it is pending.
     """
-    warnings.warn(
-        "write is deprecated, use writeAsync or writeBlocking instead.",
-        DeprecationWarning
-    )
     print(tagPath, value, suppressErrors)
     return 1
 
@@ -880,15 +834,11 @@ def writeAll(tagPaths, values):
             to: 0 if the write failed immediately, 1 if it succeeded
             immediately, and 2 if it is pending.
     """
-    warnings.warn(
-        "writeAll is deprecated, use writeAsync or writeBlocking instead.",
-        DeprecationWarning
-    )
     print(tagPaths, values)
     return [1] * len(tagPaths)
 
 
-def writeAllAsynchronous(tagPaths, values, timeout=45000):
+def writeAllSynchronous(tagPaths, values, timeout=45000):
     """Performs a synchronous write to multiple tags. Synchronous
     means that execution will not continue until this function has
     completed, so you will know that a write has been attempted on the
