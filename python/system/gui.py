@@ -144,7 +144,7 @@ def convertPointToScreen(x, y, event):
         tuple: A tuple of (x,y) in screen coordinates.
     """
     print(x, y, event)
-    return tuple([x, y])
+    return x, y
 
 
 def createPopupMenu(itemNames, itemFunctions):

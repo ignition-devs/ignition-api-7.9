@@ -29,6 +29,8 @@ __all__ = [
     'removeSchedule'
 ]
 
+import system.date
+
 from java.lang import Object
 from java.util import Date
 from . import UIResponse
@@ -352,7 +354,7 @@ def getScheduleNames():
         list[str]: A List of Strings that holds the names of all the
             available schedules.
     """
-    return None
+    return ['A', 'Always', 'B', 'C', 'Example', 'MyComposite', 'MySchedule']
 
 
 def getSchedules():
@@ -402,13 +404,13 @@ def getUsers(userSource):
     return [User()]
 
 
-def isUserScheduled(user, date):
+def isUserScheduled(user, date=system.date.now()):
     """Will check if a specified User is scheduled currently or on a
     specified date/time.
 
     Args:
-        user (str): The user object to check the schedule for.
-        date (Date): The date to check schedules for. May be a Java
+        user (User): The user object to check the schedule for.
+        date (object): The date to check schedules for. May be a Java
             Date or Unix Time in ms. If omitted, the current date and
             time will be used. Optional.
 

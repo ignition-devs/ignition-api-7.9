@@ -28,6 +28,7 @@ __all__ = [
     'runScalarPrepQuery',
     'runScalarQuery',
     'runSFPrepUpdate',
+    'runSFUpdateQuery',
     'runUpdateQuery',
     'setDatasourceConnectURL',
     'setDatasourceEnabled',

@@ -51,7 +51,7 @@ class ShelvedPath(object):
         pass
 
 
-def acknowledge(alarmIds, notes=None):
+def acknowledge(alarmIds, notes=None, username=None):
     """Acknowledges any number of alarms, specified by their event
     ids. The event id is generated for an alarm when it becomes
     active, and is used to identify a particular event from other
@@ -68,8 +68,12 @@ def acknowledge(alarmIds, notes=None):
             acknowledge.
         notes (str): Notes that will be stored on the acknowledged
             alarm events. Optional.
+        username (str): The user that acknowledged the alarm. NOTE
+            that this parameter is only used when called from a
+            gateway scoped script. This parameter should be omitted
+            from any client-based scripts. Optional.
     """
-    print(alarmIds, notes)
+    print(alarmIds, notes, username)
 
 
 def cancel(alarmIds):
@@ -115,7 +119,10 @@ def getShelvedPaths():
     examined with getExpiration, getHitCount, getPath, getShelveTime,
     getUser, and isExpired.
 
-    :return:
+    Returns:
+        list[ShelvedPath]: A list of ShelvedPath objects. ShelvedPath
+            objects can be examined with getExpiration, getHitCount,
+            getPath, getShelveTime, getUser, and isExpired.
     """
     return [ShelvedPath()]
 

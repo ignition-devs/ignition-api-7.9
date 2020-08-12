@@ -92,16 +92,17 @@ def configureSerialPort(port, bitRate, dataBits, handshake,
     Args:
         port (str): The name of the serial port, e.g., "COM1" or
             "/dev/ttyS0". This parameter is required.
-        bitRate (int): Configure the bit rate.Valid values are defined
-            by the following constants: BIT_RATE_110, BIT_RATE_150,
-            BIT_RATE_300, BIT_RATE_600, BIT_RATE_1200, BIT_RATE_2400,
-            BIT_RATE_4800, BIT_RATE_9600, BIT_RATE_19200,
-            BIT_RATE_38400, BIT_RATE_57600, BIT_RATE_115200,
-            BIT_RATE_230400, BIT_RATE_460800, BIT_RATE_921600.
-        dataBits (int): Configure the data bits.Valid values are
+        bitRate (int): Configure the bit rate. Valid values are
+            defined by the following constants: BIT_RATE_110,
+            BIT_RATE_150, BIT_RATE_300, BIT_RATE_600, BIT_RATE_1200,
+            BIT_RATE_2400, BIT_RATE_4800, BIT_RATE_9600,
+            BIT_RATE_19200, BIT_RATE_38400, BIT_RATE_57600,
+            BIT_RATE_115200, BIT_RATE_230400, BIT_RATE_460800,
+            BIT_RATE_921600.
+        dataBits (int): Configure the data bits. Valid values are
             defined by the following constants: DATA_BITS_5,
             DATA_BITS_6, DATA_BITS_7, DATA_BITS_8.
-        handshake (int): Configure the handshake.Valid values are
+        handshake (int): Configure the handshake. Valid values are
             defined by the following constants: HANDSHAKE_CTS_DTR,
             HANDSHAKE_CTS_RTS, HANDSHAKE_DSR_DTR, HANDSHAKE_HARD_IN,
             HANDSHAKE_HARD_OUT, HANDSHAKE_NONE, HANDSHAKE_SOFT_IN,
@@ -109,10 +110,10 @@ def configureSerialPort(port, bitRate, dataBits, handshake,
             HANDSHAKE_XON_XOFF.
         hardwareFlowControl (bool): Configure hardware flow control.
             On or off.
-        parity (int): Configure parity.Valid values are defined by the
-            following constants: PARITY_EVEN, PARITY_ODD, PARITY_MARK,
-            PARITY_SPACE, PARITY_NONE.
-        stopBits (int): Configure stop bits.Valid values are defined
+        parity (int): Configure parity. Valid values are defined by
+            the following constants: PARITY_EVEN, PARITY_ODD,
+            PARITY_MARK, PARITY_SPACE, PARITY_NONE.
+        stopBits (int): Configure stop bits. Valid values are defined
             by the following constants: STOP_BITS_1, STOP_BITS_2.
 
     Returns:

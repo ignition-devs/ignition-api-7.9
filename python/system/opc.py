@@ -15,9 +15,9 @@ __all__ = [
     'isServerEnabled',
     'readValue',
     'readValues',
+    'setServerEnabled',
     'writeValue',
-    'writeValues',
-    'setServerEnabled'
+    'writeValues'
 ]
 
 from java.lang import Object
@@ -154,7 +154,7 @@ def getServerState(opcServer):
             connection, or None if the connection doesn't exist.
     """
     print opcServer
-    return None
+    return 'CONNECTED'
 
 
 def isServerEnabled(serverName):
@@ -220,6 +220,17 @@ def readValues(opcServer, itemPaths):
     return [QualifiedValue()]
 
 
+def setServerEnabled(serverName, enabled):
+    """Enables or disables an OPC server connection.
+
+    Args:
+        serverName (str): The name of an OPC server connection.
+        enabled (bool): The new state the connection should be set to:
+            true to enable the connection, false to disable.
+    """
+    print(serverName, enabled)
+
+
 def writeValue(opcServer, itemPath, value):
     """Writes a value directly through an OPC server connection
     synchronously. Will return an OPC-UA status code object. You can
@@ -262,15 +273,3 @@ def writeValues(opcServer, itemPaths, values):
     """
     print(opcServer, itemPaths, values)
     return [Quality()]
-
-
-def setServerEnabled(serverName, enabled):
-    """Enables or disables an OPC server connection.
-
-    Args:
-        serverName (str): The name of an OPC server connection.
-        enabled (bool): The new state the connection should be set to:
-            true to enable the connection, false to disable.
-    :return:
-    """
-    print(serverName, enabled)

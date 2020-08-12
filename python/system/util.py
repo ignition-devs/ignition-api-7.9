@@ -14,7 +14,7 @@ __all__ = [
     'getAvailableTerms',
     'getClientId',
     'getConnectionMode',
-    'getConnectionTimeout',
+    'getConnectTimeout',
     'getEdition',
     'getGatewayAddress',
     'getGatewayStatus',
@@ -158,7 +158,7 @@ def getConnectionMode():
     return 3
 
 
-def getConnectionTimeout():
+def getConnectTimeout():
     """Returns the connect timeout in milliseconds for all
     client-to-gateway communication. This is the maximum amount of
     time that communication operations to the Gateway will be given to
@@ -200,6 +200,7 @@ def getGatewayStatus(gatewayAddress, connectTimeoutMillis=None,
     Thrown exceptions return "ERROR" with the error message appended
     to the string.
 
+    Args:
         gatewayAddress (str): The gateway address to ping, in the form
             of ADDR:PORT/main.
         connectTimeoutMillis (int): The maximum time in milliseconds
@@ -463,13 +464,13 @@ def modifyTranslation(term, translation, locale='en'):
     print(term, translation, locale)
 
 
-def playSoundClip(wavBytes, volume, wait):
+def playSoundClip(wav, volume, wait):
     """Plays a sound clip from a wav file to the system's default
     audio device. The wav file can be specified as a filepath, a URL,
     or directly as a raw byte[].
 
     Args:
-        wavBytes (object): A byte list of a wav file or filepath or URL
+        wav (object): A byte list of a wav file or filepath or URL
             that represents a wav file.
         volume (float): The clip's volume, represented as a floating
             point number between 0.0 and 1.0. Optional.
@@ -477,7 +478,7 @@ def playSoundClip(wavBytes, volume, wait):
             to playSoundClip should wait for the clip to finish before
             it returns. Optional.
     """
-    print(wavBytes, volume, wait)
+    print(wav, volume, wait)
 
 
 def queryAuditLog(auditProfileName,
@@ -604,6 +605,7 @@ def sendMessage(project, messageHandler, payload=None, scope=None,
     """
     print(project, messageHandler, payload, scope, clientSessionId, user,
           hasRole, hostName, remoteServers)
+    return None
 
 
 def sendRequest(project, messageHandler, payload=None, hostName=None,
@@ -799,7 +801,7 @@ def setReadTimeout(readTimeout):
 def threadDump():
     """Creates a thread dump of the current running JVM.
 
-    :returns:
+    Returns:
         str: The dump of the current running JVM.
     """
     return 'Ignition version: 7.9.x...'

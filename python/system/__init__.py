@@ -37,15 +37,15 @@ class Aggregate(ABCMeta):
         pass
 
     @abstractmethod
-    def getDesc(self):
+    def getDesc(cls):
         pass
 
     @abstractmethod
-    def getId(self):
+    def getId(cls):
         pass
 
     @abstractmethod
-    def getName(self):
+    def getName(cls):
         pass
 
 
@@ -117,51 +117,51 @@ class INavUtilities(ABCMeta):
         pass
 
     @abstractmethod
-    def centerWindow(self, arg):
+    def centerWindow(cls, arg):
         pass
 
     @abstractmethod
-    def closeParentWindow(self, event):
+    def closeParentWindow(cls, event):
         pass
 
     @abstractmethod
-    def closeWindow(self, arg):
+    def closeWindow(cls, arg):
         pass
 
     @abstractmethod
-    def getCurrentWindow(self):
+    def getCurrentWindow(cls):
         pass
 
     @abstractmethod
-    def goBack(self):
+    def goBack(cls):
         pass
 
     @abstractmethod
-    def goForward(self):
+    def goForward(cls):
         pass
 
     @abstractmethod
-    def goHome(self):
+    def goHome(cls):
         pass
 
     @abstractmethod
-    def openWindow(self, *args):
+    def openWindow(cls, *args):
         pass
 
     @abstractmethod
-    def openWindowImpl(self, path, params, openAdditional):
+    def openWindowImpl(cls, path, params, openAdditional):
         pass
 
     @abstractmethod
-    def openWindowInstance(self, *args):
+    def openWindowInstance(cls, *args):
         pass
 
     @abstractmethod
-    def swapTo(self, *args):
+    def swapTo(cls, *args):
         pass
 
     @abstractmethod
-    def swapWindow(self, *args):
+    def swapWindow(cls, *args):
         pass
 
 
@@ -258,7 +258,7 @@ class ReadResult(Object):
 
 
 class UIResponse(Object):
-    def __init__(self, locale):
+    def __init__(self, locale='en'):
         super(UIResponse, self).__init__()
         self.locale = locale
 

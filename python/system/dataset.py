@@ -274,7 +274,7 @@ def clearDataset(dataset):
     return Dataset()
 
 
-def dataSetToExcel(showHeaders, datasets, nullsEmpty):
+def dataSetToExcel(showHeaders, datasets, nullsEmpty=None):
     """Formats the contents of one or more datasets as an excel
     spreadsheet, returning the results as a string. Each dataset
     specified will be added as a worksheet in the Excel workbook. This
@@ -340,7 +340,10 @@ def deleteRow(dataset, rowIndex):
             row count of the dataset -1.
     """
     print(dataset, rowIndex)
-    return Dataset()
+    if rowIndex < 0:
+        raise IndexError('Error')
+    else:
+        return Dataset()
 
 
 def deleteRows(dataset, rowIndices):
@@ -366,7 +369,10 @@ def deleteRows(dataset, rowIndices):
             the number of rows in the dataset - 1.
     """
     print(dataset, rowIndices)
-    return Dataset()
+    if -1 in rowIndices:
+        raise IndexError('Error')
+    else:
+        return Dataset()
 
 
 def exportCSV(filename, showHeaders, dataset):
@@ -533,7 +539,7 @@ def sort(dataset, keyColumn, ascending=True):
 
     Args:
         dataset (Dataset): The dataset to sort.
-        keyColumn (int): The index or column name of the column to
+        keyColumn (object): The index or column name of the column to
             sort on.
         ascending (bool): True for ascending order, False for
             descending order. If omitted, ascending order will be
@@ -546,7 +552,7 @@ def sort(dataset, keyColumn, ascending=True):
     return Dataset()
 
 
-def toCSV(dataset, showHeaders, forExport=False, localized=False):
+def toCSV(dataset, showHeaders=True, forExport=False, localized=False):
     """Formats the contents of a dataset as CSV (comma separated
     values), returning the resulting CSV as a string. If the
     "forExport" flag is set, then the format will be appropriate for
@@ -555,7 +561,7 @@ def toCSV(dataset, showHeaders, forExport=False, localized=False):
     Args:
         dataset (Dataset): The dataset to export to CSV.
         showHeaders (bool): If set to true(1), a header row will be
-            present in the CSV. Default is true(1).
+            present in the CSV. Default is true(1). Optional.
         forExport (bool): If set to true(1), extra header information
             will be present in the CSV data which is necessary for the
             CSV to be compatible with the fromCSV method. Overrides

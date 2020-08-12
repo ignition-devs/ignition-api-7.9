@@ -49,15 +49,17 @@ def closeParentWindow(event):
     print event
 
 
-def closeWindow(window):
+def closeWindow(arg):
     """Given a window path, or a reference to a window itself, it will
     close the window. If the window can't be found, this function will
     do nothing.
 
     Args:
-        window (FPMIWindow): A reference to the window to close.
+        arg (object): A reference to the window to close as an
+            FPMIWindow instance or the path of the window to close as
+            a String.
     """
-    print window
+    print arg
 
 
 def desktop(handle='primary'):

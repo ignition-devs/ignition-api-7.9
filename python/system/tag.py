@@ -17,7 +17,7 @@ __all__ = [
     'editTags',
     'exists',
     'getAlarmStates',
-    'isOverlayEnabled',
+    'isOverlaysEnabled',
     'loadFromFile',
     'queryTagCalculations',
     'queryTagDensity',
@@ -456,7 +456,7 @@ def getAlarmStates(tagPath):
     return [TagAlarmDefinition()]
 
 
-def isOverlayEnabled():
+def isOverlaysEnabled():
     """Returns whether or not the current client's quality overlay
     system is currently enabled.
 
@@ -754,8 +754,8 @@ def setOverlaysEnabled(enabled):
     print enabled
 
 
-def storeTagHistory(historyprovider, tagprovider, paths, values, qualities,
-                    timestamps):
+def storeTagHistory(historyprovider, tagprovider, paths, values,
+                    qualities=None, timestamps=system.date.now()):
     """Inserts data into the tag history system, allowing Tag history
     to be recorded via scripting.
 

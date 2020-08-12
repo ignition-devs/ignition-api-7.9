@@ -131,7 +131,7 @@ def readFileAsString(filepath, encoding='utf-8'):
         return f.read()
 
 
-def saveFile(filename):
+def saveFile(filename, extension=None, typeDesc=None):
     """Prompts the user to save a new file named filename. The
     optional extension and typeDesc arguments can be added to be used
     as a type filter. If the user accepts the save, the path to that
@@ -140,12 +140,16 @@ def saveFile(filename):
 
     Args:
         filename (str): A file name to suggest to the user.
+        extension (str): The appropriate file extension, like "jpeg",
+            for the file. Optional.
+        typeDesc (str): A description of the extension, like "JPEG
+            Image". Optional.
 
     Returns:
         str: The path to the file that the user decided to save to, or
             None if they canceled.
     """
-    print filename
+    print(filename, extension, typeDesc)
     return None
 
 
