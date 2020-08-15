@@ -235,7 +235,8 @@ def browseConfiguration(path, recursive):
     return [TagConfiguration()]
 
 
-def browseHistoricalTags(path, nameFilters, maxSize, continuationPoint):
+def browseHistoricalTags(path, nameFilters=None, maxSize=None,
+                         continuationPoint=None):
     """Will browse for any historical Tags at the provided historical
     path. It will only browse for Tags at the path, and will not go
     down through any children. Will return with a BrowseResults
@@ -246,12 +247,13 @@ def browseHistoricalTags(path, nameFilters, maxSize, continuationPoint):
             Export page for a description of how to construct a
             historical Tag Path.
         nameFilters (list[str]): A list of name filters to be applied
-            to the result set.
-        maxSize (int): The maximum size of the result set.
+            to the result set. Optional.
+        maxSize (int): The maximum size of the result set. Optional.
         continuationPoint (object): Sets the continuation point in
             order to continue a browse that was previously started and
             then limited. Use .getContinuationPoint() on the
             BrowseResults object to get the continuation point.
+            Optional.
 
     Returns:
         BrowseResults: An object that contains the results as
@@ -287,7 +289,7 @@ def browseTags(parentPath, tagPath=None, tagType=None, dataType=None,
             instances or folders. Possible values are Int1, Int2,
             Int4, Int8, Float4, Float8, Boolean, String, and DateTime.
             Optional.
-        udtParentType (str): The name of the parent UDT.
+        udtParentType (str): The name of the parent UDT. Optional.
         recursive (bool): Recursively search for tags inside of
             folders. Note: It is highly recommended that recursive is
             set to false, as server timeouts are more likely to occur.
@@ -352,8 +354,8 @@ def editAlarmConfig(tagPaths, alarmConfig):
     print(tagPaths, alarmConfig)
 
 
-def editTag(tagPath, attributes, parameters, accessRights, overrides,
-            alarmList, alarmConfig):
+def editTag(tagPath, attributes=None, parameters=None, accessRights=None,
+            overrides=None, alarmList=None, alarmConfig=None):
     """Edits an existing Tag in Ignition. This will not work on Client
     Tags, because there is a Client Provider for each project.
 
@@ -367,22 +369,27 @@ def editTag(tagPath, attributes, parameters, accessRights, overrides,
             If the Tag provider name is left off then the project
             default provider will be used.
         attributes (dict): The Tag's configuration attributes.
+            Optional.
         parameters (dict): The parameters for a UDT instance Tag.
+            Optional.
         accessRights (string): The access rights for the Tags.
             Possible values are Read_Only, Read_Write, and Custom.
+            Optional.
         overrides (dict): All of the overrides for a UDT instance Tag.
             The dictionary should be in the form of the names of
             member Tags as keys, with the values being a dictionary of
             properties/overrides ie. {'memberTagName':{dictionary of
-            overrides}}.
+            overrides}}. Optional.
         alarmList (str): List of legacy alarms for the Tag. The legacy
             alarm system was retired in 7.6.0. Newer systems should
             utilize the system.tag.editAlarmConfig function instead.
+            Optional.
         alarmConfig (dict): The alarm configuration for the Tag. Note
             that this parameter cannot edit alarms on UDTs. Instead,
             the system.tag.editAlarmConfig function (which can also
             edit alarms on non-UDT Tags) should be used instead. See
             editAlarmConfig for details on how to use this parameter.
+            Optional.
     """
     print(tagPath, attributes, parameters, accessRights, overrides, alarmList,
           alarmConfig)
@@ -508,36 +515,36 @@ def queryTagCalculations(paths, calculations,
             "PctBad".
         startDate (Date): The starting point for the calculation
             window. If omitted, and range is not used, 8 hours before
-            the current time is used.
+            the current time is used. Optional.
         endDate (Date): The end of the calculation window. If omitted,
             and range is not used, uses the current time.
         rangeHours (int): Allows you to specify the query range in
             hours, instead of using start and end date. Can be
             positive or negative, and can be used in conjunction with
-            startDate or endDate.
-        rangeMinutes (int): Same as rangeHours, but in minutes.
+            startDate or endDate. Optional.
+        rangeMinutes (int): Same as rangeHours, but in minutes. Optional.
         aliases (list[str]): Aliases that will be used to override the
             tag path names in the result dataset. Must be 1-to-1 with
             the tag paths. If not specified, the tag paths themselves
-            will be used.
+            will be used. Optional.
         includeBoundingValues (bool): A boolean flag indicating that
             the system should attempt to load values before and after
             the query bounds for the purpose of interpolation. The
             effect depends on the aggregates used. The default is
-            "true".
+            "true". Optional.
         validatesSCExec (bool): A boolean flag indicating whether or
             not data should be validated against the scan class
             execution records. If false, calculations may include data
             that is assumed to be good, even though the system may not
-            have been running. Default is "true".
+            have been running. Default is "true". Optional.
         noInterpolation (bool): A boolean flag indicating that the
             system should not attempt to interpolate values in
             situations where it normally would, such as for analog
-            tags. Default is "false".
+            tags. Default is "false". Optional.
         ignoreBadQuality (bool): A boolean flag indicating that bad
             quality values should not be used in the query process. If
             set, any value with a "bad" quality will be completely
-            ignored in calculations. Default is "false".
+            ignored in calculations. Default is "false". Optional.
 
     Returns:
         Dataset: A dataset representing the calculations over the
@@ -594,59 +601,61 @@ def queryTagHistory(paths,
         paths (list[str]): An array of tag paths (strings) to query. Each
             tag path specified will be a column in the result dataset.
         startDate (Date): The earliest value to retrieve. If omitted,
-            8 hours before current time is used.
+            8 hours before current time is used. Optional.
         endDate (Date): The latest value to retrieve. If omitted,
-            current time is used.
+            current time is used. Optional.
         returnSize (int): The number of samples to return. -1 will
             return values as they changed, and 0 will return the
             "natural" number of values based on the logging rates of
-            the scan class(es) involved. -1 is the default.
+            the scan class(es) involved. -1 is the default. Optional.
         aggregationMode (str): The mode to use when aggregating
             multiple samples into one time slice. Valid values are:
             "Average" (time-weighted), "MinMax", "LastValue",
             "SimpleAverage", "Sum", "Minimum", "Maximum",
             "DurationOn", "DurationOff", "CountOn", "CountOff",
             "Count", "Range", "Variance", "StdDev", "PctGood", and
-            "PctBad".
+            "PctBad". Optional.
         returnFormat (str): Use "Wide" to have a column per tag
             queried, or "Tall" to have a fixed-column format. Default
-            is "Wide".
+            is "Wide". Optional.
         columnNames (list[str]): Aliases that will be used to override the
             column names in the result dataset. Must be 1-to-1 with
             the tag paths. If not specified, the tag paths themselves
-            will be used as column titles.
+            will be used as column titles. Optional.
         intervalHours (int): Allows you to specify the window interval
             in terms of hours, as opposed to using a specific return
-            size.
+            size. Optional.
         intervalMinutes (int): Same as intervalHours, but in minutes.
             Can be used on its own, or in conjunction with
-            intervalHours.
+            intervalHours. Optional.
         rangeHours (int): Allows you to specify the query range in
             hours, instead of using start and end date. Can be
             positive or negative, and can be used in conjunction with
-            startDate or endDate.
+            startDate or endDate. Optional.
         rangeMinutes (int): Same as rangeHours, but in minutes.
+            Optional.
         aggregationModes (list[str]): A one-to-one list with paths
-            specifying an aggregation mode per column.
+            specifying an aggregation mode per column. Optional.
         includeBoundingValues (bool): A boolean flag indicating that
             the system should attempt to include values for the query
             bound times if possible. The default for this property
             depends on the query mode, so unless a specific behavior
             is desired, it is best to not include this parameter.
+            Optional.
         validateSCExec (bool): A boolean flag indicating whether or
             not data should be validated against the scan class
             execution records. If false, data will appear flat (but
             good quality) for periods of time in which the system
             wasn't running. If true, the same data would be bad
-            quality during downtime periods.
+            quality during downtime periods. Optional.
         noInterpolation (bool): A boolean flag indicating that the
             system should not attempt to interpolate values in
             situations where it normally would. This will also prevent
-            the return of rows that are purely interpolated.
+            the return of rows that are purely interpolated. Optional.
         ignoreBadQuality (bool): A boolean flag indicating that bad
             quality values should not be used in the query process. If
             set, any value with a "bad" quality will be completely
-            ignored in calculations and in the result set.
+            ignored in calculations and in the result set. Optional.
         timeout (int): Timeout in milliseconds for Client Scope. This
             property is ignored in the Gateway Scope. Optional.
 
@@ -789,11 +798,12 @@ def storeTagHistory(historyprovider, tagprovider, paths, values,
         qualities (list[int]): A list of integer quality codes
             corresponding to the values. Quality codes can be found on
             the Tag Quality and Overlays page. If omitted, GOOD
-            quality will be used.
+            quality will be used. Optional.
         timestamps (list[Date]): A list of Date timestamps
             corresponding to the values. If omitted, the current time
             will be used. A java.util.date object may be passed, so
             the system.date functions can be used to return a timestamp.
+            Optional.
     """
     print(historyprovider, tagprovider, paths, values, qualities, timestamps)
 
