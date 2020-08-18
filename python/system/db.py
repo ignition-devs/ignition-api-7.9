@@ -35,6 +35,7 @@ __all__ = [
     'setDatasourceMaxConnections'
 ]
 
+from java.lang import Object
 from javax.swing import JComponent
 from system.dataset import Dataset, PyDataSet
 
@@ -87,7 +88,7 @@ REPEATABLE_READ = 4
 SERIALIZABLE = 8
 
 
-class SProcCall(object):
+class SProcCall(Object):
     def __init__(self):
         pass
 

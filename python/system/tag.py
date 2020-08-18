@@ -36,8 +36,66 @@ __all__ = [
 ]
 
 import system.date
-from . import BrowseResults, QualifiedValue
 from java.lang import Object
+
+
+class BrowseResults(Object):
+    """BrowseResults class."""
+
+    def getContinuationPoint(self):
+        pass
+
+    def getResultQuality(self):
+        pass
+
+    def getResults(self):
+        pass
+
+    def getReturnedSize(self):
+        pass
+
+    def getTotalAvailableSize(self):
+        pass
+
+    def setContinuationPoint(self, continuationPoint):
+        pass
+
+    def setResultQuality(self, value):
+        pass
+
+    def setResults(self, results):
+        pass
+
+    def setTotalAvailableResults(self, totalAvailableResults):
+        pass
+
+
+class QualifiedValue(object):
+    """Represents a value with a DataQuality & timestamp attached to
+    it."""
+
+    def __init__(self,
+                 value=None,
+                 quality=None,
+                 timestamp=None):
+        self.value = value
+        self.quality = quality
+        self.timestamp = timestamp
+
+    def derive(self, diagnosticMessage):
+        pass
+
+    def equals(self, value, includeTimestamp):
+        pass
+
+    def getQuality(self):
+        pass
+
+    def getTimestamp(self):
+        pass
+
+    def getValue(self):
+        pass
 
 
 class AlarmProperty(object):

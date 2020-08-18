@@ -20,8 +20,9 @@ __all__ = [
     'writeValues'
 ]
 
+from abc import ABCMeta, abstractmethod
+
 from java.lang import Object
-from . import QualifiedValue, Quality
 
 
 class OPCBrowseTag(Object):
@@ -59,6 +60,48 @@ class OPCBrowseTag(Object):
 
     def getType(self):
         return self.type
+
+
+class QualifiedValue(ABCMeta):
+    """Represents a value with a DataQuality & timestamp attached to
+    it."""
+
+    def __new__(mcs, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def getQuality(self):
+        pass
+
+    @abstractmethod
+    def getTimestamp(self):
+        pass
+
+    @abstractmethod
+    def getValue(self):
+        pass
+
+
+class Quality(ABCMeta):
+    def __new__(mcs, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def getDescription(self):
+        pass
+
+    def getLevel(self):
+        pass
+
+    @abstractmethod
+    def getName(self):
+        pass
+
+    def getQualityCode(self):
+        pass
+
+    def isGood(self):
+        pass
 
 
 def browse(opcServer, device, folderPath, opcItemPath):
