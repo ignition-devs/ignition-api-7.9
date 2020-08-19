@@ -575,7 +575,7 @@ def queryTagCalculations(paths, calculations,
             window. If omitted, and range is not used, 8 hours before
             the current time is used. Optional.
         endDate (Date): The end of the calculation window. If omitted,
-            and range is not used, uses the current time.
+            and range is not used, uses the current time. Optional.
         rangeHours (int): Allows you to specify the query range in
             hours, instead of using start and end date. Can be
             positive or negative, and can be used in conjunction with
