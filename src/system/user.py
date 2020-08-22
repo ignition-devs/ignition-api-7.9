@@ -64,18 +64,17 @@ class HolidayModel(Object):
     def __init__(self,
                  name,
                  date,
-                 repeatAnually):
+                 repeatAnnually):
         """HolidayModel instance.
 
         Args:
             name (str): The name.
             date (Date): The date.
-            repeatAnually (bool): Repeat anually.
+            repeatAnnually (bool): Repeat annually.
         """
-        super(HolidayModel, self).__init__()
         self.name = name
         self.date = date
-        self.repeatAnually = repeatAnually
+        self.repeatAnnually = repeatAnnually
 
     def getDate(self):
         return self.date
@@ -83,8 +82,8 @@ class HolidayModel(Object):
     def getName(self):
         return self.name
 
-    def isRepeatedAnually(self):
-        return self.repeatAnually
+    def isRepeatedAnnually(self):
+        return self.repeatAnnually
 
 
 class ScheduleModel(Object):

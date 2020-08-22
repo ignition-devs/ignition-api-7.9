@@ -89,6 +89,7 @@ SERIALIZABLE = 8
 
 
 class SProcCall(Object):
+
     def __init__(self):
         pass
 

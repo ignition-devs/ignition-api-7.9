@@ -42,8 +42,7 @@ __all__ = [
 
 from java.awt import Color
 from java.lang import Object
-from javax.swing import JComponent, JFrame, JPopupMenu
-from . import EventObject, FPMIWindow
+from javax.swing import JComponent, JFrame, JInternalFrame, JPopupMenu
 
 # Constants
 ACCL_NONE = 0
@@ -53,6 +52,34 @@ ACCL_SLOW_TO_FAST = 3
 ACCL_EASE = 4
 COORD_SCREEN = 0
 COORD_DESIGNER = 1
+
+
+class FPMIWindow(JInternalFrame):
+    """FPMIWindow object."""
+    # Fields.
+    CACHE_ALWAYS = 2
+    CACHE_AUTO = 0
+    CACHE_NEVER = 1
+    DOCK_EAST = 2
+    DOCK_FLOAT = 0
+    DOCK_NORTH = 2
+    DOCK_SOUTH = 4
+    DOCK_WEST = 3
+    PARENT_WINDOW_NAME = '_parent'
+    SHOW_ALWAYS = 0
+    SHOW_NEVER = 1
+    SHOW_MAXIMIZED = 2
+
+    _path = 'Path/To/Window'
+
+    def __init__(self, name):
+        self.name = name
+
+    def getPath(self):
+        return self._path
+
+    def getRootContainer(self):
+        print self
 
 
 class WindowUtilities(Object):
@@ -160,11 +187,11 @@ def createPopupMenu(itemNames, itemFunctions):
     also: Functions. It is best to have the menu object created only
     once via an application specific library function. Then, call the
     show(event) function on both the mousePressed and
-    mouseReleasedevents on your component. The reason for this is that
-    different operating systems (Windows, Linux, MacOS) differ in when
-    they like to show the popup menu. The show(event) function detects
-    when the right time is to show itself, either on mouse press or
-    release. See the examples for more.
+    mouseReleased events on your component. The reason for this is
+    that different operating systems (Windows, Linux, MacOS) differ in
+    when they like to show the popup menu. The show(event) function
+    detects when the right time is to show itself, either on mouse
+    press or release. See the examples for more.
 
     Args:
         itemNames (list[str]): A list of names to create popup menu
@@ -190,7 +217,7 @@ def desktop(handle='primary'):
             to the Primary Desktop.
 
     Returns:
-        WindowUtilites: A copy of system.gui that will be relative to
+        WindowUtilities: A copy of system.gui that will be relative to
             the desktop named by the given handle.
     """
     print handle
@@ -272,7 +299,7 @@ def getOpenedWindows():
          tuple: A tuple of the opened windows. Not their names, but
             the actual window objects themselves.
     """
-    return [FPMIWindow()]
+    return [FPMIWindow('Main Window')]
 
 
 def getParentWindow(event):
@@ -334,7 +361,7 @@ def getSibling(event, name):
         object: The sibling component itself.
     """
     print(event, name)
-    return FPMIWindow()
+    return FPMIWindow('Sibling')
 
 
 def getWindow(name):
@@ -350,7 +377,7 @@ def getWindow(name):
             window.
     """
     print name
-    return FPMIWindow()
+    return FPMIWindow('Main Window')
 
 
 def getWindowNames():

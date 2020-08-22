@@ -43,13 +43,13 @@ class FPMIWindow(JInternalFrame):
     SHOW_NEVER = 1
     SHOW_MAXIMIZED = 2
 
+    _path = 'Path/To/Window'
+
     def __init__(self, name):
-        super(FPMIWindow, self).__init__()
         self.name = name
 
     def getPath(self):
-        print self
-        return 'Path/To/Window'
+        return self._path
 
     def getRootContainer(self):
         print self
@@ -123,7 +123,7 @@ def centerWindow(windowPath):
         FPMIWindow: A reference to the window to center.
     """
     print windowPath
-    return FPMIWindow()
+    return FPMIWindow('Centered Window')
 
 
 def closeParentWindow(event):
@@ -172,7 +172,7 @@ def getCurrentWindow():
     defined as the maximized window. With the Typical Navigation
     Strategy, there is only ever one maximized window at a time.
 
-    Eeturns:
+    Returns:
         str: The path of the current "main screen" window - the
             maximized window.
     """
@@ -186,7 +186,7 @@ def goBack():
     Returns:
         FPMIWindow: The window that was returned to.
     """
-    return FPMIWindow()
+    return FPMIWindow('Back')
 
 
 def goForward():
@@ -197,7 +197,7 @@ def goForward():
     Returns:
         FPMIWindow: The window that was returned to.
     """
-    return FPMIWindow()
+    return FPMIWindow('Back')
 
 
 def goHome():
@@ -208,7 +208,7 @@ def goHome():
     Returns:
         FPMIWindow: The window that was returned to.
     """
-    return FPMIWindow()
+    return FPMIWindow('Home')
 
 
 def openWindow(path, params=None):
@@ -229,7 +229,7 @@ def openWindow(path, params=None):
         FPMIWindow: A reference to the opened window.
     """
     print(path, params)
-    return FPMIWindow()
+    return FPMIWindow('Opened Window')
 
 
 def openWindowInstance(path, params=None):
@@ -250,7 +250,7 @@ def openWindowInstance(path, params=None):
         FPMIWindow: A reference to the opened window.
     """
     print(path, params)
-    return FPMIWindow()
+    return FPMIWindow('Window Instance')
 
 
 def swapTo(path, params=None):
@@ -274,7 +274,7 @@ def swapTo(path, params=None):
         FPMIWindow: A reference to the swapped-to window.
     """
     print(path, params)
-    return FPMIWindow()
+    return FPMIWindow('Swapped To')
 
 
 def swapWindow(swapFromPath, swapToPath, params=None):
@@ -298,4 +298,4 @@ def swapWindow(swapFromPath, swapToPath, params=None):
         FPMIWindow: A reference to the swapped-to window.
     """
     print(swapFromPath, swapToPath, params)
-    return FPMIWindow()
+    return FPMIWindow('Swapped To')

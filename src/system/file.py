@@ -109,7 +109,7 @@ def readFileAsBytes(filepath):
         return f.read()
 
 
-def readFileAsString(filepath, encoding='utf-8'):
+def readFileAsString(filepath, encoding='UTF-8'):
     """Opens the file found at path filename, and reads the entire
     file. Returns the file as a string. Common things to do with this
     string would be to load it into the text property of a component,
