@@ -32,7 +32,7 @@ __all__ = [
 import system.date
 
 from java.lang import Object
-from java.util import Date, Locale
+from java.util import Locale
 
 
 class AbstractScheduleModel(Object):
@@ -69,7 +69,7 @@ class HolidayModel(Object):
 
         Args:
             name (str): The name.
-            date (Date): The date.
+            date (datetime): The date.
             repeatAnnually (bool): Repeat annually.
         """
         self.name = name
@@ -358,14 +358,14 @@ def getSchedule(scheduleName):
     return None
 
 
-def getScheduledUsers(userSource, date=None):
+def getScheduledUsers(userSource, date=system.date.now()):
     """Returns a list of users that are scheduled on. If no users are
     scheduled, it will return an empty list.
 
     Args:
         userSource (str): The name of the user source to check for
             scheduled users.
-        date (Date): The date to check schedules for. May be a Java
+        date (object): The date to check schedules for. May be a Java
             Date or Unix Time in ms.. If omitted, the current date and
             time will be used. Optional.
 

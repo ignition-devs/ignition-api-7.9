@@ -59,6 +59,53 @@ class LoggerEx(Object):
     pass
 
 
+class Request(Object):
+    def block(self):
+        pass
+
+    def cancel(self):
+        pass
+
+    def checkTimeout(self):
+        pass
+
+    def compose(self, requestWatchers):
+        pass
+
+    def dispatchFunc(self):
+        pass
+
+    def finishExceptionally(self, e):
+        pass
+
+    def finishSuccessfully(self, value):
+        pass
+
+    def get(self):
+        pass
+
+    def getError(self):
+        pass
+
+    def getLongId(self):
+        pass
+
+    def internalOperationCompleted(self):
+        pass
+
+    def internalWait(self):
+        pass
+
+    def onError(self, func):
+        pass
+
+    def onSuccess(self, func):
+        pass
+
+    def startTime(self):
+        pass
+
+
 def beep():
     """Tells the computer to make a "beep" sound."""
     import sys
@@ -345,8 +392,10 @@ def getSessionInfo(usernameFilter=None, projectFilter=None):
     username or the username and the project returned.
 
     Args:
-        usernameFilter (str):
-        projectFilter (str):
+        usernameFilter (str): A regular-expression based filter string
+            to restrict the list by username. Optional.
+        projectFilter (str): A regular-expression based filter string
+            to restrict the list by project. Optional.
 
     Returns:
         PyDataSet: A dataset representing the Gateway's current
@@ -492,23 +541,24 @@ def queryAuditLog(auditProfileName,
     Args:
         auditProfileName (str): The name of the audit profile to pull
             the history from.
-        startDate (Date): The earliest audit event to return. If
+        startDate (datetime): The earliest audit event to return. If
             omitted, the current time - 8 hours will be used.
-        endDate (Date): The latest audit event to return. If omitted,
-            the current time will be used.
+            Optional.
+        endDate (datetime): The latest audit event to return. If
+            omitted, the current time will be used. Optional.
         actorFilter (str): A filter string used to restrict the
-            results by actor.
+            results by actor. Optional.
         actionFilter (str): A filter string used to restrict the
-            results by action.
+            results by action. Optional.
         targetFilter (str): A filter string used to restrict the
-            results by target.
+            results by target. Optional.
         valueFilter (str): A filter string used to restrict the
-            results by value.
+            results by value. Optional.
         systemFilter (str): A filter string used to restrict the
-            results by system.
+            results by system. Optional.
         contextFilter (int): A bitmask used to restrict the results
             by context. 0x01 = Gateway, 0x02 = Designer,
-            0x04 = Client.
+            0x04 = Client. Optional.
 
     Returns:
         Dataset: A dataset with the audit events from the specified
@@ -630,11 +680,11 @@ def sendRequest(project, messageHandler, payload=None, hostName=None,
             access dictionary variables. Optional.
         hostName (str): Limits the message delivery to the client
             that has the specified network host name. Optional.
-        remoteServer (str): A string representing a target Gateway Server
-        name. The message will be delivered to the remote Gateway over
-            the Gateway Network. Upon delivery, the message is
-            distributed to the local Gateway and clients as per the
-            other parameters. Optional.
+        remoteServer (str): A string representing a target Gateway
+            Server name. The message will be delivered to the remote
+            Gateway over the Gateway Network. Upon delivery, the
+            message is distributed to the local Gateway and clients as
+            per the other parameters. Optional.
         timeoutSec (str): The number of seconds before the sendRequest
             call times out. Optional.
 
@@ -645,56 +695,9 @@ def sendRequest(project, messageHandler, payload=None, hostName=None,
     return None
 
 
-class Request(Object):
-    def block(self):
-        pass
-
-    def cancel(self):
-        pass
-
-    def checkTimeout(self):
-        pass
-
-    def compose(self, requestWatchers):
-        pass
-
-    def dispatchFunc(self):
-        pass
-
-    def finishExceptionally(self, e):
-        pass
-
-    def finishSuccessfully(self, value):
-        pass
-
-    def get(self):
-        pass
-
-    def getError(self):
-        pass
-
-    def getLongId(self):
-        pass
-
-    def internalOperationCompleted(self):
-        pass
-
-    def internalWait(self):
-        pass
-
-    def onError(self, func):
-        pass
-
-    def onSuccess(self, func):
-        pass
-
-    def startTime(self):
-        pass
-
-
-def sendRequestAsync(project, messageHandler, payload=None,
-                     hostName=None, remoteServer=None, timeoutSec=None,
-                     onSuccess=None, onError=None):
+def sendRequestAsync(project, messageHandler, payload=None, hostName=None,
+                     remoteServer=None, timeoutSec=None, onSuccess=None,
+                     onError=None):
     """This function sends a message to the Gateway and expects a
     response. Works in a similar manner to the sendRequest function,
     except sendRequestAsync will send the request and then immediately
