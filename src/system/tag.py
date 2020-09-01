@@ -249,7 +249,7 @@ def addTag(parentPath, name, tagType, dataType, accessRights, enabled,
             StringArray, DateTimeArray.
         accessRights (str): The access rights for a tag. Possible
             values are Read_Only, Read_Write, and Custom.
-        enabled (bool): If true, the tag will be enabled.
+        enabled (bool): If True, the tag will be enabled.
         value (object): The value of the tag. Used for memory tags.
         attributes (dict): The tag's configuration attributes.
         parameters (dict): The parameters for a UDT instance tag.
@@ -281,7 +281,7 @@ def browseConfiguration(path, recursive):
             Provider. When browsing UDTs, specifying the UDT path
             will browse the Tags inside the UDT. To browse the UDT
             instance, specify the parent of the instance.
-        recursive (bool): If true, will recursively search for Tags in
+        recursive (bool): If True, will recursively search for Tags in
             folders. Each folder will return a 'tags' property
             containing the nested TagConfigurations in another list.
 
@@ -354,7 +354,7 @@ def browseTags(parentPath, tagPath=None, tagType=None, dataType=None,
         udtParentType (str): The name of the parent UDT. Optional.
         recursive (bool): Recursively search for tags inside of
             folders. Note: It is highly recommended that recursive is
-            set to false, as server timeouts are more likely to occur.
+            set to False, as server timeouts are more likely to occur.
             Optional.
         sort (str): Sets the sort order, possible values are ASC and
             DESC. Sorting is done on the full path of the tag.
@@ -500,7 +500,7 @@ def exists(tagPath):
         tagPath (str): The path of the tag to look up.
 
     Returns:
-        bool: True if a tag exists for the given path, false
+        bool: True if a tag exists for the given path, False
             otherwise.
     """
     print tagPath
@@ -594,20 +594,20 @@ def queryTagCalculations(paths, calculations,
             the system should attempt to load values before and after
             the query bounds for the purpose of interpolation. The
             effect depends on the aggregates used. The default is
-            "true". Optional.
+            "True". Optional.
         validatesSCExec (bool): A boolean flag indicating whether or
             not data should be validated against the scan class
-            execution records. If false, calculations may include data
+            execution records. If False, calculations may include data
             that is assumed to be good, even though the system may not
-            have been running. Default is "true". Optional.
+            have been running. Default is "True". Optional.
         noInterpolation (bool): A boolean flag indicating that the
             system should not attempt to interpolate values in
             situations where it normally would, such as for analog
-            tags. Default is "false". Optional.
+            tags. Default is "False". Optional.
         ignoreBadQuality (bool): A boolean flag indicating that bad
             quality values should not be used in the query process. If
             set, any value with a "bad" quality will be completely
-            ignored in calculations. Default is "false". Optional.
+            ignored in calculations. Default is "False". Optional.
 
     Returns:
         Dataset: A dataset representing the calculations over the
@@ -708,9 +708,9 @@ def queryTagHistory(paths,
             Optional.
         validateSCExec (bool): A boolean flag indicating whether or
             not data should be validated against the scan class
-            execution records. If false, data will appear flat (but
+            execution records. If False, data will appear flat (but
             good quality) for periods of time in which the system
-            wasn't running. If true, the same data would be bad
+            wasn't running. If True, the same data would be bad
             quality during downtime periods. Optional.
         noInterpolation (bool): A boolean flag indicating that the
             system should not attempt to interpolate values in
@@ -821,7 +821,7 @@ def setOverlaysEnabled(enabled):
     """Enables or disables the component quality overlay system.
 
     Args:
-        enabled (bool): True (1) to turn on tag overlays, false (0) to
+        enabled (bool): True (1) to turn on tag overlays, False (0) to
             turn them off.
     """
     print enabled

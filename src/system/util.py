@@ -149,14 +149,14 @@ def execute(commands):
 
 def exit(force=False):
     """Exits the running client, as long as the shutdown intercept
-    script doesn't cancel the shutdown event. Set force to true to not
+    script doesn't cancel the shutdown event. Set force to True to not
     give the shutdown intercept script a chance to cancel the exit.
     Note that this will quit the Client completely. you can use
     system.security.logout() to return to the login screen.
 
     Args:
-        force (bool): f true (1), the shutdown-intercept script will
-            be skipped. Default is false (0). Optional.
+        force (bool): f True (1), the shutdown-intercept script will
+            be skipped. Default is False (0). Optional.
     """
     print force
 
@@ -810,14 +810,27 @@ def threadDump():
     return 'Ignition version: 7.9.x...'
 
 
-def translate(term):
+def translate(term, locale=None, strict=False):
     """This function allows you to retrieve the global translation of
     a term from the translation database using the current locale.
 
     Args:
         term (str): The term to look up.
+        locale (str): Which locale to translate against. Useful when
+            there are multiple locales defined for a single term. If
+            omitted, the function attempts to use the current locale
+            (as defined by the client, session, or Designer).
+            Optional.
+        strict (bool): If False, the function will return the passed
+            term (param 1) if it could not find a defined translation
+            for the locale: meaning, if you pass a term that hasn't
+            been configured, the function will just send the term back
+            to you. If True, then the function will return a None when
+            it fails to find a defined translation. Default is False.
+            Optional.
 
     Returns:
         str: The translated term.
     """
+    print(term, locale, strict)
     return term

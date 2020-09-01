@@ -78,7 +78,7 @@ class JOptionPane(JComponent):
         """Asks a confirming question, like yes/no/cancel.
 
         Args:
-            parentComponent (Component): determines the Frame in which
+            parentComponent (Component): Determines the Frame in which
                 the dialog is displayed; if None, or if the
                 parentComponent has no Frame, a default Frame is used.
             message (object): The object to display.
