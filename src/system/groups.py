@@ -3,8 +3,9 @@
 # Contact: thecesrom@gmail.com
 
 """Transaction Group Functions
-The following functions give you access to import and remove
-Transaction Groups."""
+The following functions give you access to import and remove Transaction
+Groups.
+"""
 
 __all__ = [
     'loadFromFile',
@@ -13,17 +14,16 @@ __all__ = [
 
 
 def loadFromFile(filePath, projectName, mode):
-    """Loads a transaction group configuration from an xml export,
-    into the specified project (creating the project if necessary).
-    The mode parameter dictates how overwrites occur.
+    """Loads a transaction group configuration from an xml export, into
+    the specified project (creating the project if necessary). The mode
+    parameter dictates how overwrites occur.
 
     Args:
-        filePath (str): The path to a valid transaction group xml or
-            csv file.
+        filePath (str): The path to a valid transaction group xml or csv
+            file.
         projectName (str): The name of the project to load into.
         mode (int): How duplicates will be handled. 0 = Overwrite,
-            1 = Ignore, 2 = Replace the existing project with this
-            one.
+            1 = Ignore, 2 = Replace the existing project with this one.
     """
     print(filePath, projectName, mode)
 

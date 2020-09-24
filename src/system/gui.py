@@ -4,7 +4,8 @@
 
 """GUI Functions
 The following functions allow you to control windows and create popup
-interfaces."""
+interfaces.
+"""
 
 __all__ = [
     'chooseColor',
@@ -96,8 +97,8 @@ def chooseColor(initialColor, dialogTitle="Choose Color"):
     color-chooser dialog box.
 
     Args:
-        initialColor (Color): A color to use as a starting point in
-            the color choosing popup.
+        initialColor (Color): A color to use as a starting point in the
+            color choosing popup.
         dialogTitle (str): The title for the color choosing popup.
             Defaults to "Choose Color". Optional.
 
@@ -109,24 +110,24 @@ def chooseColor(initialColor, dialogTitle="Choose Color"):
 
 
 def closeDesktop(handle='primary'):
-    """Allows you to close any of the open desktops associated with
-    the current client. See the Multi-Monitor Clients page for more
-    details about using multiple monitors.
+    """Allows you to close any of the open desktops associated with the
+    current client. See the Multi-Monitor Clients page for more details
+    about using multiple monitors.
 
     Args:
         handle (str): The handle for the desktop to close. The screen
             index cast as a string may be used instead of the handle.
             If omitted, this will default to the Primary Desktop.
-            Alternatively, the handle "primary" can be used to refer
-            to the Primary Desktop.
+            Alternatively, the handle "primary" can be used to refer to
+            the Primary Desktop.
     """
     print handle
 
 
 def color(*args):
     """Creates a new color object, either by parsing a string or by
-    having the RGB[A] channels specified explicitly. See toColor to
-    see a list of available color names.
+    having the RGB[A] channels specified explicitly. See toColor to see
+    a list of available color names.
 
     Args:
         args: Variable-length argument list.
@@ -148,8 +149,8 @@ def confirm(message, title=None, allowCancel=False):
             Optional.
 
     Returns:
-        bool: True (1) if the user selected "Yes", False (0) if the
-            user selected "No", None if the user selected "Cancel".
+        bool: True (1) if the user selected "Yes", False (0) if the user
+            selected "No", None if the user selected "Cancel".
     """
     print(message, title, allowCancel)
     return True
@@ -161,10 +162,10 @@ def convertPointToScreen(x, y, event):
     upper-left corner of the entire screen.
 
     Args:
-        x (int): The X-coordinate, relative to the component that
-            fired the event.
-        y (int): The Y-coordinate, relative to the component that
-            fired the event.
+        x (int): The X-coordinate, relative to the component that fired
+            the event.
+        y (int): The Y-coordinate, relative to the component that fired
+            the event.
         event (EventObject): An event object for a component event.
 
     Returns:
@@ -179,19 +180,18 @@ def createPopupMenu(itemNames, itemFunctions):
     component on a mouse event. To use this function, first create a
     Python sequence whose entries are strings, and another sequence
     whose entries are function objects. The strings will be the items
-    that are displayed in your popup menu, and when an item is
-    clicked, its corresponding function will be run. Passing in a
-    function of None will cause a separator line to appear in the
-    popup menu, and the corresponding string will not be displayed.
-    Your functions must accept an event object as an argument. See
-    also: Functions. It is best to have the menu object created only
-    once via an application specific library function. Then, call the
-    show(event) function on both the mousePressed and
-    mouseReleased events on your component. The reason for this is
-    that different operating systems (Windows, Linux, MacOS) differ in
-    when they like to show the popup menu. The show(event) function
-    detects when the right time is to show itself, either on mouse
-    press or release. See the examples for more.
+    that are displayed in your popup menu, and when an item is clicked,
+    its corresponding function will be run. Passing in a function of
+    None will cause a separator line to appear in the popup menu, and
+    the corresponding string will not be displayed. Your functions must
+    accept an event object as an argument. See also: Functions. It is
+    best to have the menu object created only once via an application
+    specific library function. Then, call the show(event) function on
+    both the mousePressed and mouseReleased events on your component.
+    The reason for this is that different operating systems (Windows,
+    Linux, MacOS) differ in when they like to show the popup menu. The
+    show(event) function detects when the right time is to show itself,
+    either on mouse press or release. See the examples for more.
 
     Args:
         itemNames (list[str]): A list of names to create popup menu
@@ -211,10 +211,10 @@ def desktop(handle='primary'):
 
     Args:
         handle (str): The handle for the desktop to use. The screen
-            index cast as a string may be used instead of the handle.
-            If omitted, this will default to the Primary Desktop.
-            Alternatively, the handle "primary" can be used to refer
-            to the Primary Desktop.
+            index cast as a string may be used instead of the handle. If
+            omitted, this will default to the Primary Desktop.
+            Alternatively, the handle "primary" can be used to refer to
+            the Primary Desktop.
 
     Returns:
         WindowUtilities: A copy of system.gui that will be relative to
@@ -245,17 +245,17 @@ def findWindow(path):
 
     Returns:
         list[object]: A list of window objects. May be empty if window
-            is not open, or have more than one entry if multiple
-            windows are open.
+            is not open, or have more than one entry if multiple windows
+            are open.
     """
     print path
     return []
 
 
 def getCurrentDesktop():
-    """Returns the handle of the desktop this function was called
-    from. Commonly used with the system.gui.desktop and
-    system.nav.desktop functions.
+    """Returns the handle of the desktop this function was called from.
+    Commonly used with the system.gui.desktop and system.nav.desktop
+    functions.
 
     Returns:
         str: The handle of the current desktop.
@@ -270,8 +270,8 @@ def getDesktopHandles():
 
     Example:
         If the original client opened 2 new frames ('left client' and
-        'right client'), then this function would return
-        ['left client', 'right client'].
+        'right client'), then this function would return ['left client',
+        'right client'].
 
     Returns:
         list[str]: A list of window handles of all secondary Desktop
@@ -285,8 +285,8 @@ def getOpenedWindowNames():
     their paths.
 
     Returns:
-        tuple: A tuple of strings, representing the path of each
-            window that is open.
+        tuple: A tuple of strings, representing the path of each window
+            that is open.
     """
     return 'window_1', 'window_2', 'window_n'
 
@@ -296,15 +296,15 @@ def getOpenedWindows():
     references to them.
 
     Returns:
-         tuple: A tuple of the opened windows. Not their names, but
-            the actual window objects themselves.
+         tuple: A tuple of the opened windows. Not their names, but the
+            actual window objects themselves.
     """
     return [FPMIWindow('Main Window')]
 
 
 def getParentWindow(event):
-    """Finds the parent (enclosing) window for the component that
-    fired an event, returning a reference to it.
+    """Finds the parent (enclosing) window for the component that fired
+    an event, returning a reference to it.
 
     Args:
         event (EventObject): A component event object.
@@ -318,17 +318,16 @@ def getParentWindow(event):
 
 
 def getQuality(component, propertyName):
-    """Returns the data quality for the property of the given
-    component as an integer. This function can be used to check the
-    quality of a Tag binding on a component in the middle of the
-    script so that alternative actions can be taken in the event of
-    device disconnections.
+    """Returns the data quality for the property of the given component
+    as an integer. This function can be used to check the quality of a
+    Tag binding on a component in the middle of the script so that
+    alternative actions can be taken in the event of device
+    disconnections.
 
     Args:
         component (JComponent): The component whose property is being
             checked.
-        propertyName (str): The name of the property as a string
-            value.
+        propertyName (str): The name of the property as a string value.
 
     Returns:
         int: The data quality of the given property as an integer.
@@ -350,8 +349,8 @@ def getScreens():
 
 def getSibling(event, name):
     """Given a component event object, looks up a sibling component.
-    Shortcut for event.source.parent.getComponent("siblingName"). If
-    no such sibling is found, the special value None is returned.
+    Shortcut for event.source.parent.getComponent("siblingName"). If no
+    such sibling is found, the special value None is returned.
 
     Args:
         event (EventObject): A component event object.
@@ -365,8 +364,8 @@ def getSibling(event, name):
 
 
 def getWindow(name):
-    """Finds a reference to an open window with the given name. Throws
-    a ValueError if the named window is not open or not found.
+    """Finds a reference to an open window with the given name. Throws a
+    ValueError if the named window is not open or not found.
 
     Args:
         name (str): The path to the window to field.
@@ -401,8 +400,8 @@ def inputBox(message, defaultText):
     Args:
         message (str): The message to display for the input box. Will
             accept html formatting.
-        defaultText (str): The default text to initialize the input
-            box with.
+        defaultText (str): The default text to initialize the input box
+            with.
 
     Returns:
         str: The string value that was entered in the input box.
@@ -439,25 +438,23 @@ def openDesktop(screen=0, handle=None, title=None, width=None, height=None,
     see the Multi-Monitor Clients page.
 
     Args:
-        screen (int): The screen index of which screen to place the
-            new frame on. If omitted, screen 0 will be used.
+        screen (int): The screen index of which screen to place the new
+            frame on. If omitted, screen 0 will be used.
         handle (str): A name for the desktop. If omitted, the screen
             index will be used.
-        title (str): The title for the new frame. If omitted, the
-            index handle will be used. If the handle and title are
-            omitted, the screen index will be used.
-        width (int): The width for the new Desktop's frame. If
-            omitted, frame will become maximized on the specified
-            monitor.
-        height (int): The width for the new desktop's frame. If
-            omitted, frame will become maximized on the specified
-            monitor.
-        x (int): The X coordinate for the new desktop's frame. Only
-            used if both width and height are specified. If omitted,
-            defaults to 0.
-        y (int): The Y coordinate for the new desktop's frame. Only
-            used if both width and height are specified. If omitted,
-            defaults to 0.
+        title (str): The title for the new frame. If omitted, the index
+            handle will be used. If the handle and title are omitted,
+            the screen index will be used.
+        width (int): The width for the new Desktop's frame. If omitted,
+            frame will become maximized on the specified monitor.
+        height (int): The width for the new desktop's frame. If omitted,
+            frame will become maximized on the specified monitor.
+        x (int): The X coordinate for the new desktop's frame. Only used
+            if both width and height are specified. If omitted, defaults
+            to 0.
+        y (int): The Y coordinate for the new desktop's frame. Only used
+            if both width and height are specified. If omitted, defaults
+            to 0.
         windows (list[str]): A list of window paths to open in the new
             Desktop frame.
 
@@ -471,9 +468,9 @@ def openDesktop(screen=0, handle=None, title=None, width=None, height=None,
 def openDiagnostics():
     """Opens the client runtime diagnostics window, which provides
     information regarding performance, logging, active threads,
-    connection status, and the console. This provides an opportunity
-    to open the diagnostics window in situations where the menu bar in
-    the client is hidden, and the keyboard shortcut can not be used.
+    connection status, and the console. This provides an opportunity to
+    open the diagnostics window in situations where the menu bar in the
+    client is hidden, and the keyboard shortcut can not be used.
     """
     pass
 
@@ -484,8 +481,8 @@ def passwordBox(message, title='', echoChar='*'):
     they entered, or None if they canceled the dialog box.
 
     Args:
-        message (str): The message for the password prompt. Will
-            accept html formatting.
+        message (str): The message for the password prompt. Will accept
+            html formatting.
         title (str): A title for the password prompt. Optional.
         echoChar (str): A custom echo character. Defaults to: *.
             Optional.
@@ -503,8 +500,8 @@ def setScreenIndex(index):
     system.gui.getScreens() to identify monitors before moving.
 
     Args:
-        index (int): The new monitor index for this client to move to.
-            0 based.
+        index (int): The new monitor index for this client to move to. 0
+            based.
     """
     print index
 
@@ -520,9 +517,9 @@ def setTouchscreenModeEnabled(enabled):
 
 
 def showNumericKeypad(initialValue=None, fontSize=None, usePasswordMode=False):
-    """Displays a modal on-screen numeric keypad, allowing for
-    arbitrary numeric entry using the mouse, or a finger on a
-    touchscreen monitor. Returns the number that the user entered.
+    """Displays a modal on-screen numeric keypad, allowing for arbitrary
+    numeric entry using the mouse, or a finger on a touchscreen monitor.
+    Returns the number that the user entered.
 
     Args:
         initialValue (object): The value to start the on-screen keypad
@@ -541,9 +538,9 @@ def showNumericKeypad(initialValue=None, fontSize=None, usePasswordMode=False):
 
 def showTouchscreenKeyboard(initialText=None, fontSize=None,
                             passwordMode=False):
-    """Displays a modal on-screen keyboard, allowing for arbitrary
-    text entry using the mouse, or a finger on a touchscreen monitor.
-    Returns the text that the user "typed".
+    """Displays a modal on-screen keyboard, allowing for arbitrary text
+    entry using the mouse, or a finger on a touchscreen monitor. Returns
+    the text that the user "typed".
 
     Args:
         initialText: The text to start the on-screen keyboard with.
@@ -553,7 +550,7 @@ def showTouchscreenKeyboard(initialText=None, fontSize=None,
             the text entered isn't echoed back clear-text. Optional.
 
     Returns:
-        str: The text that was "typed" in the on-screen keyboard.s
+        str: The text that was "typed" in the on-screen keyboard.
     """
     print(initialText, fontSize, passwordMode)
     return ''
@@ -563,18 +560,18 @@ def transform(component, newX=None, newY=None, newWidth=None, newHeight=None,
               duration=0, callback=None, framesPerSecond=60,
               acceleration=None, coordSpace=None):
     """Sets a component's position and size at runtime.  Additional
-    arguments for the duration, framesPerSecond, and acceleration of
-    the operation exist for animation.  An optional callback argument
-    will be executed when the transformation is complete. Note: The
+    arguments for the duration, framesPerSecond, and acceleration of the
+    operation exist for animation.  An optional callback argument will
+    be executed when the transformation is complete. Note: The
     transformation is performed in Designer coordinate space on
     components which are  centered or have more than 2 anchors.
 
     Args:
         component (JComponent): The component to move or resize.
-        newX (int): An optional x-coordinate to move to, relative to
-            the upper-left corner of the component's parent container.
-        newY (int): An optional y-coordinate to move to, relative to
-            the upper-left corner of the component's parent container.
+        newX (int): An optional x-coordinate to move to, relative to the
+            upper-left corner of the component's parent container.
+        newY (int): An optional y-coordinate to move to, relative to the
+            upper-left corner of the component's parent container.
         newWidth (int): An optional width for the component.
         newHeight (int):An optional height for the component.
         duration (int): An optional duration over which the
@@ -583,22 +580,21 @@ def transform(component, newX=None, newY=None, newWidth=None, newHeight=None,
         callback (object): An optional function to be called when the
             transformation is complete.
         framesPerSecond (int): An optional frame rate argument which
-            dictates how often the transformation updates over the
-            given duration. The default is 60 frames per second.
-        acceleration (int): An optional modifier to the acceleration
-            of the transformation over the given duration. See
-            system.gui constants for valid arguments.
-        coordSpace (int): The coordinate space to use. When the
-            default Screen Coordinates are used, the given size and
-            position are absolute, as they appear in the client at
-            runtime. When Designer Coordinates are used, the given
-            size and position are pre-runtime adjusted values, as they
-            would appear in the Designer. See system.gui constants for
-            valid arguments.
+            dictates how often the transformation updates over the given
+            duration. The default is 60 frames per second.
+        acceleration (int): An optional modifier to the acceleration of
+            the transformation over the given duration. See system.gui
+            constants for valid arguments.
+        coordSpace (int): The coordinate space to use. When the default
+            Screen Coordinates are used, the given size and position are
+            absolute, as they appear in the client at runtime. When
+            Designer Coordinates are used, the given size and position
+            are pre-runtime adjusted values, as they would appear in the
+            Designer. See system.gui constants for valid arguments.
 
     Returns:
-        object: An animation object that the script can use to
-            pause(), resume(), or cancel() the transformation.
+        object: An animation object that the script can use to pause(),
+            resume(), or cancel() the transformation.
     """
     print(component, newX, newY, newWidth, newHeight, duration, callback,
           framesPerSecond, acceleration, coordSpace)
@@ -606,8 +602,7 @@ def transform(component, newX=None, newY=None, newWidth=None, newHeight=None,
 
 
 def warningBox(message, title=None):
-    """Displays a message to the user in a warning style pop-up
-    dialog.
+    """Displays a message to the user in a warning style pop-up dialog.
 
     Args:
         message (str): The message to display in the warning box. Will

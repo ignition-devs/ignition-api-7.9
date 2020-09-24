@@ -4,7 +4,8 @@
 
 """User Functions
 The following functions give you access to view and edit users in the
-Gateway."""
+Gateway.
+"""
 
 __all__ = [
     'addHoliday',
@@ -147,8 +148,8 @@ class User(object):
 
     def getContactInfo(self):
         """Returns a sequence of ContactInfo objects. Each of these
-        objects will have a contactType and value property
-        representing the contact information, both strings.
+        objects will have a contactType and value property representing
+        the contact information, both strings.
 
         Returns:
             list[ContactInfo]: A sequence of ContactInfo objects.
@@ -160,8 +161,8 @@ class User(object):
         return [ci_email, ci_phone, ci_sms]
 
     def getId(self):
-        """Returns the internal identifier object that the backing
-        user source needs to identify this user.
+        """Returns the internal identifier object that the backing user
+        source needs to identify this user.
 
         Returns:
             str: The internal identifier object that the backing user
@@ -171,8 +172,7 @@ class User(object):
         return 1
 
     def getOrDefault(self, prop):
-        """Returns a default value if the requested item is not
-        present.
+        """Returns a default value if the requested item is not present.
 
         Args:
             prop (User property): The user property to retrieve.
@@ -188,8 +188,8 @@ class User(object):
         this user belongs to.
 
         Returns:
-             list[str]: Sequence of strings representing the roles
-                that this user belongs to.
+             list[str]: Sequence of strings representing the roles that
+                this user belongs to.
         """
         print self
         return User.Roles
@@ -217,8 +217,8 @@ def addRole(userSource, role):
     Args:
         userSource (str): The user source to add a role to. Blank will
             use the default user source.
-        role (str): The role to add. Role must not be blank and must
-            not already exist.
+        role (str): The role to add. Role must not be blank and must not
+            already exist.
 
     Returns:
         UIResponse: An object with lists of warnings, errors, and info
@@ -266,8 +266,8 @@ def editRole(userSource, oldName, newName):
     Args:
         userSource (str): The user source in which the role is found.
             Blank will use the default user source.
-        oldName (str): The role to edit. Role must not be blank and
-            must exist.
+        oldName (str): The role to edit. Role must not be blank and must
+            exist.
         newName (str): The new name for the role. Must not be blank.
 
     Returns:
@@ -351,8 +351,8 @@ def getSchedule(scheduleName):
 
     Returns:
          AbstractScheduleModel: The schedule, which can be a
-            BasicSchedule, CompositeSchedule, or another type
-            registered by a module, or None if not found.
+            BasicSchedule, CompositeSchedule, or another type registered
+            by a module, or None if not found.
     """
     print scheduleName
     return None
@@ -389,9 +389,9 @@ def getScheduleNames():
 
 
 def getSchedules():
-    """Returns a sequence of all available schedule models, which can
-    be used to return configuration information on the schedule, such
-    as time for each day of the week.
+    """Returns a sequence of all available schedule models, which can be
+    used to return configuration information on the schedule, such as
+    time for each day of the week.
 
     Returns:
         list[ScheduleModel]: A list of ScheduleModel objects.
@@ -403,12 +403,12 @@ def getSchedules():
 
 
 def getUser(userSource, username):
-    """Looks up a specific user in a user source, by username. The
-    full User object is returned except for the user's password.
+    """Looks up a specific user in a user source, by username. The full
+    User object is returned except for the user's password.
 
     Args:
-        userSource (str): The name of the user source to search for
-            the user in.
+        userSource (str): The name of the user source to search for the
+            user in.
         username (str): The username of the user to search for.
 
     Returns:
@@ -420,12 +420,12 @@ def getUser(userSource, username):
 
 def getUsers(userSource):
     """Retrieves the list of users in a specific user source. The User
-    objects that are returned contain all of the information about
-    that user, except for the user's password.
+    objects that are returned contain all of the information about that
+    user, except for the user's password.
 
     Args:
-        userSource (str): The name of the user source to find the
-            users in.
+        userSource (str): The name of the user source to find the users
+            in.
 
     Returns:
         list[User]: A list of User objects.
@@ -469,9 +469,9 @@ def removeHoliday(holidayName):
 
 
 def removeRole(userSource, role):
-    """Removes a role from the specified user source. When altering
-    the Gateway System User Source, the Allow User Admin setting must
-    be enabled.
+    """Removes a role from the specified user source. When altering the
+    Gateway System User Source, the Allow User Admin setting must be
+    enabled.
 
     Args:
         userSource (str): The user source in which the role is found.
@@ -492,8 +492,8 @@ def removeSchedule(scheduleName):
     removed from the Composite Schedule.
 
     Args:
-        scheduleName (str): The name of the schedule to delete. Name
-            is case-sensitive.
+        scheduleName (str): The name of the schedule to delete. Name is
+            case-sensitive.
 
     Returns:
         UIResponse: An object with lists of warnings, errors, and info

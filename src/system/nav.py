@@ -4,7 +4,8 @@
 
 """Navigation Functions
 The following functions allow you to open and close windows in the
-client."""
+client.
+"""
 
 __all__ = [
     'centerWindow',
@@ -56,8 +57,9 @@ class FPMIWindow(JInternalFrame):
 
 
 class INavUtilities(ABCMeta):
-    """Parent interface to coordinate the functions between
-    NavUtilities and NavUtilitiesDispatcher."""
+    """Parent interface to coordinate the functions between NavUtilities
+    and NavUtilitiesDispatcher.
+    """
 
     def __new__(mcs, *args, **kwargs):
         pass
@@ -143,8 +145,8 @@ def closeWindow(arg):
 
     Args:
         arg (object): A reference to the window to close as an
-            FPMIWindow instance or the path of the window to close as
-            a String.
+            FPMIWindow instance or the path of the window to close as a
+            String.
     """
     print arg
 
@@ -154,14 +156,14 @@ def desktop(handle='primary'):
 
     Args:
         handle (str): The handle for the desktop to use. The screen
-            index casted as a string may be used instead of the
-            handle. If omitted, this will default to the Primary
-            Desktop. Alternatively, the handle "primary" can be used
-            to refer to the Primary Desktop.
+            index casted as a string may be used instead of the handle.
+            If omitted, this will default to the Primary Desktop.
+            Alternatively, the handle "primary" can be used to refer to
+            the Primary Desktop.
 
     Returns:
-        INavUtilities: A copy of system.nav that will alter the
-            desktop named by the given handle.
+        INavUtilities: A copy of system.nav that will alter the desktop
+            named by the given handle.
     """
     print handle
     return INavUtilities()
@@ -202,8 +204,8 @@ def goForward():
 
 def goHome():
     """When using the Typical Navigation Strategy, this function will
-    navigate to the "home" window. This is automatically detected as
-    the first main-screen window shown in a project.
+    navigate to the "home" window. This is automatically detected as the
+    first main-screen window shown in a project.
 
     Returns:
         FPMIWindow: The window that was returned to.
@@ -235,8 +237,8 @@ def openWindow(path, params=None):
 def openWindowInstance(path, params=None):
     """Operates exactly like system.nav.openWindow, except that if the
     named window is already open, then an additional instance of the
-    window will be opened. There is no limit to the number of
-    additional instances of a window that you can open.
+    window will be opened. There is no limit to the number of additional
+    instances of a window that you can open.
 
     Args:
         path (str): The path to the window to open.
@@ -254,10 +256,10 @@ def openWindowInstance(path, params=None):
 
 
 def swapTo(path, params=None):
-    """Performs a window swap from the current main screen window to
-    the window specified. Swapping means that the opened window will
-    take the place of the closing window - in this case it will be
-    maximized. See also: Navigation Strategies.
+    """Performs a window swap from the current main screen window to the
+    window specified. Swapping means that the opened window will take
+    the place of the closing window - in this case it will be maximized.
+    See also: Navigation Strategies.
 
     This function works like system.nav.swapWindow except that you
     cannot specify the source for the swap.
@@ -284,8 +286,8 @@ def swapWindow(swapFromPath, swapToPath, params=None):
     transition - one window seems to simply turn into another.
 
     Args:
-        swapFromPath (str): The path of the window to swap from. Must
-            be a currently open window, or this will act like an
+        swapFromPath (str): The path of the window to swap from. Must be
+            a currently open window, or this will act like an
             openWindow.
         swapToPath (str): The name of the window to swap to.
         params (dict): A dictionary of parameters to pass into the
