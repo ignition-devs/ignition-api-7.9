@@ -1,37 +1,17 @@
 # Copyright (C) 2020
 # Author: Cesar Roman
 # Contact: thecesrom@gmail.com
-
 """Tag Functions
 The following functions give you access to interact with Ignition Tags.
 """
 
 __all__ = [
-    'addTag',
-    'browseConfiguration',
-    'browseHistoricalTags',
-    'browseTags',
-    'browseTagsSimple',
-    'editAlarmConfig',
-    'editTag',
-    'editTags',
-    'exists',
-    'getAlarmStates',
-    'isOverlaysEnabled',
-    'loadFromFile',
-    'queryTagCalculations',
-    'queryTagDensity',
-    'queryTagHistory',
-    'read',
-    'readAll',
-    'removeTag',
-    'removeTags',
-    'scan',
-    'setOverlaysEnabled',
-    'storeTagHistory',
-    'write',
-    'writeAll',
-    'writeAllSynchronous',
+    'addTag', 'browseConfiguration', 'browseHistoricalTags', 'browseTags',
+    'browseTagsSimple', 'editAlarmConfig', 'editTag', 'editTags', 'exists',
+    'getAlarmStates', 'isOverlaysEnabled', 'loadFromFile',
+    'queryTagCalculations', 'queryTagDensity', 'queryTagHistory', 'read',
+    'readAll', 'removeTag', 'removeTags', 'scan', 'setOverlaysEnabled',
+    'storeTagHistory', 'write', 'writeAll', 'writeAllSynchronous',
     'writeSynchronous'
 ]
 
@@ -41,7 +21,6 @@ from java.lang import Object
 
 class BrowseResults(Object):
     """BrowseResults class."""
-
     def getContinuationPoint(self):
         pass
 
@@ -73,11 +52,7 @@ class BrowseResults(Object):
 class QualifiedValue(object):
     """Represents a value with a DataQuality & timestamp attached to it.
     """
-
-    def __init__(self,
-                 value=None,
-                 quality=None,
-                 timestamp=None):
+    def __init__(self, value=None, quality=None, timestamp=None):
         self._value = value
         self._quality = quality
         self._timestamp = timestamp
@@ -104,11 +79,7 @@ class QualifiedValue(object):
 
 class AlarmProperty(object):
     """AlarmProperty class."""
-
-    def __init__(self,
-                 property=None,
-                 value=None,
-                 type=None):
+    def __init__(self, property=None, value=None, type=None):
         self.property = property
         self.type = type
         self.value = value
@@ -116,7 +87,6 @@ class AlarmProperty(object):
 
 class BrowseTag(Object):
     """BrowseTag class."""
-
     def __init__(self,
                  name=None,
                  path=None,
@@ -181,7 +151,6 @@ class BrowseTag(Object):
 
 class Results(object):
     """Results class."""
-
     def getPath(self):
         pass
 
@@ -203,7 +172,6 @@ class TagAlarmDefinition(object):
 
 class TagConfiguration(object):
     """TagConfiguration class."""
-
     def getAlarms(self):
         pass
 
@@ -229,8 +197,8 @@ class TagConfiguration(object):
         pass
 
 
-def addTag(parentPath, name, tagType, dataType, accessRights, enabled,
-           value, attributes, parameters, overrides, alarmList, alarmConfig):
+def addTag(parentPath, name, tagType, dataType, accessRights, enabled, value,
+           attributes, parameters, overrides, alarmList, alarmConfig):
     """Adds a new tag in Ignition. You can add OPC, memory, expression,
     query, folder, and UDT instance tags. You can't add Client Tags,
     because those can vary from project to project.
@@ -295,7 +263,9 @@ def browseConfiguration(path, recursive):
     return [TagConfiguration()]
 
 
-def browseHistoricalTags(path, nameFilters=None, maxSize=None,
+def browseHistoricalTags(path,
+                         nameFilters=None,
+                         maxSize=None,
                          continuationPoint=None):
     """Will browse for any historical Tags at the provided historical
     path. It will only browse for Tags at the path, and will not go down
@@ -322,8 +292,13 @@ def browseHistoricalTags(path, nameFilters=None, maxSize=None,
     return BrowseResults()
 
 
-def browseTags(parentPath, tagPath=None, tagType=None, dataType=None,
-               udtParentType=None, recursive=False, sort='ASC'):
+def browseTags(parentPath,
+               tagPath=None,
+               tagType=None,
+               dataType=None,
+               udtParentType=None,
+               recursive=False,
+               sort='ASC'):
     """Returns an array of tags from a specific folder. The function
     supports filtering and recursion. Leave filters blank to return all
     tags.
@@ -360,8 +335,8 @@ def browseTags(parentPath, tagPath=None, tagType=None, dataType=None,
             and the following functions: isFolder(), isUDT(), isOPC(),
             isMemory(), isExpression(), isQuery().
     """
-    print(parentPath, tagPath, tagType, dataType,
-          udtParentType, recursive, sort)
+    print(parentPath, tagPath, tagType, dataType, udtParentType, recursive,
+          sort)
     return [BrowseTag()]
 
 
@@ -408,8 +383,13 @@ def editAlarmConfig(tagPaths, alarmConfig):
     print(tagPaths, alarmConfig)
 
 
-def editTag(tagPath, attributes=None, parameters=None, accessRights=None,
-            overrides=None, alarmList=None, alarmConfig=None):
+def editTag(tagPath,
+            attributes=None,
+            parameters=None,
+            accessRights=None,
+            overrides=None,
+            alarmList=None,
+            alarmConfig=None):
     """Edits an existing Tag in Ignition. This will not work on Client
     Tags, because there is a Client Provider for each project.
 
@@ -478,8 +458,8 @@ def editTags(tagPaths, attributes, parameters, accessRights, overrides,
             JSON object. When using this, it acts as a replacement for
             other parameters. Optional.
     """
-    print(tagPaths, attributes, parameters, accessRights, overrides,
-          alarmList, alarmConfig, provider, json)
+    print(tagPaths, attributes, parameters, accessRights, overrides, alarmList,
+          alarmConfig, provider, json)
 
 
 def exists(tagPath):
@@ -535,12 +515,17 @@ def loadFromFile(filePath, provider, mode):
     print(filePath, provider, mode)
 
 
-def queryTagCalculations(paths, calculations,
+def queryTagCalculations(paths,
+                         calculations,
                          startDate=system.date.addHours(system.date.now(), -8),
-                         endDate=system.date.now(), rangeHours=None,
-                         rangeMinutes=None, aliases=None,
-                         includeBoundingValues=True, validatesSCExec=True,
-                         noInterpolation=False, ignoreBadQuality=False):
+                         endDate=system.date.now(),
+                         rangeHours=None,
+                         rangeMinutes=None,
+                         aliases=None,
+                         includeBoundingValues=True,
+                         validatesSCExec=True,
+                         noInterpolation=False,
+                         ignoreBadQuality=False):
     """Queries various calculations (aggregations) for a set of tags
     over a specified range. Returns a dataset with a row per tag, and a
     column per calculation.
@@ -599,9 +584,9 @@ def queryTagCalculations(paths, calculations,
         Dataset: A dataset representing the calculations over the
             specified range.
     """
-    print (paths, calculations, startDate, endDate, rangeHours,
-           rangeMinutes, aliases, includeBoundingValues,
-           validatesSCExec, noInterpolation, ignoreBadQuality)
+    print(paths, calculations, startDate, endDate, rangeHours, rangeMinutes,
+          aliases, includeBoundingValues, validatesSCExec, noInterpolation,
+          ignoreBadQuality)
 
 
 def queryTagDensity(paths, startDate, endDate):
@@ -633,13 +618,21 @@ def queryTagDensity(paths, startDate, endDate):
 
 def queryTagHistory(paths,
                     startDate=system.date.addHours(system.date.now(), -8),
-                    endDate=system.date.now(), returnSize=-1,
-                    aggregationMode='Average', returnFormat='Wide',
-                    columnNames=None, intervalHours=None,
-                    intervalMinutes=None, rangeHours=None, rangeMinutes=None,
-                    aggregationModes=None, includeBoundingValues=None,
-                    validateSCExec=None, noInterpolation=None,
-                    ignoreBadQuality=None, timeout=None):
+                    endDate=system.date.now(),
+                    returnSize=-1,
+                    aggregationMode='Average',
+                    returnFormat='Wide',
+                    columnNames=None,
+                    intervalHours=None,
+                    intervalMinutes=None,
+                    rangeHours=None,
+                    rangeMinutes=None,
+                    aggregationModes=None,
+                    includeBoundingValues=None,
+                    validateSCExec=None,
+                    noInterpolation=None,
+                    ignoreBadQuality=None,
+                    timeout=None):
     """Issues a query to the Tag Historian. Querying tag history
     involves specifying the tags and the date range, as well as a few
     optional parameters. The Tag historian will find the relevant
@@ -712,11 +705,10 @@ def queryTagHistory(paths,
             specified tag paths. The first column will be the timestamp,
             and each column after that represents a tag.
     """
-    print(paths, startDate, endDate, returnSize, aggregationMode,
-          returnFormat, columnNames, intervalHours,
-          intervalMinutes, rangeHours, rangeMinutes,
-          aggregationModes, includeBoundingValues, validateSCExec,
-          noInterpolation, ignoreBadQuality, timeout)
+    print(paths, startDate, endDate, returnSize, aggregationMode, returnFormat,
+          columnNames, intervalHours, intervalMinutes, rangeHours,
+          rangeMinutes, aggregationModes, includeBoundingValues,
+          validateSCExec, noInterpolation, ignoreBadQuality, timeout)
     return None
 
 
@@ -814,8 +806,12 @@ def setOverlaysEnabled(enabled):
     print enabled
 
 
-def storeTagHistory(historyprovider, tagprovider, paths, values,
-                    qualities=None, timestamps=system.date.now()):
+def storeTagHistory(historyprovider,
+                    tagprovider,
+                    paths,
+                    values,
+                    qualities=None,
+                    timestamps=system.date.now()):
     """Inserts data into the tag history system, allowing Tag history to
     be recorded via scripting.
 

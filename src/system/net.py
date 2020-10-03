@@ -1,22 +1,13 @@
 # Copyright (C) 2020
 # Author: Cesar Roman
 # Contact: thecesrom@gmail.com
-
 """Net Functions
 The following functions give you access to interact with http services.
 """
 
 __all__ = [
-    'getExternalIpAddress',
-    'getHostName',
-    'getIpAddress',
-    'getRemoteServers',
-    'httpDelete',
-    'httpGet',
-    'httpPost',
-    'httpPut',
-    'openURL',
-    'sendEmail'
+    'getExternalIpAddress', 'getHostName', 'getIpAddress', 'getRemoteServers',
+    'httpDelete', 'httpGet', 'httpPost', 'httpPut', 'openURL', 'sendEmail'
 ]
 
 
@@ -79,8 +70,13 @@ def getRemoteServers(runningOnly=True):
     return []
 
 
-def httpDelete(url, contentType=None, connectTimeout=10000, readTimeout=60000,
-               username=None, password=None, headerValues=None,
+def httpDelete(url,
+               contentType=None,
+               connectTimeout=10000,
+               readTimeout=60000,
+               username=None,
+               password=None,
+               headerValues=None,
                bypassCertValidation=True):
     """Performs an HTTP DELETE to the given URL.
 
@@ -107,14 +103,20 @@ def httpDelete(url, contentType=None, connectTimeout=10000, readTimeout=60000,
     Returns:
         object: The content returned for the DELETE operation.
     """
-    print(url, contentType, connectTimeout, readTimeout,
-          username, password, headerValues, bypassCertValidation)
+    print(url, contentType, connectTimeout, readTimeout, username, password,
+          headerValues, bypassCertValidation)
     return object
 
 
-def httpGet(url, connectTimeout=10000, readTimeout=60000, username=None,
-            password=None, headerValues=None, bypassCertValidation=None,
-            useCaches=True, throwOnError=True):
+def httpGet(url,
+            connectTimeout=10000,
+            readTimeout=60000,
+            username=None,
+            password=None,
+            headerValues=None,
+            bypassCertValidation=None,
+            useCaches=True,
+            throwOnError=True):
     """Retrieves the document at the given URL using the HTTP GET
     protocol. The document is returned as a string. For example, if you
     use the URL of a website, you'll get the same thing you'd get by
@@ -205,10 +207,23 @@ def openURL(url, useApplet=False):
     print(url, useApplet)
 
 
-def sendEmail(smtp, fromAddr, subject, body, html, to, attachmentNames=None,
-              attachmentData=None, timeout=300000, username=None,
-              password=None, priority='3', smtpProfile=None, cc=None,
-              bcc=None, retries=0, replyTo=None):
+def sendEmail(smtp,
+              fromAddr,
+              subject,
+              body,
+              html,
+              to,
+              attachmentNames=None,
+              attachmentData=None,
+              timeout=300000,
+              username=None,
+              password=None,
+              priority='3',
+              smtpProfile=None,
+              cc=None,
+              bcc=None,
+              retries=0,
+              replyTo=None):
     """Sends an email through the given SMTP server. Note that this
     email is relayed first through the Gateway - the client host machine
     doesn't need network access to the SMTP server.

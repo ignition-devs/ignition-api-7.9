@@ -1,32 +1,16 @@
 # Copyright (C) 2020
 # Author: Cesar Roman
 # Contact: thecesrom@gmail.com
-
 """User Functions
 The following functions give you access to view and edit users in the
 Gateway.
 """
 
 __all__ = [
-    'addHoliday',
-    'addRole',
-    'addSchedule',
-    'editHoliday',
-    'editRole',
-    'editSchedule',
-    'getHoliday',
-    'getHolidayNames',
-    'getHolidays',
-    'getRoles',
-    'getSchedule',
-    'getScheduledUsers',
-    'getScheduleNames',
-    'getSchedules',
-    'getUser',
-    'getUsers',
-    'isUserScheduled',
-    'removeHoliday',
-    'removeRole',
+    'addHoliday', 'addRole', 'addSchedule', 'editHoliday', 'editRole',
+    'editSchedule', 'getHoliday', 'getHolidayNames', 'getHolidays', 'getRoles',
+    'getSchedule', 'getScheduledUsers', 'getScheduleNames', 'getSchedules',
+    'getUser', 'getUsers', 'isUserScheduled', 'removeHoliday', 'removeRole',
     'removeSchedule'
 ]
 
@@ -51,9 +35,7 @@ class AbstractScheduleModel(Object):
 
 
 class ContactInfo(Object):
-    def __init__(self,
-                 contactType=None,
-                 value=None):
+    def __init__(self, contactType=None, value=None):
         super(ContactInfo, self).__init__()
         self.contactType = contactType
         self.value = value
@@ -61,11 +43,7 @@ class ContactInfo(Object):
 
 class HolidayModel(Object):
     """HolidayModel object."""
-
-    def __init__(self,
-                 name,
-                 date,
-                 repeatAnnually):
+    def __init__(self, name, date, repeatAnnually):
         """HolidayModel instance.
 
         Args:
@@ -92,7 +70,6 @@ class ScheduleModel(Object):
 
 
 class UIResponse(Object):
-
     def __init__(self, locale):
         self.locale = locale
 

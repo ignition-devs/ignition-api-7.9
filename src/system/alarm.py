@@ -1,23 +1,14 @@
 # Copyright (C) 2020
 # Author: Cesar Roman
 # Contact: thecesrom@gmail.com
-
 """Alarm Functions
 The following functions give you access to view and interact with the
 Alarm system in Ignition.
 """
 
 __all__ = [
-    'acknowledge',
-    'cancel',
-    'createRoster',
-    'getRosters',
-    'getShelvedPaths',
-    'listPipelines',
-    'queryJournal',
-    'queryStatus',
-    'shelve',
-    'unshelve'
+    'acknowledge', 'cancel', 'createRoster', 'getRosters', 'getShelvedPaths',
+    'listPipelines', 'queryJournal', 'queryStatus', 'shelve', 'unshelve'
 ]
 
 from abc import ABCMeta, abstractmethod
@@ -32,7 +23,6 @@ class AlarmQueryResults(ABCMeta):
     provides additional helper functions for getting the event and
     associated data as a dataset.
     """
-
     def __new__(mcs, *args, **kwargs):
         pass
 
@@ -51,11 +41,7 @@ class AlarmQueryResults(ABCMeta):
 
 class ShelvedPath(Object):
     """A ShelvedPath object."""
-
-    def __init__(self,
-                 path=None,
-                 user=None,
-                 expiration=None):
+    def __init__(self, path=None, user=None, expiration=None):
         self.path = path
         self.user = user
         self.expiration = expiration
@@ -165,10 +151,19 @@ def listPipelines():
 
 
 def queryJournal(startDate=system.date.addHours(system.date.now(), -8),
-                 endDate=system.date.now(), journalName=None, priority=None,
-                 state=None, path=None, source=None, displaypath=None,
-                 all_properties=None, any_properties=None, defined=None,
-                 includeData=None, includeSystem=None, isSystem=None):
+                 endDate=system.date.now(),
+                 journalName=None,
+                 priority=None,
+                 state=None,
+                 path=None,
+                 source=None,
+                 displaypath=None,
+                 all_properties=None,
+                 any_properties=None,
+                 defined=None,
+                 includeData=None,
+                 includeSystem=None,
+                 isSystem=None):
     """Queries the specified journal for historical alarm events. The
     result is a list of alarm events, which can be queried for
     individual properties. The result object also has a getDataset()
@@ -234,8 +229,15 @@ def queryJournal(startDate=system.date.addHours(system.date.now(), -8),
     return AlarmQueryResults()
 
 
-def queryStatus(priority, state, path, source, displaypath, all_properties,
-                any_properties, defined, includeShelved=False):
+def queryStatus(priority,
+                state,
+                path,
+                source,
+                displaypath,
+                all_properties,
+                any_properties,
+                defined,
+                includeShelved=False):
     """Queries the current state of alarms. The result is a list of
     alarm events, which can be queried for individual properties. The
     result object also has a getDataset() function that can be used to

@@ -1,22 +1,14 @@
 # Copyright (C) 2020
 # Author: Cesar Roman
 # Contact: thecesrom@gmail.com
-
 """Serial Functions
 The following functions give you access to read and write through serial
 ports.
 """
 
 __all__ = [
-    'closeSerialPort',
-    'configureSerialPort',
-    'openSerialPort',
-    'readBytes',
-    'readBytesAsString',
-    'readLine',
-    'readUntil',
-    'sendBreak',
-    'write',
+    'closeSerialPort', 'configureSerialPort', 'openSerialPort', 'readBytes',
+    'readBytesAsString', 'readLine', 'readUntil', 'sendBreak', 'write',
     'writeBytes'
 ]
 

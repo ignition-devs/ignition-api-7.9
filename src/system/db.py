@@ -1,39 +1,20 @@
 # Copyright (C) 2020
 # Author: Cesar Roman
 # Contact: thecesrom@gmail.com
-
 """Database Functions
 The following functions give you access to view and modify data in the
 database.
 """
 
 __all__ = [
-    'addDatasource',
-    'beginTransaction',
-    'clearAllNamedQueryCaches',
-    'clearNamedQueryCache',
-    'closeTransaction',
-    'commitTransaction',
-    'createSProcCall',
-    'dateFormat',
-    'execSProcCall',
-    'getConnectionInfo',
-    'getConnections',
-    'refresh',
-    'removeDatasource',
-    'rollbackTransaction',
-    'runNamedQuery',
-    'runPrepQuery',
-    'runPrepUpdate',
-    'runQuery',
-    'runScalarPrepQuery',
-    'runScalarQuery',
-    'runSFPrepUpdate',
-    'runSFUpdateQuery',
-    'runUpdateQuery',
-    'setDatasourceConnectURL',
-    'setDatasourceEnabled',
-    'setDatasourceMaxConnections'
+    'addDatasource', 'beginTransaction', 'clearAllNamedQueryCaches',
+    'clearNamedQueryCache', 'closeTransaction', 'commitTransaction',
+    'createSProcCall', 'dateFormat', 'execSProcCall', 'getConnectionInfo',
+    'getConnections', 'refresh', 'removeDatasource', 'rollbackTransaction',
+    'runNamedQuery', 'runPrepQuery', 'runPrepUpdate', 'runQuery',
+    'runScalarPrepQuery', 'runScalarQuery', 'runSFPrepUpdate',
+    'runSFUpdateQuery', 'runUpdateQuery', 'setDatasourceConnectURL',
+    'setDatasourceEnabled', 'setDatasourceMaxConnections'
 ]
 
 from java.lang import Object
@@ -90,7 +71,6 @@ SERIALIZABLE = 8
 
 
 class SProcCall(Object):
-
     def __init__(self):
         pass
 
@@ -172,8 +152,15 @@ class SProcCall(Object):
         print(self, typeCode)
 
 
-def addDatasource(jdbcDriver, name, description, connectUrl, username,
-                  password, props, validationQuery, maxConnections=8):
+def addDatasource(jdbcDriver,
+                  name,
+                  description,
+                  connectUrl,
+                  username,
+                  password,
+                  props,
+                  validationQuery,
+                  maxConnections=8):
     """Adds a new database connection in Ignition.
 
     Args:
@@ -482,7 +469,11 @@ def runPrepQuery(query, args, database='', tx=None):
     return PyDataSet()
 
 
-def runPrepUpdate(query, args, database='', tx=None, getKey=False,
+def runPrepUpdate(query,
+                  args,
+                  database='',
+                  tx=None,
+                  getKey=False,
                   skipAudit=True):
     """Runs a  prepared statement  against the database, returning the
     number of rows that were affected. Prepared statements differ from
