@@ -503,8 +503,8 @@ def playSoundClip(wav, volume, wait):
 
 
 def queryAuditLog(auditProfileName,
-                  startDate=system.date.addHours(system.date.now(), -8),
-                  endDate=system.date.now(),
+                  startDate=None,
+                  endDate=None,
                   actorFilter=None,
                   actionFilter=None,
                   targetFilter=None,
@@ -539,6 +539,9 @@ def queryAuditLog(auditProfileName,
         Dataset: A dataset with the audit events from the specified
             profile that match the filter arguments.
     """
+    endDate = system.date.now() if endDate is None else endDate
+    startDate = (system.date.addHours(endDate, -8)
+                 if startDate is None else startDate)
     print(auditProfileName, startDate, endDate, actorFilter, actionFilter,
           targetFilter, valueFilter, systemFilter, contextFilter)
     return Dataset()

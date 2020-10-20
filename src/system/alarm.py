@@ -150,8 +150,8 @@ def listPipelines():
     return None
 
 
-def queryJournal(startDate=system.date.addHours(system.date.now(), -8),
-                 endDate=system.date.now(),
+def queryJournal(startDate=None,
+                 endDate=None,
                  journalName=None,
                  priority=None,
                  state=None,
@@ -223,6 +223,9 @@ def queryJournal(startDate=system.date.addHours(system.date.now(), -8),
             alarm), Source Path, Display Path, Event Time, State (as an
             integer), and Priority (as an integer).
     """
+    endDate = system.date.now() if endDate is None else endDate
+    startDate = (system.date.addHours(endDate, -8)
+                 if startDate is None else startDate)
     print(startDate, endDate, journalName, priority, state, path, source,
           displaypath, all_properties, any_properties, defined, includeData,
           includeSystem, isSystem)
