@@ -2,7 +2,6 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/thecesrom/Ignition)
 ![GitHub last commit (master)](https://img.shields.io/github/last-commit/thecesrom/Ignition/7.9)
 ![GitHub license](https://img.shields.io/github/license/thecesrom/Ignition)
-![GitHub downloads](https://img.shields.io/github/downloads/thecesrom/Ignition/total)
 
 # Ignition
 
@@ -11,7 +10,7 @@ Ignition is a set of packages and modules that allows developers to get code com
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
-* You have installed Python 2.7
+* You have installed Python 2.7.18 ([download here](https://www.python.org/downloads/release/python-2718/))
 * You are familiar with [Ignition 7.9 Scripting Functions](https://docs.inductiveautomation.com/display/DOC79/Scripting+Functions)
 
 ## Using Ignition
@@ -31,7 +30,7 @@ These are libraries for some Java packages and functions that are imported in `s
 
 ### system
 
-Is a package that includes stubs of all Ignition Scripting Functions.
+Is a package that includes all Ignition Scripting Functions.
 
 ## Contributing to Ignition
 
