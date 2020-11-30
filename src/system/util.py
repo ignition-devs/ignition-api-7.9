@@ -7,16 +7,44 @@ Client data, as well as interact with other various systems.
 """
 
 __all__ = [
-    'beep', 'execute', 'exit', 'getAvailableLocales', 'getAvailableTerms',
-    'getClientId', 'getConnectionMode', 'getConnectTimeout', 'getEdition',
-    'getGatewayAddress', 'getGatewayStatus', 'getGlobals',
-    'getInactivitySeconds', 'getLocale', 'getLogger', 'getProjectName',
-    'getProperty', 'getReadTimeout', 'getSessionInfo', 'getSystemFlags',
-    'invokeAsynchronous', 'invokeLater', 'jsonDecode', 'jsonEncode',
-    'modifyTranslation', 'playSoundClip', 'queryAuditLog', 'retarget',
-    'sendMessage', 'sendRequest', 'sendRequestAsync', 'setConnectionMode',
-    'setConnectTimeout', 'setLocale', 'setLoggingLevel', 'setReadTimeout',
-    'threadDump', 'translate'
+    "beep",
+    "execute",
+    "exit",
+    "getAvailableLocales",
+    "getAvailableTerms",
+    "getClientId",
+    "getConnectionMode",
+    "getConnectTimeout",
+    "getEdition",
+    "getGatewayAddress",
+    "getGatewayStatus",
+    "getGlobals",
+    "getInactivitySeconds",
+    "getLocale",
+    "getLogger",
+    "getProjectName",
+    "getProperty",
+    "getReadTimeout",
+    "getSessionInfo",
+    "getSystemFlags",
+    "invokeAsynchronous",
+    "invokeLater",
+    "jsonDecode",
+    "jsonEncode",
+    "modifyTranslation",
+    "playSoundClip",
+    "queryAuditLog",
+    "retarget",
+    "sendMessage",
+    "sendRequest",
+    "sendRequestAsync",
+    "setConnectionMode",
+    "setConnectTimeout",
+    "setLocale",
+    "setLoggingLevel",
+    "setReadTimeout",
+    "threadDump",
+    "translate",
 ]
 
 import system.date
@@ -29,6 +57,7 @@ class LoggerEx(Object):
     useful tools. To create one, use the newBuilder() function and
     configure the builder.
     """
+
     pass
 
 
@@ -82,28 +111,31 @@ class Request(Object):
 def beep():
     """Tells the computer to make a "beep" sound."""
     import sys
+
     platforms = {
-        'linux1': 'Linux',
-        'linux2': 'Linux',
-        'darwin': 'OS X',
-        'win32': 'Windows',
+        "linux1": "Linux",
+        "linux2": "Linux",
+        "darwin": "OS X",
+        "win32": "Windows",
     }
 
     if sys.platform in platforms:
-        if platforms[sys.platform] == 'Windows':
+        if platforms[sys.platform] == "Windows":
             try:
                 import winsound
+
                 winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
             except ImportError:
-                print 'Beep!'
-        elif platforms[sys.platform] == 'OS X':
+                print "Beep!"
+        elif platforms[sys.platform] == "OS X":
             import os
+
             os.system('say "beep"')
-        elif platforms[sys.platform] == 'Linux':
+        elif platforms[sys.platform] == "Linux":
             # TODO: Make Linux speak.
-            print 'Beep!'
+            print "Beep!"
     else:
-        print 'Beep!'
+        print "Beep!"
 
 
 def execute(commands):
@@ -141,7 +173,7 @@ def getAvailableLocales():
         list[str]: A collection of strings representing the Locales
             added to the Translation Manager.
     """
-    return ['en']
+    return ["en"]
 
 
 def getAvailableTerms():
@@ -152,7 +184,7 @@ def getAvailableTerms():
          list[str]: A collection of all of the terms available from the
             Translation Manager.
     """
-    return ['term1', 'term2']
+    return ["term1", "term2"]
 
 
 def getClientId():
@@ -164,7 +196,7 @@ def getClientId():
         str: A special code representing the client's session in a
             unique way.
     """
-    return '92247003'
+    return "92247003"
 
 
 def getConnectionMode():
@@ -198,7 +230,7 @@ def getEdition():
         str: The edition of the Vision module that is running the
             client.
     """
-    return 'standard'
+    return "standard"
 
 
 def getGatewayAddress():
@@ -209,12 +241,12 @@ def getGatewayAddress():
         str: The address of the Gateway that the client is communicating
             with.
     """
-    return 'http://localhost:8088/main'
+    return "http://localhost:8088/main"
 
 
-def getGatewayStatus(gatewayAddress,
-                     connectTimeoutMillis=None,
-                     socketTimeoutMillis=None):
+def getGatewayStatus(
+    gatewayAddress, connectTimeoutMillis=None, socketTimeoutMillis=None
+):
     """Returns a string that indicates the status of the Gateway. A
     status of RUNNING means that the Gateway is fully functional. Thrown
     exceptions return "ERROR" with the error message appended to the
@@ -233,8 +265,8 @@ def getGatewayStatus(gatewayAddress,
         str: A string that indicates the status of the Gateway. A status
             of RUNNING means that the Gateway is fully functional.
     """
-    print(gatewayAddress, connectTimeoutMillis, socketTimeoutMillis)
-    return 'RUNNING'
+    print (gatewayAddress, connectTimeoutMillis, socketTimeoutMillis)
+    return "RUNNING"
 
 
 def getGlobals():
@@ -272,7 +304,7 @@ def getLocale():
     Returns:
         str: The current Locale.
     """
-    return 'en'
+    return "en"
 
 
 def getLogger(name):
@@ -296,7 +328,7 @@ def getProjectName():
     Returns:
         str: The name of the currently running project.
     """
-    return 'MyProject'
+    return "MyProject"
 
 
 def getProperty(propertyName):
@@ -327,19 +359,19 @@ def getProperty(propertyName):
     import os
     import platform
 
-    if propertyName == 'file.separator':
+    if propertyName == "file.separator":
         ret = os.sep
-    elif propertyName == 'line.separator':
+    elif propertyName == "line.separator":
         ret = os.linesep
-    elif propertyName == 'os.arch':
+    elif propertyName == "os.arch":
         ret = platform.machine()
-    elif propertyName == 'os.name':
+    elif propertyName == "os.name":
         ret = platform.system()
-    elif propertyName == 'os.version':
+    elif propertyName == "os.version":
         ret = platform.release()
-    elif propertyName == 'user.home':
-        ret = os.path.expanduser('~')
-    elif propertyName == 'user.name':
+    elif propertyName == "user.home":
+        ret = os.path.expanduser("~")
+    elif propertyName == "user.name":
         ret = getpass.getuser()
 
     return ret
@@ -374,7 +406,7 @@ def getSessionInfo(usernameFilter=None, projectFilter=None):
         PyDataSet: A dataset representing the Gateway's current
             sessions.
     """
-    print(usernameFilter, projectFilter)
+    print (usernameFilter, projectFilter)
     return PyDataSet()
 
 
@@ -436,7 +468,7 @@ def invokeLater(function, delay=0):
             be invoked after all currently pending events are processed.
             Optional.
     """
-    print(function, delay)
+    print (function, delay)
 
 
 def jsonDecode(jsonString):
@@ -451,8 +483,8 @@ def jsonDecode(jsonString):
     Returns:
         dict: The decoded Python object.
     """
-    print(jsonString)
-    return {'key': 'value'}
+    print (jsonString)
+    return {"key": "value"}
 
 
 def jsonEncode(pyObj, indentFactor=4):
@@ -468,11 +500,11 @@ def jsonEncode(pyObj, indentFactor=4):
     Returns:
         str: The encoded JSON string.
     """
-    print(pyObj, indentFactor)
-    return ''
+    print (pyObj, indentFactor)
+    return ""
 
 
-def modifyTranslation(term, translation, locale='en'):
+def modifyTranslation(term, translation, locale="en"):
     """This function allows you to add or modify a global translation.
 
     Args:
@@ -482,7 +514,7 @@ def modifyTranslation(term, translation, locale='en'):
             identifying the language of the translation. Otherwise, the
             currently set language is used. Optional.
     """
-    print(term, translation, locale)
+    print (term, translation, locale)
 
 
 def playSoundClip(wav, volume, wait):
@@ -499,18 +531,20 @@ def playSoundClip(wav, volume, wait):
             to playSoundClip should wait for the clip to finish before
             it returns. Optional.
     """
-    print(wav, volume, wait)
+    print (wav, volume, wait)
 
 
-def queryAuditLog(auditProfileName,
-                  startDate=None,
-                  endDate=None,
-                  actorFilter=None,
-                  actionFilter=None,
-                  targetFilter=None,
-                  valueFilter=None,
-                  systemFilter=None,
-                  contextFilter=None):
+def queryAuditLog(
+    auditProfileName,
+    startDate=None,
+    endDate=None,
+    actorFilter=None,
+    actionFilter=None,
+    targetFilter=None,
+    valueFilter=None,
+    systemFilter=None,
+    contextFilter=None,
+):
     """Queries an audit profile for audit history. Returns the results
     as a dataset.
 
@@ -540,17 +574,26 @@ def queryAuditLog(auditProfileName,
             profile that match the filter arguments.
     """
     endDate = system.date.now() if endDate is None else endDate
-    startDate = (system.date.addHours(endDate, -8)
-                 if startDate is None else startDate)
-    print(auditProfileName, startDate, endDate, actorFilter, actionFilter,
-          targetFilter, valueFilter, systemFilter, contextFilter)
+    startDate = (
+        system.date.addHours(endDate, -8) if startDate is None else startDate
+    )
+    print (
+        auditProfileName,
+        startDate,
+        endDate,
+        actorFilter,
+        actionFilter,
+        targetFilter,
+        valueFilter,
+        systemFilter,
+        contextFilter,
+    )
     return Dataset()
 
 
-def retarget(projectName,
-             gatewayAddress=None,
-             params=None,
-             startupWindows=None):
+def retarget(
+    projectName, gatewayAddress=None, params=None, startupWindows=None
+):
     """This function allows you to programmatically 'retarget' the
     Client to a different project and/or different Gateway. You can have
     it switch to another project on the same Gateway, or another gateway
@@ -585,18 +628,20 @@ def retarget(projectName,
             startup windows will be ignored, and this list will be used
             instead. Optional.
     """
-    print(projectName, gatewayAddress, params, startupWindows)
+    print (projectName, gatewayAddress, params, startupWindows)
 
 
-def sendMessage(project,
-                messageHandler,
-                payload=None,
-                scope=None,
-                clientSessionId=None,
-                user=None,
-                hasRole=None,
-                hostName=None,
-                remoteServers=None):
+def sendMessage(
+    project,
+    messageHandler,
+    payload=None,
+    scope=None,
+    clientSessionId=None,
+    user=None,
+    hasRole=None,
+    hostName=None,
+    remoteServers=None,
+):
     """This function sends a message to clients running under the
     Gateway, or to a project within the Gateway itself. To handle
     received messages, you must set up event script message handlers
@@ -637,17 +682,28 @@ def sendMessage(project,
             system that was selected for delivery, where each List item
             is comma-delimited.
     """
-    print(project, messageHandler, payload, scope, clientSessionId, user,
-          hasRole, hostName, remoteServers)
+    print (
+        project,
+        messageHandler,
+        payload,
+        scope,
+        clientSessionId,
+        user,
+        hasRole,
+        hostName,
+        remoteServers,
+    )
     return None
 
 
-def sendRequest(project,
-                messageHandler,
-                payload=None,
-                hostName=None,
-                remoteServer=None,
-                timeoutSec=None):
+def sendRequest(
+    project,
+    messageHandler,
+    payload=None,
+    hostName=None,
+    remoteServer=None,
+    timeoutSec=None,
+):
     """This function sends a message to the Gateway, working in a
     similar manner to the sendMessage function, except sendRequest
     expects a response to the message. To handle received messages, you
@@ -679,18 +735,27 @@ def sendRequest(project,
     Returns:
         object: The return from the message handler.
     """
-    print(project, messageHandler, payload, hostName, remoteServer, timeoutSec)
+    print (
+        project,
+        messageHandler,
+        payload,
+        hostName,
+        remoteServer,
+        timeoutSec,
+    )
     return None
 
 
-def sendRequestAsync(project,
-                     messageHandler,
-                     payload=None,
-                     hostName=None,
-                     remoteServer=None,
-                     timeoutSec=None,
-                     onSuccess=None,
-                     onError=None):
+def sendRequestAsync(
+    project,
+    messageHandler,
+    payload=None,
+    hostName=None,
+    remoteServer=None,
+    timeoutSec=None,
+    onSuccess=None,
+    onError=None,
+):
     """This function sends a message to the Gateway and expects a
     response. Works in a similar manner to the sendRequest function,
     except sendRequestAsync will send the request and then immediately
@@ -726,8 +791,16 @@ def sendRequestAsync(project,
         Request: The Request object that can be used while waiting for
             the message handler callback.
     """
-    print(project, messageHandler, payload, hostName, remoteServer, timeoutSec,
-          onSuccess, onError)
+    print (
+        project,
+        messageHandler,
+        payload,
+        hostName,
+        remoteServer,
+        timeoutSec,
+        onSuccess,
+        onError,
+    )
     return Request()
 
 
@@ -780,7 +853,7 @@ def setLoggingLevel(loggerName, loggerLevel):
         loggerLevel (str): The level you want to change to logger to:
             "trace", "debug", "info", "warn" or "error".
     """
-    print(loggerName, loggerLevel)
+    print (loggerName, loggerLevel)
 
 
 def setReadTimeout(readTimeout):
@@ -800,7 +873,7 @@ def threadDump():
     Returns:
         str: The dump of the current running JVM.
     """
-    return 'Ignition version: 7.9.x...'
+    return "Ignition version: 7.9.x..."
 
 
 def translate(term, locale=None, strict=False):
@@ -824,5 +897,5 @@ def translate(term, locale=None, strict=False):
     Returns:
         str: The translated term.
     """
-    print(term, locale, strict)
+    print (term, locale, strict)
     return term

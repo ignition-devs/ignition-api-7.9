@@ -7,14 +7,32 @@ database.
 """
 
 __all__ = [
-    'addDatasource', 'beginTransaction', 'clearAllNamedQueryCaches',
-    'clearNamedQueryCache', 'closeTransaction', 'commitTransaction',
-    'createSProcCall', 'dateFormat', 'execSProcCall', 'getConnectionInfo',
-    'getConnections', 'refresh', 'removeDatasource', 'rollbackTransaction',
-    'runNamedQuery', 'runPrepQuery', 'runPrepUpdate', 'runQuery',
-    'runScalarPrepQuery', 'runScalarQuery', 'runSFPrepUpdate',
-    'runSFUpdateQuery', 'runUpdateQuery', 'setDatasourceConnectURL',
-    'setDatasourceEnabled', 'setDatasourceMaxConnections'
+    "addDatasource",
+    "beginTransaction",
+    "clearAllNamedQueryCaches",
+    "clearNamedQueryCache",
+    "closeTransaction",
+    "commitTransaction",
+    "createSProcCall",
+    "dateFormat",
+    "execSProcCall",
+    "getConnectionInfo",
+    "getConnections",
+    "refresh",
+    "removeDatasource",
+    "rollbackTransaction",
+    "runNamedQuery",
+    "runPrepQuery",
+    "runPrepUpdate",
+    "runQuery",
+    "runScalarPrepQuery",
+    "runScalarQuery",
+    "runSFPrepUpdate",
+    "runSFUpdateQuery",
+    "runUpdateQuery",
+    "setDatasourceConnectURL",
+    "setDatasourceEnabled",
+    "setDatasourceMaxConnections",
 ]
 
 from java.lang import Object
@@ -118,7 +136,7 @@ class SProcCall(Object):
             object: The value of the previously registered
                 out-parameter.
         """
-        print(self, param)
+        print (self, param)
         return 0
 
     def registerInParam(self, param, typeCode, value):
@@ -130,7 +148,7 @@ class SProcCall(Object):
             typeCode (int): Type code constant.
             value (object): Value of type typeCode.
         """
-        print(self, param, typeCode, value)
+        print (self, param, typeCode, value)
 
     def registerOutParam(self, param, typeCode):
         """Registers an out parameter for the stored procedure.
@@ -140,7 +158,7 @@ class SProcCall(Object):
                 (str).
             typeCode (int): Type code constant.
         """
-        print(self, param, typeCode)
+        print (self, param, typeCode)
 
     def registerReturnParam(self, typeCode):
         """Use this function to specify the datatype of the returned
@@ -149,18 +167,20 @@ class SProcCall(Object):
         Args:
             typeCode (int): Type code constant.
         """
-        print(self, typeCode)
+        print (self, typeCode)
 
 
-def addDatasource(jdbcDriver,
-                  name,
-                  description,
-                  connectUrl,
-                  username,
-                  password,
-                  props,
-                  validationQuery,
-                  maxConnections=8):
+def addDatasource(
+    jdbcDriver,
+    name,
+    description,
+    connectUrl,
+    username,
+    password,
+    props,
+    validationQuery,
+    maxConnections=8,
+):
     """Adds a new database connection in Ignition.
 
     Args:
@@ -176,8 +196,17 @@ def addDatasource(jdbcDriver,
             JDBC driver.
         maxConnections (int): Default is 8.
     """
-    print(jdbcDriver, name, description, connectUrl, username, password, props,
-          validationQuery, maxConnections)
+    print (
+        jdbcDriver,
+        name,
+        description,
+        connectUrl,
+        username,
+        password,
+        props,
+        validationQuery,
+        maxConnections,
+    )
 
 
 def beginTransaction(database=None, isolationLevel=None, timeout=None):
@@ -218,8 +247,8 @@ def beginTransaction(database=None, isolationLevel=None, timeout=None):
             argument for all other calls to have them execute against
             this transaction.
     """
-    print(database, isolationLevel, timeout)
-    return 'transaction_id'
+    print (database, isolationLevel, timeout)
+    return "transaction_id"
 
 
 def clearAllNamedQueryCaches(project=None):
@@ -299,7 +328,7 @@ def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
             configured and then used as the argument to
             system.db.execSProcCall.
     """
-    print(procedureName, database, tx, skipAudit)
+    print (procedureName, database, tx, skipAudit)
     return SProcCall()
 
 
@@ -315,8 +344,8 @@ def dateFormat(date, formatPattern):
         str: The date as a string formatted according to the format
             pattern.
     """
-    print(date, formatPattern)
-    return ''
+    print (date, formatPattern)
+    return ""
 
 
 def execSProcCall(callContext):
@@ -381,7 +410,7 @@ def refresh(component, propertyName):
         bool: True (1) if the property was found and refreshed
             successfully.
     """
-    print(component, propertyName)
+    print (component, propertyName)
     return True
 
 
@@ -433,7 +462,7 @@ def runNamedQuery(*args):
     return None
 
 
-def runPrepQuery(query, args, database='', tx=None):
+def runPrepQuery(query, args, database="", tx=None):
     """Runs a  prepared statement  against the database, returning the
     results in a PyDataSet. Prepared statements differ from regular
     queries in that they can use a special placeholder, the
@@ -465,16 +494,13 @@ def runPrepQuery(query, args, database='', tx=None):
     Returns:
         PyDataSet: The results of the query as a PyDataSet.
     """
-    print(query, args, database, tx)
+    print (query, args, database, tx)
     return PyDataSet()
 
 
-def runPrepUpdate(query,
-                  args,
-                  database='',
-                  tx=None,
-                  getKey=False,
-                  skipAudit=True):
+def runPrepUpdate(
+    query, args, database="", tx=None, getKey=False, skipAudit=True
+):
     """Runs a  prepared statement  against the database, returning the
     number of rows that were affected. Prepared statements differ from
     regular queries in that they can use a special placeholder, the
@@ -511,11 +537,11 @@ def runPrepUpdate(query,
             that was generated, depending on the value of the getKey
             flag.
     """
-    print(query, args, database, tx, getKey, skipAudit)
+    print (query, args, database, tx, getKey, skipAudit)
     return 1
 
 
-def runQuery(query, database='', tx=None):
+def runQuery(query, database="", tx=None):
     """Runs a SQL query, usually a SELECT query, against a database,
     returning the results as a dataset. If no database is specified, or
     the database is the empty-string "", then the current project's
@@ -534,11 +560,11 @@ def runQuery(query, database='', tx=None):
     Returns:
         PyDataSet: The results of the query as a PyDataSet.
     """
-    print(query, database, tx)
+    print (query, database, tx)
     return PyDataSet()
 
 
-def runScalarPrepQuery(query, args, database='', tx=None):
+def runScalarPrepQuery(query, args, database="", tx=None):
     """Runs a prepared statement against a database connection just like
     the runPrepQuery function, but only returns the value from the first
     row and column. If no results are returned from the query, the
@@ -561,7 +587,7 @@ def runScalarPrepQuery(query, args, database='', tx=None):
          object: The value from the first row and first column of the
             results. Returns None if no rows were returned.
     """
-    print(query, args, database, tx)
+    print (query, args, database, tx)
     return None
 
 
@@ -584,7 +610,7 @@ def runScalarQuery(query, database, tx):
          object: The value from the first row and first column of the
             results. Returns None if no rows were returned.
     """
-    print(query, database, tx)
+    print (query, database, tx)
     return None
 
 
@@ -612,7 +638,7 @@ def runSFPrepUpdate(query, args, datasources):
         bool: Returns True if successfully sent to store-and-forward
             system.
     """
-    print(query, args, datasources)
+    print (query, args, datasources)
     return True
 
 
@@ -629,11 +655,11 @@ def runSFUpdateQuery(query, datasources):
     Returns:
         bool: Returns True if successful and False if not.
     """
-    print(query, datasources)
+    print (query, datasources)
     return True
 
 
-def runUpdateQuery(query, database='', tx=None, getKey=False, skipAudit=True):
+def runUpdateQuery(query, database="", tx=None, getKey=False, skipAudit=True):
     """Runs a query against a database connection, returning the number
     of rows affected. Typically this is an UPDATE, INSERT, or DELETE
     query. If no database is specified, or the database is the
@@ -666,7 +692,7 @@ def runUpdateQuery(query, database='', tx=None, getKey=False, skipAudit=True):
             that was generated, depending on the value of the getKey
             flag.
     """
-    print(query, database, tx, getKey, skipAudit)
+    print (query, database, tx, getKey, skipAudit)
     return 1
 
 
@@ -677,7 +703,7 @@ def setDatasourceConnectURL(name, connectUrl):
         name (str): The name of the database connection in Ignition.
         connectUrl (str): The new connect URL.
     """
-    print(name, connectUrl)
+    print (name, connectUrl)
 
 
 def setDatasourceEnabled(name, enabled):
@@ -688,7 +714,7 @@ def setDatasourceEnabled(name, enabled):
         enabled (bool): True if the connection should be enabled, False
             otherwise.
     """
-    print(name, enabled)
+    print (name, enabled)
 
 
 def setDatasourceMaxConnections(name, maxConnections):
@@ -699,4 +725,4 @@ def setDatasourceMaxConnections(name, maxConnections):
         name (str): The name of the database connection in Ignition.
         maxConnections (int): The number of maximum connections allowed.
     """
-    print(name, maxConnections)
+    print (name, maxConnections)

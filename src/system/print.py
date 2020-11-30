@@ -4,7 +4,7 @@
 """Print Functions
 The following functions allow you to send to a printer."""
 
-__all__ = ['createImage', 'createPrintJob', 'printToImage']
+__all__ = ["createImage", "createPrintJob", "printToImage"]
 
 from java.awt import Component
 from java.awt.image import BufferedImage
@@ -13,6 +13,7 @@ from java.lang import Object
 
 class JythonPrintJob(Object):
     """JythonPrintJob object."""
+
     def getBottomMargin(self):
         pass
 
@@ -131,4 +132,4 @@ def printToImage(component, filename=None):
         component (Component): The component to render.
         filename (str): A filename to save the image as. Optional.
     """
-    print(component, filename)
+    print (component, filename)

@@ -7,9 +7,15 @@ Gateway.
 """
 
 __all__ = [
-    'cancelChart', 'getRunningCharts', 'getVariables', 'pauseChart',
-    'redundantCheckpoint', 'resumeChart', 'setVariable', 'setVariables',
-    'startChart'
+    "cancelChart",
+    "getRunningCharts",
+    "getVariables",
+    "pauseChart",
+    "redundantCheckpoint",
+    "resumeChart",
+    "setVariable",
+    "setVariables",
+    "startChart",
 ]
 
 from system.dataset import Dataset
@@ -22,6 +28,7 @@ class PyChartScope(object):
     values are changed, and wraps any dictionaries assigned to it as
     PyChartScopes as well.
     """
+
     pass
 
 
@@ -102,7 +109,7 @@ def resumeChart(id):
         KeyError: If the ID does not match any running chart instance.
     """
     if not id:
-        raise KeyError('Invalid UUID string: {}'.format(id))
+        raise KeyError("Invalid UUID string: {}".format(id))
 
 
 def setVariable(instanceId, stepId, variableName, variableValue):
@@ -115,7 +122,7 @@ def setVariable(instanceId, stepId, variableName, variableValue):
         variableName (str): The name of the variable to set.
         variableValue (object): The value for the variable to be set to.
     """
-    print(instanceId, stepId, variableName, variableValue)
+    print (instanceId, stepId, variableName, variableValue)
 
 
 def setVariables(instanceId, stepId, variableMap):
@@ -128,7 +135,7 @@ def setVariables(instanceId, stepId, variableMap):
         variableMap (dict): A dictionary containing the name:value pairs
             of the variables to set.
     """
-    print(instanceId, stepId, variableMap)
+    print (instanceId, stepId, variableMap)
 
 
 def startChart(path, arguments):
@@ -145,5 +152,5 @@ def startChart(path, arguments):
     Returns:
         str: The unique ID of this chart.
     """
-    print(path, arguments)
-    return 'UUID'
+    print (path, arguments)
+    return "UUID"

@@ -7,11 +7,26 @@ Gateway.
 """
 
 __all__ = [
-    'addHoliday', 'addRole', 'addSchedule', 'editHoliday', 'editRole',
-    'editSchedule', 'getHoliday', 'getHolidayNames', 'getHolidays', 'getRoles',
-    'getSchedule', 'getScheduledUsers', 'getScheduleNames', 'getSchedules',
-    'getUser', 'getUsers', 'isUserScheduled', 'removeHoliday', 'removeRole',
-    'removeSchedule'
+    "addHoliday",
+    "addRole",
+    "addSchedule",
+    "editHoliday",
+    "editRole",
+    "editSchedule",
+    "getHoliday",
+    "getHolidayNames",
+    "getHolidays",
+    "getRoles",
+    "getSchedule",
+    "getScheduledUsers",
+    "getScheduleNames",
+    "getSchedules",
+    "getUser",
+    "getUsers",
+    "isUserScheduled",
+    "removeHoliday",
+    "removeRole",
+    "removeSchedule",
 ]
 
 import system.date
@@ -43,6 +58,7 @@ class ContactInfo(Object):
 
 class HolidayModel(Object):
     """HolidayModel object."""
+
     def __init__(self, name, date, repeatAnnually):
         """HolidayModel instance.
 
@@ -102,14 +118,14 @@ class UIResponse(Object):
 
 
 class User(object):
-    Username = 'johdoe'
-    FirstName = 'John'
-    LastName = 'Doe'
-    Email = 'johdoe@mycompany.com'
-    Notes = 'These are some notes.'
-    Roles = ['Administrator', 'Developer']
-    Schedule = 'Always'
-    Language = 'en_US'
+    Username = "johdoe"
+    FirstName = "John"
+    LastName = "Doe"
+    Email = "johdoe@mycompany.com"
+    Notes = "These are some notes."
+    Roles = ["Administrator", "Developer"]
+    Schedule = "Always"
+    Language = "en_US"
 
     def get(self, prop):
         """Returns a the value of the requested item.
@@ -132,9 +148,9 @@ class User(object):
             list[ContactInfo]: A sequence of ContactInfo objects.
         """
         print self
-        ci_email = ContactInfo('email', 'johdoe@mycompany.com')
-        ci_phone = ContactInfo('phone', '+1 5551324567')
-        ci_sms = ContactInfo('sms', '+1 5557654321')
+        ci_email = ContactInfo("email", "johdoe@mycompany.com")
+        ci_phone = ContactInfo("phone", "+1 5551324567")
+        ci_sms = ContactInfo("sms", "+1 5557654321")
         return [ci_email, ci_phone, ci_sms]
 
     def getId(self):
@@ -201,7 +217,7 @@ def addRole(userSource, role):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    print(userSource, role)
+    print (userSource, role)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -231,7 +247,7 @@ def editHoliday(holidayName, holiday):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print(holidayName, holiday)
+    print (holidayName, holiday)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -251,7 +267,7 @@ def editRole(userSource, oldName, newName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print(userSource, oldName, newName)
+    print (userSource, oldName, newName)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -267,7 +283,7 @@ def editSchedule(scheduleName, schedule):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print(scheduleName, schedule)
+    print (scheduleName, schedule)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -292,7 +308,7 @@ def getHolidayNames():
         list[str]: A list of all holiday names, or an empty list if no
             holidays are defined.
     """
-    return ['Labor Day', 'Groundhog Day']
+    return ["Labor Day", "Groundhog Day"]
 
 
 def getHolidays():
@@ -351,7 +367,7 @@ def getScheduledUsers(userSource, date=None):
             taking schedule adjustments into account.
     """
     date = system.date.now() if date is None else date
-    print(userSource, date)
+    print (userSource, date)
     return None
 
 
@@ -363,7 +379,7 @@ def getScheduleNames():
         list[str]: A List of Strings that holds the names of all the
             available schedules.
     """
-    return ['A', 'Always', 'B', 'C', 'Example', 'MyComposite', 'MySchedule']
+    return ["A", "Always", "B", "C", "Example", "MyComposite", "MySchedule"]
 
 
 def getSchedules():
@@ -392,7 +408,7 @@ def getUser(userSource, username):
     Returns:
         User: A User object.
     """
-    print(userSource, username)
+    print (userSource, username)
     return User()
 
 
@@ -428,7 +444,7 @@ def isUserScheduled(user, date=None):
             False if not.
     """
     date = system.date.now() if date is None else date
-    print(user, date)
+    print (user, date)
     return True
 
 
@@ -461,7 +477,7 @@ def removeRole(userSource, role):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    print(userSource, role)
+    print (userSource, role)
     return UIResponse(Locale.ENGLISH)
 
 
