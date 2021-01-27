@@ -76,14 +76,14 @@ def getVariables(instanceId):
     return PyChartScope()
 
 
-def pauseChart(id):
+def pauseChart(instanceId):
     """Pauses a running chart instance. Any running steps will be told
     to pause, and the chart will enter Pausing state.
 
     Args:
-        id (str): The ID of the chart instance to pause.
+        instanceId (str): The ID of the chart instance to pause.
     """
-    print id
+    print instanceId
 
 
 def redundantCheckpoint(instanceId):
@@ -98,18 +98,18 @@ def redundantCheckpoint(instanceId):
     print instanceId
 
 
-def resumeChart(id):
+def resumeChart(instanceId):
     """Resumes a chart that was paused. Steps which were previously
     paused will be resumed, and chart will enter Resuming state.
 
     Args:
-        id (str): The ID of the chart instance to resume.
+        instanceId (str): The ID of the chart instance to resume.
 
     Raises:
         KeyError: If the ID does not match any running chart instance.
     """
-    if not id:
-        raise KeyError("Invalid UUID string: {}".format(id))
+    if not instanceId:
+        raise KeyError("Invalid UUID string: {}".format(instanceId))
 
 
 def setVariable(instanceId, stepId, variableName, variableValue):
