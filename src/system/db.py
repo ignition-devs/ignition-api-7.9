@@ -16,6 +16,9 @@ __all__ = [
     "createSProcCall",
     "dateFormat",
     "execSProcCall",
+    "exportCSV",
+    "exportExcel",
+    "exportHTML",
     "getConnectionInfo",
     "getConnections",
     "refresh",
@@ -361,6 +364,65 @@ def execSProcCall(callContext):
             context.
     """
     print callContext
+
+
+def exportCSV(filename, showHeaders, dataset):
+    """Exports the contents of a dataset as a CSV file, prompting the
+    user to save the file to disk.
+
+    Args:
+        filename (str): A suggested filename to save as.
+        showHeaders (bool): If true (1), the CSV file will include a
+            header row.
+        dataset (Dataset): The dataset to export.
+
+    Returns:
+        str: The path to the saved file, or None if the action was
+            canceled by the user.
+    """
+    print (filename, showHeaders, dataset)
+    return None
+
+
+def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
+    """Exports the contents of a dataset as an Excel spreadsheet,
+    prompting the user to save the file to disk. Uses the same format as
+    the dataSetToExcel function.
+
+    Args:
+        filename (str): A suggested filename to save as.
+        showHeaders (bool): If true (1), the spreadsheet will include a
+            header row.
+        dataset list[object]: A sequence of datasets, one for each sheet
+            in the resulting workbook.
+        nullsEmpty (bool): If true (1), the spreadsheet will leave cells
+            with NULL values empty. (Optional)
+
+    Returns:
+        str: The path to the saved file, or None if the action was
+            canceled by the user.
+    """
+    print (filename, showHeaders, dataset, nullsEmpty)
+    return None
+
+
+def exportHTML(filename, showHeaders, dataset, title):
+    """Exports the contents of a dataset to an HTML page. Prompts the
+    user to save the file to disk.
+
+    Args:
+        filename (str): A suggested filename to save as.
+        showHeaders (bool): If true (1), the HTML table will include a
+            header row.
+        dataset (Dataset): The dataset to export.
+        title (str): The title for the HTML page.
+
+    Returns:
+        str: The path to the saved file, or None if the action was
+            canceled by the user.
+    """
+    print (filename, showHeaders, dataset, title)
+    return None
 
 
 def getConnectionInfo(name):
