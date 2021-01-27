@@ -8,6 +8,7 @@ connections in the Gateway.
 
 __all__ = [
     "addDevice",
+    "getDeviceHostname",
     "listDevices",
     "refreshBrowse",
     "removeDevice",
@@ -37,6 +38,20 @@ def addDevice(deviceType, deviceName, deviceProps):
             connection.
     """
     print (deviceType, deviceName, deviceProps)
+
+
+def getDeviceHostname(deviceName):
+    """Gets the hostname of a device.
+
+    Args:
+        deviceName (str): The name of the device in Ignition.
+
+    Returns:
+        str: The hostname of the device. Null if device doesn't have a
+            hostname.
+    """
+    print deviceName
+    return None
 
 
 def listDevices():
