@@ -396,7 +396,7 @@ def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
         dataset list[object]: A sequence of datasets, one for each sheet
             in the resulting workbook.
         nullsEmpty (bool): If true (1), the spreadsheet will leave cells
-            with NULL values empty. (Optional)
+            with NULL values empty. Optional.
 
     Returns:
         str: The path to the saved file, or None if the action was
@@ -425,16 +425,18 @@ def exportHTML(filename, showHeaders, dataset, title):
     return None
 
 
-def getConnectionInfo(name):
+def getConnectionInfo(name=""):
     """Returns a dataset of information about a single database
-    connection, as specified by the name argument.
+    connection, as specified by the name argument, or about the current
+    project's default database connection.
 
     Args:
         name (str): The name of the database connection to find
-            information about.
+            information about. Optional.
 
     Returns:
         Dataset: A dataset containing information about the named
+            database connection or about the current project's default
             database connection, or an empty dataset if the connection
             wasn't found.
     """
