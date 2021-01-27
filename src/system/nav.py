@@ -119,7 +119,8 @@ def centerWindow(windowPath):
     If the window can't be found, this function will do nothing.
 
     Args:
-        windowPath (str): The path of the window to center.
+        windowPath (object): The path of the window (str) or a reference
+            to the window (FPMIWindow) to center.
 
     Returns:
         FPMIWindow: A reference to the window to center.
@@ -279,16 +280,17 @@ def swapTo(path, params=None):
     return FPMIWindow("Swapped To")
 
 
-def swapWindow(swapFromPath, swapToPath, params=None):
+def swapWindow(arg, swapToPath, params=None):
     """Performs a window swap. This means that one window is closed,
     and another is opened and takes its place - assuming its size,
     floating state, and maximization state. This gives a seamless
     transition - one window seems to simply turn into another.
 
     Args:
-        swapFromPath (str): The path of the window to swap from. Must be
-            a currently open window, or this will act like an
-            openWindow.
+        arg (object): The path of the window to swap from as a String.
+            Must be a currently open window, or this will act like an
+            openWindow. Or a component event (EventObject) whose
+            enclosing window will be used as the "swap-from" window.
         swapToPath (str): The name of the window to swap to.
         params (dict): A dictionary of parameters to pass into the
             window. The keys in the dictionary must match dynamic
@@ -299,5 +301,5 @@ def swapWindow(swapFromPath, swapToPath, params=None):
     Returns:
         FPMIWindow: A reference to the swapped-to window.
     """
-    print (swapFromPath, swapToPath, params)
+    print (arg, swapToPath, params)
     return FPMIWindow("Swapped To")
