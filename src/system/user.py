@@ -30,7 +30,6 @@ __all__ = [
 ]
 
 import system.date
-
 from java.lang import Object
 from java.util import Locale
 

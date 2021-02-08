@@ -70,7 +70,8 @@ class BrowseResults(Object):
 
 
 class QualifiedValue(object):
-    """Represents a value with a DataQuality & timestamp attached to it."""
+    """Represents a value with a DataQuality & timestamp attached to
+    it."""
 
     def __init__(self, value=None, quality=None, timestamp=None):
         self._value = value
@@ -644,7 +645,8 @@ def queryTagCalculations(
             hours, instead of using start and end date. Can be positive
             or negative, and can be used in conjunction with startDate
             or endDate. Optional.
-        rangeMinutes (int): Same as rangeHours, but in minutes. Optional.
+        rangeMinutes (int): Same as rangeHours, but in minutes.
+            Optional.
         aliases (list[str]): Aliases that will be used to override the
             tag path names in the result dataset. Must be 1-to-1 with
             the tag paths. If not specified, the tag paths themselves
@@ -912,8 +914,9 @@ def scan(provider, scname):
     the fast and slow rate are set to 0, this will not execute.
 
     Args:
-        provider (str): The name of the scan class provider. If blank, it
-            will use the default. Required if used in the gateway scope.
+        provider (str): The name of the scan class provider. If blank,
+            it will use the default. Required if used in the gateway
+            scope.
         scname (str): The name of the scan class to execute.
     """
     print (provider, scname)
