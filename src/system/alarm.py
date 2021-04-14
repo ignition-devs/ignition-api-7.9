@@ -1,7 +1,10 @@
 # Copyright (C) 2018-2021
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
-"""Alarm Functions
+
+"""
+Alarm Functions
+
 The following functions give you access to view and interact with the
 Alarm system in Ignition.
 """
@@ -26,8 +29,9 @@ from java.lang import Object
 
 
 class AlarmQueryResults(ABCMeta):
-    """This is the result of a query against the alarming system, for
-    both status and history. It provides the results as a list, but also
+    """
+    This is the result of a query against the alarming system, for both
+    status and history. It provides the results as a list, but also
     provides additional helper functions for getting the event and
     associated data as a dataset.
     """
@@ -49,7 +53,9 @@ class AlarmQueryResults(ABCMeta):
 
 
 class ShelvedPath(Object):
-    """A ShelvedPath object."""
+    """
+    A ShelvedPath object.
+    """
 
     def __init__(self, path=None, user=None, expiration=None):
         self.path = path
@@ -76,12 +82,13 @@ class ShelvedPath(Object):
 
 
 def acknowledge(alarmIds, notes=None, username=None):
-    """Acknowledges any number of alarms, specified by their event ids.
-    The event id is generated for an alarm when it becomes active, and
-    is used to identify a particular event from other events for the
-    same source. The alarms will be acknowledged by the logged in user
-    making the call. Additionally, acknowledgement notes may be included
-    and will be stored along with the acknowledgement.
+    """
+    Acknowledges any number of alarms, specified by their event ids. The
+    event id is generated for an alarm when it becomes active, and is
+    used to identify a particular event from other events for the same
+    source. The alarms will be acknowledged by the logged in user making
+    the call. Additionally, acknowledgement notes may be included and
+    will be stored along with the acknowledgement.
 
     This function uses different parameters based on the scope of the
     script calling it. Both versions are listed below.
@@ -100,7 +107,8 @@ def acknowledge(alarmIds, notes=None, username=None):
 
 
 def cancel(alarmIds):
-    """Cancels any number of alarms, specified by their event ids. The
+    """
+    Cancels any number of alarms, specified by their event ids. The
     event id is generated for an alarm when it becomes active, and is
     used to identify a particular event from other events for the same
     source. The alarm will still be active, but will drop out of alarm
@@ -112,20 +120,22 @@ def cancel(alarmIds):
     print alarmIds
 
 
-def createRoster(name, description):
-    """This function creates a new roster. Users may be added to the
-    roster through the Gateway or the Roster Management component.
+def createRoster(name, description=""):
+    """
+    This function creates a new roster. Users may be added to the roster
+    through the Gateway or the Roster Management component.
 
     Args:
         name (str): The name for the new roster.
-        description (str): An description for the new roster. Required,
-            but can be blank.
+        description (str): A description for the new roster. Required,
+            but can be blank. Optional.
     """
     print (name, description)
 
 
 def getRosters():
-    """This function returns a mapping of roster names to a list of
+    """
+    This function returns a mapping of roster names to a list of
     usernames contained in the roster.
 
     Returns:
@@ -137,9 +147,10 @@ def getRosters():
 
 
 def getShelvedPaths():
-    """A list of ShelvedPath objects. ShelvedPath objects can be
-    examined with getExpiration, getHitCount, getPath, getShelveTime,
-    getUser, and isExpired.
+    """
+    A list of ShelvedPath objects. ShelvedPath objects can be examined
+    with getExpiration, getHitCount, getPath, getShelveTime, getUser,
+    and isExpired.
 
     Returns:
         list[ShelvedPath]: A list of ShelvedPath objects. ShelvedPath
@@ -150,7 +161,8 @@ def getShelvedPaths():
 
 
 def listPipelines():
-    """Will return a list of the available Alarm Notification Pipelines.
+    """
+    Will return a list of the available Alarm Notification Pipelines.
 
     Returns:
         list[str]: A list of pipeline names. The list may be empty if no
@@ -176,7 +188,8 @@ def queryJournal(
     includeSystem=None,
     isSystem=None,
 ):
-    """Queries the specified journal for historical alarm events. The
+    """
+    Queries the specified journal for historical alarm events. The
     result is a list of alarm events, which can be queried for
     individual properties. The result object also has a getDataset()
     function that can be used to convert the query results into a normal
@@ -269,11 +282,12 @@ def queryStatus(
     defined,
     includeShelved=False,
 ):
-    """Queries the current state of alarms. The result is a list of
-    alarm events, which can be queried for individual properties. The
-    result object also has a getDataset() function that can be used to
-    convert the query results into a normal dataset, with the columns:
-    EventId, Source, DisplayPath, EventTime, State, Priority.
+    """
+    Queries the current state of alarms. The result is a list of alarm
+    events, which can be queried for individual properties. The result
+    object also has a getDataset() function that can be used to convert
+    the query results into a normal dataset, with the columns: EventId,
+    Source, DisplayPath, EventTime, State, Priority.
 
     Args:
         priority (list[str]): A list of possible priorities to match.
@@ -332,10 +346,11 @@ def queryStatus(
 
 
 def shelve(path, timeoutSeconds, timeoutMinutes):
-    """This function shelves the specified alarms for the specified
-    amount of time. The paths may be either source paths, or display
-    paths. The time can be specified in minutes (timeoutMinutes) or
-    seconds (timeoutSeconds). If an alarm is already shelved, this will
+    """
+    This function shelves the specified alarms for the specified amount
+    of time. The paths may be either source paths, or display paths. The
+    time can be specified in minutes (timeoutMinutes) or seconds
+    (timeoutSeconds). If an alarm is already shelved, this will
     overwrite the remaining time. To unshelve alarms, this function may
     be used with a time of "0".
 
@@ -354,7 +369,8 @@ def shelve(path, timeoutSeconds, timeoutMinutes):
 
 
 def unshelve(path):
-    """Unshelves alarms in accordance with the path parameter.
+    """
+    Unshelves alarms in accordance with the path parameter.
 
     Args:
         path (list[str]): A list of possible source paths to search at.

@@ -1,7 +1,10 @@
 # Copyright (C) 2018-2021
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
-"""User Functions
+
+"""
+User Functions
+
 The following functions give you access to view and edit users in the
 Gateway.
 """
@@ -56,10 +59,13 @@ class ContactInfo(Object):
 
 
 class HolidayModel(Object):
-    """HolidayModel object."""
+    """
+    HolidayModel object.
+    """
 
     def __init__(self, name, date, repeatAnnually):
-        """HolidayModel instance.
+        """
+        HolidayModel instance.
 
         Args:
             name (str): The name.
@@ -127,7 +133,8 @@ class User(object):
     Language = "en_US"
 
     def get(self, prop):
-        """Returns a the value of the requested item.
+        """
+        Returns a the value of the requested item.
 
         Args:
             prop (User property): The user property to retrieve.
@@ -139,9 +146,10 @@ class User(object):
         return prop
 
     def getContactInfo(self):
-        """Returns a sequence of ContactInfo objects. Each of these
-        objects will have a contactType and value property representing
-        the contact information, both strings.
+        """
+        Returns a sequence of ContactInfo objects. Each of these objects
+        will have a contactType and value property representing the
+        contact information, both strings.
 
         Returns:
             list[ContactInfo]: A sequence of ContactInfo objects.
@@ -153,7 +161,8 @@ class User(object):
         return [ci_email, ci_phone, ci_sms]
 
     def getId(self):
-        """Returns the internal identifier object that the backing user
+        """
+        Returns the internal identifier object that the backing user
         source needs to identify this user.
 
         Returns:
@@ -164,7 +173,8 @@ class User(object):
         return 1
 
     def getOrDefault(self, prop):
-        """Returns a default value if the requested item is not present.
+        """
+        Returns a default value if the requested item is not present.
 
         Args:
             prop (User property): The user property to retrieve.
@@ -176,8 +186,9 @@ class User(object):
         return prop
 
     def getRoles(self):
-        """Returns a sequence of strings representing the roles that
-        this user belongs to.
+        """
+        Returns a sequence of strings representing the roles that this
+        user belongs to.
 
         Returns:
              list[str]: Sequence of strings representing the roles that
@@ -188,7 +199,8 @@ class User(object):
 
 
 def addHoliday(holiday):
-    """Allows a holiday to be added.
+    """
+    Allows a holiday to be added.
 
     Args:
         holiday (HolidayModel): The holiday to add.
@@ -202,7 +214,8 @@ def addHoliday(holiday):
 
 
 def addRole(userSource, role):
-    """Allows a role to the specified user source. When altering the
+    """
+    Allows a role to the specified user source. When altering the
     Gateway System User Source, the Allow User Admin setting must be
     enabled.
 
@@ -221,7 +234,8 @@ def addRole(userSource, role):
 
 
 def addSchedule(schedule):
-    """Allows a schedule to be added.
+    """
+    Allows a schedule to be added.
 
     Args:
         schedule (AbstractScheduleModel): The schedule to add.
@@ -235,7 +249,8 @@ def addSchedule(schedule):
 
 
 def editHoliday(holidayName, holiday):
-    """Allows a holiday to be edited.
+    """
+    Allows a holiday to be edited.
 
     Args:
         holidayName (str): The name of the holiday to edit. Name is
@@ -251,7 +266,8 @@ def editHoliday(holidayName, holiday):
 
 
 def editRole(userSource, oldName, newName):
-    """Renames a role in the specified user source. When altering the
+    """
+    Renames a role in the specified user source. When altering the
     Gateway System User Source, the Allow User Admin setting must be
     enabled.
 
@@ -271,7 +287,8 @@ def editRole(userSource, oldName, newName):
 
 
 def editSchedule(scheduleName, schedule):
-    """Allows a schedule to be edited.
+    """
+    Allows a schedule to be edited.
 
     Args:
         scheduleName (str): The name of the schedule to edit. Name is
@@ -287,7 +304,8 @@ def editSchedule(scheduleName, schedule):
 
 
 def getHoliday(holidayName):
-    """Returns a specific holiday.
+    """
+    Returns a specific holiday.
 
     Args:
         holidayName (str): The name of the holiday to return.
@@ -301,7 +319,8 @@ def getHoliday(holidayName):
 
 
 def getHolidayNames():
-    """Returns a collection of Strings of all holiday names.
+    """
+    Returns a collection of Strings of all holiday names.
 
     Returns:
         list[str]: A list of all holiday names, or an empty list if no
@@ -311,7 +330,8 @@ def getHolidayNames():
 
 
 def getHolidays():
-    """Returns a sequence of all of the holidays available.
+    """
+    Returns a sequence of all of the holidays available.
 
     Returns:
         list[HolidayModel]: A list of holidays.
@@ -320,7 +340,8 @@ def getHolidays():
 
 
 def getRoles(userSource):
-    """Returns a sequence of strings representing all of the roles
+    """
+    Returns a sequence of strings representing all of the roles
     configured in a specific user source.
 
     Args:
@@ -335,7 +356,8 @@ def getRoles(userSource):
 
 
 def getSchedule(scheduleName):
-    """Returns a specific schedule.
+    """
+    Returns a specific schedule.
 
     Args:
         scheduleName (str): The name of the schedule to return.
@@ -351,7 +373,8 @@ def getSchedule(scheduleName):
 
 
 def getScheduledUsers(userSource, date=None):
-    """Returns a list of users that are scheduled on. If no users are
+    """
+    Returns a list of users that are scheduled on. If no users are
     scheduled, it will return an empty list.
 
     Args:
@@ -371,8 +394,9 @@ def getScheduledUsers(userSource, date=None):
 
 
 def getScheduleNames():
-    """Returns a sequence of strings representing the names of all of
-    the schedules available.
+    """
+    Returns a sequence of strings representing the names of all of the
+    schedules available.
 
     Returns:
         list[str]: A List of Strings that holds the names of all the
@@ -382,7 +406,8 @@ def getScheduleNames():
 
 
 def getSchedules():
-    """Returns a sequence of all available schedule models, which can be
+    """
+    Returns a sequence of all available schedule models, which can be
     used to return configuration information on the schedule, such as
     time for each day of the week.
 
@@ -396,7 +421,8 @@ def getSchedules():
 
 
 def getUser(userSource, username):
-    """Looks up a specific user in a user source, by username. The full
+    """
+    Looks up a specific user in a user source, by username. The full
     User object is returned except for the user's password.
 
     Args:
@@ -412,7 +438,8 @@ def getUser(userSource, username):
 
 
 def getUsers(userSource):
-    """Retrieves the list of users in a specific user source. The User
+    """
+    Retrieves the list of users in a specific user source. The User
     objects that are returned contain all of the information about that
     user, except for the user's password.
 
@@ -429,7 +456,8 @@ def getUsers(userSource):
 
 
 def isUserScheduled(user, date=None):
-    """Will check if a specified User is scheduled currently or on a
+    """
+    Will check if a specified User is scheduled currently or on a
     specified date/time.
 
     Args:
@@ -448,7 +476,8 @@ def isUserScheduled(user, date=None):
 
 
 def removeHoliday(holidayName):
-    """Allows a holiday to be deleted.
+    """
+    Allows a holiday to be deleted.
 
     Args:
         holidayName (str): The name of the holiday to delete. Name is
@@ -463,7 +492,8 @@ def removeHoliday(holidayName):
 
 
 def removeRole(userSource, role):
-    """Removes a role from the specified user source. When altering the
+    """
+    Removes a role from the specified user source. When altering the
     Gateway System User Source, the Allow User Admin setting must be
     enabled.
 
@@ -481,9 +511,10 @@ def removeRole(userSource, role):
 
 
 def removeSchedule(scheduleName):
-    """Allows a schedule to be deleted. Note that schedules which are
-    used in Composite Schedules can not be deleted until they are
-    removed from the Composite Schedule.
+    """
+    Allows a schedule to be deleted. Note that schedules which are used
+    in Composite Schedules can not be deleted until they are removed
+    from the Composite Schedule.
 
     Args:
         scheduleName (str): The name of the schedule to delete. Name is

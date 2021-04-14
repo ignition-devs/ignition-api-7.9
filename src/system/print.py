@@ -1,8 +1,14 @@
 # Copyright (C) 2018-2021
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
-"""Print Functions
-The following functions allow you to send to a printer."""
+
+"""
+Print Functions
+
+The following functions allow you to send to a printer.
+"""
+
+from __future__ import print_function
 
 __all__ = ["createImage", "createPrintJob", "printToImage"]
 
@@ -12,7 +18,9 @@ from java.lang import Object
 
 
 class JythonPrintJob(Object):
-    """JythonPrintJob object."""
+    """
+    JythonPrintJob object.
+    """
 
     def getBottomMargin(self):
         pass
@@ -45,6 +53,9 @@ class JythonPrintJob(Object):
         pass
 
     def isShowPrintDialog(self):
+        pass
+
+    def print(self):
         pass
 
     def setBottomMargin(self, bottomMargin):
@@ -82,7 +93,8 @@ class JythonPrintJob(Object):
 
 
 def createImage(component):
-    """Advanced Function. Takes a snapshot of a component and creates a
+    """
+    Advanced Function. Takes a snapshot of a component and creates a
     Java BufferedImage out of it. You can use javax.imageio.ImageIO to
     turn this into bytes that can be saved to a file or a BLOB field in
     a database.
@@ -94,14 +106,15 @@ def createImage(component):
         BufferedImage: A java.awt.image.BufferedImage representing the
             component.
     """
-    print component
+    print(component)
     width = height = imageType = 1
     return BufferedImage(width, height, imageType)
 
 
 def createPrintJob(component):
-    """Provides a general printing facility for printing the contents of
-    a window or component to a printer. The general workflow for this
+    """
+    Provides a general printing facility for printing the contents of a
+    window or component to a printer. The general workflow for this
     function is that you create the print job, set the options you'd
     like on it, and then call print()  on the job. For printing reports
     or tables, use those components' dedicated print() functions.
@@ -113,12 +126,13 @@ def createPrintJob(component):
         JythonPrintJob: A print job that can then be customized and
             started. To start the print job, use .print().
     """
-    print component
+    print(component)
     return JythonPrintJob()
 
 
 def printToImage(component, filename=None):
-    """This function prints the given component (such as a graph,
+    """
+    This function prints the given component (such as a graph,
     container, entire window, etc) to an image file, and saves the file
     where ever the operating system deems appropriate. A filename and
     path may be provided to determine the name and location of the saved
@@ -132,4 +146,4 @@ def printToImage(component, filename=None):
         component (Component): The component to render.
         filename (str): A filename to save the image as. Optional.
     """
-    print (component, filename)
+    print(component, filename)

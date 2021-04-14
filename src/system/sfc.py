@@ -1,7 +1,10 @@
 # Copyright (C) 2018-2021
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
-"""SFC Functions
+
+"""
+SFC Functions
+
 The following functions give you access to interact with the SFCs in the
 Gateway.
 """
@@ -22,7 +25,8 @@ from system.dataset import Dataset
 
 
 class PyChartScope(object):
-    """This class represents any "scope" in the SFC system, and is
+    """
+    This class represents any "scope" in the SFC system, and is
     fundamentally just an observable dictionary. Despite its name, it is
     not limited to chart scope. This class notifies listeners when
     values are changed, and wraps any dictionaries assigned to it as
@@ -32,27 +36,29 @@ class PyChartScope(object):
     pass
 
 
-def cancelChart(id):
-    """Cancels the execution of a running chart instance. Any running
-    steps will be told to stop, and the chart will enter Canceling
-    state.
+def cancelChart(instanceId):
+    """
+    Cancels the execution of a running chart instance. Any running steps
+    will be told to stop, and the chart will enter Canceling state.
 
     Args:
-        id (str): The ID of the chart instance to cancel.
+        instanceId (str): The ID of the chart instance to cancel.
     """
-    print id
+    print instanceId
 
 
 def getRunningCharts(charPath=None):
-    """Retrieves information about running charts. Can search all
-    running charts, or be filtered charts at a specific path. This
-    function will return charts that are in a Paused state.
+    """
+    Retrieves information about running charts. Can search all running
+    charts, or be filtered charts at a specific path. This function will
+    return charts that are in a Paused state.
 
     Args:
         charPath (str): The path to a chart to filter on: i.e.,
             "folder/chartName". If specified, only charts at the path
             will be included in the returned dataset. If omitted, the
             function will return data for all active charts.
+
     Returns:
         Dataset: A dataset with information on the active chart.
     """
@@ -61,7 +67,8 @@ def getRunningCharts(charPath=None):
 
 
 def getVariables(instanceId):
-    """Get the variables in a chart instance's scope. Commonly used to
+    """
+    Get the variables in a chart instance's scope. Commonly used to
     check the value of a Chart Parameter, or determine how long the
     chart has been running for.
 
@@ -77,8 +84,9 @@ def getVariables(instanceId):
 
 
 def pauseChart(instanceId):
-    """Pauses a running chart instance. Any running steps will be told
-    to pause, and the chart will enter Pausing state.
+    """
+    Pauses a running chart instance. Any running steps will be told to
+    pause, and the chart will enter Pausing state.
 
     Args:
         instanceId (str): The ID of the chart instance to pause.
@@ -87,7 +95,8 @@ def pauseChart(instanceId):
 
 
 def redundantCheckpoint(instanceId):
-    """Synchronizes chart and step variables of the specified chart
+    """
+    Synchronizes chart and step variables of the specified chart
     instance across a redundant cluster, allowing the chart instance to
     continue where it left off if a redundant failover occurs. Check out
     redundancy sync for more information.
@@ -99,8 +108,9 @@ def redundantCheckpoint(instanceId):
 
 
 def resumeChart(instanceId):
-    """Resumes a chart that was paused. Steps which were previously
-    paused will be resumed, and chart will enter Resuming state.
+    """
+    Resumes a chart that was paused. Steps which were previously paused
+    will be resumed, and chart will enter Resuming state.
 
     Args:
         instanceId (str): The ID of the chart instance to resume.
@@ -113,7 +123,8 @@ def resumeChart(instanceId):
 
 
 def setVariable(instanceId, stepId, variableName, variableValue):
-    """Sets a variable inside a currently running chart.
+    """
+    Sets a variable inside a currently running chart.
 
     Args:
         instanceId (str): The instance identifier of the chart.
@@ -126,7 +137,8 @@ def setVariable(instanceId, stepId, variableName, variableValue):
 
 
 def setVariables(instanceId, stepId, variableMap):
-    """Sets any number of variables inside a currently running chart.
+    """
+    Sets any number of variables inside a currently running chart.
 
     Args:
         instanceId (str): The instance identifier of the chart.
@@ -139,7 +151,8 @@ def setVariables(instanceId, stepId, variableMap):
 
 
 def startChart(path, arguments):
-    """Starts a new instance of a chart. The chart must be set to
+    """
+    Starts a new instance of a chart. The chart must be set to
     "Callable" execution mode.
 
     Args:

@@ -1,7 +1,10 @@
 # Copyright (C) 2018-2021
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
-"""Net Functions
+
+"""
+Net Functions
+
 The following functions give you access to interact with http services.
 """
 
@@ -20,13 +23,14 @@ __all__ = [
 
 
 def getExternalIpAddress():
-    """Returns the client's IP address, as it is detected by the
-    Gateway. This means that this call will communicate with the
-    Gateway, and the Gateway will tell the client what IP address its
-    incoming traffic is coming from. If you have a client behind a NAT
-    router, then this address will be the WAN address of the router
-    instead of the LAN address of the client, which is what you'd get
-    with system.net.getIpAddress.
+    """
+    Returns the client's IP address, as it is detected by the Gateway.
+    This means that this call will communicate with the Gateway, and the
+    Gateway will tell the client what IP address its incoming traffic is
+    coming from. If you have a client behind a NAT router, then this
+    address will be the WAN address of the router instead of the LAN
+    address of the client, which is what you'd get with
+    system.net.getIpAddress.
 
     Returns:
         str: A text representation of the client's IP address, as
@@ -36,7 +40,8 @@ def getExternalIpAddress():
 
 
 def getHostName():
-    """Returns the host name of the computer that the script was ran on.
+    """
+    Returns the host name of the computer that the script was ran on.
     When run in the Gateway scope, returns the Gateway hostname. When
     run in the Client scope, returns the Client hostname. On Windows,
     this is typically the "computer name". For example, might return
@@ -51,8 +56,9 @@ def getHostName():
 
 
 def getIpAddress():
-    """Returns the IP address of the computer the client is running on,
-    as it appears to the client. See also:
+    """
+    Returns the IP address of the computer the client is running on, as
+    it appears to the client. See also:
     system.net.getExternalIpAddress().
 
     Returns:
@@ -62,7 +68,8 @@ def getIpAddress():
 
 
 def getRemoteServers(runningOnly=True):
-    """This function returns a List of Gateway Network servers that are
+    """
+    This function returns a List of Gateway Network servers that are
     visible from the local Gateway.
 
     Args:
@@ -89,7 +96,8 @@ def httpDelete(
     headerValues=None,
     bypassCertValidation=True,
 ):
-    """Performs an HTTP DELETE to the given URL.
+    """
+    Performs an HTTP DELETE to the given URL.
 
     Args:
         url (str): The URL to send the request to.
@@ -138,16 +146,17 @@ def httpGet(
     useCaches=True,
     throwOnError=True,
 ):
-    """Retrieves the document at the given URL using the HTTP GET
-    protocol. The document is returned as a string. For example, if you
-    use the URL of a website, you'll get the same thing you'd get by
-    going to that website in a browser and using the  browser's "View
-    Source" function.
+    """
+    Retrieves the document at the given URL using the HTTP GET protocol.
+    The document is returned as a string. For example, if you use the
+    URL of a website, you'll get the same thing you'd get by going to
+    that website in a browser and using the  browser's "View Source"
+    function.
 
     Args:
         url (str): The URL to retrieve.
         connectTimeout (int): The timeout for connecting to the URL. In
-            milliseconds. Default is10,000. Optional.
+            milliseconds. Default is 10,000. Optional.
         readTimeout (int): The read timeout for the get operation. In
             milliseconds. Default is 60,000. Optional.
         username (str): If specified, the call will attempt to
@@ -188,7 +197,8 @@ def httpGet(
 
 
 def httpPost(url, *args):
-    """Retrieves the document at the given URL using the HTTP POST
+    """
+    Retrieves the document at the given URL using the HTTP POST
     protocol. If a parameter dictionary argument is specified, the
     entries in the dictionary will encoded in
     "application/x-www-form-urlencoded" format, and then posted. You can
@@ -207,9 +217,9 @@ def httpPost(url, *args):
 
 
 def httpPut(url, *args, **kwargs):
-    """Performs an HTTP PUT to the given URL. Encodes the given
-    dictionary of parameters using "applications/x-www-form-urlencoded"
-    format.
+    """
+    Performs an HTTP PUT to the given URL. Encodes the given dictionary
+    of parameters using "applications/x-www-form-urlencoded" format.
 
     Args:
         url (str): The URL to send the request to.
@@ -224,9 +234,10 @@ def httpPut(url, *args, **kwargs):
 
 
 def openURL(url, useApplet=False):
-    """Opens the given URL or URI scheme outside of the currently
-    running Client in whatever application the host operating system
-    deems appropriate.
+    """
+    Opens the given URL or URI scheme outside of the currently running
+    Client in whatever application the host operating system deems
+    appropriate.
 
     Args:
         url (str): The URL to open in a web browser.
@@ -256,8 +267,9 @@ def sendEmail(
     retries=0,
     replyTo=None,
 ):
-    """Sends an email through the given SMTP server. Note that this
-    email is relayed first through the Gateway - the client host machine
+    """
+    Sends an email through the given SMTP server. Note that this email
+    is relayed first through the Gateway - the client host machine
     doesn't need network access to the SMTP server.
 
     Args:

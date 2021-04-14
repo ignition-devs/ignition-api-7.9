@@ -1,7 +1,10 @@
 # Copyright (C) 2018-2021
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
-"""OPC HDA Functions
+
+"""
+OPC HDA Functions
+
 The following functions give you access to interact with the HDA types
 of OPC servers.
 """
@@ -26,9 +29,10 @@ from java.lang import Object
 
 
 class Aggregate(ABCMeta):
-    """This interface defines an aggregation function used by the
-    history query system. Different types of history providers may
-    support different Aggregate functions, and may define new types of
+    """
+    This interface defines an aggregation function used by the history
+    query system. Different types of history providers may support
+    different Aggregate functions, and may define new types of
     aggregates. The name and description are for informational purposes,
     aggregates are only identified by their id (name and description
     should not be taken into account).
@@ -58,7 +62,9 @@ class Aggregate(ABCMeta):
 
 
 class BrowseResults(Object):
-    """BrowseResults class."""
+    """
+    BrowseResults class.
+    """
 
     def getContinuationPoint(self):
         pass
@@ -93,7 +99,8 @@ class ReadResult(Object):
 
 
 def browse(root):
-    """Performs a browse at the given root.
+    """
+    Performs a browse at the given root.
 
     Args:
         root (str): The root at which to browse. Needs to be a qualified
@@ -108,7 +115,8 @@ def browse(root):
 
 
 def getAggregates(serverName):
-    """Will query the server for aggregates that it supports.
+    """
+    Will query the server for aggregates that it supports.
 
     Args:
         serverName (str): The name of the defined OPC-HDA server to
@@ -123,8 +131,9 @@ def getAggregates(serverName):
 
 
 def getAttributes(serverName):
-    """Queries the given server for the item attributes that are
-    available with system.opchda.readAttributes().
+    """
+    Queries the given server for the item attributes that are available
+    with system.opchda.readAttributes().
 
     Args:
         serverName (str): The name of the defined OPC-HDA server to
@@ -139,9 +148,10 @@ def getAttributes(serverName):
 
 
 def getServers():
-    """Returns a list of the OPC-HDA servers configured on the system.
-    This call will return all configured and enabled servers, including
-    those that are not currently connected.
+    """
+    Returns a list of the OPC-HDA servers configured on the system. This
+    call will return all configured and enabled servers, including those
+    that are not currently connected.
 
     Returns:
         list[str]: A list of the string names of servers.
@@ -150,7 +160,8 @@ def getServers():
 
 
 def insert(serverName, itemId, value, date, quality):
-    """Insert values on the OPC-HDA server if the given item ID does not
+    """
+    Insert values on the OPC-HDA server if the given item ID does not
     exist.
 
     Args:
@@ -168,7 +179,8 @@ def insert(serverName, itemId, value, date, quality):
 
 
 def insertReplace(serverName, itemId, value, date, quality):
-    """Will insert values on the OPC-HDA server, or replace them if they
+    """
+    Will insert values on the OPC-HDA server, or replace them if they
     already exist.
 
     Args:
@@ -186,8 +198,9 @@ def insertReplace(serverName, itemId, value, date, quality):
 
 
 def isServerAvailable(serverName):
-    """Checks to see if the specified OPC-HDA server is defined,
-    enabled, and connected.
+    """
+    Checks to see if the specified OPC-HDA server is defined, enabled,
+    and connected.
 
     Args:
         serverName (str): The name of the OPC-HDA server to check.
@@ -201,10 +214,10 @@ def isServerAvailable(serverName):
 
 
 def readAttributes(serverName, itemId, attributeIds, startDate, endDate):
-    """Reads the specified attributes for the given item over a time
-    range. Attributes and their IDs are defined in the OPC-HDA
-    specification, and can be discovered by calling
-    system.opchda.getAttributes().
+    """
+    Reads the specified attributes for the given item over a time range.
+    Attributes and their IDs are defined in the OPC-HDA specification,
+    and can be discovered by calling system.opchda.getAttributes().
 
     Args:
         serverName (str): The name of the defined OPC-HDA server to
@@ -232,8 +245,9 @@ def readAttributes(serverName, itemId, attributeIds, startDate, endDate):
 def readProcessed(
     serverName, itemIds, startDate, endDate, resampleIntervalMS, aggregates
 ):
-    """Reads processed values from the OPC-HDA server. Processed values
-    are calculated values, based on the aggregate function requested for
+    """
+    Reads processed values from the OPC-HDA server. Processed values are
+    calculated values, based on the aggregate function requested for
     each item. The list of aggregates can be obtained by calling
     system.opchda.getAggregates().
 
@@ -273,7 +287,8 @@ def readProcessed(
 def readRaw(
     serverName, itemIds, startDate, endDate, maxValues, boundingValues
 ):
-    """Reads raw values from the OPC-HDA server.
+    """
+    Reads raw values from the OPC-HDA server.
 
     Args:
         serverName (str): The name of the defined OPC-HDA server to
@@ -300,8 +315,8 @@ def readRaw(
 
 
 def replace(serverName, itemId, value, date, quality):
-    """Replaces values on the OPC-HDA server if the given item ID
-    exists.
+    """
+    Replaces values on the OPC-HDA server if the given item ID exists.
 
     Args:
         serverName (str): The name of the defined OPC-HDA server.

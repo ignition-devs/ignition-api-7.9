@@ -1,7 +1,10 @@
 # Copyright (C) 2018-2021
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
-"""Navigation Functions
+
+"""
+Navigation Functions
+
 The following functions allow you to open and close windows in the
 client.
 """
@@ -28,7 +31,9 @@ from javax.swing import JInternalFrame
 
 
 class FPMIWindow(JInternalFrame):
-    """FPMIWindow object."""
+    """
+    FPMIWindow object.
+    """
 
     # Fields.
     CACHE_ALWAYS = 2
@@ -57,7 +62,8 @@ class FPMIWindow(JInternalFrame):
 
 
 class INavUtilities(ABCMeta):
-    """Parent interface to coordinate the functions between NavUtilities
+    """
+    Parent interface to coordinate the functions between NavUtilities
     and NavUtilitiesDispatcher.
     """
 
@@ -113,24 +119,22 @@ class INavUtilities(ABCMeta):
         pass
 
 
-def centerWindow(windowPath):
-    """Given a window path, or a reference to a window itself, it will
-    center the window. The window should be floating an non-maximized.
+def centerWindow(arg):
+    """
+    Given a window path, or a reference to a window itself, it will
+    center the window. The window should be floating and non-maximized.
     If the window can't be found, this function will do nothing.
 
     Args:
-        windowPath (object): The path of the window (str) or a reference
-            to the window (FPMIWindow) to center.
-
-    Returns:
-        FPMIWindow: A reference to the window to center.
+        arg (object): The path of the window (str) or a reference to the
+            window (FPMIWindow) to center.
     """
-    print windowPath
-    return FPMIWindow("Centered Window")
+    print arg
 
 
 def closeParentWindow(event):
-    """Closes the parent window given a component event object.
+    """
+    Closes the parent window given a component event object.
 
     Args:
         event (EventObject): A component event object. The enclosing
@@ -140,7 +144,8 @@ def closeParentWindow(event):
 
 
 def closeWindow(arg):
-    """Given a window path, or a reference to a window itself, it will
+    """
+    Given a window path, or a reference to a window itself, it will
     close the window. If the window can't be found, this function will
     do nothing.
 
@@ -153,7 +158,8 @@ def closeWindow(arg):
 
 
 def desktop(handle="primary"):
-    """Allows for invoking system.nav functions on a specific desktop.
+    """
+    Allows for invoking system.nav functions on a specific desktop.
 
     Args:
         handle (str): The handle for the desktop to use. The screen
@@ -171,7 +177,8 @@ def desktop(handle="primary"):
 
 
 def getCurrentWindow():
-    """Returns the path of the current "main screen" window, which is
+    """
+    Returns the path of the current "main screen" window, which is
     defined as the maximized window. With the Typical Navigation
     Strategy, there is only ever one maximized window at a time.
 
@@ -183,7 +190,8 @@ def getCurrentWindow():
 
 
 def goBack():
-    """When using the Typical Navigation Strategy, this function will
+    """
+    When using the Typical Navigation Strategy, this function will
     navigate back to the previous main screen window.
 
     Returns:
@@ -193,18 +201,20 @@ def goBack():
 
 
 def goForward():
-    """When using the Typical Navigation Strategy, this function will
+    """
+    When using the Typical Navigation Strategy, this function will
     navigate "forward" to the last main-screen window the user was on
     when they executed a system.nav.goBack().
 
     Returns:
         FPMIWindow: The window that was returned to.
     """
-    return FPMIWindow("Back")
+    return FPMIWindow("Forward")
 
 
 def goHome():
-    """When using the Typical Navigation Strategy, this function will
+    """
+    When using the Typical Navigation Strategy, this function will
     navigate to the "home" window. This is automatically detected as the
     first main-screen window shown in a project.
 
@@ -215,10 +225,11 @@ def goHome():
 
 
 def openWindow(path, params=None):
-    """Opens the window with the given path. If the window is already
-    open, brings it to the front. The optional params dictionary
-    contains key:value pairs which will be used to set the target
-    window's root container's dynamic variables.
+    """
+    Opens the window with the given path. If the window is already open,
+    brings it to the front. The optional params dictionary contains
+    key:value pairs which will be used to set the target window's root
+    container's dynamic variables.
 
     Args:
         path (str): The path to the window to open.
@@ -236,7 +247,8 @@ def openWindow(path, params=None):
 
 
 def openWindowInstance(path, params=None):
-    """Operates exactly like system.nav.openWindow, except that if the
+    """
+    Operates exactly like system.nav.openWindow, except that if the
     named window is already open, then an additional instance of the
     window will be opened. There is no limit to the number of additional
     instances of a window that you can open.
@@ -257,7 +269,8 @@ def openWindowInstance(path, params=None):
 
 
 def swapTo(path, params=None):
-    """Performs a window swap from the current main screen window to the
+    """
+    Performs a window swap from the current main screen window to the
     window specified. Swapping means that the opened window will take
     the place of the closing window - in this case it will be maximized.
     See also: Navigation Strategies.
@@ -281,15 +294,16 @@ def swapTo(path, params=None):
 
 
 def swapWindow(arg, swapToPath, params=None):
-    """Performs a window swap. This means that one window is closed,
-    and another is opened and takes its place - assuming its size,
-    floating state, and maximization state. This gives a seamless
-    transition - one window seems to simply turn into another.
+    """
+    Performs a window swap. This means that one window is closed, and
+    another is opened and takes its place - assuming its size, floating
+    state, and maximization state. This gives a seamless transition; one
+    window seems to simply turn into another.
 
     Args:
-        arg (object): The path of the window to swap from as a String.
-            Must be a currently open window, or this will act like an
-            openWindow. Or a component event (EventObject) whose
+        arg (object): The path of the window (str) to swap from. Must be
+            a currently open window, or this will act like an
+            openWindow, or a component event (EventObject) whose
             enclosing window will be used as the "swap-from" window.
         swapToPath (str): The name of the window to swap to.
         params (dict): A dictionary of parameters to pass into the
