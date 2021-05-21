@@ -2,12 +2,13 @@
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
 
-"""
-Utility Functions
+"""Utility Functions.
 
 The following functions give you access to view various Gateway and
 Client data, as well as interact with other various systems.
 """
+
+from __future__ import print_function
 
 __all__ = [
     "beep",
@@ -56,8 +57,7 @@ from system.dataset import Dataset, PyDataSet
 
 
 class LoggerEx(Object):
-    """
-    This class is a wrapper around a logger which provides additional
+    """This class is a wrapper around a logger which provides additional
     useful tools. To create one, use the newBuilder() function and
     configure the builder.
     """
@@ -113,9 +113,7 @@ class Request(Object):
 
 
 def beep():
-    """
-    Tells the computer to make a "beep" sound.
-    """
+    """Tells the computer to make a "beep" sound."""
     import sys
 
     platforms = {
@@ -132,51 +130,51 @@ def beep():
 
                 winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
             except ImportError:
-                print "Beep!"
+                print("Beep!")
         elif platforms[sys.platform] == "macOS":
             import os
 
             os.system('say "beep"')
         elif platforms[sys.platform] == "Linux":
             # TODO: Make Linux speak.
-            print "Beep!"
+            print("Beep!")
     else:
-        print "Beep!"
+        print("Beep!")
 
 
 def execute(commands):
-    """
-    Executes the given commands via the operating system, in a separate
-    process. The commands argument is an array of strings. The first
-    string is the program to execute, with subsequent strings being the
-    arguments to that command.
+    """Executes the given commands via the operating system, in a
+    separate process.
+
+    The commands argument is an array of strings. The first string is
+    the program to execute, with subsequent strings being the arguments
+    to that command.
 
     Args:
         commands (list[str]): A list containing the command (1st entry)
             and associated arguments (remaining entries) to execute.
     """
-    print commands
+    print(commands)
 
 
 def exit(force=False):
-    """
-    Exits the running client, as long as the shutdown intercept script
-    doesn't cancel the shutdown event. Set force to True to not give the
-    shutdown intercept script a chance to cancel the exit. Note that
-    this will quit the Client completely. you can use
-    system.security.logout() to return to the login screen.
+    """Exits the running client, as long as the shutdown intercept
+    script doesn't cancel the shutdown event.
+
+    Set force to True to not give the shutdown intercept script a chance
+    to cancel the exit. Note that this will quit the Client completely.
+    You can use system.security.logout() to return to the login screen.
 
     Args:
         force (bool): If True (1), the shutdown-intercept script will be
             skipped. Default is False (0). Optional.
     """
-    print force
+    print(force)
 
 
 def getAvailableLocales():
-    """
-    Returns a collection of strings representing the Locales added to
-    the Translation Manager, such as 'en' for English.
+    """Returns a collection of strings representing the Locales added
+    to the Translation Manager, such as 'en' for English.
 
     Returns:
         list[str]: A collection of strings representing the Locales
@@ -186,9 +184,8 @@ def getAvailableLocales():
 
 
 def getAvailableTerms():
-    """
-    Returns a collection of available terms defined in the translation
-    system.
+    """Returns a collection of available terms defined in the
+    translation system.
 
     Returns:
          list[str]: A collection of all of the terms available from the
@@ -198,10 +195,11 @@ def getAvailableTerms():
 
 
 def getClientId():
-    """
-    Returns a hex-string that represents a number unique to the running
-    client's session. You are guaranteed that this number is unique
-    between all running clients.
+    """Returns a hex-string that represents a number unique to the
+    running client's session.
+
+    You are guaranteed that this number is unique between all running
+    clients.
 
     Returns:
         str: A special code representing the client's session in a
@@ -211,9 +209,9 @@ def getClientId():
 
 
 def getConnectionMode():
-    """
-    Retrieves this client session's current connection mode. 3 is
-    read/write, 2 is read-only, and 1 is disconnected.
+    """Retrieves this client session's current connection mode.
+
+    3 is read/write, 2 is read-only, and 1 is disconnected.
 
     Returns:
         int: The current connection mode for the client.
@@ -222,11 +220,12 @@ def getConnectionMode():
 
 
 def getConnectTimeout():
-    """
-    Returns the connect timeout in milliseconds for all
-    client-to-gateway communication. This is the maximum amount of time
-    that communication operations to the Gateway will be given to
-    connect. The default is 10,000ms (10 seconds).
+    """Returns the connect timeout in milliseconds for all
+    client-to-gateway communication.
+
+    This is the maximum amount of time that communication operations to
+    the Gateway will be given to connect. The default is 10,000ms (10
+    seconds).
 
     Returns:
         int: The current connect timeout, in milliseconds. Default is
@@ -236,9 +235,8 @@ def getConnectTimeout():
 
 
 def getEdition():
-    """
-    Returns the "edition" of the Vision client - "standard", "limited",
-    or "panel".
+    """Returns the "edition" of the Vision client - "standard",
+    "limited", or "panel".
 
     Returns:
         str: The edition of the Vision module that is running the
@@ -248,8 +246,7 @@ def getEdition():
 
 
 def getGatewayAddress():
-    """
-    Returns the address of the gateway that the client is currently
+    """Returns the address of the gateway that the client is currently
     communicating with.
 
     Returns:
@@ -262,11 +259,11 @@ def getGatewayAddress():
 def getGatewayStatus(
     gatewayAddress, connectTimeoutMillis=None, socketTimeoutMillis=None
 ):
-    """
-    Returns a string that indicates the status of the Gateway. A status
-    of RUNNING means that the Gateway is fully functional. Thrown
-    exceptions return "ERROR" with the error message appended to the
-    string.
+    """Returns a string that indicates the status of the Gateway.
+
+    A status of RUNNING means that the Gateway is fully functional.
+    Thrown exceptions return "ERROR" with the error message appended to
+    the string.
 
     Args:
         gatewayAddress (str): The gateway address to ping, in the form
@@ -281,20 +278,20 @@ def getGatewayStatus(
         str: A string that indicates the status of the Gateway. A status
             of RUNNING means that the Gateway is fully functional.
     """
-    print (gatewayAddress, connectTimeoutMillis, socketTimeoutMillis)
+    print(gatewayAddress, connectTimeoutMillis, socketTimeoutMillis)
     return "RUNNING"
 
 
 def getGlobals():
-    """
-    This method returns a dictionary that provides access to the legacy
-    global namespace. As of version 7.7.0, most new scripts use the
-    modern style of scoping, which makes the 'global' keyword act very
-    differently. Most importantly, the modern scoping rules mean that
-    variables declared as 'global' are only global within that one
-    module. The system.util.getGlobals() method can be used to interact
-    with older scripts that used the old meaning of the 'global'
-    keyword.
+    """This method returns a dictionary that provides access to the
+    legacy global namespace.
+
+    As of version 7.7.0, most new scripts use the modern style of
+    scoping, which makes the 'global' keyword act very differently. Most
+    importantly, the modern scoping rules mean that variables declared
+    as 'global' are only global within that one module. The
+    system.util.getGlobals() method can be used to interact with older
+    scripts that used the old meaning of the 'global' keyword.
 
     Returns:
         dict: The global namespace, as a dictionary.
@@ -303,8 +300,9 @@ def getGlobals():
 
 
 def getInactivitySeconds():
-    """
-    Returns the number of seconds since any keyboard or mouse activity.
+    """Returns the number of seconds since any keyboard or mouse
+    activity.
+
     Note - this function will always return zero in the Designer.
 
     Returns:
@@ -315,9 +313,8 @@ def getInactivitySeconds():
 
 
 def getLocale():
-    """
-    Returns the current string representing the user's Locale, such as
-    'en' for English.
+    """Returns the current string representing the user's Locale, such
+    as 'en' for English.
 
     Returns:
         str: The current Locale.
@@ -326,8 +323,7 @@ def getLocale():
 
 
 def getLogger(name):
-    """
-    Returns a Logger object that can be used to log messages to the
+    """Returns a Logger object that can be used to log messages to the
     console.
 
     Args:
@@ -337,13 +333,12 @@ def getLogger(name):
         LoggerEx: A new Logger object used to log informational and
             error messages.
     """
-    print name
+    print(name)
     return LoggerEx()
 
 
 def getProjectName():
-    """
-    Returns the name of the project that is currently being run.
+    """Returns the name of the project that is currently being run.
 
     Returns:
         str: The name of the currently running project.
@@ -352,9 +347,9 @@ def getProjectName():
 
 
 def getProperty(propertyName):
-    """
-    Retrieves the value of a named system property. Some of the
-    available properties are:
+    r"""Retrieves the value of a named system property.
+
+    Some of the available properties are:
 
         file.separator. The system file separator character. (for
             example, "/" (unix) or "\" (windows))
@@ -399,11 +394,11 @@ def getProperty(propertyName):
 
 
 def getReadTimeout():
-    """
-    Returns the read timeout in milliseconds for all client-to-gateway
-    communication. This is the maximum amount of time allowed for a
-    communication operation to complete. The default is 60,000 ms
-    (1 minute).
+    """Returns the read timeout in milliseconds for all
+    client-to-gateway communication.
+
+    This is the maximum amount of time allowed for a communication
+    operation to complete. The default is 60,000 ms (1 minute).
 
     Returns:
          int: The current read timeout, in milliseconds. Default is
@@ -413,11 +408,11 @@ def getReadTimeout():
 
 
 def getSessionInfo(usernameFilter=None, projectFilter=None):
-    """
-    Returns a PyDataSet holding information about all of the sessions
-    (logged-in users) on the Gateway. Optional regular-expression based
-    filters can be provided to filter the username or the username and
-    the project returned.
+    """Returns a PyDataSet holding information about all of the sessions
+    (logged-in users) on the Gateway.
+
+    Optional regular-expression based filters can be provided to filter
+    the username or the username and the project returned.
 
     Args:
         usernameFilter (str): A regular-expression based filter string
@@ -429,18 +424,17 @@ def getSessionInfo(usernameFilter=None, projectFilter=None):
         PyDataSet: A dataset representing the Gateway's current
             sessions.
     """
-    print (usernameFilter, projectFilter)
+    print(usernameFilter, projectFilter)
     return PyDataSet()
 
 
 def getSystemFlags():
-    """
-    Returns an integer that represents a bit field containing
-    information about the currently running system. Each bit corresponds
-    to a specific flag as defined in the bitmask below. The integer
-    return will be a total of all of the bits that are currently active.
-    See the example for tips on how to extract the information in this
-    bit field.
+    """Returns an integer that represents a bit field containing
+    information about the currently running system.
+
+    Each bit corresponds to a specific flag as defined in the bitmask
+    below. The integer return will be a total of all of the bits that
+    are currently active.
 
     Returns:
         int: A total of all the bits that are currently active. A full
@@ -452,14 +446,14 @@ def getSystemFlags():
 
 
 def invokeAsynchronous(function):
-    """
-    This is an advanced scripting function . Invokes (calls) the given
-    Python function on a different thread. This means that calls to
-    invokeAsynchronous will return immediately, and then the given
-    function will start executing asynchronously on a different thread.
-    This is useful for long-running data intensive functions, where
-    running them synchronously (in the GUI thread) would make the GUI
-    non-responsive for an unacceptable amount of time.
+    """Invokes (calls) the given Python function on a different thread.
+
+    This means that calls to invokeAsynchronous will return immediately,
+    and then the given function will start executing asynchronously on a
+    different thread. This is useful for long-running data intensive
+    functions, where running them synchronously (in the GUI thread)
+    would make the GUI non-responsive for an unacceptable amount of
+    time.
 
     Args:
         function (object): A Python function object that will get
@@ -468,15 +462,15 @@ def invokeAsynchronous(function):
     Returns:
         Thread: The executing thread.
     """
-    print function
+    print(function)
     return Thread()
 
 
 def invokeLater(function, delay=0):
-    """
-    This is an advanced scripting function. Invokes (calls) the given
-    Python function object after all of the currently processing and
-    pending events are done being processed, or after a specified delay.
+    """Invokes (calls) the given Python function object after all of the
+    currently processing and pending events are done being processed,
+    or after a specified delay.
+
     The function will be executed on the GUI, or event dispatch, thread.
     This is useful for events like propertyChange events, where the
     script is called before any bindings are evaluated.
@@ -494,14 +488,14 @@ def invokeLater(function, delay=0):
             be invoked after all currently pending events are processed.
             Optional.
     """
-    print (function, delay)
+    print(function, delay)
 
 
 def jsonDecode(jsonString):
-    """
-    Takes a json String and converts it into a Python object such as a
-    list or a dict. If the input is not valid json, a string is
-    returned.
+    """Takes a json String and converts it into a Python object such as
+    a list or a dict.
+
+    If the input is not valid json, a string is returned.
 
     Args:
         jsonString (str): The JSON string to decode into a Python
@@ -510,13 +504,12 @@ def jsonDecode(jsonString):
     Returns:
         dict: The decoded Python object.
     """
-    print (jsonString)
+    print(jsonString)
     return {"key": "value"}
 
 
 def jsonEncode(pyObj, indentFactor=4):
-    """
-    Takes a Python object such as a list or dict and converts into a
+    """Takes a Python object such as a list or dict and converts into a
     json string.
 
     Args:
@@ -528,13 +521,12 @@ def jsonEncode(pyObj, indentFactor=4):
     Returns:
         str: The encoded JSON string.
     """
-    print (pyObj, indentFactor)
+    print(pyObj, indentFactor)
     return ""
 
 
 def modifyTranslation(term, translation, locale="en"):
-    """
-    This function allows you to add or modify a global translation.
+    """This function allows you to add or modify a global translation.
 
     Args:
         term (str): The key term to translate.
@@ -543,14 +535,15 @@ def modifyTranslation(term, translation, locale="en"):
             identifying the language of the translation. Otherwise, the
             currently set language is used. Optional.
     """
-    print (term, translation, locale)
+    print(term, translation, locale)
 
 
 def playSoundClip(wav, volume=1.0, wait=False):
-    """
-    Plays a sound clip from a wav file to the system's default audio
-    device. The wav file can be specified as a filepath, a URL, or
-    directly as a raw byte[].
+    """Plays a sound clip from a wav file to the system's default audio
+    device.
+
+    The wav file can be specified as a filepath, a URL, or directly as a
+    raw byte[].
 
     Args:
         wav (object): A byte list of a wav file or filepath or URL that
@@ -561,7 +554,7 @@ def playSoundClip(wav, volume=1.0, wait=False):
             to playSoundClip should wait for the clip to finish before
             it returns. Optional.
     """
-    print (wav, volume, wait)
+    print(wav, volume, wait)
 
 
 def queryAuditLog(
@@ -575,9 +568,9 @@ def queryAuditLog(
     systemFilter=None,
     contextFilter=None,
 ):
-    """
-    Queries an audit profile for audit history. Returns the results as a
-    dataset.
+    """Queries an audit profile for audit history.
+
+    Returns the results as a dataset.
 
     Args:
         auditProfileName (str): The name of the audit profile to pull
@@ -608,7 +601,7 @@ def queryAuditLog(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    print (
+    print(
         auditProfileName,
         startDate,
         endDate,
@@ -625,12 +618,12 @@ def queryAuditLog(
 def retarget(
     projectName, gatewayAddress=None, params=None, startupWindows=None
 ):
-    """
-    This function allows you to programmatically 'retarget' the Client
-    to a different project and/or different Gateway. You can have it
-    switch to another project on the same Gateway, or another gateway
-    entirely, even across a WAN. This feature makes the vision of a
-    seamless, enterprise-wide SCADA application a reality.
+    """This function allows you to programmatically 'retarget' the
+    Client to a different project and/or different Gateway.
+
+    You can have it switch to another project on the same Gateway, or
+    another gateway entirely, even across a WAN. This feature makes the
+    vision of a seamless, enterprise-wide SCADA application a reality.
 
     The retarget feature will attempt to transfer the current user
     credentials over to the new project / Gateway. If the credentials
@@ -660,7 +653,7 @@ def retarget(
             startup windows will be ignored, and this list will be used
             instead. Optional.
     """
-    print (projectName, gatewayAddress, params, startupWindows)
+    print(projectName, gatewayAddress, params, startupWindows)
 
 
 def sendMessage(
@@ -674,13 +667,14 @@ def sendMessage(
     hostName=None,
     remoteServers=None,
 ):
-    """
-    This function sends a message to clients running under the Gateway,
-    or to a project within the Gateway itself. To handle received
-    messages, you must set up event script message handlers within a
-    project. These message handlers run Jython code when a message is
-    received. You can add message handlers under the "Message" section
-    of the client/Gateway event script configuration dialogs.
+    """This function sends a message to clients running under the
+    Gateway, or to a project within the Gateway itself.
+
+    To handle received messages, you must set up event script message
+    handlers within a project. These message handlers run Jython code
+    when a message is received. You can add message handlers under the
+    "Message" section of the client/Gateway event script configuration
+    dialogs.
 
     Args:
         project (str): The name of the project containing the message
@@ -714,7 +708,7 @@ def sendMessage(
             system that was selected for delivery, where each List item
             is comma-delimited.
     """
-    print (
+    print(
         project,
         messageHandler,
         payload,
@@ -736,16 +730,16 @@ def sendRequest(
     remoteServer=None,
     timeoutSec=None,
 ):
-    """
-    This function sends a message to the Gateway, working in a similar
-    manner to the sendMessage function, except sendRequest expects a
-    response to the message. To handle received messages, you must set
-    up Gateway Event Script message handlers within a project. These
-    message handlers run Jython code when a message is received. You can
-    then place a return at the end of the code to return something to
-    where the sendRequest was originally called from. You can add
-    message handlers under the "Message" section of the Gateway Event
-    Script configuration dialog.
+    """This function sends a message to the Gateway, working in a
+    similar manner to the sendMessage function, except sendRequest
+    expects a response to the message.
+
+    To handle received messages, you must set up Gateway Event Script
+    message handlers within a project. These message handlers run Jython
+    code when a message is received. You can then place a return at the
+    end of the code to return something to where the sendRequest was
+    originally called from. You can add message handlers under the
+    "Message" section of the Gateway Event Script configuration dialog.
 
     Args:
         project (str): The name of the project containing the message
@@ -768,7 +762,7 @@ def sendRequest(
     Returns:
         object: The return from the message handler.
     """
-    print (
+    print(
         project,
         messageHandler,
         payload,
@@ -789,8 +783,9 @@ def sendRequestAsync(
     onSuccess=None,
     onError=None,
 ):
-    """
-    This function sends a message to the Gateway and expects a response.
+    """This function sends a message to the Gateway and expects a
+    response.
+
     Works in a similar manner to the sendRequest function, except
     sendRequestAsync will send the request and then immediately return a
     handle for it.
@@ -825,7 +820,7 @@ def sendRequestAsync(
         Request: The Request object that can be used while waiting for
             the message handler callback.
     """
-    print (
+    print(
         project,
         messageHandler,
         payload,
@@ -839,51 +834,55 @@ def sendRequestAsync(
 
 
 def setConnectionMode(mode):
-    """
-    Sets the connection mode for the client session. Normally a client
-    runs in mode 3, which is read-write. You may wish to change this to
-    mode 2, which is read-only, which will only allow reading and
-    subscribing to tags, and running SELECT queries. Tag writes and
-    INSERT / UPDATE / DELETE queries will not function. You can also set
-    the connection mode to mode 1, which is disconnected, all tag and
-    query features will not work.
+    """Sets the connection mode for the client session.
+
+    Normally a client runs in mode 3, which is read-write. You may wish
+    to change this to mode 2, which is read-only, which will only allow
+    reading and subscribing to tags, and running SELECT queries. Tag
+    writes and INSERT / UPDATE / DELETE queries will not function. You
+    can also set the connection mode to mode 1, which is disconnected,
+    all tag and query features will not work.
 
     Args:
         mode (int): The new connection mode. 1 = Disconnected,
             2 = Read-only, 3 = Read/Write.
     """
-    print mode
+    print(mode)
 
 
 def setConnectTimeout(connectTimeout):
-    """
-    Sets the connect timeout for client-to-gateway communication.
+    """Sets the connect timeout for client-to-gateway communication.
+
     Specified in milliseconds.
 
     Args:
         connectTimeout (int): The new connect timeout, specified in
             milliseconds.
     """
-    print connectTimeout
+    print(connectTimeout)
 
 
 def setLocale(locale):
-    """
-    Sets the user's current Locale. Any valid Java locale code
-    (case-insensitive) can be used as a parameter, including ones that
-    have not yet been added to the  Translation Manager. An invalid
-    locale code will cause an Illegal Argument Exception.
+    """Sets the user's current Locale.
+
+    Any valid Java locale code (case-insensitive) can be used as a
+    parameter, including ones that have not yet been added to the
+    Translation Manager.
 
     Args:
         locale (str): A locale code, such as 'en_US' for US English.
+
+    Raises:
+        IllegalArgumentException: If passed an invalid local code.
     """
-    print locale
+    print(locale)
 
 
 def setLoggingLevel(loggerName, loggerLevel):
-    """
-    Sets the logging level on the given logger. This can be a logger you
-    create, or a logger already defined in the system.
+    """Sets the logging level on the given logger.
+
+    This can be a logger you create, or a logger already defined in the
+    system.
 
     Args:
         loggerName (str): The unique name of the logger to change the
@@ -891,34 +890,32 @@ def setLoggingLevel(loggerName, loggerLevel):
         loggerLevel (str): The level you want to change to logger to:
             "trace", "debug", "info", "warn" or "error".
     """
-    print (loggerName, loggerLevel)
+    print(loggerName, loggerLevel)
 
 
 def setReadTimeout(readTimeout):
-    """
-    Sets the read timeout for client-to-gateway communication. Specified
-    in milliseconds.
+    """Sets the read timeout for client-to-gateway communication.
+
+    Specified in milliseconds.
 
     Args:
         readTimeout (int): The new read timeout, specified in
             milliseconds.
     """
-    print readTimeout
+    print(readTimeout)
 
 
 def threadDump():
-    """
-    Creates a thread dump of the current running JVM.
+    """Creates a thread dump of the current running JVM.
 
     Returns:
         str: The dump of the current running JVM.
     """
-    return "Ignition version: 7.9.x..."
+    return "Ignition version: {}...".format(system.__version__)
 
 
 def translate(term, locale=None, strict=False):
-    """
-    This function allows you to retrieve the global translation of a
+    """This function allows you to retrieve the global translation of a
     term from the translation database using the current locale.
 
     Args:
@@ -938,5 +935,5 @@ def translate(term, locale=None, strict=False):
     Returns:
         str: The translated term.
     """
-    print (term, locale, strict)
+    print(term, locale, strict)
     return term

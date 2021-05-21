@@ -2,11 +2,12 @@
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
 
-"""
-Net Functions
+"""Net Functions.
 
 The following functions give you access to interact with http services.
 """
+
+from __future__ import print_function
 
 __all__ = [
     "getExternalIpAddress",
@@ -23,8 +24,9 @@ __all__ = [
 
 
 def getExternalIpAddress():
-    """
-    Returns the client's IP address, as it is detected by the Gateway.
+    """Returns the client's IP address, as it is detected by the
+    Gateway.
+
     This means that this call will communicate with the Gateway, and the
     Gateway will tell the client what IP address its incoming traffic is
     coming from. If you have a client behind a NAT router, then this
@@ -40,8 +42,9 @@ def getExternalIpAddress():
 
 
 def getHostName():
-    """
-    Returns the host name of the computer that the script was ran on.
+    """Returns the host name of the computer that the script was ran
+    on.
+
     When run in the Gateway scope, returns the Gateway hostname. When
     run in the Client scope, returns the Client hostname. On Windows,
     this is typically the "computer name". For example, might return
@@ -56,10 +59,10 @@ def getHostName():
 
 
 def getIpAddress():
-    """
-    Returns the IP address of the computer the client is running on, as
-    it appears to the client. See also:
-    system.net.getExternalIpAddress().
+    """Returns the IP address of the computer the client is running on,
+    as it appears to the client.
+
+    See also: system.net.getExternalIpAddress().
 
     Returns:
         str: Returns the IP address of the local machine, as it sees it.
@@ -68,8 +71,7 @@ def getIpAddress():
 
 
 def getRemoteServers(runningOnly=True):
-    """
-    This function returns a List of Gateway Network servers that are
+    """This function returns a List of Gateway Network servers that are
     visible from the local Gateway.
 
     Args:
@@ -82,7 +84,7 @@ def getRemoteServers(runningOnly=True):
         list[str]: A List of Strings representing Gateway Network server
             ids.
     """
-    print runningOnly
+    print(runningOnly)
     return []
 
 
@@ -96,8 +98,7 @@ def httpDelete(
     headerValues=None,
     bypassCertValidation=True,
 ):
-    """
-    Performs an HTTP DELETE to the given URL.
+    """Performs an HTTP DELETE to the given URL.
 
     Args:
         url (str): The URL to send the request to.
@@ -122,7 +123,7 @@ def httpDelete(
     Returns:
         object: The content returned for the DELETE operation.
     """
-    print (
+    print(
         url,
         contentType,
         connectTimeout,
@@ -146,11 +147,12 @@ def httpGet(
     useCaches=True,
     throwOnError=True,
 ):
-    """
-    Retrieves the document at the given URL using the HTTP GET protocol.
+    """Retrieves the document at the given URL using the HTTP GET
+    protocol.
+
     The document is returned as a string. For example, if you use the
     URL of a website, you'll get the same thing you'd get by going to
-    that website in a browser and using the  browser's "View Source"
+    that website in a browser and using the browser's "View Source"
     function.
 
     Args:
@@ -167,12 +169,12 @@ def httpGet(
             be set in the HTTP header. Optional.
         bypassCertValidation (bool): If the target address is an HTTPS
             address, and this parameter is True, the system will bypass
-            all SSL certificate  validation. This is not recommended,
+            all SSL certificate validation. This is not recommended,
             though is sometimes necessary for self-signed certificates.
             Optional.
         useCaches (bool): Will cache the information returned by the
             httpGet call. If using this for something that constantly
-            updates like an rss feed, it would  be better to set this to
+            updates like an rss feed, it would be better to set this to
             False. Default is True. Optional.
         throwOnError (bool): Set to False if you wish to get the error
             body rather than a Python exception if the GET request
@@ -182,7 +184,7 @@ def httpGet(
     Returns:
         str: The content found at the given URL.
     """
-    print (
+    print(
         url,
         connectTimeout,
         readTimeout,
@@ -197,13 +199,14 @@ def httpGet(
 
 
 def httpPost(url, *args):
-    """
-    Retrieves the document at the given URL using the HTTP POST
-    protocol. If a parameter dictionary argument is specified, the
-    entries in the dictionary will encoded in
-    "application/x-www-form-urlencoded" format, and then posted. You can
-    post arbitrary data as well, but you'll need to specify the MIME
-    type. The document is then returned as a string.
+    """Retrieves the document at the given URL using the HTTP POST
+    protocol.
+
+    If a parameter dictionary argument is specified, the entries in the
+    dictionary will encoded in "application/x-www-form-urlencoded"
+    format, and then posted. You can post arbitrary data as well, but
+    you'll need to specify the MIME type. The document is then returned
+    as a string.
 
     Args:
         url (str): The URL to post to.
@@ -212,14 +215,15 @@ def httpPost(url, *args):
     Returns:
         str: The content returned for the POST operation.
     """
-    print (url, args)
+    print(url, args)
     return ""
 
 
 def httpPut(url, *args, **kwargs):
-    """
-    Performs an HTTP PUT to the given URL. Encodes the given dictionary
-    of parameters using "applications/x-www-form-urlencoded" format.
+    """Performs an HTTP PUT to the given URL.
+
+    Encodes the given dictionary of parameters using
+    "applications/x-www-form-urlencoded" format.
 
     Args:
         url (str): The URL to send the request to.
@@ -229,15 +233,14 @@ def httpPut(url, *args, **kwargs):
     Returns:
         str: The content returned by the PUT operation.
     """
-    print (url, args, kwargs)
+    print(url, args, kwargs)
     return ""
 
 
 def openURL(url, useApplet=False):
-    """
-    Opens the given URL or URI scheme outside of the currently running
-    Client in whatever application the host operating system deems
-    appropriate.
+    """Opens the given URL or URI scheme outside of the currently
+    running Client in whatever application the host operating system
+    deems appropriate.
 
     Args:
         url (str): The URL to open in a web browser.
@@ -245,7 +248,7 @@ def openURL(url, useApplet=False):
             as an Applet, then the browser instance that launched the
             applet will be used to open the URL. Optional.
     """
-    print (url, useApplet)
+    print(url, useApplet)
 
 
 def sendEmail(
@@ -267,10 +270,10 @@ def sendEmail(
     retries=0,
     replyTo=None,
 ):
-    """
-    Sends an email through the given SMTP server. Note that this email
-    is relayed first through the Gateway - the client host machine
-    doesn't need network access to the SMTP server.
+    """Sends an email through the given SMTP server.
+
+    Note that this email is relayed first through the Gateway - the
+    client host machine doesn't need network access to the SMTP server.
 
     Args:
         smtp (str): The address of an SMTP server to send the email
@@ -312,7 +315,7 @@ def sendEmail(
             recipients reply to. If omitted, this defaults to the from
             address. Optional.
     """
-    print (
+    print(
         smtp,
         fromAddr,
         subject,

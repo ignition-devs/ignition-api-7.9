@@ -2,12 +2,13 @@
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
 
-"""
-User Functions
+"""User Functions.
 
 The following functions give you access to view and edit users in the
 Gateway.
 """
+
+from __future__ import print_function
 
 __all__ = [
     "addHoliday",
@@ -59,13 +60,10 @@ class ContactInfo(Object):
 
 
 class HolidayModel(Object):
-    """
-    HolidayModel object.
-    """
+    """HolidayModel object."""
 
     def __init__(self, name, date, repeatAnnually):
-        """
-        HolidayModel instance.
+        """Constructs a new HolidayModel.
 
         Args:
             name (str): The name.
@@ -133,8 +131,7 @@ class User(object):
     Language = "en_US"
 
     def get(self, prop):
-        """
-        Returns a the value of the requested item.
+        """Returns a the value of the requested item.
 
         Args:
             prop (User property): The user property to retrieve.
@@ -142,65 +139,74 @@ class User(object):
         Returns:
             str: The value of the requested property.
         """
-        print self
         return prop
 
     def getContactInfo(self):
-        """
-        Returns a sequence of ContactInfo objects. Each of these objects
-        will have a contactType and value property representing the
-        contact information, both strings.
+        """Returns a sequence of ContactInfo objects.
+
+        Each of these objects will have a contactType and value property
+        representing the contact information, both strings.
 
         Returns:
             list[ContactInfo]: A sequence of ContactInfo objects.
         """
-        print self
         ci_email = ContactInfo("email", "johdoe@mycompany.com")
         ci_phone = ContactInfo("phone", "+1 5551324567")
         ci_sms = ContactInfo("sms", "+1 5557654321")
         return [ci_email, ci_phone, ci_sms]
 
     def getId(self):
-        """
-        Returns the internal identifier object that the backing user
+        """Returns the internal identifier object that the backing user
         source needs to identify this user.
 
         Returns:
             str: The internal identifier object that the backing user
                 source needs to identify this user.
         """
-        print self
         return 1
 
     def getOrDefault(self, prop):
-        """
-        Returns a default value if the requested item is not present.
+        """Returns a default value if the requested item is not
+        present.
 
         Args:
-            prop (User property): The user property to retrieve.
+            prop (Property): The user property to retrieve.
 
         Returns:
-            str: The value of the requested property.
+            object: The value of the requested property.
         """
-        print self
-        return prop
+        print(prop)
+        return None
+
+    def getOrElse(self, prop, value):
+        """Get the value for a given Property, or else fall back to
+        value if it's not present.
+
+        Args:
+            prop (Property): The Property for which a value is to be
+                retrieved.
+            value (object): The value to default to if property isn't
+                present.
+
+        Returns:
+            object: The value of property if present, value if not.
+        """
+        print(prop)
+        return value
 
     def getRoles(self):
-        """
-        Returns a sequence of strings representing the roles that this
-        user belongs to.
+        """Returns a sequence of strings representing the roles that
+        this user belongs to.
 
         Returns:
              list[str]: Sequence of strings representing the roles that
                 this user belongs to.
         """
-        print self
         return User.Roles
 
 
 def addHoliday(holiday):
-    """
-    Allows a holiday to be added.
+    """Allows a holiday to be added.
 
     Args:
         holiday (HolidayModel): The holiday to add.
@@ -209,15 +215,15 @@ def addHoliday(holiday):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    print holiday
+    print(holiday)
     return UIResponse(Locale.ENGLISH)
 
 
 def addRole(userSource, role):
-    """
-    Allows a role to the specified user source. When altering the
-    Gateway System User Source, the Allow User Admin setting must be
-    enabled.
+    """Allows a role to the specified user source.
+
+    When altering the Gateway System User Source, the Allow User Admin
+    setting must be enabled.
 
     Args:
         userSource (str): The user source to add a role to. Blank will
@@ -229,13 +235,12 @@ def addRole(userSource, role):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    print (userSource, role)
+    print(userSource, role)
     return UIResponse(Locale.ENGLISH)
 
 
 def addSchedule(schedule):
-    """
-    Allows a schedule to be added.
+    """Allows a schedule to be added.
 
     Args:
         schedule (AbstractScheduleModel): The schedule to add.
@@ -244,13 +249,12 @@ def addSchedule(schedule):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    print schedule
+    print(schedule)
     return UIResponse(Locale.ENGLISH)
 
 
 def editHoliday(holidayName, holiday):
-    """
-    Allows a holiday to be edited.
+    """Allows a holiday to be edited.
 
     Args:
         holidayName (str): The name of the holiday to edit. Name is
@@ -261,15 +265,15 @@ def editHoliday(holidayName, holiday):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print (holidayName, holiday)
+    print(holidayName, holiday)
     return UIResponse(Locale.ENGLISH)
 
 
 def editRole(userSource, oldName, newName):
-    """
-    Renames a role in the specified user source. When altering the
-    Gateway System User Source, the Allow User Admin setting must be
-    enabled.
+    """Renames a role in the specified user source.
+
+    When altering the Gateway System User Source, the Allow User Admin
+    setting must be enabled.
 
     Args:
         userSource (str): The user source in which the role is found.
@@ -282,13 +286,12 @@ def editRole(userSource, oldName, newName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print (userSource, oldName, newName)
+    print(userSource, oldName, newName)
     return UIResponse(Locale.ENGLISH)
 
 
 def editSchedule(scheduleName, schedule):
-    """
-    Allows a schedule to be edited.
+    """Allows a schedule to be edited.
 
     Args:
         scheduleName (str): The name of the schedule to edit. Name is
@@ -299,13 +302,12 @@ def editSchedule(scheduleName, schedule):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print (scheduleName, schedule)
+    print(scheduleName, schedule)
     return UIResponse(Locale.ENGLISH)
 
 
 def getHoliday(holidayName):
-    """
-    Returns a specific holiday.
+    """Returns a specific holiday.
 
     Args:
         holidayName (str): The name of the holiday to return.
@@ -314,13 +316,12 @@ def getHoliday(holidayName):
     Returns:
         HolidayModel: The holiday, or None if not found.
     """
-    print holidayName
+    print(holidayName)
     return None
 
 
 def getHolidayNames():
-    """
-    Returns a collection of Strings of all holiday names.
+    """Returns a collection of Strings of all holiday names.
 
     Returns:
         list[str]: A list of all holiday names, or an empty list if no
@@ -330,8 +331,7 @@ def getHolidayNames():
 
 
 def getHolidays():
-    """
-    Returns a sequence of all of the holidays available.
+    """Returns a sequence of all of the holidays available.
 
     Returns:
         list[HolidayModel]: A list of holidays.
@@ -340,8 +340,7 @@ def getHolidays():
 
 
 def getRoles(userSource):
-    """
-    Returns a sequence of strings representing all of the roles
+    """Returns a sequence of strings representing all of the roles
     configured in a specific user source.
 
     Args:
@@ -351,13 +350,12 @@ def getRoles(userSource):
         list[str]: A List of Strings that holds all the roles in the
             user source.
     """
-    print userSource
+    print(userSource)
     return None
 
 
 def getSchedule(scheduleName):
-    """
-    Returns a specific schedule.
+    """Returns a specific schedule.
 
     Args:
         scheduleName (str): The name of the schedule to return.
@@ -368,14 +366,14 @@ def getSchedule(scheduleName):
             BasicSchedule, CompositeSchedule, or another type registered
             by a module, or None if not found.
     """
-    print scheduleName
+    print(scheduleName)
     return None
 
 
 def getScheduledUsers(userSource, date=None):
-    """
-    Returns a list of users that are scheduled on. If no users are
-    scheduled, it will return an empty list.
+    """Returns a list of users that are scheduled on.
+
+    If no users are scheduled, it will return an empty list.
 
     Args:
         userSource (str): The name of the user source to check for
@@ -389,14 +387,13 @@ def getScheduledUsers(userSource, date=None):
             taking schedule adjustments into account.
     """
     date = system.date.now() if date is None else date
-    print (userSource, date)
+    print(userSource, date)
     return None
 
 
 def getScheduleNames():
-    """
-    Returns a sequence of strings representing the names of all of the
-    schedules available.
+    """Returns a sequence of strings representing the names of all of
+    the schedules available.
 
     Returns:
         list[str]: A List of Strings that holds the names of all the
@@ -406,9 +403,8 @@ def getScheduleNames():
 
 
 def getSchedules():
-    """
-    Returns a sequence of all available schedule models, which can be
-    used to return configuration information on the schedule, such as
+    """Returns a sequence of all available schedule models, which can
+    be used to return configuration information on the schedule, such as
     time for each day of the week.
 
     Returns:
@@ -421,9 +417,9 @@ def getSchedules():
 
 
 def getUser(userSource, username):
-    """
-    Looks up a specific user in a user source, by username. The full
-    User object is returned except for the user's password.
+    """Looks up a specific user in a user source, by username.
+
+    The full User object is returned except for the user's password.
 
     Args:
         userSource (str): The name of the user source to search for the
@@ -433,15 +429,15 @@ def getUser(userSource, username):
     Returns:
         User: A User object.
     """
-    print (userSource, username)
+    print(userSource, username)
     return User()
 
 
 def getUsers(userSource):
-    """
-    Retrieves the list of users in a specific user source. The User
-    objects that are returned contain all of the information about that
-    user, except for the user's password.
+    """Retrieves the list of users in a specific user source.
+
+    The User objects that are returned contain all of the information
+    about that user, except for the user's password.
 
     Args:
         userSource (str): The name of the user source to find the users
@@ -450,14 +446,13 @@ def getUsers(userSource):
     Returns:
         list[User]: A list of User objects.
     """
-    print userSource
+    print(userSource)
     # You may return more than one User object.
     return [User()]
 
 
 def isUserScheduled(user, date=None):
-    """
-    Will check if a specified User is scheduled currently or on a
+    """Will check if a specified User is scheduled currently or on a
     specified date/time.
 
     Args:
@@ -471,13 +466,12 @@ def isUserScheduled(user, date=None):
             False if not.
     """
     date = system.date.now() if date is None else date
-    print (user, date)
+    print(user, date)
     return True
 
 
 def removeHoliday(holidayName):
-    """
-    Allows a holiday to be deleted.
+    """Allows a holiday to be deleted.
 
     Args:
         holidayName (str): The name of the holiday to delete. Name is
@@ -487,15 +481,15 @@ def removeHoliday(holidayName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    print holidayName
+    print(holidayName)
     return UIResponse(Locale.ENGLISH)
 
 
 def removeRole(userSource, role):
-    """
-    Removes a role from the specified user source. When altering the
-    Gateway System User Source, the Allow User Admin setting must be
-    enabled.
+    """Removes a role from the specified user source.
+
+    When altering the Gateway System User Source, the Allow User Admin
+    setting must be enabled.
 
     Args:
         userSource (str): The user source in which the role is found.
@@ -506,15 +500,15 @@ def removeRole(userSource, role):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    print (userSource, role)
+    print(userSource, role)
     return UIResponse(Locale.ENGLISH)
 
 
 def removeSchedule(scheduleName):
-    """
-    Allows a schedule to be deleted. Note that schedules which are used
-    in Composite Schedules can not be deleted until they are removed
-    from the Composite Schedule.
+    """Allows a schedule to be deleted.
+
+    Note that schedules which are used in Composite Schedules can not be
+    deleted until they are removed from the Composite Schedule.
 
     Args:
         scheduleName (str): The name of the schedule to delete. Name is
@@ -524,5 +518,5 @@ def removeSchedule(scheduleName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    print scheduleName
+    print(scheduleName)
     return UIResponse(Locale.ENGLISH)

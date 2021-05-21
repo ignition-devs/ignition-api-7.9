@@ -2,11 +2,12 @@
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
 
-"""
-Tag Functions
+"""Tag Functions.
 
 The following functions give you access to interact with Ignition Tags.
 """
+
+from __future__ import print_function
 
 __all__ = [
     "addTag",
@@ -42,9 +43,7 @@ from java.lang import Object
 
 
 class BrowseResults(Object):
-    """
-    BrowseResults class.
-    """
+    """BrowseResults class."""
 
     def getContinuationPoint(self):
         pass
@@ -75,8 +74,8 @@ class BrowseResults(Object):
 
 
 class QualifiedValue(object):
-    """
-    Represents a value with a DataQuality & timestamp attached to it.
+    """Represents a value with a DataQuality & timestamp attached to
+    it.
     """
 
     def __init__(self, value=None, quality=None, timestamp=None):
@@ -105,9 +104,7 @@ class QualifiedValue(object):
 
 
 class AlarmProperty(object):
-    """
-    AlarmProperty class.
-    """
+    """AlarmProperty class."""
 
     def __init__(self, property=None, value=None, type=None):
         self.property = property
@@ -116,9 +113,7 @@ class AlarmProperty(object):
 
 
 class BrowseTag(Object):
-    """
-    BrowseTag class.
-    """
+    """BrowseTag class."""
 
     def __init__(
         self,
@@ -153,31 +148,31 @@ class BrowseTag(Object):
         return self.valueSource
 
     def isDB(self):
-        print self
+        print(self)
         return True
 
     def isExpression(self):
-        print self
+        print(self)
         return True
 
     def isFolder(self):
-        print self
+        print(self)
         return True
 
     def isMemory(self):
-        print self
+        print(self)
         return True
 
     def isOPC(self):
-        print self
+        print(self)
         return True
 
     def isQuery(self):
-        print self
+        print(self)
         return True
 
     def isUDT(self):
-        print self
+        print(self)
         return True
 
     def toString(self):
@@ -185,9 +180,7 @@ class BrowseTag(Object):
 
 
 class Results(object):
-    """
-    Results class.
-    """
+    """Results class."""
 
     def getPath(self):
         pass
@@ -200,21 +193,17 @@ class Results(object):
 
 
 class TagAlarmDefinition(object):
-    """
-    TagAlarmDefinition class.
-    """
+    """TagAlarmDefinition class."""
 
     alarm = None
 
     def getAlarmProperties(self):
-        print self
+        print(self)
         return AlarmProperty()
 
 
 class TagConfiguration(object):
-    """
-    TagConfiguration class.
-    """
+    """TagConfiguration class."""
 
     def getAlarms(self):
         pass
@@ -255,10 +244,11 @@ def addTag(
     alarmList,
     alarmConfig,
 ):
-    """
-    Adds a new tag in Ignition. You can add OPC, memory, expression,
-    query, folder, and UDT instance tags. You can't add Client Tags,
-    because those can vary from project to project.
+    """Adds a new tag in Ignition.
+
+    You can add OPC, memory, expression, query, folder, and UDT instance
+    tags. You can't add Client Tags, because those can vary from project
+    to project.
 
     Args:
         parentPath (str): The folder to add the tag to. Leave blank for
@@ -284,7 +274,7 @@ def addTag(
         alarmConfig (dict): The alarm configuration for the tag. See
             editAlarmConfig for details on how to use this parameter.
     """
-    print (
+    print(
         parentPath,
         name,
         tagType,
@@ -301,11 +291,11 @@ def addTag(
 
 
 def browseConfiguration(path, recursive):
-    """
-    Browses a folder path or UDT and returns Tag configuration
-    information for each Tag within the specified path. This can be used
-    to view event scripts, alarms, as well as any other configurable
-    attribute on a Tag.
+    """Browses a folder path or UDT and returns Tag configuration
+    information for each Tag within the specified path.
+
+    This can be used to view event scripts, alarms, as well as any other
+    configurable attribute on a Tag.
 
     Args:
         path (str): The path that will be browsed, typically to a folder
@@ -329,15 +319,16 @@ def browseConfiguration(path, recursive):
             getProperties(). Only attributes with non-default values
             will appear in the attribute list.
     """
-    print (path, recursive)
+    print(path, recursive)
     return [TagConfiguration()]
 
 
 def browseHistoricalTags(
     path, nameFilters=None, maxSize=None, continuationPoint=None
 ):
-    """
-    Will browse for any historical Tags at the provided historical path.
+    """Will browse for any historical Tags at the provided historical
+    path.
+
     It will only browse for Tags at the path, and will not go down
     through any children. Will return with a BrowseResults object.
 
@@ -358,7 +349,7 @@ def browseHistoricalTags(
             the Continuation Point. Get the results by calling
             .getResults() on the BrowseResults object.
     """
-    print (path, nameFilters, maxSize, continuationPoint)
+    print(path, nameFilters, maxSize, continuationPoint)
     return BrowseResults()
 
 
@@ -371,10 +362,10 @@ def browseTags(
     recursive=False,
     sort="ASC",
 ):
-    """
-    Returns an array of tags from a specific folder. The function
-    supports filtering and recursion. Leave filters blank to return all
-    tags.
+    """Returns an array of tags from a specific folder.
+
+    The function supports filtering and recursion. Leave filters blank
+    to return all tags.
 
     If called in the gateway scope, a Tag Provider must be specified.
 
@@ -408,7 +399,7 @@ def browseTags(
             and the following functions: isFolder(), isUDT(), isOPC(),
             isMemory(), isExpression(), isQuery().
     """
-    print (
+    print(
         parentPath,
         tagPath,
         tagType,
@@ -421,8 +412,7 @@ def browseTags(
 
 
 def browseTagsSimple(parentPath, sort):
-    """
-    Returns a sorted array of tags from a specific folder.
+    """Returns a sorted array of tags from a specific folder.
 
     Args:
         parentPath (str): The parent folder path. Leave blank for the
@@ -440,14 +430,13 @@ def browseTagsSimple(parentPath, sort):
             and the following functions: isFolder(), isUDT(), isOPC(),
             isMemory(), isExpression(), isQuery().
     """
-    print (parentPath, sort)
+    print(parentPath, sort)
     return [BrowseTag()]
 
 
 def editAlarmConfig(tagPaths, alarmConfig):
-    """
-    Edit the alarm configuration of multiple existing tags in Ignition
-    with a single call.
+    """Edit the alarm configuration of multiple existing tags in
+    Ignition with a single call.
 
     Args:
         tagPaths (list[str]): The full path to the tag you want to edit.
@@ -462,7 +451,7 @@ def editAlarmConfig(tagPaths, alarmConfig):
             format ["name", "Value", "newValue"]. Note that item 1 is
             always "Value".
     """
-    print (tagPaths, alarmConfig)
+    print(tagPaths, alarmConfig)
 
 
 def editTag(
@@ -474,9 +463,10 @@ def editTag(
     alarmList=None,
     alarmConfig=None,
 ):
-    """
-    Edits an existing Tag in Ignition. This will not work on Client
-    Tags, because there is a Client Provider for each project.
+    """Edits an existing Tag in Ignition.
+
+    This will not work on Client Tags, because there is a Client
+    Provider for each project.
 
     Args:
         tagPath (str): The full path to the Tag you want to edit. For
@@ -508,7 +498,7 @@ def editTag(
             editAlarmConfig for details on how to use this parameter.
             Optional.
     """
-    print (
+    print(
         tagPath,
         attributes,
         parameters,
@@ -530,10 +520,10 @@ def editTags(
     provider,
     json,
 ):
-    """
-    Edit multiple existing Tags in Ignition with a single call. This
-    will not work on Client Tags, because there is a Client Provider for
-    each project.
+    """Edit multiple existing Tags in Ignition with a single call.
+
+    This will not work on Client Tags, because there is a Client
+    Provider for each project.
 
     Args:
         tagPaths (list[str]): The full path to the Tag you want to edit.
@@ -560,7 +550,7 @@ def editTags(
             JSON object. When using this, it acts as a replacement for
             other parameters. Optional.
     """
-    print (
+    print(
         tagPaths,
         attributes,
         parameters,
@@ -574,8 +564,7 @@ def editTags(
 
 
 def exists(tagPath):
-    """
-    Checks whether or not a tag with a given path exists.
+    """Checks whether or not a tag with a given path exists.
 
     Args:
         tagPath (str): The path of the tag to look up.
@@ -583,13 +572,12 @@ def exists(tagPath):
     Returns:
         bool: True if a tag exists for the given path, False otherwise.
     """
-    print tagPath
+    print(tagPath)
     return True
 
 
 def getAlarmStates(tagPath):
-    """
-    Returns an array of alarm definitions for a specific tag.
+    """Returns an array of alarm definitions for a specific tag.
 
     Args:
         tagPath (str): The full path to the tag. Note: you can specify
@@ -601,14 +589,13 @@ def getAlarmStates(tagPath):
     Returns:
         list[TagAlarmDefinition]: An array of TagAlarmDefinition.
     """
-    print tagPath
+    print(tagPath)
     return [TagAlarmDefinition()]
 
 
 def isOverlaysEnabled():
-    """
-    Returns whether or not the current client's quality overlay system
-    is currently enabled.
+    """Returns whether or not the current client's quality overlay
+    system is currently enabled.
 
     Returns:
          bool: True (1) if overlays are currently enabled.
@@ -617,9 +604,8 @@ def isOverlaysEnabled():
 
 
 def loadFromFile(filePath, provider, mode):
-    """
-    This function locates an exported tag file and loads the tags into
-    the specified tag provider.
+    """This function locates an exported tag file and loads the tags
+    into the specified tag provider.
 
     Args:
         filePath (str): The path of the tag file to import from.
@@ -627,7 +613,7 @@ def loadFromFile(filePath, provider, mode):
         mode (int): Dictates what happens if the tag already exists.
             0 = overwrite, 1 = ignore.
     """
-    print (filePath, provider, mode)
+    print(filePath, provider, mode)
 
 
 def queryTagCalculations(
@@ -643,10 +629,10 @@ def queryTagCalculations(
     noInterpolation=False,
     ignoreBadQuality=False,
 ):
-    """
-    Queries various calculations (aggregations) for a set of tags over a
-    specified range. Returns a dataset with a row per tag, and a column
-    per calculation.
+    """Queries various calculations (aggregations) for a set of tags
+    over a specified range.
+
+    Returns a dataset with a row per tag, and a column per calculation.
 
     This is useful when you wish to aggregate tag history collected over
     a period of time into a single value per aggregate. If you want
@@ -707,7 +693,7 @@ def queryTagCalculations(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    print (
+    print(
         paths,
         calculations,
         startDate,
@@ -723,9 +709,10 @@ def queryTagCalculations(
 
 
 def queryTagDensity(paths, startDate, endDate):
-    """
-    Queries the Tag history system for information about the density of
-    data. In other words, how much data is available for a given time
+    """Queries the Tag history system for information about the density
+    of data.
+
+    In other words, how much data is available for a given time
     span.
 
     This function is called with a list of Tag paths, and a start and
@@ -746,7 +733,7 @@ def queryTagDensity(paths, startDate, endDate):
         Dataset: A 2-column dataset consisting of a timestamp and a
             weight. Each row is valid until the next row.
     """
-    print (paths, startDate, endDate)
+    print(paths, startDate, endDate)
     return [0, 0]
 
 
@@ -769,12 +756,12 @@ def queryTagHistory(
     ignoreBadQuality=None,
     timeout=None,
 ):
-    """
-    Issues a query to the Tag Historian. Querying tag history involves
-    specifying the tags and the date range, as well as a few optional
-    parameters. The Tag historian will find the relevant history and
-    then interpolate and aggregate it together into a coherent, tabular
-    result set.
+    """Issues a query to the Tag Historian.
+
+    Querying tag history involves specifying the tags and the date
+    range, as well as a few optional parameters. The Tag historian will
+    find the relevant history and then interpolate and aggregate it
+    together into a coherent, tabular result set.
 
     Args:
         paths (list[str]): An array of tag paths (strings) to query.
@@ -846,7 +833,7 @@ def queryTagHistory(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    print (
+    print(
         paths,
         startDate,
         endDate,
@@ -869,11 +856,11 @@ def queryTagHistory(
 
 
 def read(tagPath):
-    """
-    Reads the value of the tag at the given tag path. Returns a
-    qualified value object. You can read the value, quality, and
-    timestamp from this object. If the tag path does not specify a tag
-    property, then the Value property is assumed.
+    """Reads the value of the tag at the given tag path.
+
+    Returns a qualified value object. You can read the value, quality,
+    and timestamp from this object. If the tag path does not specify a
+    tag property, then the Value property is assumed.
 
     You can also read the value of tag attributes by appending the
     attribute to the tagPath parameter. See the Tag Attributes page for
@@ -887,17 +874,17 @@ def read(tagPath):
         QualifiedValue: A qualified value. This object has three
             sub-members: value, quality, and timestamp.
     """
-    print tagPath
+    print(tagPath)
     return QualifiedValue()
 
 
 def readAll(tagPaths):
-    """
-    Reads the values of each tag in the tag path list. Returns a
-    sequence of qualified value objects. You can read the value,
-    quality, and timestamp from each object in the return sequence.
-    Reading in bulk like this is more efficient than calling read() many
-    times.
+    """Reads the values of each tag in the tag path list.
+
+    Returns a sequence of qualified value objects. You can read the
+    value, quality, and timestamp from each object in the return
+    sequence. Reading in bulk like this is more efficient than calling
+    read() many times.
 
     Args:
         tagPaths (list[str]): A sequence of tag paths to read from.
@@ -907,16 +894,12 @@ def readAll(tagPaths):
             corresponding to each tag path given. Each qualified value
             will have three sub-members: value, quality, and timestamp.
     """
-    print tagPaths
-    items = []
-    for _ in range(len(tagPaths)):
-        items.append(QualifiedValue())
-    return items
+    print(tagPaths)
+    return [QualifiedValue() for _ in range(len(tagPaths))]
 
 
 def removeTag(tagPath):
-    """
-    Removes a tag from Ignition.
+    """Removes a tag from Ignition.
 
     Args:
         tagPath (str): The path to the tag you want to remove. You can
@@ -926,12 +909,11 @@ def removeTag(tagPath):
             left off, then the project default provider will be used.
             Note that an empty path ( '' ) will remove all tags.
     """
-    print tagPath
+    print(tagPath)
 
 
 def removeTags(tagPaths):
-    """
-    Removes multiple tags from Ignition with a single call.
+    """Removes multiple tags from Ignition with a single call.
 
     Args:
         tagPaths (list[str]): An array of the paths to the tags you want
@@ -941,13 +923,14 @@ def removeTags(tagPaths):
             left off, then the project default provider will be used.
             Note that an empty path (['']) will remove all tags.
     """
-    print tagPaths
+    print(tagPaths)
 
 
 def scan(provider, scname):
-    """
-    Forces execution of a scan class. On a leased scan class, if both
-    the fast and slow rate are set to 0, this will not execute.
+    """Forces execution of a scan class.
+
+    On a leased scan class, if both the fast and slow rate are set to 0,
+    this will not execute.
 
     Args:
         provider (str): The name of the scan class provider. If blank,
@@ -955,18 +938,17 @@ def scan(provider, scname):
             scope.
         scname (str): The name of the scan class to execute.
     """
-    print (provider, scname)
+    print(provider, scname)
 
 
 def setOverlaysEnabled(enabled):
-    """
-    Enables or disables the component quality overlay system.
+    """Enables or disables the component quality overlay system.
 
     Args:
         enabled (bool): True (1) to turn on tag overlays, False (0) to
             turn them off.
     """
-    print enabled
+    print(enabled)
 
 
 def storeTagHistory(
@@ -977,9 +959,8 @@ def storeTagHistory(
     qualities=None,
     timestamps=None,
 ):
-    """
-    Inserts data into the tag history system, allowing Tag history to be
-    recorded via scripting.
+    """Inserts data into the tag history system, allowing Tag history to
+    be recorded via scripting.
 
     The Tag paths are associated with a historical and realtime
     provider, but they do not necessarily need to exist in the realtime
@@ -1016,15 +997,15 @@ def storeTagHistory(
             java.util.date object may be passed, so the system.date
             functions can be used to return a timestamp. Optional.
     """
-    print (historyprovider, tagprovider, paths, values, qualities, timestamps)
+    print(historyprovider, tagprovider, paths, values, qualities, timestamps)
 
 
 def write(tagPath, value, suppressErrors=False):
-    """
-    Writes a value to a tag. Note that this function writes
-    asynchronously. This means that the function does not wait for the
-    write to occur before returning - the write occurs sometime later on
-    a different thread.
+    """Writes a value to a tag.
+
+    Note that this function writes asynchronously. This means that the
+    function does not wait for the write to occur before returning - the
+    write occurs sometime later on a different thread.
 
     Args:
         tagPath (str): The path of the tag to write to.
@@ -1036,17 +1017,17 @@ def write(tagPath, value, suppressErrors=False):
         int: 0 if the write failed immediately, 1 if it succeeded
             immediately, and 2 if it is pending.
     """
-    print (tagPath, value, suppressErrors)
+    print(tagPath, value, suppressErrors)
     return 1
 
 
 def writeAll(tagPaths, values):
-    """
-    Performs an asynchronous bulk write. Takes two sequences that must
-    have the same number of entries. The first is the list of tag paths
-    to write to, and the second is a list of values to write. This
-    function is dramatically more efficient than calling write multiple
-    times.
+    """Performs an asynchronous bulk write.
+
+    Takes two sequences that must have the same number of entries. The
+    first is the list of tag paths to write to, and the second is a list
+    of values to write. This function is dramatically more efficient
+    than calling write multiple times.
 
     Args:
         tagPaths (list[str]): The paths of the tags to write to.
@@ -1057,22 +1038,22 @@ def writeAll(tagPaths, values):
             to: 0 if the write failed immediately, 1 if it succeeded
             immediately, and 2 if it is pending.
     """
-    print (tagPaths, values)
+    print(tagPaths, values)
     return [1] * len(tagPaths)
 
 
 def writeAllSynchronous(tagPaths, values, timeout=45000):
-    """
-    Performs a synchronous write to multiple tags. Synchronous means
-    that execution will not continue until this function has completed,
-    so you will know that a write has been attempted on the provided
-    tags. The first write to fail or time out will throw an exception,
-    but any subsequent tags in the provided list will still be
-    attempted. This function cannot be called from the event dispatch
-    thread, meaning it cannot be called directly from a GUI event like a
-    button press without creating a new thread with a call to
-    system.util.invokeAsynchronous. You can call this from project event
-    scripts like timer scripts.
+    """Performs a synchronous write to multiple tags.
+
+    Synchronous means that execution will not continue until this
+    function has completed, so you will know that a write has been
+    attempted on the provided tags. The first write to fail or time out
+    will throw an exception, but any subsequent tags in the provided
+    list will still be attempted. This function cannot be called from
+    the event dispatch thread, meaning it cannot be called directly from
+    a GUI event like a button press without creating a new thread with a
+    call to system.util.invokeAsynchronous. You can call this from
+    project event scripts like timer scripts.
 
     Note that the order of the tags listed in the tagPaths parameter
     determines the order that the writes will occur.
@@ -1084,17 +1065,17 @@ def writeAllSynchronous(tagPaths, values, timeout=45000):
             out pending writes. The default is 45000 milliseconds.
             Optional.
     """
-    print (tagPaths, values, timeout)
+    print(tagPaths, values, timeout)
 
 
 def writeSynchronous(tagPath, value, timeout=45000):
-    """
-    Performs a write to a tag, synchronously. This means that you know
-    at the end of this function whether or not the write succeeded or
-    not. A write that fails or times out will throw an error. However,
-    this function cannot be called from the event dispatch thread, which
-    means that it cannot be called directly from a GUI event like a
-    button press, without wrapping it in a
+    """Performs a write to a tag, synchronously.
+
+    This means that you know at the end of this function whether or not
+    the write succeeded or not. A write that fails or times out will
+    throw an error. However, this function cannot be called from the
+    event dispatch thread, which means that it cannot be called directly
+    from a GUI event like a button press, without wrapping it in a
     system.util.invokeAsynchronous. You can call this from project event
     scripts like timer scripts.
 
@@ -1105,4 +1086,4 @@ def writeSynchronous(tagPath, value, timeout=45000):
             out pending writes. The default is 45000 milliseconds.
             Optional.
     """
-    print (tagPath, value, timeout)
+    print(tagPath, value, timeout)

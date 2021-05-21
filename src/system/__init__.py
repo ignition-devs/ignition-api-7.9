@@ -2,8 +2,7 @@
 # Author: Cesar Roman
 # Contact: cesar@thecesrom.dev
 
-"""
-The Ignition scripting API, which is available under the module name
+"""The Ignition scripting API, which is available under the module name
 "system", is full of functions that are useful when designing projects
 in Ignition. From running database queries, manipulating components, to
 exporting data, scripting functions can help. Some of these functions
@@ -15,3 +14,4 @@ Scripting section.
 """
 
 __version__ = "7.9.17"
+__build__ = "2021010514"
