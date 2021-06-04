@@ -57,14 +57,14 @@ __all__ = [
 
 from datetime import datetime, timedelta
 
-from java.util import Locale
+from java.util import Date, Locale
 
 
 def addDays(date, value):
     """Add or subtract an amount of days to a given date and time.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         value (int): The number of units to add, or subtract if the
             value is negative.
 
@@ -79,7 +79,7 @@ def addHours(date, value):
     """Add or subtract an amount of hours to a given date and time.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         value (int): The number of units to add, or subtract if the
             value is negative.
 
@@ -95,7 +95,7 @@ def addMillis(date, value):
     time.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         value (int): The number of units to add, or subtract if the
             value is negative.
 
@@ -110,7 +110,7 @@ def addMinutes(date, value):
     """Add or subtract an amount of minutes to a given date and time.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         value (int): The number of units to add, or subtract if the
             value is negative.
 
@@ -131,7 +131,7 @@ def addMonths(date, value):
     available day, in this case April 30th.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         value (int): The number of units to add, or subtract if the
             value is negative.
 
@@ -153,7 +153,7 @@ def addSeconds(date, value):
     """Add or subtract an amount of seconds to a given date and time.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         value (int): The number of units to add, or subtract if the
             value is negative.
 
@@ -168,7 +168,7 @@ def addWeeks(date, value):
     """Add or subtract an amount of weeks to a given date and time.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         value (int): The number of units to add, or subtract if the
             value is negative.
 
@@ -183,7 +183,7 @@ def addYears(date, value):
     """Add or subtract an amount of years to a given date and time.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         value (int): The number of units to add, or subtract if the
             value is negative.
 
@@ -200,8 +200,8 @@ def daysBetween(date_1, date_2):
     Daylight Saving Time changes are taken into account.
 
     Args:
-        date_1 (datetime): The first date to use.
-        date_2 (datetime): The second date to use.
+        date_1 (Date): The first date to use.
+        date_2 (Date): The second date to use.
 
     Returns:
         int: An integer that is representative of the difference between
@@ -219,7 +219,7 @@ def format(date, format):
         directive on strftime().
 
     Args:
-        date (datetime): The date to format.
+        date (Date): The date to format.
         format (str): A format string such as "yyyy-MM-dd HH:mm:ss".
 
     Returns:
@@ -265,7 +265,7 @@ def getAMorPM(date):
     after noon.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -297,7 +297,7 @@ def getDayOfMonth(date):
     The first day of the month is day 1.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -311,7 +311,7 @@ def getDayOfWeek(date):
     Sunday is day 1, Saturday is day 7.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -326,7 +326,7 @@ def getDayOfYear(date):
     The first day of the year is day 1.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -340,7 +340,7 @@ def getHour12(date):
     Uses a 12 hour clock, so noon and midnight are returned as 0.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -354,7 +354,7 @@ def getHour24(date):
     Uses a 24 hour clock, so midnight is zero.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -366,7 +366,7 @@ def getMillis(date):
     """Extracts the milliseconds from a date, ranging from 0-999.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -378,7 +378,7 @@ def getMinute(date):
     """Extracts the minutes from a date, ranging from 0-59.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -390,7 +390,7 @@ def getMonth(date):
     """Extracts the month from a date, where January is month 0.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -402,7 +402,7 @@ def getQuarter(date):
     """Extracts the quarter from a date, ranging from 1-4.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -414,7 +414,7 @@ def getSecond(date):
     """Extracts the seconds from a date, ranging from 0-59.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -436,7 +436,7 @@ def getTimezoneOffset(date=datetime.now()):
     instant, taking Daylight Saving Time into account.
 
     Args:
-        date (datetime): The instant in time for which to calculate the
+        date (Date): The instant in time for which to calculate the
             offset. Uses now() if omitted. Optional.
 
     Returns:
@@ -460,7 +460,7 @@ def getYear(date):
     """Extracts the year from a date.
 
     Args:
-        date (datetime): The date to use.
+        date (Date): The date to use.
 
     Returns:
         int: An integer that is representative of the extracted value.
@@ -472,8 +472,8 @@ def hoursBetween(date_1, date_2):
     """Calculates the number of whole hours between two dates.
 
     Args:
-        date_1 (datetime): The first date to use.
-        date_2 (datetime): The second date to use.
+        date_1 (Date): The first date to use.
+        date_2 (Date): The second date to use.
 
     Returns:
         int: An integer that is representative of the difference between
@@ -488,8 +488,8 @@ def isAfter(date_1, date_2):
     """Compares two dates to see if date_1 is after date_2.
 
     Args:
-        date_1 (datetime): The first date.
-        date_2 (datetime): The second date.
+        date_1 (Date): The first date.
+        date_2 (Date): The second date.
 
     Returns:
         bool: True (1) if date_1 is after date_2, False (0) otherwise.
@@ -501,8 +501,8 @@ def isBefore(date_1, date_2):
     """Compares to dates to see if date_1 is before date_2.
 
     Args:
-        date_1 (datetime): The first date.
-        date_2 (datetime): The second date.
+        date_1 (Date): The first date.
+        date_2 (Date): The second date.
 
     Returns:
         bool: True (1) if date_1 is before date_2, False (0) otherwise.
@@ -515,9 +515,9 @@ def isBetween(target_date, start_date, end_date):
     dates.
 
     Args:
-        target_date (datetime): The date to compare.
-        start_date (datetime): The start of a date range.
-        end_date (datetime): The end of a date range. This date must be
+        target_date (Date): The date to compare.
+        start_date (Date): The start of a date range.
+        end_date (Date): The end of a date range. This date must be
             after the start date.
 
     Returns:
@@ -532,7 +532,7 @@ def isDaylightTime(date=datetime.now()):
     Time during the date specified.
 
     Args:
-        date (datetime): The date you want to check if the current
+        date (Date): The date you want to check if the current
             timezone is observing Daylight Saving Time. Uses now() if
             omitted. Optional.
 
@@ -563,7 +563,7 @@ def midnight(date):
     millisecond fields set to zero.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
 
     Returns:
         datetime: A new date, set to midnight of the day provided.
@@ -575,8 +575,8 @@ def millisBetween(date_1, date_2):
     """Calculates the number of whole milliseconds between two dates.
 
     Args:
-        date_1 (datetime): The first date to use.
-        date_2 (datetime): The second date to use.
+        date_1 (Date): The first date to use.
+        date_2 (Date): The second date to use.
 
     Returns:
         long: An integer that is representative of the difference
@@ -591,8 +591,8 @@ def minutesBetween(date_1, date_2):
     """Calculates the number of whole minutes between two dates.
 
     Args:
-        date_1 (datetime): The first date to use.
-        date_2 (datetime): The second date to use.
+        date_1 (Date): The first date to use.
+        date_2 (Date): The second date to use.
 
     Returns:
         int: An integer that is representative of the difference between
@@ -609,8 +609,8 @@ def monthsBetween(date_1, date_2):
     Daylight Saving Time changes are taken into account.
 
     Args:
-        date_1 (datetime): The first date to use.
-        date_2 (datetime): The second date to use.
+        date_1 (Date): The first date to use.
+        date_2 (Date): The second date to use.
 
     Returns:
         int: An integer that is representative of the difference between
@@ -666,8 +666,8 @@ def secondsBetween(date_1, date_2):
     """Calculates the number of whole seconds between two dates.
 
     Args:
-        date_1 (datetime): The first date to use.
-        date_2 (datetime): The second date to use.
+        date_1 (Date): The first date to use.
+        date_2 (Date): The second date to use.
 
     Returns:
         int: An integer that is representative of the difference between
@@ -683,7 +683,7 @@ def setTime(date, hour, minute, second):
     set as specified.
 
     Args:
-        date (datetime): The starting date.
+        date (Date): The starting date.
         hour (int): The hours (0-23) to set.
         minute(int): The minutes (0-59) to set.
         second (int): The seconds (0-59) to set.
@@ -699,7 +699,7 @@ def toMillis(date):
     January 1, 1970, 00:00:00 UTC (GMT).
 
     Args:
-        date (datetime): The date object to convert.
+        date (Date): The date object to convert.
 
     Returns:
         int: 8-byte integer representing the number of millisecond
@@ -715,8 +715,8 @@ def weeksBetween(date_1, date_2):
     """Calculates the number of whole weeks between two dates.
 
     Args:
-        date_1 (datetime): The first date to use.
-        date_2 (datetime): The second date to use.
+        date_1 (Date): The first date to use.
+        date_2 (Date): The second date to use.
 
     Returns:
         int: An integer that is representative of the difference between
@@ -732,8 +732,8 @@ def yearsBetween(date_1, date_2):
     Daylight Saving Time changes are taken into account.
 
     Args:
-        date_1 (datetime): The first date to use.
-        date_2 (datetime): The second date to use.
+        date_1 (Date): The first date to use.
+        date_2 (Date): The second date to use.
 
     Returns:
         int: An integer that is representative of the difference between

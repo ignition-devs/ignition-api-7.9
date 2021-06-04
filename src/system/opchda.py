@@ -27,6 +27,7 @@ __all__ = [
 from abc import ABCMeta, abstractmethod
 
 from java.lang import Object
+from java.util import Date
 
 
 class Aggregate(ABCMeta):
@@ -223,8 +224,8 @@ def readAttributes(serverName, itemId, attributeIds, startDate, endDate):
             specification. The attributes can also be obtained by
             calling system.opchda.getAttributes(). Some servers may not
             support all attributes.
-        startDate (datetime): The starting date/time of the query.
-        endDate (datetime): The ending date/time of the query.
+        startDate (Date): The starting date/time of the query.
+        endDate (Date): The ending date/time of the query.
 
     Returns:
         list[ReadResult]: A list of read results which is one-to-one
@@ -250,8 +251,8 @@ def readProcessed(
         serverName (str): The name of the defined OPC-HDA server to
             read.
         itemIds (list[str]): A list of item ids to read.
-        startDate (datetime): The starting date/time of the query.
-        endDate (datetime): The ending date/time of the query.
+        startDate (Date): The starting date/time of the query.
+        endDate (Date): The ending date/time of the query.
         resampleIntervalMS (int): The interval, in milliseconds, that
             each value should cover.
         aggregates (list[object]): A list which should be one-to-one
@@ -288,8 +289,8 @@ def readRaw(
         serverName (str): The name of the defined OPC-HDA server to
             read.
         itemIds (list[str]): A list of item ids to read.
-        startDate (datetime): The starting date/time of the query.
-        endDate (datetime): The ending date/time of the query.
+        startDate (Date): The starting date/time of the query.
+        endDate (Date): The ending date/time of the query.
         maxValues (int): The maximum number of values to return. 0 or
             less means unlimited.
         boundingValues (bool): A boolean indicating whether or not the
@@ -316,7 +317,7 @@ def replace(serverName, itemId, value, date, quality):
         serverName (str): The name of the defined OPC-HDA server.
         itemId (str): The item ID to perform the operation on.
         value (object): The value to replace.
-        date (datetime): The date to replace.
+        date (Date): The date to replace.
         quality (int): The quality to replace.
 
     Returns:

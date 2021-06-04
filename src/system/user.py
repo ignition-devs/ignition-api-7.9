@@ -35,7 +35,7 @@ __all__ = [
 
 import system.date
 from java.lang import Object
-from java.util import Locale
+from java.util import Date, Locale
 
 
 class AbstractScheduleModel(Object):
@@ -67,7 +67,7 @@ class HolidayModel(Object):
 
         Args:
             name (str): The name.
-            date (datetime): The date.
+            date (Date): The date.
             repeatAnnually (bool): Repeat annually.
         """
         self.name = name

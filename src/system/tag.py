@@ -40,6 +40,7 @@ __all__ = [
 
 import system.date
 from java.lang import Object
+from java.util import Date
 
 
 class BrowseResults(Object):
@@ -650,10 +651,10 @@ def queryTagCalculations(
             "SimpleAverage", "Sum", "Minimum", "Maximum", "DurationOn",
             "DurationOff", "CountOn", "CountOff", "Count", "Range",
             "Variance", "StdDev", "PctGood", and "PctBad".
-        startDate (datetime): The starting point for the calculation
+        startDate (Date): The starting point for the calculation
             window. If omitted, and range is not used, 8 hours before
             the current time is used. Optional.
-        endDate (datetime): The end of the calculation window. If
+        endDate (Date): The end of the calculation window. If
             omitted, and range is not used, uses the current time.
             Optional.
         rangeHours (int): Allows you to specify the query range in
@@ -726,8 +727,8 @@ def queryTagDensity(paths, startDate, endDate):
 
     Args:
         paths (list[str]): An array of Tag paths (strings) to query.
-        startDate (datetime): The start of the range to query.
-        endDate (datetime): The end of the range to query.
+        startDate (Date): The start of the range to query.
+        endDate (Date): The end of the range to query.
 
     Returns:
         Dataset: A 2-column dataset consisting of a timestamp and a
@@ -767,9 +768,9 @@ def queryTagHistory(
         paths (list[str]): An array of tag paths (strings) to query.
             Each tag path specified will be a column in the result
             dataset.
-        startDate (datetime): The earliest value to retrieve. If
+        startDate (Date): The earliest value to retrieve. If
             omitted, 8 hours before current time is used. Optional.
-        endDate (datetime): The latest value to retrieve. If omitted,
+        endDate (Date): The latest value to retrieve. If omitted,
             current time is used. Optional.
         returnSize (int): The number of samples to return. -1 will
             return values as they changed, and 0 will return the

@@ -53,6 +53,7 @@ __all__ = [
 
 import system.date
 from java.lang import Object, Thread
+from java.util import Date
 from system.dataset import Dataset, PyDataSet
 
 
@@ -575,9 +576,9 @@ def queryAuditLog(
     Args:
         auditProfileName (str): The name of the audit profile to pull
             the history from.
-        startDate (datetime): The earliest audit event to return. If
+        startDate (Date): The earliest audit event to return. If
             omitted, the current time - 8 hours will be used. Optional.
-        endDate (datetime): The latest audit event to return. If
+        endDate (Date): The latest audit event to return. If
             omitted, the current time will be used. Optional.
         actorFilter (str): A filter string used to restrict the results
             by actor. Optional.
