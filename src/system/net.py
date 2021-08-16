@@ -22,6 +22,8 @@ __all__ = [
     "sendEmail",
 ]
 
+import socket
+
 
 def getExternalIpAddress():
     """Returns the client's IP address, as it is detected by the
@@ -53,8 +55,6 @@ def getHostName():
     Returns:
         str: The hostname of the local machine.
     """
-    import socket
-
     return socket.gethostname()
 
 

@@ -399,7 +399,6 @@ def exportCSV(filename, showHeaders, dataset):
             canceled by the user.
     """
     print(filename, showHeaders, dataset)
-    return None
 
 
 def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
@@ -422,7 +421,6 @@ def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
             canceled by the user.
     """
     print(filename, showHeaders, dataset, nullsEmpty)
-    return None
 
 
 def exportHTML(filename, showHeaders, dataset, title):
@@ -442,7 +440,6 @@ def exportHTML(filename, showHeaders, dataset, title):
             canceled by the user.
     """
     print(filename, showHeaders, dataset, title)
-    return None
 
 
 def getConnectionInfo(name=""):
@@ -548,7 +545,6 @@ def runNamedQuery(*args):
             returned by a Scalar Query.
     """
     print(args)
-    return None
 
 
 def runPrepQuery(query, args, database="", tx=None):
@@ -682,7 +678,6 @@ def runScalarPrepQuery(query, args, database="", tx=None):
             results. Returns None if no rows were returned.
     """
     print(query, args, database, tx)
-    return None
 
 
 def runScalarQuery(query, database, tx):
@@ -706,7 +701,6 @@ def runScalarQuery(query, database, tx):
             results. Returns None if no rows were returned.
     """
     print(query, database, tx)
-    return None
 
 
 def runSFPrepUpdate(query, args, datasources):

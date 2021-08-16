@@ -164,7 +164,7 @@ def listPipelines():
             pipelines exist. Unsaved name changes will not be reflected
             in the list.
     """
-    return None
+    return []
 
 
 def queryJournal(

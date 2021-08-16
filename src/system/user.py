@@ -139,6 +139,7 @@ class User(object):
         Returns:
             str: The value of the requested property.
         """
+        print(self)
         return prop
 
     def getContactInfo(self):
@@ -150,6 +151,7 @@ class User(object):
         Returns:
             list[ContactInfo]: A sequence of ContactInfo objects.
         """
+        print(self)
         ci_email = ContactInfo("email", "johdoe@mycompany.com")
         ci_phone = ContactInfo("phone", "+1 5551324567")
         ci_sms = ContactInfo("sms", "+1 5557654321")
@@ -163,6 +165,7 @@ class User(object):
             str: The internal identifier object that the backing user
                 source needs to identify this user.
         """
+        print(self)
         return 1
 
     def getOrDefault(self, prop):
@@ -175,8 +178,7 @@ class User(object):
         Returns:
             object: The value of the requested property.
         """
-        print(prop)
-        return None
+        print(self, prop)
 
     def getOrElse(self, prop, value):
         """Get the value for a given Property, or else fall back to
@@ -191,7 +193,7 @@ class User(object):
         Returns:
             object: The value of property if present, value if not.
         """
-        print(prop)
+        print(self, prop)
         return value
 
     def getRoles(self):
@@ -202,6 +204,7 @@ class User(object):
              list[str]: Sequence of strings representing the roles that
                 this user belongs to.
         """
+        print(self)
         return User.Roles
 
 
@@ -317,7 +320,6 @@ def getHoliday(holidayName):
         HolidayModel: The holiday, or None if not found.
     """
     print(holidayName)
-    return None
 
 
 def getHolidayNames():
@@ -336,7 +338,7 @@ def getHolidays():
     Returns:
         list[HolidayModel]: A list of holidays.
     """
-    return None
+    return []
 
 
 def getRoles(userSource):
@@ -351,7 +353,6 @@ def getRoles(userSource):
             user source.
     """
     print(userSource)
-    return None
 
 
 def getSchedule(scheduleName):
@@ -367,7 +368,6 @@ def getSchedule(scheduleName):
             by a module, or None if not found.
     """
     print(scheduleName)
-    return None
 
 
 def getScheduledUsers(userSource, date=None):
@@ -388,7 +388,6 @@ def getScheduledUsers(userSource, date=None):
     """
     date = system.date.now() if date is None else date
     print(userSource, date)
-    return None
 
 
 def getScheduleNames():

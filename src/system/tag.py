@@ -853,7 +853,6 @@ def queryTagHistory(
         ignoreBadQuality,
         timeout,
     )
-    return None
 
 
 def read(tagPath):

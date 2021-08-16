@@ -51,7 +51,18 @@ __all__ = [
     "translate",
 ]
 
+import getpass
+import os
+import platform
+import sys
+
+try:
+    import winsound
+except ImportError:
+    pass
+
 import system.date
+from java.awt import Toolkit
 from java.lang import Object, Thread
 from java.util import Date
 from system.dataset import Dataset, PyDataSet
@@ -115,8 +126,6 @@ class Request(Object):
 
 def beep():
     """Tells the computer to make a "beep" sound."""
-    import sys
-
     platforms = {
         "linux1": "Linux",
         "linux2": "Linux",
@@ -124,17 +133,12 @@ def beep():
         "win32": "Windows",
     }
 
-    if sys.platform in platforms:
+    if "java" in sys.platform:
+        Toolkit.getDefaultToolkit().beep()
+    elif sys.platform in platforms:
         if platforms[sys.platform] == "Windows":
-            try:
-                import winsound
-
-                winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
-            except ImportError:
-                print("Beep!")
+            winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
         elif platforms[sys.platform] == "macOS":
-            import os
-
             os.system('say "beep"')
         elif platforms[sys.platform] == "Linux":
             # TODO: Make Linux speak.
@@ -297,7 +301,7 @@ def getGlobals():
     Returns:
         dict: The global namespace, as a dictionary.
     """
-    return None
+    return {}
 
 
 def getInactivitySeconds():
@@ -370,11 +374,6 @@ def getProperty(propertyName):
     """
     # Initialize variables.
     ret = None
-
-    # Imports.
-    import getpass
-    import os
-    import platform
 
     if propertyName == "file.separator":
         ret = os.sep
@@ -720,7 +719,6 @@ def sendMessage(
         hostName,
         remoteServers,
     )
-    return None
 
 
 def sendRequest(
@@ -771,7 +769,6 @@ def sendRequest(
         remoteServer,
         timeoutSec,
     )
-    return None
 
 
 def sendRequestAsync(

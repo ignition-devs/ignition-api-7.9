@@ -23,6 +23,9 @@ __all__ = [
 ]
 
 
+import getpass
+
+
 def getRoles():
     """Finds the roles that the currently logged in user has, returns
     them as a Python tuple of strings.
@@ -40,8 +43,6 @@ def getUsername():
     Returns:
         str: The current username.
     """
-    import getpass
-
     return getpass.getuser()
 
 

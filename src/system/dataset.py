@@ -37,6 +37,7 @@ __all__ = [
     "updateRow",
 ]
 
+import os.path
 from collections import Iterable
 
 from java.util import Locale
@@ -138,12 +139,14 @@ class Dataset(Iterable):
             object: The value at the specified row index and column
                 name.
         """
-        if type(arg) is int:
+        ret = None
+        if isinstance(arg, int):
             print(self, "colIndex")
-            return "PST"
-        elif type(arg) is str:
+            ret = "PST"
+        elif isinstance(arg, str):
             print(self, "colName")
-            return 2853114
+            ret = 2853114
+        return ret
 
 
 class PyDataSet(Iterable):
@@ -355,8 +358,8 @@ def deleteRow(dataset, rowIndex):
     print(dataset, rowIndex)
     if rowIndex < 0:
         raise IndexError("Error")
-    else:
-        return Dataset()
+
+    return Dataset()
 
 
 def deleteRows(dataset, rowIndices):
@@ -386,8 +389,8 @@ def deleteRows(dataset, rowIndices):
     print(dataset, rowIndices)
     if -1 in rowIndices:
         raise IndexError("Error")
-    else:
-        return Dataset()
+
+    return Dataset()
 
 
 def exportCSV(filename, showHeaders, dataset):
@@ -405,8 +408,6 @@ def exportCSV(filename, showHeaders, dataset):
             canceled by the user.
     """
     print(filename, showHeaders, dataset)
-    import os
-
     return os.path.expanduser("~")
 
 
@@ -431,8 +432,6 @@ def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
             canceled by the user.
     """
     print(filename, showHeaders, dataset, nullsEmpty)
-    import os
-
     return os.path.expanduser("~")
 
 
@@ -453,8 +452,6 @@ def exportHTML(filename, showHeaders, dataset, title):
             canceled by the user.
     """
     print(filename, showHeaders, dataset, title)
-    import os
-
     return os.path.expanduser("~")
 
 
