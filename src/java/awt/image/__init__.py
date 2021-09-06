@@ -13,9 +13,10 @@ This package provides a number of image producers, consumers, and
 filters that you can configure for your image processing needs.
 """
 
-from __future__ import print_function
 
 __all__ = ["BufferedImage"]
+
+import pprint
 
 from java.awt import Image
 
@@ -41,4 +42,4 @@ class BufferedImage(Image):
         Args:
             *args: Variable length argument list.
         """
-        print(args)
+        pprint.pprint([self, args])

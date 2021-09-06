@@ -17,6 +17,8 @@ __all__ = [
     "JTextField",
 ]
 
+import pprint
+
 from java.awt import Container, Frame
 from javax.swing.text import JTextComponent
 
@@ -112,7 +114,9 @@ class JOptionPane(JComponent):
         Returns:
             int: An integer indicating the option selected by the user.
         """
-        print(parentComponent, message, title, optionType, messageType, icon)
+        pprint.pprint(
+            [parentComponent, message, title, optionType, messageType, icon]
+        )
         return JOptionPane.YES_OPTION
 
     @staticmethod
@@ -146,14 +150,16 @@ class JOptionPane(JComponent):
             object: An integer indicating the option selected by the
                 user.
         """
-        print(
-            parentComponent,
-            message,
-            title,
-            messageType,
-            icon,
-            selectionValues,
-            initialSelectionValue,
+        pprint.pprint(
+            [
+                parentComponent,
+                message,
+                title,
+                messageType,
+                icon,
+                selectionValues,
+                initialSelectionValue,
+            ]
         )
         return "Input"
 
@@ -174,7 +180,7 @@ class JOptionPane(JComponent):
                 QUESTION_MESSAGE, or PLAIN_MESSAGE. Optional.
             icon (Icon): The icon to display in the dialog. Optional.
         """
-        print(parentComponent, message, title, messageType, icon)
+        pprint.pprint([parentComponent, message, title, messageType, icon])
 
     @staticmethod
     def showOptionDialog(
@@ -218,15 +224,17 @@ class JOptionPane(JComponent):
             int: An integer indicating the option chosen by the user, or
                 CLOSED_OPTION if the user closed the dialog.
         """
-        print(
-            parentComponent,
-            message,
-            title,
-            optionType,
-            messageType,
-            icon,
-            options,
-            initialValue,
+        pprint.pprint(
+            [
+                parentComponent,
+                message,
+                title,
+                optionType,
+                messageType,
+                icon,
+                options,
+                initialValue,
+            ]
         )
         return JOptionPane.YES_OPTION
 

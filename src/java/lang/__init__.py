@@ -6,7 +6,6 @@
 programming language.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "Exception",
@@ -18,6 +17,7 @@ __all__ = [
 ]
 
 import copy
+import pprint
 import time
 from __builtin__ import Exception as PyException
 
@@ -75,7 +75,7 @@ class Object(object):
             bool: True if this object is the same as the obj argument;
                 False otherwise.
         """
-        print(self, obj)
+        pprint.pprint([self, obj])
         return True
 
     def getClass(self):

@@ -8,7 +8,6 @@ The following functions allow you to open and close windows in the
 client.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "centerWindow",
@@ -25,7 +24,7 @@ __all__ = [
     "swapWindow",
 ]
 
-from abc import ABCMeta, abstractmethod
+import pprint
 
 from java.util import EventObject
 from javax.swing import JInternalFrame
@@ -57,63 +56,48 @@ class FPMIWindow(JInternalFrame):
         return self._path
 
     def getRootContainer(self):
-        print(self)
+        pprint.pprint(self)
 
 
-class INavUtilities(ABCMeta):
+class INavUtilities(object):
     """Parent interface to coordinate the functions between NavUtilities
     and NavUtilitiesDispatcher.
     """
 
-    def __new__(mcs, *args, **kwargs):
+    def centerWindow(self, arg):
         pass
 
-    @abstractmethod
-    def centerWindow(cls, arg):
+    def closeParentWindow(self, event):
         pass
 
-    @abstractmethod
-    def closeParentWindow(cls, event):
+    def closeWindow(self, arg):
         pass
 
-    @abstractmethod
-    def closeWindow(cls, arg):
+    def getCurrentWindow(self):
         pass
 
-    @abstractmethod
-    def getCurrentWindow(cls):
+    def goBack(self):
         pass
 
-    @abstractmethod
-    def goBack(cls):
+    def goForward(self):
         pass
 
-    @abstractmethod
-    def goForward(cls):
+    def goHome(self):
         pass
 
-    @abstractmethod
-    def goHome(cls):
+    def openWindow(self, *args):
         pass
 
-    @abstractmethod
-    def openWindow(cls, *args):
+    def openWindowImpl(self, path, params, openAdditional):
         pass
 
-    @abstractmethod
-    def openWindowImpl(cls, path, params, openAdditional):
+    def openWindowInstance(self, *args):
         pass
 
-    @abstractmethod
-    def openWindowInstance(cls, *args):
+    def swapTo(self, *args):
         pass
 
-    @abstractmethod
-    def swapTo(cls, *args):
-        pass
-
-    @abstractmethod
-    def swapWindow(cls, *args):
+    def swapWindow(self, *args):
         pass
 
 
@@ -128,7 +112,7 @@ def centerWindow(arg):
         arg (object): The path of the window (str) or a reference to the
             window (FPMIWindow) to center.
     """
-    print(arg)
+    pprint.pprint(arg)
 
 
 def closeParentWindow(event):
@@ -138,7 +122,7 @@ def closeParentWindow(event):
         event (EventObject): A component event object. The enclosing
             window for the component will be closed.
     """
-    print(event)
+    pprint.pprint(event)
 
 
 def closeWindow(arg):
@@ -152,7 +136,7 @@ def closeWindow(arg):
             FPMIWindow instance or the path of the window to close as a
             String.
     """
-    print(arg)
+    pprint.pprint(arg)
 
 
 def desktop(handle="primary"):
@@ -169,7 +153,7 @@ def desktop(handle="primary"):
         INavUtilities: A copy of system.nav that will alter the desktop
             named by the given handle.
     """
-    print(handle)
+    pprint.pprint(handle)
     return INavUtilities()
 
 
@@ -239,7 +223,7 @@ def openWindow(path, params=None):
     Returns:
         FPMIWindow: A reference to the opened window.
     """
-    print(path, params)
+    pprint.pprint([path, params])
     return FPMIWindow("Opened Window")
 
 
@@ -262,7 +246,7 @@ def openWindowInstance(path, params=None):
     Returns:
         FPMIWindow: A reference to the opened window.
     """
-    print(path, params)
+    pprint.pprint([path, params])
     return FPMIWindow("Window Instance")
 
 
@@ -287,7 +271,7 @@ def swapTo(path, params=None):
     Returns:
         FPMIWindow: A reference to the swapped-to window.
     """
-    print(path, params)
+    pprint.pprint([path, params])
     return FPMIWindow("Swapped To")
 
 
@@ -314,5 +298,5 @@ def swapWindow(arg, swapToPath, params=None):
     Returns:
         FPMIWindow: A reference to the swapped-to window.
     """
-    print(arg, swapToPath, params)
+    pprint.pprint([arg, swapToPath, params])
     return FPMIWindow("Swapped To")

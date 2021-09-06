@@ -8,7 +8,6 @@ The following functions give you access to view and edit users in the
 Gateway.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "addHoliday",
@@ -22,8 +21,8 @@ __all__ = [
     "getHolidays",
     "getRoles",
     "getSchedule",
-    "getScheduledUsers",
     "getScheduleNames",
+    "getScheduledUsers",
     "getSchedules",
     "getUser",
     "getUsers",
@@ -32,6 +31,8 @@ __all__ = [
     "removeRole",
     "removeSchedule",
 ]
+
+import pprint
 
 import system.date
 from java.lang import Object
@@ -139,7 +140,7 @@ class User(object):
         Returns:
             str: The value of the requested property.
         """
-        print(self)
+        pprint.pprint(self)
         return prop
 
     def getContactInfo(self):
@@ -151,7 +152,7 @@ class User(object):
         Returns:
             list[ContactInfo]: A sequence of ContactInfo objects.
         """
-        print(self)
+        pprint.pprint(self)
         ci_email = ContactInfo("email", "johdoe@mycompany.com")
         ci_phone = ContactInfo("phone", "+1 5551324567")
         ci_sms = ContactInfo("sms", "+1 5557654321")
@@ -165,7 +166,7 @@ class User(object):
             str: The internal identifier object that the backing user
                 source needs to identify this user.
         """
-        print(self)
+        pprint.pprint(self)
         return 1
 
     def getOrDefault(self, prop):
@@ -178,7 +179,7 @@ class User(object):
         Returns:
             object: The value of the requested property.
         """
-        print(self, prop)
+        pprint.pprint([self, prop])
 
     def getOrElse(self, prop, value):
         """Get the value for a given Property, or else fall back to
@@ -193,7 +194,7 @@ class User(object):
         Returns:
             object: The value of property if present, value if not.
         """
-        print(self, prop)
+        pprint.pprint([self, prop])
         return value
 
     def getRoles(self):
@@ -204,7 +205,7 @@ class User(object):
              list[str]: Sequence of strings representing the roles that
                 this user belongs to.
         """
-        print(self)
+        pprint.pprint(self)
         return User.Roles
 
 
@@ -218,7 +219,7 @@ def addHoliday(holiday):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    print(holiday)
+    pprint.pprint(holiday)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -238,7 +239,7 @@ def addRole(userSource, role):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    print(userSource, role)
+    pprint.pprint([userSource, role])
     return UIResponse(Locale.ENGLISH)
 
 
@@ -252,7 +253,7 @@ def addSchedule(schedule):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    print(schedule)
+    pprint.pprint(schedule)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -268,7 +269,7 @@ def editHoliday(holidayName, holiday):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print(holidayName, holiday)
+    pprint.pprint([holidayName, holiday])
     return UIResponse(Locale.ENGLISH)
 
 
@@ -289,7 +290,7 @@ def editRole(userSource, oldName, newName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print(userSource, oldName, newName)
+    pprint.pprint([userSource, oldName, newName])
     return UIResponse(Locale.ENGLISH)
 
 
@@ -305,7 +306,7 @@ def editSchedule(scheduleName, schedule):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    print(scheduleName, schedule)
+    pprint.pprint([scheduleName, schedule])
     return UIResponse(Locale.ENGLISH)
 
 
@@ -319,7 +320,7 @@ def getHoliday(holidayName):
     Returns:
         HolidayModel: The holiday, or None if not found.
     """
-    print(holidayName)
+    pprint.pprint(holidayName)
 
 
 def getHolidayNames():
@@ -352,7 +353,7 @@ def getRoles(userSource):
         list[str]: A List of Strings that holds all the roles in the
             user source.
     """
-    print(userSource)
+    pprint.pprint(userSource)
 
 
 def getSchedule(scheduleName):
@@ -367,7 +368,18 @@ def getSchedule(scheduleName):
             BasicSchedule, CompositeSchedule, or another type registered
             by a module, or None if not found.
     """
-    print(scheduleName)
+    pprint.pprint(scheduleName)
+
+
+def getScheduleNames():
+    """Returns a sequence of strings representing the names of all of
+    the schedules available.
+
+    Returns:
+        list[str]: A List of Strings that holds the names of all the
+            available schedules.
+    """
+    return ["A", "Always", "B", "C", "Example", "MyComposite", "MySchedule"]
 
 
 def getScheduledUsers(userSource, date=None):
@@ -387,18 +399,7 @@ def getScheduledUsers(userSource, date=None):
             taking schedule adjustments into account.
     """
     date = system.date.now() if date is None else date
-    print(userSource, date)
-
-
-def getScheduleNames():
-    """Returns a sequence of strings representing the names of all of
-    the schedules available.
-
-    Returns:
-        list[str]: A List of Strings that holds the names of all the
-            available schedules.
-    """
-    return ["A", "Always", "B", "C", "Example", "MyComposite", "MySchedule"]
+    pprint.pprint([userSource, date])
 
 
 def getSchedules():
@@ -428,7 +429,7 @@ def getUser(userSource, username):
     Returns:
         User: A User object.
     """
-    print(userSource, username)
+    pprint.pprint([userSource, username])
     return User()
 
 
@@ -445,7 +446,7 @@ def getUsers(userSource):
     Returns:
         list[User]: A list of User objects.
     """
-    print(userSource)
+    pprint.pprint(userSource)
     # You may return more than one User object.
     return [User()]
 
@@ -465,7 +466,7 @@ def isUserScheduled(user, date=None):
             False if not.
     """
     date = system.date.now() if date is None else date
-    print(user, date)
+    pprint.pprint([user, date])
     return True
 
 
@@ -480,7 +481,7 @@ def removeHoliday(holidayName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    print(holidayName)
+    pprint.pprint(holidayName)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -499,7 +500,7 @@ def removeRole(userSource, role):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    print(userSource, role)
+    pprint.pprint([userSource, role])
     return UIResponse(Locale.ENGLISH)
 
 
@@ -517,5 +518,5 @@ def removeSchedule(scheduleName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    print(scheduleName)
+    pprint.pprint(scheduleName)
     return UIResponse(Locale.ENGLISH)

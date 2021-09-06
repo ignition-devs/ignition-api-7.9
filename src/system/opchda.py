@@ -8,7 +8,6 @@ The following functions give you access to interact with the HDA types
 of OPC servers.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "browse",
@@ -24,13 +23,13 @@ __all__ = [
     "replace",
 ]
 
-from abc import ABCMeta, abstractmethod
+import pprint
 
 from java.lang import Object
 from java.util import Date
 
 
-class Aggregate(ABCMeta):
+class Aggregate(object):
     """This interface defines an aggregation function used by the
     history query system.
 
@@ -48,19 +47,13 @@ class Aggregate(ABCMeta):
     providers could define any aggregation function.
     """
 
-    def __new__(mcs, *args, **kwargs):
+    def getDesc(self):
         pass
 
-    @abstractmethod
-    def getDesc(cls):
+    def getId(self):
         pass
 
-    @abstractmethod
-    def getId(cls):
-        pass
-
-    @abstractmethod
-    def getName(cls):
+    def getName(self):
         pass
 
 
@@ -110,7 +103,7 @@ def browse(root):
         list[BrowseResults]: The BrowseResults that that would result
             for the operation at that root.
     """
-    print(root)
+    pprint.pprint(root)
     return [BrowseResults()]
 
 
@@ -125,7 +118,7 @@ def getAggregates(serverName):
         list[Aggregate]: A list of supported Aggregate objects. Each
             object has 'id', 'name', and 'desc' properties defined.
     """
-    print(serverName)
+    pprint.pprint(serverName)
     return [Aggregate()]
 
 
@@ -141,7 +134,7 @@ def getAttributes(serverName):
         list[Aggregate]: A list of supported Aggregate objects. Each
             object has 'id', 'name', and 'desc' properties defined.
     """
-    print(serverName)
+    pprint.pprint(serverName)
     return [Aggregate()]
 
 
@@ -171,7 +164,7 @@ def insert(serverName, itemId, value, date, quality):
     Returns:
         int: The items quality form the operation.
     """
-    print(serverName, itemId, value, date, quality)
+    pprint.pprint([serverName, itemId, value, date, quality])
     return 192
 
 
@@ -189,7 +182,7 @@ def insertReplace(serverName, itemId, value, date, quality):
     Returns:
         int: The items quality form the operation.
     """
-    print(serverName, itemId, value, date, quality)
+    pprint.pprint([serverName, itemId, value, date, quality])
     return 192
 
 
@@ -204,7 +197,7 @@ def isServerAvailable(serverName):
         bool: Will be True if the server is available and can be
             queried, False if not.
     """
-    print(serverName)
+    pprint.pprint(serverName)
     return True
 
 
@@ -234,7 +227,7 @@ def readAttributes(serverName, itemId, attributeIds, startDate, endDate):
             call was successful, and is itself a list of
             QualifiedValues.
     """
-    print(serverName, itemId, attributeIds, startDate, endDate)
+    pprint.pprint([serverName, itemId, attributeIds, startDate, endDate])
     return [ReadResult()]
 
 
@@ -269,13 +262,15 @@ def readProcessed(
             call was successful, and is itself a list of
             QualifiedValues.
     """
-    print(
-        serverName,
-        itemIds,
-        startDate,
-        endDate,
-        resampleIntervalMS,
-        aggregates,
+    pprint.pprint(
+        [
+            serverName,
+            itemIds,
+            startDate,
+            endDate,
+            resampleIntervalMS,
+            aggregates,
+        ]
     )
     return [ReadResult()]
 
@@ -305,7 +300,9 @@ def readRaw(
             call was successful, and is itself a list of
             QualifiedValues.
     """
-    print(serverName, itemIds, startDate, endDate, maxValues, boundingValues)
+    pprint.pprint(
+        [serverName, itemIds, startDate, endDate, maxValues, boundingValues]
+    )
     return [ReadResult()]
 
 
@@ -323,5 +320,5 @@ def replace(serverName, itemId, value, date, quality):
     Returns:
         int: The items quality resulting from the operation.
     """
-    print(serverName, itemId, value, date, quality)
+    pprint.pprint([serverName, itemId, value, date, quality])
     return 192

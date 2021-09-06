@@ -8,7 +8,6 @@ The following functions give you access to read and write through serial
 ports.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "closeSerialPort",
@@ -22,6 +21,8 @@ __all__ = [
     "write",
     "writeBytes",
 ]
+
+import pprint
 
 # Bit rate constants.
 BIT_RATE_110 = 110
@@ -71,7 +72,28 @@ STOP_BITS_2 = 3
 
 
 class SerialConfigurator(object):
-    pass
+    """Serial Configurator class."""
+
+    def setBitRate(self, value):
+        pass
+
+    def setDataBits(self, value):
+        pass
+
+    def setFlowControl(self, value):
+        pass
+
+    def setHandshake(self, value):
+        pass
+
+    def setHardwareFlowControl(self, value):
+        pass
+
+    def setParity(self, value):
+        pass
+
+    def setStopBits(self, value):
+        pass
 
 
 def closeSerialPort(port):
@@ -85,7 +107,7 @@ def closeSerialPort(port):
         port (str): The name of the serial port, e.g., "COM1" or
             "dev/ttyS0".
     """
-    print(port)
+    pprint.pprint(port)
 
 
 def configureSerialPort(
@@ -128,14 +150,16 @@ def configureSerialPort(
             configure the serial port instead of or in addition to the
             given keyword arguments.
     """
-    print(
-        port,
-        bitRate,
-        dataBits,
-        handshake,
-        hardwareFlowControl,
-        parity,
-        stopBits,
+    pprint.pprint(
+        [
+            port,
+            bitRate,
+            dataBits,
+            handshake,
+            hardwareFlowControl,
+            parity,
+            stopBits,
+        ]
     )
     return SerialConfigurator()
 
@@ -149,7 +173,7 @@ def openSerialPort(port):
         port (str): The name of the serial port, e.g., "COM1" or
             "dev/ttyS0".
     """
-    print(port)
+    pprint.pprint(port)
 
 
 def readBytes(port, numberOfBytes, timeout=5000):
@@ -164,7 +188,7 @@ def readBytes(port, numberOfBytes, timeout=5000):
     Returns:
         object: A byte[] containing bytes read from the serial port.
     """
-    print(port, numberOfBytes, timeout)
+    pprint.pprint([port, numberOfBytes, timeout])
 
 
 def readBytesAsString(port, numberOfBytes, timeout=5000):
@@ -184,7 +208,7 @@ def readBytesAsString(port, numberOfBytes, timeout=5000):
     Returns:
         str: A String created from the bytes read.
     """
-    print(port, numberOfBytes, timeout)
+    pprint.pprint([port, numberOfBytes, timeout])
     return ""
 
 
@@ -209,7 +233,7 @@ def readLine(port, timeout=5000, encoding="utf-8"):
     Returns:
         str: A line of text.
     """
-    print(port, timeout, encoding)
+    pprint.pprint([port, timeout, encoding])
     return ""
 
 
@@ -235,7 +259,7 @@ def readUntil(port, delimiter, includeDelimiter, timeout=5000):
             until the delimiter was reached, and including the delimiter
             if the "includeDelimiter" parameter was True.
     """
-    print(port, delimiter, includeDelimiter, timeout)
+    pprint.pprint([port, delimiter, includeDelimiter, timeout])
     return ""
 
 
@@ -248,7 +272,7 @@ def sendBreak(port, millis):
         millis (int): Approximate length of break signal, in
             milliseconds.
     """
-    print(port, millis)
+    pprint.pprint([port, millis])
 
 
 def write(port, toWrite):
@@ -259,7 +283,7 @@ def write(port, toWrite):
         port (str): The previously configured serial port to use.
         toWrite (str): The String to write.
     """
-    print(port, toWrite)
+    pprint.pprint([port, toWrite])
 
 
 def writeBytes(port, toWrite):
@@ -269,4 +293,4 @@ def writeBytes(port, toWrite):
         port (str): The previously configured serial port to use.
         toWrite (object): The byte[] to write.
     """
-    print(port, toWrite)
+    pprint.pprint([port, toWrite])

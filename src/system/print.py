@@ -7,9 +7,10 @@
 The following functions allow you to send to a printer.
 """
 
-from __future__ import print_function
 
 __all__ = ["createImage", "createPrintJob", "printToImage"]
+
+import pprint
 
 from java.awt import Component
 from java.awt.image import BufferedImage
@@ -50,9 +51,6 @@ class JythonPrintJob(Object):
         pass
 
     def isShowPrintDialog(self):
-        pass
-
-    def print(self):
         pass
 
     def setBottomMargin(self, bottomMargin):
@@ -103,7 +101,7 @@ def createImage(component):
         BufferedImage: A java.awt.image.BufferedImage representing the
             component.
     """
-    print(component)
+    pprint.pprint(component)
     width = height = imageType = 1
     return BufferedImage(width, height, imageType)
 
@@ -124,7 +122,7 @@ def createPrintJob(component):
         JythonPrintJob: A print job that can then be customized and
             started. To start the print job, use .print().
     """
-    print(component)
+    pprint.pprint(component)
     return JythonPrintJob()
 
 
@@ -144,4 +142,4 @@ def printToImage(component, filename=None):
         component (Component): The component to render.
         filename (str): A filename to save the image as. Optional.
     """
-    print(component, filename)
+    pprint.pprint([component, filename])

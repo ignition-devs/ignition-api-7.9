@@ -8,7 +8,6 @@ The following functions allow you to control windows and create popup
 interfaces.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "chooseColor",
@@ -43,6 +42,8 @@ __all__ = [
     "transform",
     "warningBox",
 ]
+
+import pprint
 
 from java.awt import Color
 from java.lang import Object
@@ -84,7 +85,7 @@ class FPMIWindow(JInternalFrame):
         return self._path
 
     def getRootContainer(self):
-        print(self)
+        pprint.pprint(self)
 
 
 class WindowUtilities(Object):
@@ -94,7 +95,7 @@ class WindowUtilities(Object):
 
 
 def _dummy(message, title):
-    print(message, title)
+    pprint.pprint([message, title])
 
 
 def chooseColor(initialColor, dialogTitle="Choose Color"):
@@ -110,7 +111,7 @@ def chooseColor(initialColor, dialogTitle="Choose Color"):
     Returns:
         Color: The new color chosen by the user.
     """
-    print(initialColor, dialogTitle)
+    pprint.pprint([initialColor, dialogTitle])
     return Color()
 
 
@@ -125,7 +126,7 @@ def closeDesktop(handle="primary"):
             Alternatively, the handle "primary" can be used to refer to
             the Primary Desktop.
     """
-    print(handle)
+    pprint.pprint(handle)
 
 
 def color(*args):
@@ -138,7 +139,7 @@ def color(*args):
     Returns:
         Color: The newly created color.
     """
-    print(args)
+    pprint.pprint(args)
 
 
 def confirm(message, title="Confirm", allowCancel=False):
@@ -155,7 +156,7 @@ def confirm(message, title="Confirm", allowCancel=False):
         bool: True (1) if the user selected "Yes", False (0) if the user
             selected "No", None if the user selected "Cancel".
     """
-    print(message, title, allowCancel)
+    pprint.pprint([message, title, allowCancel])
     return True
 
 
@@ -174,7 +175,7 @@ def convertPointToScreen(x, y, event):
     Returns:
         tuple: A tuple of (x,y) in screen coordinates.
     """
-    print(x, y, event)
+    pprint.pprint([x, y, event])
     return x, y
 
 
@@ -191,7 +192,7 @@ def createPopupMenu(itemNames, itemFunctions):
     Returns:
         JPopupMenu: The javax.swing.JPopupMenu that was created.
     """
-    print(itemNames, itemFunctions)
+    pprint.pprint([itemNames, itemFunctions])
     return JPopupMenu()
 
 
@@ -209,7 +210,7 @@ def desktop(handle="primary"):
         WindowUtilities: A copy of system.gui that will be relative to
             the desktop named by the given handle.
     """
-    print(handle)
+    pprint.pprint(handle)
     return WindowUtilities()
 
 
@@ -238,7 +239,7 @@ def findWindow(path):
             is not open, or have more than one entry if multiple windows
             are open.
     """
-    print(path)
+    pprint.pprint(path)
     return []
 
 
@@ -306,7 +307,7 @@ def getParentWindow(event):
         object: The window that contains the component that fired the
             event.
     """
-    print(event)
+    pprint.pprint(event)
     return object
 
 
@@ -326,7 +327,7 @@ def getQuality(component, propertyName):
     Returns:
         int: The data quality of the given property as an integer.
     """
-    print(component, propertyName)
+    pprint.pprint([component, propertyName])
     return 192
 
 
@@ -356,7 +357,7 @@ def getSibling(event, name):
     Returns:
         object: The sibling component itself.
     """
-    print(event, name)
+    pprint.pprint([event, name])
     return FPMIWindow("Sibling")
 
 
@@ -373,7 +374,7 @@ def getWindow(name):
             .getRootContainer() to grab the root container of the
             window.
     """
-    print(name)
+    pprint.pprint(name)
     return FPMIWindow("Main Window")
 
 
@@ -406,7 +407,7 @@ def inputBox(message, defaultText=None):
     Returns:
         str: The string value that was entered in the input box.
     """
-    print(message, defaultText)
+    pprint.pprint([message, defaultText])
 
 
 def isTouchscreenModeEnabled():
@@ -467,7 +468,7 @@ def openDesktop(
     Returns:
         JFrame: A reference to the new Desktop frame.
     """
-    print(screen, handle, title, width, height, x, y, windows)
+    pprint.pprint([screen, handle, title, width, height, x, y, windows])
     return JFrame()
 
 
@@ -501,7 +502,7 @@ def passwordBox(message, title="Password", echoChar="*"):
         str: The password that was entered, or None if the prompt was
             canceled.
     """
-    print(message, title, echoChar)
+    pprint.pprint([message, title, echoChar])
     return "password"
 
 
@@ -514,7 +515,7 @@ def setScreenIndex(index):
         index (int): The new monitor index for this client to move to. 0
             based.
     """
-    print(index)
+    pprint.pprint(index)
 
 
 def setTouchscreenModeEnabled(enabled):
@@ -524,7 +525,7 @@ def setTouchscreenModeEnabled(enabled):
         enabled (bool): The new value for touchscreen mode being
             enabled.
     """
-    print(enabled)
+    pprint.pprint(enabled)
 
 
 def showNumericKeypad(initialValue=None, fontSize=None, usePasswordMode=False):
@@ -544,7 +545,7 @@ def showNumericKeypad(initialValue=None, fontSize=None, usePasswordMode=False):
     Returns:
         object: The value that was entered in the keypad.
     """
-    print(initialValue, fontSize, usePasswordMode)
+    pprint.pprint([initialValue, fontSize, usePasswordMode])
     return 43
 
 
@@ -566,7 +567,7 @@ def showTouchscreenKeyboard(
     Returns:
         str: The text that was "typed" in the on-screen keyboard.
     """
-    print(initialText, fontSize, passwordMode)
+    pprint.pprint([initialText, fontSize, passwordMode])
     return ""
 
 
@@ -622,17 +623,19 @@ def transform(
         object: An animation object that the script can use to pause(),
             resume(), or cancel() the transformation.
     """
-    print(
-        component,
-        newX,
-        newY,
-        newWidth,
-        newHeight,
-        duration,
-        callback,
-        framesPerSecond,
-        acceleration,
-        coordSpace,
+    pprint.pprint(
+        [
+            component,
+            newX,
+            newY,
+            newWidth,
+            newHeight,
+            duration,
+            callback,
+            framesPerSecond,
+            acceleration,
+            coordSpace,
+        ]
     )
 
 

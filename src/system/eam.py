@@ -8,9 +8,10 @@ The following functions give you access to view EAM information from the
 Gateway.
 """
 
-from __future__ import print_function
 
 __all__ = ["getGroups", "queryAgentHistory", "queryAgentStatus", "runTask"]
+
+import pprint
 
 import system.date
 from java.lang import Object
@@ -88,7 +89,7 @@ def queryAgentHistory(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    print(groupIds, agentIds, startDate, endDate, limit)
+    pprint.pprint([groupIds, agentIds, startDate, endDate, limit])
     return Dataset()
 
 
@@ -111,7 +112,7 @@ def queryAgentStatus(groupIds=None, agentIds=None, isConnected=True):
             RunningStateInt, LicenseKey, and Version, where each row is
             a new agent.
     """
-    print(groupIds, agentIds, isConnected)
+    pprint.pprint([groupIds, agentIds, isConnected])
     return Dataset()
 
 
@@ -131,5 +132,5 @@ def runTask(taskname):
         UIResponse: A UIResponse with a list of infos, errors, and
             warnings.
     """
-    print(taskname)
+    pprint.pprint(taskname)
     return UIResponse(Locale.ENGLISH)

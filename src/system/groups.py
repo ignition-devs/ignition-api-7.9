@@ -8,9 +8,10 @@ The following functions give you access to import and remove Transaction
 Groups.
 """
 
-from __future__ import print_function
 
 __all__ = ["loadFromFile", "removeGroups"]
+
+import pprint
 
 
 def loadFromFile(filePath, projectName, mode):
@@ -26,7 +27,7 @@ def loadFromFile(filePath, projectName, mode):
         mode (int): How duplicates will be handled. 0 = Overwrite,
             1 = Ignore, 2 = Replace the existing project with this one.
     """
-    print(filePath, projectName, mode)
+    pprint.pprint([filePath, projectName, mode])
 
 
 def removeGroups(projectName, paths):
@@ -42,4 +43,4 @@ def removeGroups(projectName, paths):
             paths are "Folder/Path/To/GroupName", separated by forward
             slashes.
     """
-    print(projectName, paths)
+    pprint.pprint([projectName, paths])

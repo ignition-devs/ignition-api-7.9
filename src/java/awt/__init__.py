@@ -8,7 +8,6 @@ Contains all of the classes for creating user interfaces and for
 painting graphics and images.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "Color",
@@ -19,6 +18,8 @@ __all__ = [
     "Toolkit",
     "Window",
 ]
+
+import pprint
 
 from java.lang import Object
 
@@ -49,7 +50,7 @@ class Color(Object):
         Args:
             *args: Variable length argument list.
         """
-        print(args)
+        pprint.pprint([self, args])
 
 
 class Component(Object):
@@ -71,7 +72,7 @@ class Container(Component):
         Args:
             *args: Variable length argument list.
         """
-        print(self, args)
+        pprint.pprint([self, args])
 
 
 class Image(Object):
@@ -96,7 +97,7 @@ class Toolkit(Object):
         """Emits an audio beep depending on native system settings and
         hardware capabilities.
         """
-        print(self, "Beep!")
+        pprint.pprint([self, "Beep!"])
 
     @staticmethod
     def getDefaultToolkit():

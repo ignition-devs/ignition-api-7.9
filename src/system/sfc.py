@@ -8,7 +8,6 @@ The following functions give you access to interact with the SFCs in the
 Gateway.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "cancelChart",
@@ -22,6 +21,8 @@ __all__ = [
     "startChart",
 ]
 
+import pprint
+
 from system.dataset import Dataset
 
 
@@ -34,7 +35,14 @@ class PyChartScope(object):
     dictionaries assigned to it as PyChartScopes as well.
     """
 
-    pass
+    def __set__(self, instance, value):
+        pass
+
+    def __setattr__(self, key, value):
+        pass
+
+    def __setitem__(self, key, value):
+        pass
 
 
 def cancelChart(instanceId):
@@ -46,7 +54,7 @@ def cancelChart(instanceId):
     Args:
         instanceId (str): The ID of the chart instance to cancel.
     """
-    print(instanceId)
+    pprint.pprint(instanceId)
 
 
 def getRunningCharts(charPath=None):
@@ -64,7 +72,7 @@ def getRunningCharts(charPath=None):
     Returns:
         Dataset: A dataset with information on the active chart.
     """
-    print(charPath)
+    pprint.pprint(charPath)
     return Dataset()
 
 
@@ -81,7 +89,7 @@ def getVariables(instanceId):
         PyChartScope: A python dictionary of variables. Step scopes for
             active steps are found under the "activeSteps" key.
     """
-    print(instanceId)
+    pprint.pprint(instanceId)
     return PyChartScope()
 
 
@@ -94,7 +102,7 @@ def pauseChart(instanceId):
     Args:
         instanceId (str): The ID of the chart instance to pause.
     """
-    print(instanceId)
+    pprint.pprint(instanceId)
 
 
 def redundantCheckpoint(instanceId):
@@ -105,7 +113,7 @@ def redundantCheckpoint(instanceId):
     Args:
         instanceId (str): The instance identifier of the chart.
     """
-    print(instanceId)
+    pprint.pprint(instanceId)
 
 
 def resumeChart(instanceId):
@@ -121,7 +129,7 @@ def resumeChart(instanceId):
         KeyError: If the ID does not match any running chart instance.
     """
     if not instanceId:
-        raise KeyError("Invalid UUID string: {}".format(instanceId))
+        raise KeyError("Invalid UUID string: %s" % instanceId)
 
 
 def setVariable(instanceId, stepId, variableName, variableValue):
@@ -134,7 +142,7 @@ def setVariable(instanceId, stepId, variableName, variableValue):
         variableName (str): The name of the variable to set.
         variableValue (object): The value for the variable to be set to.
     """
-    print(instanceId, stepId, variableName, variableValue)
+    pprint.pprint([instanceId, stepId, variableName, variableValue])
 
 
 def setVariables(instanceId, stepId, variableMap):
@@ -147,7 +155,7 @@ def setVariables(instanceId, stepId, variableMap):
         variableMap (dict): A dictionary containing the name:value pairs
             of the variables to set.
     """
-    print(instanceId, stepId, variableMap)
+    pprint.pprint([instanceId, stepId, variableMap])
 
 
 def startChart(path, arguments):
@@ -165,5 +173,5 @@ def startChart(path, arguments):
     Returns:
         str: The unique ID of this chart.
     """
-    print(path, arguments)
+    pprint.pprint([path, arguments])
     return "UUID"

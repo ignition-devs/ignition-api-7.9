@@ -8,7 +8,6 @@ The following functions give you access to interact with the DNP3
 devices.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "directOperateAnalog",
@@ -20,6 +19,8 @@ __all__ = [
     "selectOperateAnalog",
     "selectOperateBinary",
 ]
+
+import pprint
 
 # Constants
 NUL = 0
@@ -47,7 +48,7 @@ def directOperateAnalog(deviceName, index, value, variation=None):
     Returns:
         int: The DNP3 status code of the response, as an integer.
     """
-    print(deviceName, index, value, variation)
+    pprint.pprint([deviceName, index, value, variation])
     return 0
 
 
@@ -81,7 +82,9 @@ def directOperateBinary(
     Returns:
         int: The DNP3 status code of the response, as an integer.
     """
-    print(deviceName, indexes, opType, tcCode, count, onTime, offTime)
+    pprint.pprint(
+        [deviceName, indexes, opType, tcCode, count, onTime, offTime]
+    )
     return 0
 
 
@@ -93,7 +96,7 @@ def freezeAnalogs(deviceName, indexes=None):
         indexes (list[object]): An optional list of specific indexes on
             which to issue the freeze command.
     """
-    print(deviceName, indexes)
+    pprint.pprint([deviceName, indexes])
 
 
 def freezeAnalogsAtTime(deviceName, absoluteTime, intervalTime, indexes=None):
@@ -109,7 +112,7 @@ def freezeAnalogsAtTime(deviceName, absoluteTime, intervalTime, indexes=None):
         indexes (list[object]): An optional list of specific indexes on
             which to issue the freeze command. Optional.
     """
-    print(deviceName, absoluteTime, intervalTime, indexes)
+    pprint.pprint([deviceName, absoluteTime, intervalTime, indexes])
 
 
 def freezeCounters(deviceName, indexes=None):
@@ -120,7 +123,7 @@ def freezeCounters(deviceName, indexes=None):
         indexes (list[object]): An optional list of specific indexes on
             which to issue the freeze command. Optional.
     """
-    print(deviceName, indexes)
+    pprint.pprint([deviceName, indexes])
 
 
 def freezeCountersAtTime(deviceName, absoluteTime, intervalTime, indexes=None):
@@ -136,7 +139,7 @@ def freezeCountersAtTime(deviceName, absoluteTime, intervalTime, indexes=None):
         indexes (list[object]): An optional list of specific indexes on
             which to issue the freeze command. Optional.
     """
-    print(deviceName, absoluteTime, intervalTime, indexes)
+    pprint.pprint([deviceName, absoluteTime, intervalTime, indexes])
 
 
 def selectOperateAnalog(deviceName, index, value, variation=None):
@@ -155,7 +158,7 @@ def selectOperateAnalog(deviceName, index, value, variation=None):
     Returns:
         int: The DNP3 status code of the response, as an integer.
     """
-    print(deviceName, index, value, variation)
+    pprint.pprint([deviceName, index, value, variation])
 
 
 def selectOperateBinary(
@@ -188,5 +191,7 @@ def selectOperateBinary(
     Returns:
         int: The DNP3 status code of the response, as an integer.
     """
-    print(deviceName, indexes, opType, tcCode, count, onTime, offTime)
+    pprint.pprint(
+        [deviceName, indexes, opType, tcCode, count, onTime, offTime]
+    )
     return 0

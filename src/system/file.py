@@ -7,7 +7,7 @@
 The following functions give you access to read and write to files.
 """
 
-from __future__ import print_function
+from __future__ import with_statement
 
 __all__ = [
     "fileExists",
@@ -20,9 +20,10 @@ __all__ = [
     "writeFile",
 ]
 
-import io
 import os.path
+import pprint
 import tempfile
+from codecs import open
 
 
 def fileExists(filepath):
@@ -50,7 +51,7 @@ def getTempFile(extension):
     Returns:
         str: The path to the newly created temp file.
     """
-    suffix = ".{}".format(extension)
+    suffix = ".%s" % extension
     with tempfile.NamedTemporaryFile(suffix=suffix) as temp:
         name = temp.name
     return name
@@ -73,7 +74,7 @@ def openFile(extension=None, defaultLocation=None):
     Returns:
         str: The path to the selected file, or None if canceled.
     """
-    print(extension, defaultLocation)
+    pprint.pprint([extension, defaultLocation])
 
 
 def openFiles(extension=None, defaultLocation=None):
@@ -93,7 +94,7 @@ def openFiles(extension=None, defaultLocation=None):
     Returns:
         list[str]: The paths to the selected files, or None if canceled.
     """
-    print(extension, defaultLocation)
+    pprint.pprint([extension, defaultLocation])
 
 
 def readFileAsBytes(filepath):
@@ -113,8 +114,8 @@ def readFileAsBytes(filepath):
     Returns:
         bytearray: The contents of the file as an array of bytes.
     """
-    with open(filepath, "rb") as _file:
-        return _file.read()
+    with open(filepath, "r+b") as f:
+        return f.read()
 
 
 def readFileAsString(filepath, encoding="UTF-8"):
@@ -135,8 +136,8 @@ def readFileAsString(filepath, encoding="UTF-8"):
     Returns:
         str: The contents of the file as a string.
     """
-    with io.open(filepath, "r", encoding=encoding) as _file:
-        return _file.read()
+    with open(filepath, "r", encoding) as f:
+        return f.read()
 
 
 def saveFile(filename, extension=None, typeDesc=None):
@@ -158,7 +159,7 @@ def saveFile(filename, extension=None, typeDesc=None):
         str: The path to the file that the user decided to save to, or
             None if they canceled.
     """
-    print(filename, extension, typeDesc)
+    pprint.pprint([filename, extension, typeDesc])
 
 
 def writeFile(filepath, data, append=False):
@@ -178,4 +179,4 @@ def writeFile(filepath, data, append=False):
             already exists. If False(0), the file will be overwritten if
             it exists. The default is False(0). Optional.
     """
-    print(filepath, data, append)
+    pprint.pprint([filepath, data, append])

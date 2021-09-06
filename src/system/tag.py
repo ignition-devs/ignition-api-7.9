@@ -7,7 +7,6 @@
 The following functions give you access to interact with Ignition Tags.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "addTag",
@@ -37,6 +36,8 @@ __all__ = [
     "writeAllSynchronous",
     "writeSynchronous",
 ]
+
+import pprint
 
 import system.date
 from java.lang import Object
@@ -104,7 +105,7 @@ class QualifiedValue(object):
         pass
 
 
-class AlarmProperty(object):
+class TagAlarmProperty(Object):
     """AlarmProperty class."""
 
     def __init__(self, property=None, value=None, type=None):
@@ -149,31 +150,31 @@ class BrowseTag(Object):
         return self.valueSource
 
     def isDB(self):
-        print(self)
+        pprint.pprint(self)
         return True
 
     def isExpression(self):
-        print(self)
+        pprint.pprint(self)
         return True
 
     def isFolder(self):
-        print(self)
+        pprint.pprint(self)
         return True
 
     def isMemory(self):
-        print(self)
+        pprint.pprint(self)
         return True
 
     def isOPC(self):
-        print(self)
+        pprint.pprint(self)
         return True
 
     def isQuery(self):
-        print(self)
+        pprint.pprint(self)
         return True
 
     def isUDT(self):
-        print(self)
+        pprint.pprint(self)
         return True
 
     def toString(self):
@@ -193,14 +194,16 @@ class Results(object):
         pass
 
 
-class TagAlarmDefinition(object):
+class TagAlarmDefinition(Object):
     """TagAlarmDefinition class."""
 
-    alarm = None
+    def __init__(self, alarm, alarmProperties):
+        self.alarm = alarm
+        self.alarmProperties = alarmProperties
 
     def getAlarmProperties(self):
         print(self)
-        return AlarmProperty()
+        return TagAlarmProperty()
 
 
 class TagConfiguration(object):
@@ -275,19 +278,21 @@ def addTag(
         alarmConfig (dict): The alarm configuration for the tag. See
             editAlarmConfig for details on how to use this parameter.
     """
-    print(
-        parentPath,
-        name,
-        tagType,
-        dataType,
-        accessRights,
-        enabled,
-        value,
-        attributes,
-        parameters,
-        overrides,
-        alarmList,
-        alarmConfig,
+    pprint.pprint(
+        [
+            parentPath,
+            name,
+            tagType,
+            dataType,
+            accessRights,
+            enabled,
+            value,
+            attributes,
+            parameters,
+            overrides,
+            alarmList,
+            alarmConfig,
+        ]
     )
 
 
@@ -320,7 +325,7 @@ def browseConfiguration(path, recursive):
             getProperties(). Only attributes with non-default values
             will appear in the attribute list.
     """
-    print(path, recursive)
+    pprint.pprint([path, recursive])
     return [TagConfiguration()]
 
 
@@ -350,7 +355,7 @@ def browseHistoricalTags(
             the Continuation Point. Get the results by calling
             .getResults() on the BrowseResults object.
     """
-    print(path, nameFilters, maxSize, continuationPoint)
+    pprint.pprint([path, nameFilters, maxSize, continuationPoint])
     return BrowseResults()
 
 
@@ -400,14 +405,16 @@ def browseTags(
             and the following functions: isFolder(), isUDT(), isOPC(),
             isMemory(), isExpression(), isQuery().
     """
-    print(
-        parentPath,
-        tagPath,
-        tagType,
-        dataType,
-        udtParentType,
-        recursive,
-        sort,
+    pprint.pprint(
+        [
+            parentPath,
+            tagPath,
+            tagType,
+            dataType,
+            udtParentType,
+            recursive,
+            sort,
+        ]
     )
     return [BrowseTag()]
 
@@ -431,7 +438,7 @@ def browseTagsSimple(parentPath, sort):
             and the following functions: isFolder(), isUDT(), isOPC(),
             isMemory(), isExpression(), isQuery().
     """
-    print(parentPath, sort)
+    pprint.pprint([parentPath, sort])
     return [BrowseTag()]
 
 
@@ -452,7 +459,7 @@ def editAlarmConfig(tagPaths, alarmConfig):
             format ["name", "Value", "newValue"]. Note that item 1 is
             always "Value".
     """
-    print(tagPaths, alarmConfig)
+    pprint.pprint([tagPaths, alarmConfig])
 
 
 def editTag(
@@ -499,14 +506,16 @@ def editTag(
             editAlarmConfig for details on how to use this parameter.
             Optional.
     """
-    print(
-        tagPath,
-        attributes,
-        parameters,
-        accessRights,
-        overrides,
-        alarmList,
-        alarmConfig,
+    pprint.pprint(
+        [
+            tagPath,
+            attributes,
+            parameters,
+            accessRights,
+            overrides,
+            alarmList,
+            alarmConfig,
+        ]
     )
 
 
@@ -551,16 +560,18 @@ def editTags(
             JSON object. When using this, it acts as a replacement for
             other parameters. Optional.
     """
-    print(
-        tagPaths,
-        attributes,
-        parameters,
-        accessRights,
-        overrides,
-        alarmList,
-        alarmConfig,
-        provider,
-        json,
+    pprint.pprint(
+        [
+            tagPaths,
+            attributes,
+            parameters,
+            accessRights,
+            overrides,
+            alarmList,
+            alarmConfig,
+            provider,
+            json,
+        ]
     )
 
 
@@ -573,7 +584,7 @@ def exists(tagPath):
     Returns:
         bool: True if a tag exists for the given path, False otherwise.
     """
-    print(tagPath)
+    pprint.pprint(tagPath)
     return True
 
 
@@ -590,8 +601,8 @@ def getAlarmStates(tagPath):
     Returns:
         list[TagAlarmDefinition]: An array of TagAlarmDefinition.
     """
-    print(tagPath)
-    return [TagAlarmDefinition()]
+    pprint.pprint(tagPath)
+    return [TagAlarmDefinition("alarm", None)]
 
 
 def isOverlaysEnabled():
@@ -614,7 +625,7 @@ def loadFromFile(filePath, provider, mode):
         mode (int): Dictates what happens if the tag already exists.
             0 = overwrite, 1 = ignore.
     """
-    print(filePath, provider, mode)
+    pprint.pprint([filePath, provider, mode])
 
 
 def queryTagCalculations(
@@ -694,18 +705,20 @@ def queryTagCalculations(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    print(
-        paths,
-        calculations,
-        startDate,
-        endDate,
-        rangeHours,
-        rangeMinutes,
-        aliases,
-        includeBoundingValues,
-        validatesSCExec,
-        noInterpolation,
-        ignoreBadQuality,
+    pprint.pprint(
+        [
+            paths,
+            calculations,
+            startDate,
+            endDate,
+            rangeHours,
+            rangeMinutes,
+            aliases,
+            includeBoundingValues,
+            validatesSCExec,
+            noInterpolation,
+            ignoreBadQuality,
+        ]
     )
 
 
@@ -734,7 +747,7 @@ def queryTagDensity(paths, startDate, endDate):
         Dataset: A 2-column dataset consisting of a timestamp and a
             weight. Each row is valid until the next row.
     """
-    print(paths, startDate, endDate)
+    pprint.pprint([paths, startDate, endDate])
     return [0, 0]
 
 
@@ -834,24 +847,26 @@ def queryTagHistory(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    print(
-        paths,
-        startDate,
-        endDate,
-        returnSize,
-        aggregationMode,
-        returnFormat,
-        columnNames,
-        intervalHours,
-        intervalMinutes,
-        rangeHours,
-        rangeMinutes,
-        aggregationModes,
-        includeBoundingValues,
-        validateSCExec,
-        noInterpolation,
-        ignoreBadQuality,
-        timeout,
+    pprint.pprint(
+        [
+            paths,
+            startDate,
+            endDate,
+            returnSize,
+            aggregationMode,
+            returnFormat,
+            columnNames,
+            intervalHours,
+            intervalMinutes,
+            rangeHours,
+            rangeMinutes,
+            aggregationModes,
+            includeBoundingValues,
+            validateSCExec,
+            noInterpolation,
+            ignoreBadQuality,
+            timeout,
+        ]
     )
 
 
@@ -874,7 +889,7 @@ def read(tagPath):
         QualifiedValue: A qualified value. This object has three
             sub-members: value, quality, and timestamp.
     """
-    print(tagPath)
+    pprint.pprint(tagPath)
     return QualifiedValue()
 
 
@@ -894,7 +909,7 @@ def readAll(tagPaths):
             corresponding to each tag path given. Each qualified value
             will have three sub-members: value, quality, and timestamp.
     """
-    print(tagPaths)
+    pprint.pprint(tagPaths)
     return [QualifiedValue() for _ in range(len(tagPaths))]
 
 
@@ -909,7 +924,7 @@ def removeTag(tagPath):
             left off, then the project default provider will be used.
             Note that an empty path ( '' ) will remove all tags.
     """
-    print(tagPath)
+    pprint.pprint(tagPath)
 
 
 def removeTags(tagPaths):
@@ -923,7 +938,7 @@ def removeTags(tagPaths):
             left off, then the project default provider will be used.
             Note that an empty path (['']) will remove all tags.
     """
-    print(tagPaths)
+    pprint.pprint(tagPaths)
 
 
 def scan(provider, scname):
@@ -938,7 +953,7 @@ def scan(provider, scname):
             scope.
         scname (str): The name of the scan class to execute.
     """
-    print(provider, scname)
+    pprint.pprint([provider, scname])
 
 
 def setOverlaysEnabled(enabled):
@@ -948,7 +963,7 @@ def setOverlaysEnabled(enabled):
         enabled (bool): True (1) to turn on tag overlays, False (0) to
             turn them off.
     """
-    print(enabled)
+    pprint.pprint(enabled)
 
 
 def storeTagHistory(
@@ -997,7 +1012,9 @@ def storeTagHistory(
             java.util.date object may be passed, so the system.date
             functions can be used to return a timestamp. Optional.
     """
-    print(historyprovider, tagprovider, paths, values, qualities, timestamps)
+    pprint.pprint(
+        [historyprovider, tagprovider, paths, values, qualities, timestamps]
+    )
 
 
 def write(tagPath, value, suppressErrors=False):
@@ -1017,7 +1034,7 @@ def write(tagPath, value, suppressErrors=False):
         int: 0 if the write failed immediately, 1 if it succeeded
             immediately, and 2 if it is pending.
     """
-    print(tagPath, value, suppressErrors)
+    pprint.pprint([tagPath, value, suppressErrors])
     return 1
 
 
@@ -1038,7 +1055,7 @@ def writeAll(tagPaths, values):
             to: 0 if the write failed immediately, 1 if it succeeded
             immediately, and 2 if it is pending.
     """
-    print(tagPaths, values)
+    pprint.pprint([tagPaths, values])
     return [1] * len(tagPaths)
 
 
@@ -1065,7 +1082,7 @@ def writeAllSynchronous(tagPaths, values, timeout=45000):
             out pending writes. The default is 45000 milliseconds.
             Optional.
     """
-    print(tagPaths, values, timeout)
+    pprint.pprint([tagPaths, values, timeout])
 
 
 def writeSynchronous(tagPath, value, timeout=45000):
@@ -1086,4 +1103,4 @@ def writeSynchronous(tagPath, value, timeout=45000):
             out pending writes. The default is 45000 milliseconds.
             Optional.
     """
-    print(tagPath, value, timeout)
+    pprint.pprint([tagPath, value, timeout])

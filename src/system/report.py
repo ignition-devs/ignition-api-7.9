@@ -8,14 +8,14 @@ The following functions give you access to report details and the
 ability to run reports.
 """
 
-from __future__ import print_function
-
 __all__ = [
     "executeAndDistribute",
     "executeReport",
     "getReportNamesAsDataset",
     "getReportNamesAsList",
 ]
+
+import pprint
 
 from java.lang import IllegalArgumentException
 from system.dataset import Dataset
@@ -47,7 +47,7 @@ def executeAndDistribute(
             exist, project does not exist, or a key is not valid.
     """
     if project is not None:
-        print(path, project, parameters, action, actionSettings)
+        pprint.pprint([path, project, parameters, action, actionSettings])
     else:
         raise IllegalArgumentException()
 
@@ -76,7 +76,7 @@ def executeReport(path, project="project", parameters=None, fileType="pdf"):
     _fileTypes = ["pdf", "html", "csv", "rtf", "jpeg", "png", "xml"]
     if path is None or project is None or fileType not in _fileTypes:
         raise IllegalArgumentException()
-    print(path, project, parameters, fileType)
+    pprint.pprint([path, project, parameters, fileType])
 
 
 def getReportNamesAsDataset(project="project"):

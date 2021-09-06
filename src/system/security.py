@@ -8,12 +8,11 @@ The following functions give you access to interact with the users and
 roles in the Gateway.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "getRoles",
-    "getUsername",
     "getUserRoles",
+    "getUsername",
     "isScreenLocked",
     "lockScreen",
     "logout",
@@ -24,6 +23,7 @@ __all__ = [
 
 
 import getpass
+import pprint
 
 
 def getRoles():
@@ -35,15 +35,6 @@ def getRoles():
             the current user.
     """
     return "Administrator", "Developer"
-
-
-def getUsername():
-    """Returns the currently logged-in username.
-
-    Returns:
-        str: The current username.
-    """
-    return getpass.getuser()
 
 
 def getUserRoles(username, password, authProfile="", timeout=60000):
@@ -66,8 +57,17 @@ def getUserRoles(username, password, authProfile="", timeout=60000):
         tuple[str]: A list of the roles that this user has, if the user
             authenticates successfully. Otherwise, returns None.
     """
-    print(username, password, authProfile, timeout)
+    pprint.pprint([username, password, authProfile, timeout])
     return "Administrator", "Developer"
+
+
+def getUsername():
+    """Returns the currently logged-in username.
+
+    Returns:
+        str: The current username.
+    """
+    return getpass.getuser()
 
 
 def isScreenLocked():
@@ -90,7 +90,7 @@ def lockScreen(obscure=False):
         obscure (bool): If True(1), the locked screen will be opaque,
             otherwise it will be partially visible. Optional.
     """
-    print(obscure)
+    pprint.pprint(obscure)
 
 
 def logout():
@@ -125,7 +125,7 @@ def switchUser(username, password, event, hideError=False):
         bool: False(0) if the switch user operation failed, True (1)
             otherwise.
     """
-    print(username, password, event, hideError)
+    pprint.pprint([username, password, event, hideError])
     return True
 
 
@@ -156,5 +156,5 @@ def validateUser(username, password, authProfile="", timeout=60000):
         bool: False(0) if the user failed to authenticate, True(1) if
             the username/password was a valid combination.
     """
-    print(username, password, authProfile, timeout)
+    pprint.pprint([username, password, authProfile, timeout])
     return True

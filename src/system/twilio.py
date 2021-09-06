@@ -9,7 +9,6 @@ through Twilio. This requires the Twilio Module, which is not included
 in a typical install.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "getAccounts",
@@ -18,6 +17,8 @@ __all__ = [
     "getPhoneNumbersDataset",
     "sendSms",
 ]
+
+import pprint
 
 from system.dataset import Dataset
 
@@ -77,7 +78,7 @@ def getPhoneNumbersDataset(accountName):
         Dataset: A list of phone numbers for the given Twilio account as
             a single-column Dataset.
     """
-    print(accountName)
+    pprint.pprint(accountName)
     return Dataset()
 
 
@@ -91,4 +92,4 @@ def sendSms(accountName, fromNumber, toNumber, message):
         toNumber (str): The phone number of the recipient.
         message (str): The body of the SMS.
     """
-    print(accountName, fromNumber, toNumber, message)
+    pprint.pprint([accountName, fromNumber, toNumber, message])

@@ -8,7 +8,6 @@ The following functions give you access to view and interact with
 datasets.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "Dataset",
@@ -38,12 +37,12 @@ __all__ = [
 ]
 
 import os.path
-from collections import Iterable
+import pprint
 
 from java.util import Locale
 
 
-class Dataset(Iterable):
+class Dataset(object):
     """A dataset is a collection of values arranged in a structured
     format.
 
@@ -63,7 +62,7 @@ class Dataset(Iterable):
         Returns:
             int: The number of columns in the dataset.
         """
-        print(self)
+        pprint.pprint(self)
         return 4
 
     def getColumnIndex(self, colName):
@@ -75,7 +74,7 @@ class Dataset(Iterable):
         Returns:
             int: The index of the column with the name colName.
         """
-        print(self, colName)
+        pprint.pprint([self, colName])
         return 2
 
     def getColumnName(self, colIndex):
@@ -87,7 +86,7 @@ class Dataset(Iterable):
         Returns:
             str: The name of the column at the index colIndex.
         """
-        print(self, colIndex)
+        pprint.pprint([self, colIndex])
         return "Population"
 
     def getColumnNames(self):
@@ -96,7 +95,7 @@ class Dataset(Iterable):
         Returns:
             list[str]: A list with the names of all the columns.
         """
-        print(self)
+        pprint.pprint(self)
         return ["City", "Population", "Timezone", "GMTOffset"]
 
     def getColumnType(self, colIndex):
@@ -108,7 +107,7 @@ class Dataset(Iterable):
         Returns:
             object: The type of the column at the index colIndex.
         """
-        print(self, colIndex)
+        pprint.pprint([self, colIndex])
         return type(0)
 
     def getColumnTypes(self):
@@ -117,7 +116,7 @@ class Dataset(Iterable):
         Returns:
              list[object]: A list with the types of all the columns.
         """
-        print(self)
+        pprint.pprint(self)
         return [type(""), type(0), type(""), type(0)]
 
     def getRowCount(self):
@@ -126,7 +125,7 @@ class Dataset(Iterable):
         Returns:
             int: The number of rows in the dataset.
         """
-        print(self)
+        pprint.pprint(self)
         return 5
 
     def getValueAt(self, arg):
@@ -141,21 +140,29 @@ class Dataset(Iterable):
         """
         ret = None
         if isinstance(arg, int):
-            print(self, "colIndex")
+            pprint.pprint([self, "colIndex"])
             ret = "PST"
         elif isinstance(arg, str):
-            print(self, "colName")
+            pprint.pprint([self, "colName"])
             ret = 2853114
         return ret
 
 
-class PyDataSet(Iterable):
+class PyDataSet(object):
     """PyDatasets are special, in that they can be handled similarly to
     other Python sequences.
     """
 
+    def __add__(self, other):
+        """Add an item."""
+        pass
+
     def __iter__(self):
         """Return the iterator object itself."""
+        pass
+
+    def __len__(self):
+        """Return the length."""
         pass
 
 
@@ -190,7 +197,7 @@ def addColumn(dataset, colIndex, col, colName, colType):
     Returns:
         Dataset: A new dataset with the new column inserted or appended.
     """
-    print(dataset, colIndex, col, colName, colType)
+    pprint.pprint([dataset, colIndex, col, colName, colType])
     return Dataset()
 
 
@@ -220,7 +227,7 @@ def addRow(dataset, rowIndex, row):
     Returns:
         Dataset: A new dataset with the new row inserted or appended.
     """
-    print(dataset, rowIndex, row)
+    pprint.pprint([dataset, rowIndex, row])
     return Dataset()
 
 
@@ -250,7 +257,7 @@ def addRows(dataset, rowIndex, rows):
     Returns:
         Dataset: A new dataset with the new row inserted or appended.
     """
-    print(dataset, rowIndex, rows)
+    pprint.pprint([dataset, rowIndex, rows])
     return Dataset()
 
 
@@ -270,7 +277,7 @@ def appendDataset(dataset1, dataset2):
         Dataset: A new dataset that is a combination of the original two
             datasets.
     """
-    print(dataset1, dataset2)
+    pprint.pprint([dataset1, dataset2])
     return Dataset()
 
 
@@ -285,7 +292,7 @@ def clearDataset(dataset):
     Returns:
         Dataset: A new dataset with no data.
     """
-    print(dataset)
+    pprint.pprint(dataset)
     return Dataset()
 
 
@@ -310,7 +317,7 @@ def dataSetToExcel(showHeaders, datasets, nullsEmpty=None):
         str: An Excel-compatible XML-based workbook, with one worksheet
             per dataset.
     """
-    print(showHeaders, datasets, nullsEmpty)
+    pprint.pprint([showHeaders, datasets, nullsEmpty])
     return ""
 
 
@@ -329,8 +336,8 @@ def dataSetToHTML(showHeaders, dataset, title):
     Returns:
         str: The HTML page as a string.
     """
-    print(showHeaders, dataset, title)
-    return "<html><head>{}</head><body>data</body></html>".format(title)
+    pprint.pprint([showHeaders, dataset, title])
+    return "<html><head>%s</head><body>data</body></html>" % title
 
 
 def deleteRow(dataset, rowIndex):
@@ -355,7 +362,7 @@ def deleteRow(dataset, rowIndex):
         IndexError: If rowIndex is less than zero or greater than the
             row count of the dataset -1.
     """
-    print(dataset, rowIndex)
+    pprint.pprint([dataset, rowIndex])
     if rowIndex < 0:
         raise IndexError("Error")
 
@@ -386,7 +393,7 @@ def deleteRows(dataset, rowIndices):
         IndexError: If any element is less than zero or greater than the
             number of rows in the dataset - 1.
     """
-    print(dataset, rowIndices)
+    pprint.pprint([dataset, rowIndices])
     if -1 in rowIndices:
         raise IndexError("Error")
 
@@ -407,7 +414,7 @@ def exportCSV(filename, showHeaders, dataset):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    print(filename, showHeaders, dataset)
+    pprint.pprint([filename, showHeaders, dataset])
     return os.path.expanduser("~")
 
 
@@ -431,7 +438,7 @@ def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    print(filename, showHeaders, dataset, nullsEmpty)
+    pprint.pprint([filename, showHeaders, dataset, nullsEmpty])
     return os.path.expanduser("~")
 
 
@@ -451,7 +458,7 @@ def exportHTML(filename, showHeaders, dataset, title):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    print(filename, showHeaders, dataset, title)
+    pprint.pprint([filename, showHeaders, dataset, title])
     return os.path.expanduser("~")
 
 
@@ -468,7 +475,7 @@ def filterColumns(dataset, columns):
     Returns:
         Dataset: A new dataset containing the filtered columns.
     """
-    print(dataset, columns)
+    pprint.pprint([dataset, columns])
     return Dataset()
 
 
@@ -487,7 +494,7 @@ def formatDates(dataset, dateFormat, locale=Locale.ENGLISH):
     Returns:
         Dataset: A new dataset, containing the formatted dates.
     """
-    print(dataset, dateFormat, locale)
+    pprint.pprint([dataset, dateFormat, locale])
     return Dataset()
 
 
@@ -507,7 +514,7 @@ def fromCSV(csv):
     Returns:
         Dataset: A new dataset.
     """
-    print(csv)
+    pprint.pprint(csv)
     return Dataset()
 
 
@@ -520,7 +527,7 @@ def getColumnHeaders(dataset):
     Returns:
         list[str]: A list of column header strings.
     """
-    print(dataset)
+    pprint.pprint(dataset)
     return []
 
 
@@ -547,7 +554,7 @@ def setValue(dataset, rowIndex, columnName, value):
          Dataset: A new dataset, with the new value set at the given
             location.
     """
-    print(dataset, rowIndex, columnName, value)
+    pprint.pprint([dataset, rowIndex, columnName, value])
     return Dataset()
 
 
@@ -567,7 +574,7 @@ def sort(dataset, keyColumn, ascending=True):
     Returns:
         Dataset: A new sorted dataset.
     """
-    print(dataset, keyColumn, ascending)
+    pprint.pprint([dataset, keyColumn, ascending])
     return Dataset()
 
 
@@ -593,7 +600,7 @@ def toCSV(dataset, showHeaders=True, forExport=False, localized=False):
     Returns:
         str: The CSV data as a string.
     """
-    print(dataset, showHeaders, forExport, localized)
+    pprint.pprint([dataset, showHeaders, forExport, localized])
     return ""
 
 
@@ -612,8 +619,7 @@ def toDataSet(*args):
     Returns:
         Dataset: The newly created dataset.
     """
-    for arg in args:
-        print(arg)
+    pprint.pprint(args)
     return Dataset()
 
 
@@ -628,7 +634,7 @@ def toPyDataSet(dataset):
     Returns:
         PyDataSet: The newly created PyDataSet.
     """
-    print(dataset)
+    pprint.pprint(dataset)
     return PyDataSet()
 
 
@@ -657,5 +663,5 @@ def updateRow(dataset, rowIndex, changes):
          Dataset: A new dataset with the values at the specified row
             updated according to the values in the dictionary.
     """
-    print(dataset, rowIndex, changes)
+    pprint.pprint([dataset, rowIndex, changes])
     return Dataset()

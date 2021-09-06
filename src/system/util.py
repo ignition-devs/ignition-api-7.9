@@ -8,7 +8,6 @@ The following functions give you access to view various Gateway and
 Client data, as well as interact with other various systems.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "beep",
@@ -17,8 +16,8 @@ __all__ = [
     "getAvailableLocales",
     "getAvailableTerms",
     "getClientId",
-    "getConnectionMode",
     "getConnectTimeout",
+    "getConnectionMode",
     "getEdition",
     "getGatewayAddress",
     "getGatewayStatus",
@@ -42,8 +41,8 @@ __all__ = [
     "sendMessage",
     "sendRequest",
     "sendRequestAsync",
-    "setConnectionMode",
     "setConnectTimeout",
+    "setConnectionMode",
     "setLocale",
     "setLoggingLevel",
     "setReadTimeout",
@@ -54,6 +53,7 @@ __all__ = [
 import getpass
 import os
 import platform
+import pprint
 import sys
 
 try:
@@ -61,6 +61,7 @@ try:
 except ImportError:
     pass
 
+import system.__version__ as version
 import system.date
 from java.awt import Toolkit
 from java.lang import Object, Thread
@@ -140,11 +141,8 @@ def beep():
             winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
         elif platforms[sys.platform] == "macOS":
             os.system('say "beep"')
-        elif platforms[sys.platform] == "Linux":
-            # TODO: Make Linux speak.
-            print("Beep!")
     else:
-        print("Beep!")
+        pprint.pprint("Beep!")
 
 
 def execute(commands):
@@ -159,7 +157,7 @@ def execute(commands):
         commands (list[str]): A list containing the command (1st entry)
             and associated arguments (remaining entries) to execute.
     """
-    print(commands)
+    pprint.pprint(commands)
 
 
 def exit(force=False):
@@ -174,7 +172,7 @@ def exit(force=False):
         force (bool): If True (1), the shutdown-intercept script will be
             skipped. Default is False (0). Optional.
     """
-    print(force)
+    pprint.pprint(force)
 
 
 def getAvailableLocales():
@@ -213,17 +211,6 @@ def getClientId():
     return "92247003"
 
 
-def getConnectionMode():
-    """Retrieves this client session's current connection mode.
-
-    3 is read/write, 2 is read-only, and 1 is disconnected.
-
-    Returns:
-        int: The current connection mode for the client.
-    """
-    return 3
-
-
 def getConnectTimeout():
     """Returns the connect timeout in milliseconds for all
     client-to-gateway communication.
@@ -237,6 +224,17 @@ def getConnectTimeout():
             10,000 (ten seconds).
     """
     return 10000
+
+
+def getConnectionMode():
+    """Retrieves this client session's current connection mode.
+
+    3 is read/write, 2 is read-only, and 1 is disconnected.
+
+    Returns:
+        int: The current connection mode for the client.
+    """
+    return 3
 
 
 def getEdition():
@@ -283,7 +281,7 @@ def getGatewayStatus(
         str: A string that indicates the status of the Gateway. A status
             of RUNNING means that the Gateway is fully functional.
     """
-    print(gatewayAddress, connectTimeoutMillis, socketTimeoutMillis)
+    pprint.pprint([gatewayAddress, connectTimeoutMillis, socketTimeoutMillis])
     return "RUNNING"
 
 
@@ -338,7 +336,7 @@ def getLogger(name):
         LoggerEx: A new Logger object used to log informational and
             error messages.
     """
-    print(name)
+    pprint.pprint(name)
     return LoggerEx()
 
 
@@ -424,7 +422,7 @@ def getSessionInfo(usernameFilter=None, projectFilter=None):
         PyDataSet: A dataset representing the Gateway's current
             sessions.
     """
-    print(usernameFilter, projectFilter)
+    pprint.pprint([usernameFilter, projectFilter])
     return PyDataSet()
 
 
@@ -462,7 +460,7 @@ def invokeAsynchronous(function):
     Returns:
         Thread: The executing thread.
     """
-    print(function)
+    pprint.pprint(function)
     return Thread()
 
 
@@ -488,7 +486,7 @@ def invokeLater(function, delay=0):
             be invoked after all currently pending events are processed.
             Optional.
     """
-    print(function, delay)
+    pprint.pprint([function, delay])
 
 
 def jsonDecode(jsonString):
@@ -535,7 +533,7 @@ def modifyTranslation(term, translation, locale="en"):
             identifying the language of the translation. Otherwise, the
             currently set language is used. Optional.
     """
-    print(term, translation, locale)
+    pprint.pprint([term, translation, locale])
 
 
 def playSoundClip(wav, volume=1.0, wait=False):
@@ -554,7 +552,7 @@ def playSoundClip(wav, volume=1.0, wait=False):
             to playSoundClip should wait for the clip to finish before
             it returns. Optional.
     """
-    print(wav, volume, wait)
+    pprint.pprint([wav, volume, wait])
 
 
 def queryAuditLog(
@@ -601,16 +599,18 @@ def queryAuditLog(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    print(
-        auditProfileName,
-        startDate,
-        endDate,
-        actorFilter,
-        actionFilter,
-        targetFilter,
-        valueFilter,
-        systemFilter,
-        contextFilter,
+    pprint.pprint(
+        [
+            auditProfileName,
+            startDate,
+            endDate,
+            actorFilter,
+            actionFilter,
+            targetFilter,
+            valueFilter,
+            systemFilter,
+            contextFilter,
+        ]
     )
     return Dataset()
 
@@ -653,7 +653,7 @@ def retarget(
             startup windows will be ignored, and this list will be used
             instead. Optional.
     """
-    print(projectName, gatewayAddress, params, startupWindows)
+    pprint.pprint([projectName, gatewayAddress, params, startupWindows])
 
 
 def sendMessage(
@@ -708,16 +708,18 @@ def sendMessage(
             system that was selected for delivery, where each List item
             is comma-delimited.
     """
-    print(
-        project,
-        messageHandler,
-        payload,
-        scope,
-        clientSessionId,
-        user,
-        hasRole,
-        hostName,
-        remoteServers,
+    pprint.pprint(
+        [
+            project,
+            messageHandler,
+            payload,
+            scope,
+            clientSessionId,
+            user,
+            hasRole,
+            hostName,
+            remoteServers,
+        ]
     )
 
 
@@ -761,13 +763,15 @@ def sendRequest(
     Returns:
         object: The return from the message handler.
     """
-    print(
-        project,
-        messageHandler,
-        payload,
-        hostName,
-        remoteServer,
-        timeoutSec,
+    pprint.pprint(
+        [
+            project,
+            messageHandler,
+            payload,
+            hostName,
+            remoteServer,
+            timeoutSec,
+        ]
     )
 
 
@@ -818,15 +822,17 @@ def sendRequestAsync(
         Request: The Request object that can be used while waiting for
             the message handler callback.
     """
-    print(
-        project,
-        messageHandler,
-        payload,
-        hostName,
-        remoteServer,
-        timeoutSec,
-        onSuccess,
-        onError,
+    pprint.pprint(
+        [
+            project,
+            messageHandler,
+            payload,
+            hostName,
+            remoteServer,
+            timeoutSec,
+            onSuccess,
+            onError,
+        ]
     )
     return Request()
 
@@ -845,7 +851,7 @@ def setConnectionMode(mode):
         mode (int): The new connection mode. 1 = Disconnected,
             2 = Read-only, 3 = Read/Write.
     """
-    print(mode)
+    pprint.pprint(mode)
 
 
 def setConnectTimeout(connectTimeout):
@@ -857,7 +863,7 @@ def setConnectTimeout(connectTimeout):
         connectTimeout (int): The new connect timeout, specified in
             milliseconds.
     """
-    print(connectTimeout)
+    pprint.pprint(connectTimeout)
 
 
 def setLocale(locale):
@@ -873,7 +879,7 @@ def setLocale(locale):
     Raises:
         IllegalArgumentException: If passed an invalid local code.
     """
-    print(locale)
+    pprint.pprint(locale)
 
 
 def setLoggingLevel(loggerName, loggerLevel):
@@ -888,7 +894,7 @@ def setLoggingLevel(loggerName, loggerLevel):
         loggerLevel (str): The level you want to change to logger to:
             "trace", "debug", "info", "warn" or "error".
     """
-    print(loggerName, loggerLevel)
+    pprint.pprint([loggerName, loggerLevel])
 
 
 def setReadTimeout(readTimeout):
@@ -900,7 +906,7 @@ def setReadTimeout(readTimeout):
         readTimeout (int): The new read timeout, specified in
             milliseconds.
     """
-    print(readTimeout)
+    pprint.pprint(readTimeout)
 
 
 def threadDump():
@@ -909,7 +915,7 @@ def threadDump():
     Returns:
         str: The dump of the current running JVM.
     """
-    return "Ignition version: {}...".format(system.__version__)
+    return "Ignition version: %s..." % version.__version__
 
 
 def translate(term, locale=None, strict=False):
@@ -933,5 +939,5 @@ def translate(term, locale=None, strict=False):
     Returns:
         str: The translated term.
     """
-    print(term, locale, strict)
+    pprint.pprint([term, locale, strict])
     return term

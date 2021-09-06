@@ -8,14 +8,13 @@ The following functions allow you to read, write and browser OPC
 servers.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "browse",
     "browseServer",
     "browseSimple",
-    "getServers",
     "getServerState",
+    "getServers",
     "isServerEnabled",
     "readValue",
     "readValues",
@@ -24,7 +23,7 @@ __all__ = [
     "writeValues",
 ]
 
-from abc import ABCMeta, abstractmethod
+import pprint
 
 from java.lang import Object
 
@@ -68,39 +67,28 @@ class OPCBrowseTag(Object):
         return self.type
 
 
-class QualifiedValue(ABCMeta):
+class QualifiedValue(object):
     """Represents a value with a DataQuality & timestamp attached to
     it.
     """
 
-    def __new__(mcs, *args, **kwargs):
-        pass
-
-    @abstractmethod
     def getQuality(self):
         pass
 
-    @abstractmethod
     def getTimestamp(self):
         pass
 
-    @abstractmethod
     def getValue(self):
         pass
 
 
-class Quality(ABCMeta):
-    def __new__(mcs, *args, **kwargs):
-        pass
-
-    @abstractmethod
+class Quality(object):
     def getDescription(self):
         pass
 
     def getLevel(self):
         pass
 
-    @abstractmethod
     def getName(self):
         pass
 
@@ -130,7 +118,7 @@ def browse(opcServer, device, folderPath, opcItemPath):
             getOpcItemPath(), getType(), getDisplayName(),
             getDisplayPath(), getDataType().
     """
-    print(opcServer, device, folderPath, opcItemPath)
+    pprint.pprint([opcServer, device, folderPath, opcItemPath])
     return [OPCBrowseTag()]
 
 
@@ -147,7 +135,7 @@ def browseServer(opcServer, nodeId):
     Returns:
         object: A list of OPCBrowseElement/PyOPCTag objects.
     """
-    print(opcServer, nodeId)
+    pprint.pprint([opcServer, nodeId])
     return []
 
 
@@ -173,18 +161,8 @@ def browseSimple(opcServer, device, folderPath, opcItemPath):
             getOpcItemPath(), getType(), getDisplayName(),
             getDisplayPath(), getDataType().
     """
-    print(opcServer, device, folderPath, opcItemPath)
+    pprint.pprint([opcServer, device, folderPath, opcItemPath])
     return [OPCBrowseTag()]
-
-
-def getServers():
-    """Returns a list of server names.
-
-    Returns:
-        list[str]: A list of server name strings. If no servers are
-            found, returns an empty list.
-    """
-    return []
 
 
 def getServerState(opcServer):
@@ -206,8 +184,18 @@ def getServerState(opcServer):
         str: A string representing the current state of the connection,
             or None if the connection doesn't exist.
     """
-    print(opcServer)
+    pprint.pprint(opcServer)
     return "CONNECTED"
+
+
+def getServers():
+    """Returns a list of server names.
+
+    Returns:
+        list[str]: A list of server name strings. If no servers are
+            found, returns an empty list.
+    """
+    return []
 
 
 def isServerEnabled(serverName):
@@ -220,7 +208,7 @@ def isServerEnabled(serverName):
         bool: True if the connection is enabled, False if the connection
             is disabled.
     """
-    print(serverName)
+    pprint.pprint(serverName)
     return True
 
 
@@ -247,7 +235,7 @@ def readValue(opcServer, itemPath):
             timestamp returned from the OPC server for the address
             specified.
     """
-    print(opcServer, itemPath)
+    pprint.pprint([opcServer, itemPath])
     return QualifiedValue()
 
 
@@ -271,7 +259,7 @@ def readValues(opcServer, itemPaths):
             value, quality, and timestamp returned from the OPC server
             for the corresponding address.
     """
-    print(opcServer, itemPaths)
+    pprint.pprint([opcServer, itemPaths])
     return [QualifiedValue()]
 
 
@@ -283,7 +271,7 @@ def setServerEnabled(serverName, enabled):
         enabled (bool): The new state the connection should be set to:
             True to enable the connection, False to disable.
     """
-    print(serverName, enabled)
+    pprint.pprint([serverName, enabled])
 
 
 def writeValue(opcServer, itemPath, value):
@@ -304,7 +292,7 @@ def writeValue(opcServer, itemPath, value):
         Quality: The status of the write. Use returnValue.isGood() to
             check if the write succeeded.
     """
-    print(opcServer, itemPath, value)
+    pprint.pprint([opcServer, itemPath, value])
     return Quality()
 
 
@@ -329,5 +317,5 @@ def writeValues(opcServer, itemPaths, values):
         list[Quality]: An array of Quality objects, each entry
             corresponding in order to the addresses specified.
     """
-    print(opcServer, itemPaths, values)
+    pprint.pprint([opcServer, itemPaths, values])
     return [Quality()]

@@ -8,7 +8,6 @@ The following functions give you access to view and modify data in the
 database.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "addDatasource",
@@ -32,15 +31,17 @@ __all__ = [
     "runPrepQuery",
     "runPrepUpdate",
     "runQuery",
-    "runScalarPrepQuery",
-    "runScalarQuery",
     "runSFPrepUpdate",
     "runSFUpdateQuery",
+    "runScalarPrepQuery",
+    "runScalarQuery",
     "runUpdateQuery",
     "setDatasourceConnectURL",
     "setDatasourceEnabled",
     "setDatasourceMaxConnections",
 ]
+
+import pprint
 
 from java.lang import Object
 from javax.swing import JComponent
@@ -107,7 +108,7 @@ class SProcCall(Object):
             Dataset: The dataset that is the resulting data of the
                 stored procedure, if any.
         """
-        print(self)
+        pprint.pprint(self)
         return Dataset()
 
     def getUpdateCount(self):
@@ -118,7 +119,7 @@ class SProcCall(Object):
              int: The number of rows modified by the stored procedure,
                 or -1 if not applicable.
         """
-        print(self)
+        pprint.pprint(self)
         return 1
 
     def getReturnValue(self):
@@ -129,7 +130,7 @@ class SProcCall(Object):
              int: The return value, if registerReturnParam had been
                 called.
         """
-        print(self)
+        pprint.pprint(self)
         return 0
 
     def getOutParamValue(self, param):
@@ -143,7 +144,7 @@ class SProcCall(Object):
             object: The value of the previously registered
                 out-parameter.
         """
-        print(self, param)
+        pprint.pprint([self, param])
         return 0
 
     def registerInParam(self, param, typeCode, value):
@@ -155,7 +156,7 @@ class SProcCall(Object):
             typeCode (int): Type code constant.
             value (object): Value of type typeCode.
         """
-        print(self, param, typeCode, value)
+        pprint.pprint([self, param, typeCode, value])
 
     def registerOutParam(self, param, typeCode):
         """Registers an out parameter for the stored procedure.
@@ -165,7 +166,7 @@ class SProcCall(Object):
                 (str).
             typeCode (int): Type code constant.
         """
-        print(self, param, typeCode)
+        pprint.pprint([self, param, typeCode])
 
     def registerReturnParam(self, typeCode):
         """Use this function to specify the datatype of the returned
@@ -174,7 +175,7 @@ class SProcCall(Object):
         Args:
             typeCode (int): Type code constant.
         """
-        print(self, typeCode)
+        pprint.pprint([self, typeCode])
 
 
 def addDatasource(
@@ -203,16 +204,18 @@ def addDatasource(
             JDBC driver.
         maxConnections (int): Default is 8.
     """
-    print(
-        jdbcDriver,
-        name,
-        description,
-        connectUrl,
-        username,
-        password,
-        props,
-        validationQuery,
-        maxConnections,
+    pprint.pprint(
+        [
+            jdbcDriver,
+            name,
+            description,
+            connectUrl,
+            username,
+            password,
+            props,
+            validationQuery,
+            maxConnections,
+        ]
     )
 
 
@@ -256,7 +259,7 @@ def beginTransaction(database=None, isolationLevel=None, timeout=None):
             argument for all other calls to have them execute against
             this transaction.
     """
-    print(database, isolationLevel, timeout)
+    pprint.pprint([database, isolationLevel, timeout])
     return "transaction_id"
 
 
@@ -276,7 +279,7 @@ def clearAllNamedQueryCaches(*args):
     Args:
         *args: Variable length argument list.
     """
-    print(args)
+    pprint.pprint(args)
 
 
 def clearNamedQueryCache(*args):
@@ -295,7 +298,7 @@ def clearNamedQueryCache(*args):
     Args:
         *args: Variable length argument list.
     """
-    print(args)
+    pprint.pprint(args)
 
 
 def closeTransaction(tx):
@@ -308,7 +311,7 @@ def closeTransaction(tx):
     Args:
         tx (str): The transaction ID.
     """
-    print(tx)
+    pprint.pprint(tx)
 
 
 def commitTransaction(tx):
@@ -324,7 +327,7 @@ def commitTransaction(tx):
     Args:
         tx (str): The transaction ID.
     """
-    print(tx)
+    pprint.pprint(tx)
 
 
 def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
@@ -348,7 +351,7 @@ def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
             configured and then used as the argument to
             system.db.execSProcCall.
     """
-    print(procedureName, database, tx, skipAudit)
+    pprint.pprint([procedureName, database, tx, skipAudit])
     return SProcCall()
 
 
@@ -365,7 +368,7 @@ def dateFormat(date, formatPattern):
         str: The date as a string formatted according to the format
             pattern.
     """
-    print(date, formatPattern)
+    pprint.pprint([date, formatPattern])
     return ""
 
 
@@ -381,7 +384,7 @@ def execSProcCall(callContext):
             configured. Use system.db.createSProcCall to create a call
             context.
     """
-    print(callContext)
+    pprint.pprint(callContext)
 
 
 def exportCSV(filename, showHeaders, dataset):
@@ -398,7 +401,7 @@ def exportCSV(filename, showHeaders, dataset):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    print(filename, showHeaders, dataset)
+    pprint.pprint([filename, showHeaders, dataset])
 
 
 def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
@@ -420,7 +423,7 @@ def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    print(filename, showHeaders, dataset, nullsEmpty)
+    pprint.pprint([filename, showHeaders, dataset, nullsEmpty])
 
 
 def exportHTML(filename, showHeaders, dataset, title):
@@ -439,7 +442,7 @@ def exportHTML(filename, showHeaders, dataset, title):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    print(filename, showHeaders, dataset, title)
+    pprint.pprint([filename, showHeaders, dataset, title])
 
 
 def getConnectionInfo(name=""):
@@ -457,7 +460,7 @@ def getConnectionInfo(name=""):
             database connection, or an empty dataset if the connection
             wasn't found.
     """
-    print(name)
+    pprint.pprint(name)
     return Dataset()
 
 
@@ -494,7 +497,7 @@ def refresh(component, propertyName):
         bool: True (1) if the property was found and refreshed
             successfully.
     """
-    print(component, propertyName)
+    pprint.pprint([component, propertyName])
     return True
 
 
@@ -504,7 +507,7 @@ def removeDatasource(name):
     Args:
         name (str): The name of the database connection in Ignition.
     """
-    print(name)
+    pprint.pprint(name)
 
 
 def rollbackTransaction(tx):
@@ -518,7 +521,7 @@ def rollbackTransaction(tx):
     Args:
         tx (str): The transaction ID.
     """
-    print(tx)
+    pprint.pprint(tx)
 
 
 def runNamedQuery(*args):
@@ -544,7 +547,7 @@ def runNamedQuery(*args):
             Query, or an object matching the datatype of the value
             returned by a Scalar Query.
     """
-    print(args)
+    pprint.pprint(args)
 
 
 def runPrepQuery(query, args, database="", tx=None):
@@ -580,7 +583,7 @@ def runPrepQuery(query, args, database="", tx=None):
     Returns:
         PyDataSet: The results of the query as a PyDataSet.
     """
-    print(query, args, database, tx)
+    pprint.pprint([query, args, database, tx])
     return PyDataSet()
 
 
@@ -624,7 +627,7 @@ def runPrepUpdate(
             that was generated, depending on the value of the getKey
             flag.
     """
-    print(query, args, database, tx, getKey, skipAudit)
+    pprint.pprint([query, args, database, tx, getKey, skipAudit])
     return 1
 
 
@@ -648,59 +651,8 @@ def runQuery(query, database="", tx=None):
     Returns:
         PyDataSet: The results of the query as a PyDataSet.
     """
-    print(query, database, tx)
+    pprint.pprint([query, database, tx])
     return PyDataSet()
-
-
-def runScalarPrepQuery(query, args, database="", tx=None):
-    """Runs a prepared statement against a database connection just like
-    the runPrepQuery function, but only returns the value from the first
-    row and column.
-
-    If no results are returned from the query, the special value None is
-    returned.
-
-    Args:
-        query (str): A SQL query (typically a SELECT) to run as a
-            prepared statement with placeholders (?) denoting where the
-            arguments go, that should be designed to return one row and
-            one column.
-        args (list[object]): A list of arguments. Will be used in order
-            to match each placeholder (?) found in the query.
-        database (str): The name of the database connection to execute
-            against. If omitted or "", the project's default database
-            connection will be used. Optional.
-        tx (str): A transaction identifier. If omitted, the query will
-            be executed in its own transaction.
-
-    Returns:
-         object: The value from the first row and first column of the
-            results. Returns None if no rows were returned.
-    """
-    print(query, args, database, tx)
-
-
-def runScalarQuery(query, database, tx):
-    """Runs a query against a database connection just like the runQuery
-    function, but only returns the value from the first row and column.
-
-    If no results are returned from the query, the special value None is
-    returned.
-
-    Args:
-        query (str): A SQL query that should be designed to return one
-            row and one column.
-        database (str): The name of the database connection to execute
-            against. If omitted or "", the project's default database
-            connection will be used. Optional.
-        tx (str): A transaction identifier. If omitted, the query will
-            be executed in its own transaction.
-
-    Returns:
-         object: The value from the first row and first column of the
-            results. Returns None if no rows were returned.
-    """
-    print(query, database, tx)
 
 
 def runSFPrepUpdate(query, args, datasources):
@@ -728,7 +680,7 @@ def runSFPrepUpdate(query, args, datasources):
         bool: Returns True if successfully sent to store-and-forward
             system.
     """
-    print(query, args, datasources)
+    pprint.pprint([query, args, datasources])
     return True
 
 
@@ -745,8 +697,59 @@ def runSFUpdateQuery(query, datasources):
     Returns:
         bool: Returns True if successful and False if not.
     """
-    print(query, datasources)
+    pprint.pprint([query, datasources])
     return True
+
+
+def runScalarPrepQuery(query, args, database="", tx=None):
+    """Runs a prepared statement against a database connection just like
+    the runPrepQuery function, but only returns the value from the first
+    row and column.
+
+    If no results are returned from the query, the special value None is
+    returned.
+
+    Args:
+        query (str): A SQL query (typically a SELECT) to run as a
+            prepared statement with placeholders (?) denoting where the
+            arguments go, that should be designed to return one row and
+            one column.
+        args (list[object]): A list of arguments. Will be used in order
+            to match each placeholder (?) found in the query.
+        database (str): The name of the database connection to execute
+            against. If omitted or "", the project's default database
+            connection will be used. Optional.
+        tx (str): A transaction identifier. If omitted, the query will
+            be executed in its own transaction.
+
+    Returns:
+         object: The value from the first row and first column of the
+            results. Returns None if no rows were returned.
+    """
+    pprint.pprint([query, args, database, tx])
+
+
+def runScalarQuery(query, database, tx):
+    """Runs a query against a database connection just like the runQuery
+    function, but only returns the value from the first row and column.
+
+    If no results are returned from the query, the special value None is
+    returned.
+
+    Args:
+        query (str): A SQL query that should be designed to return one
+            row and one column.
+        database (str): The name of the database connection to execute
+            against. If omitted or "", the project's default database
+            connection will be used. Optional.
+        tx (str): A transaction identifier. If omitted, the query will
+            be executed in its own transaction.
+
+    Returns:
+         object: The value from the first row and first column of the
+            results. Returns None if no rows were returned.
+    """
+    pprint.pprint([query, database, tx])
 
 
 def runUpdateQuery(query, database="", tx=None, getKey=False, skipAudit=True):
@@ -783,7 +786,7 @@ def runUpdateQuery(query, database="", tx=None, getKey=False, skipAudit=True):
             that was generated, depending on the value of the getKey
             flag.
     """
-    print(query, database, tx, getKey, skipAudit)
+    pprint.pprint([query, database, tx, getKey, skipAudit])
     return 1
 
 
@@ -794,7 +797,7 @@ def setDatasourceConnectURL(name, connectUrl):
         name (str): The name of the database connection in Ignition.
         connectUrl (str): The new connect URL.
     """
-    print(name, connectUrl)
+    pprint.pprint([name, connectUrl])
 
 
 def setDatasourceEnabled(name, enabled):
@@ -805,7 +808,7 @@ def setDatasourceEnabled(name, enabled):
         enabled (bool): True if the connection should be enabled, False
             otherwise.
     """
-    print(name, enabled)
+    pprint.pprint([name, enabled])
 
 
 def setDatasourceMaxConnections(name, maxConnections):
@@ -816,4 +819,4 @@ def setDatasourceMaxConnections(name, maxConnections):
         name (str): The name of the database connection in Ignition.
         maxConnections (int): The number of maximum connections allowed.
     """
-    print(name, maxConnections)
+    pprint.pprint([name, maxConnections])

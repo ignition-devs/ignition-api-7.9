@@ -8,7 +8,6 @@ The following functions give you access to view and interact with the
 Alarm system in Ignition.
 """
 
-from __future__ import print_function
 
 __all__ = [
     "acknowledge",
@@ -23,14 +22,14 @@ __all__ = [
     "unshelve",
 ]
 
-from abc import ABCMeta, abstractmethod
+import pprint
 
 import system.date
 from java.lang import Object
 from java.util import Date
 
 
-class AlarmQueryResults(ABCMeta):
+class AlarmQueryResults(object):
     """This is the result of a query against the alarming system, for
     both status and history.
 
@@ -39,19 +38,13 @@ class AlarmQueryResults(ABCMeta):
     dataset.
     """
 
-    def __new__(mcs, *args, **kwargs):
+    def getAssociatedDate(self, uuid):
         pass
 
-    @abstractmethod
-    def getAssociatedDate(cls, uuid):
+    def getDataSet(self):
         pass
 
-    @abstractmethod
-    def getDataSet(cls):
-        pass
-
-    @abstractmethod
-    def getEvent(cls, uuid):
+    def getEvent(self, uuid):
         pass
 
 
@@ -101,7 +94,7 @@ def acknowledge(alarmIds, notes=None, username=None):
             scoped script. This parameter should be omitted from any
             client-based scripts. Optional.
     """
-    print(alarmIds, notes, username)
+    pprint.pprint([alarmIds, notes, username])
 
 
 def cancel(alarmIds):
@@ -115,7 +108,7 @@ def cancel(alarmIds):
     Args:
         alarmIds (list[str]): List of alarm event ids (uuids) to cancel.
     """
-    print(alarmIds)
+    pprint.pprint(alarmIds)
 
 
 def createRoster(name, description=""):
@@ -127,7 +120,7 @@ def createRoster(name, description=""):
         description (str): A description for the new roster. Required,
             but can be blank. Optional.
     """
-    print(name, description)
+    pprint.pprint([name, description])
 
 
 def getRosters():
@@ -139,7 +132,7 @@ def getRosters():
             usernames in the roster. The List of usernames may be empty
             if no users have been added to the roster.
     """
-    return dict()
+    return {}
 
 
 def getShelvedPaths():
@@ -247,21 +240,23 @@ def queryJournal(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    print(
-        startDate,
-        endDate,
-        journalName,
-        priority,
-        state,
-        path,
-        source,
-        displaypath,
-        all_properties,
-        any_properties,
-        defined,
-        includeData,
-        includeSystem,
-        isSystem,
+    pprint.pprint(
+        [
+            startDate,
+            endDate,
+            journalName,
+            priority,
+            state,
+            path,
+            source,
+            displaypath,
+            all_properties,
+            any_properties,
+            defined,
+            includeData,
+            includeSystem,
+            isSystem,
+        ]
     )
     return AlarmQueryResults()
 
@@ -327,16 +322,18 @@ def queryStatus(
             alarm), Source Path, Display Path, Event Time, State (as an
             integer), and Priority (as an integer).
     """
-    print(
-        priority,
-        state,
-        path,
-        source,
-        displaypath,
-        all_properties,
-        any_properties,
-        defined,
-        includeShelved,
+    pprint.pprint(
+        [
+            priority,
+            state,
+            path,
+            source,
+            displaypath,
+            all_properties,
+            any_properties,
+            defined,
+            includeShelved,
+        ]
     )
     return AlarmQueryResults()
 
@@ -362,7 +359,7 @@ def shelve(path, timeoutSeconds, timeoutMinutes):
             alarms for, specified in minutes. 0 indicates that matching
             alarm events should now be allowed to pass.
     """
-    print(path, timeoutSeconds, timeoutMinutes)
+    pprint.pprint([path, timeoutSeconds, timeoutMinutes])
 
 
 def unshelve(path):
@@ -373,4 +370,4 @@ def unshelve(path):
             If a path ends in "/*", the results will include anything
             below that path.
     """
-    print(path)
+    pprint.pprint(path)
