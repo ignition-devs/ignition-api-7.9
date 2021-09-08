@@ -27,10 +27,6 @@ Before you begin, ensure you have met the following requirements:
 * You have installed Python 2.5.4 ([download here](https://www.python.org/downloads/release/python-254/))
 * You are familiar with [Ignition 7.9 Scripting Functions](https://docs.inductiveautomation.com/display/DOC79/Scripting+Functions)
 
-## Using Ignition
-
-To use Ignition, download the code targeted to your desired version from the [releases page](https://github.com/thecesrom/Ignition/releases) and add it as a dependency to your scripting project.
-
 ## Packages
 
 Ignition consists of the following packages:
@@ -45,6 +41,41 @@ These are libraries for some Java packages and functions that are imported in `s
 ### system
 
 Is a package that includes all Ignition Scripting Functions.
+
+## Installation and usage
+
+To use Ignition, download the code targeted to your desired version from the [releases page](https://github.com/thecesrom/Ignition/releases) and add it as a dependency to your scripting project.
+
+Also, once you've downloaded and unzipped the source code you may install it using the `setup.py`:
+
+```bash
+$ cd ~/Downloads/v7.9.X
+$ python setup.py install --record files.txt 
+```
+
+This will install it as package to your Python installation, which will allow you to call Ignition Scripting functions from Python's REPL.
+
+```bash
+$ python
+Python 2.5.6 (r256, Sep  5 2021, 17:50:57) 
+[GCC Apple LLVM 12.0.0 (clang-1200.0.32.29)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import system.gui
+>>> print system.gui.__doc__
+GUI Functions.
+
+The following functions allow you to control windows and create popup
+interfaces.
+>>> system.gui.warningBox("This one is a warning.")
+['This one is a warning.', 'Warning']
+>>> quit()
+```
+
+And to uninstall:
+```bash
+$ cd ~/Downloads/v7.9.X
+$ cat files.txt | xargs rm -rf
+```
 
 ## Contributing to Ignition
 
