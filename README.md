@@ -24,7 +24,7 @@ If you can't find it, feel free to submit your request on our [Discussions](http
 
 Before you begin, ensure you have met the following requirements:
 
-* You have installed Python 2.7.18 ([download here](https://www.python.org/downloads/release/python-2718/))
+* You have installed Python 2.5.4 ([download here](https://www.python.org/downloads/release/python-254/))
 * You are familiar with [Ignition 7.9 Scripting Functions](https://docs.inductiveautomation.com/display/DOC79/Scripting+Functions)
 
 ## Using Ignition
