@@ -56,11 +56,6 @@ import platform
 import pprint
 import sys
 
-try:
-    import winsound
-except ImportError:
-    pass
-
 import system.__version__ as version
 import system.date
 from java.awt import Toolkit
@@ -138,7 +133,12 @@ def beep():
         Toolkit.getDefaultToolkit().beep()
     elif sys.platform in platforms:
         if platforms[sys.platform] == "Windows":
-            winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+            try:
+                import winsound
+
+                winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+            except ImportError:
+                pprint.pprint("Beep!")
         elif platforms[sys.platform] == "macOS":
             os.system('say "beep"')
     else:
