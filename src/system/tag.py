@@ -7,7 +7,6 @@
 The following functions give you access to interact with Ignition Tags.
 """
 
-
 __all__ = [
     "addTag",
     "browseConfiguration",
@@ -40,198 +39,16 @@ __all__ = [
 import pprint
 
 import system.date
-from java.lang import Object
+from com.inductiveautomation.ignition.common.browsing import BrowseResults
+from com.inductiveautomation.ignition.common.model.values import QualifiedValue
+from com.inductiveautomation.ignition.common.script.builtin.ialabs import (
+    BrowseTag,
+    TagAlarmDefinition,
+)
+from com.inductiveautomation.ignition.common.tags.config import (
+    TagConfiguration,
+)
 from java.util import Date
-
-
-class BrowseResults(Object):
-    """BrowseResults class."""
-
-    def getContinuationPoint(self):
-        pass
-
-    def getResultQuality(self):
-        pass
-
-    def getResults(self):
-        pass
-
-    def getReturnedSize(self):
-        pass
-
-    def getTotalAvailableSize(self):
-        pass
-
-    def setContinuationPoint(self, continuationPoint):
-        pass
-
-    def setResultQuality(self, value):
-        pass
-
-    def setResults(self, results):
-        pass
-
-    def setTotalAvailableResults(self, totalAvailableResults):
-        pass
-
-
-class QualifiedValue(object):
-    """Represents a value with a DataQuality & timestamp attached to
-    it.
-    """
-
-    def __init__(self, value=None, quality=None, timestamp=None):
-        self._value = value
-        self._quality = quality
-        self._timestamp = timestamp
-
-    @property
-    def value(self):
-        return str(self._value)
-
-    def derive(self, diagnosticMessage):
-        pass
-
-    def equals(self, value, includeTimestamp):
-        pass
-
-    def getQuality(self):
-        pass
-
-    def getTimestamp(self):
-        pass
-
-    def getValue(self):
-        pass
-
-
-class TagAlarmProperty(Object):
-    """AlarmProperty class."""
-
-    def __init__(self, property=None, value=None, type=None):
-        self.property = property
-        self.type = type
-        self.value = value
-
-
-class BrowseTag(Object):
-    """BrowseTag class."""
-
-    def __init__(
-        self,
-        name=None,
-        path=None,
-        fullPath=None,
-        type=None,
-        valueSource=None,
-        dataType=None,
-    ):
-        super(BrowseTag, self).__init__()
-        self.name = name
-        self.path = path
-        self.fullPath = fullPath
-        self.type = type
-        self.valueSource = valueSource
-        self.dataType = dataType
-
-    def getDataType(self):
-        return self.dataType
-
-    def getFullPath(self):
-        return self.fullPath
-
-    def getPath(self):
-        return self.path
-
-    def getTagType(self):
-        return self.type
-
-    def getValueSource(self):
-        return self.valueSource
-
-    def isDB(self):
-        pprint.pprint(self)
-        return True
-
-    def isExpression(self):
-        pprint.pprint(self)
-        return True
-
-    def isFolder(self):
-        pprint.pprint(self)
-        return True
-
-    def isMemory(self):
-        pprint.pprint(self)
-        return True
-
-    def isOPC(self):
-        pprint.pprint(self)
-        return True
-
-    def isQuery(self):
-        pprint.pprint(self)
-        return True
-
-    def isUDT(self):
-        pprint.pprint(self)
-        return True
-
-    def toString(self):
-        pass
-
-
-class Results(object):
-    """Results class."""
-
-    def getPath(self):
-        pass
-
-    def getType(self):
-        pass
-
-    def hasChildren(self):
-        pass
-
-
-class TagAlarmDefinition(Object):
-    """TagAlarmDefinition class."""
-
-    def __init__(self, alarm, alarmProperties):
-        self.alarm = alarm
-        self.alarmProperties = alarmProperties
-
-    def getAlarmProperties(self):
-        print(self)
-        return TagAlarmProperty()
-
-
-class TagConfiguration(object):
-    """TagConfiguration class."""
-
-    def getAlarms(self):
-        pass
-
-    def getFolderPath(self):
-        pass
-
-    def getFullPath(self):
-        pass
-
-    def getName(self):
-        pass
-
-    def getParameters(self):
-        pass
-
-    def getProperties(self):
-        pass
-
-    def getSubTags(self):
-        pass
-
-    def getTagType(self):
-        pass
 
 
 def addTag(

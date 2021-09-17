@@ -7,7 +7,6 @@
 The following functions assist with running statistical analysis.
 """
 
-
 __all__ = [
     "geometricMean",
     "kurtosis",
@@ -32,12 +31,6 @@ __all__ = [
 
 import __builtin__ as builtins
 import pprint
-
-from java.lang import Exception as JException
-
-
-class DimensionMismatchException(JException):
-    pass
 
 
 def geometricMean(values):
@@ -153,8 +146,7 @@ def meanDifference(values1, values2):
         DimensionMismatchException: If the two sequences have different
             lengths.
     """
-    if len(values1) != len(values2):
-        raise DimensionMismatchException()
+    pprint.pprint([values1, values2])
 
 
 def median(values):
@@ -396,8 +388,7 @@ def sumDifference(values1, values2):
         DimensionMismatchException: If the two sequences have different
             lengths.
     """
-    if len(values1) != len(values2):
-        raise DimensionMismatchException()
+    pprint.pprint([values1, values2])
 
 
 def sumLog(values):

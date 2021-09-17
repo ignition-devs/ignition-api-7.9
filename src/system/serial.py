@@ -8,7 +8,6 @@ The following functions give you access to read and write through serial
 ports.
 """
 
-
 __all__ = [
     "closeSerialPort",
     "configureSerialPort",
@@ -23,6 +22,10 @@ __all__ = [
 ]
 
 import pprint
+
+from com.inductiveautomation.ignition.modules.serial.scripting import (
+    SerialScriptModule,
+)
 
 # Bit rate constants.
 BIT_RATE_110 = 110
@@ -69,31 +72,6 @@ PARITY_NONE = 0
 # Stop bits constants.
 STOP_BITS_1 = 1
 STOP_BITS_2 = 3
-
-
-class SerialConfigurator(object):
-    """Serial Configurator class."""
-
-    def setBitRate(self, value):
-        pass
-
-    def setDataBits(self, value):
-        pass
-
-    def setFlowControl(self, value):
-        pass
-
-    def setHandshake(self, value):
-        pass
-
-    def setHardwareFlowControl(self, value):
-        pass
-
-    def setParity(self, value):
-        pass
-
-    def setStopBits(self, value):
-        pass
 
 
 def closeSerialPort(port):
@@ -161,7 +139,7 @@ def configureSerialPort(
             stopBits,
         ]
     )
-    return SerialConfigurator()
+    return SerialScriptModule.SerialConfigurator()
 
 
 def openSerialPort(port):

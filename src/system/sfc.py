@@ -8,7 +8,6 @@ The following functions give you access to interact with the SFCs in the
 Gateway.
 """
 
-
 __all__ = [
     "cancelChart",
     "getRunningCharts",
@@ -23,26 +22,8 @@ __all__ = [
 
 import pprint
 
-from system.dataset import Dataset
-
-
-class PyChartScope(object):
-    """This class represents any "scope" in the SFC system, and is
-    fundamentally just an observable dictionary.
-
-    Despite its name, it is not limited to chart scope. This class
-    notifies listeners when values are changed, and wraps any
-    dictionaries assigned to it as PyChartScopes as well.
-    """
-
-    def __set__(self, instance, value):
-        pass
-
-    def __setattr__(self, key, value):
-        pass
-
-    def __setitem__(self, key, value):
-        pass
+from com.inductiveautomation.ignition.common import Dataset
+from com.inductiveautomation.sfc.api import PyChartScope
 
 
 def cancelChart(instanceId):

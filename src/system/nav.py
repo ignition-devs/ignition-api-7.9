@@ -8,7 +8,6 @@ The following functions allow you to open and close windows in the
 client.
 """
 
-
 __all__ = [
     "centerWindow",
     "closeParentWindow",
@@ -26,79 +25,11 @@ __all__ = [
 
 import pprint
 
+from com.inductiveautomation.factorypmi.application import FPMIWindow
+from com.inductiveautomation.factorypmi.application.script.builtin import (
+    INavUtilities,
+)
 from java.util import EventObject
-from javax.swing import JInternalFrame
-
-
-class FPMIWindow(JInternalFrame):
-    """FPMIWindow object."""
-
-    # Fields.
-    CACHE_ALWAYS = 2
-    CACHE_AUTO = 0
-    CACHE_NEVER = 1
-    DOCK_EAST = 2
-    DOCK_FLOAT = 0
-    DOCK_NORTH = 2
-    DOCK_SOUTH = 4
-    DOCK_WEST = 3
-    PARENT_WINDOW_NAME = "_parent"
-    SHOW_ALWAYS = 0
-    SHOW_NEVER = 1
-    SHOW_MAXIMIZED = 2
-
-    _path = "Path/To/Window"
-
-    def __init__(self, name):
-        self.name = name
-
-    def getPath(self):
-        return self._path
-
-    def getRootContainer(self):
-        pprint.pprint(self)
-
-
-class INavUtilities(object):
-    """Parent interface to coordinate the functions between NavUtilities
-    and NavUtilitiesDispatcher.
-    """
-
-    def centerWindow(self, arg):
-        pass
-
-    def closeParentWindow(self, event):
-        pass
-
-    def closeWindow(self, arg):
-        pass
-
-    def getCurrentWindow(self):
-        pass
-
-    def goBack(self):
-        pass
-
-    def goForward(self):
-        pass
-
-    def goHome(self):
-        pass
-
-    def openWindow(self, *args):
-        pass
-
-    def openWindowImpl(self, path, params, openAdditional):
-        pass
-
-    def openWindowInstance(self, *args):
-        pass
-
-    def swapTo(self, *args):
-        pass
-
-    def swapWindow(self, *args):
-        pass
 
 
 def centerWindow(arg):

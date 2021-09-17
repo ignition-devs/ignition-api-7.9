@@ -8,47 +8,14 @@ The following functions give you access to view EAM information from the
 Gateway.
 """
 
-
 __all__ = ["getGroups", "queryAgentHistory", "queryAgentStatus", "runTask"]
 
 import pprint
 
 import system.date
-from java.lang import Object
+from com.inductiveautomation.ignition.common import Dataset
+from com.inductiveautomation.ignition.common.messages import UIResponse
 from java.util import Date, Locale
-from system.dataset import Dataset
-
-
-class UIResponse(Object):
-    def __init__(self, locale):
-        self.locale = locale
-
-    def attempt(self, method):
-        pass
-
-    def error(self, message, args):
-        pass
-
-    def getErrors(self):
-        pass
-
-    def getInfos(self):
-        pass
-
-    def getLocale(self):
-        pass
-
-    def getWarns(self):
-        pass
-
-    def info(self, message, args):
-        pass
-
-    def warn(self, message, args):
-        pass
-
-    def wrap(self, locale, fx):
-        pass
 
 
 def getGroups():

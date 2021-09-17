@@ -75,9 +75,9 @@ confidence=
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
 disable=deprecated-class,
-        duplicate-code,
         missing-class-docstring,
         missing-function-docstring,
+        missing-module-docstring,
         no-member,
         no-name-in-module,
         redefined-builtin,
@@ -316,7 +316,7 @@ ignore-imports=no
 ignore-signatures=no
 
 # Minimum lines number of a similarity.
-min-similarity-lines=4
+min-similarity-lines=10
 
 
 [BASIC]

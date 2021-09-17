@@ -20,7 +20,7 @@ __all__ = [
 
 import pprint
 
-from system.dataset import Dataset
+from com.inductiveautomation.ignition.common import Dataset
 
 
 def getAccounts():

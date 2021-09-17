@@ -8,7 +8,6 @@ The following functions give you access to view and edit users in the
 Gateway.
 """
 
-
 __all__ = [
     "addHoliday",
     "addRole",
@@ -35,178 +34,13 @@ __all__ = [
 import pprint
 
 import system.date
-from java.lang import Object
-from java.util import Date, Locale
-
-
-class AbstractScheduleModel(Object):
-    def getScheduleForDay(self, cal):
-        pass
-
-    def getType(self):
-        pass
-
-    def isObserveHolidays(self):
-        pass
-
-    def setObserveHolidays(self, observeHolidays):
-        pass
-
-
-class ContactInfo(Object):
-    def __init__(self, contactType=None, value=None):
-        super(ContactInfo, self).__init__()
-        self.contactType = contactType
-        self.value = value
-
-
-class HolidayModel(Object):
-    """HolidayModel object."""
-
-    def __init__(self, name, date, repeatAnnually):
-        """Constructs a new HolidayModel.
-
-        Args:
-            name (str): The name.
-            date (Date): The date.
-            repeatAnnually (bool): Repeat annually.
-        """
-        self.name = name
-        self.date = date
-        self.repeatAnnually = repeatAnnually
-
-    def getDate(self):
-        return self.date
-
-    def getName(self):
-        return self.name
-
-    def isRepeatedAnnually(self):
-        return self.repeatAnnually
-
-
-class ScheduleModel(Object):
-    pass
-
-
-class UIResponse(Object):
-    def __init__(self, locale):
-        self.locale = locale
-
-    def attempt(self, method):
-        pass
-
-    def error(self, message, args):
-        pass
-
-    def getErrors(self):
-        pass
-
-    def getInfos(self):
-        pass
-
-    def getLocale(self):
-        pass
-
-    def getWarns(self):
-        pass
-
-    def info(self, message, args):
-        pass
-
-    def warn(self, message, args):
-        pass
-
-    def wrap(self, locale, fx):
-        pass
-
-
-class User(object):
-    Username = "johdoe"
-    FirstName = "John"
-    LastName = "Doe"
-    Email = "johdoe@mycompany.com"
-    Notes = "These are some notes."
-    Roles = ["Administrator", "Developer"]
-    Schedule = "Always"
-    Language = "en_US"
-
-    def get(self, prop):
-        """Returns a the value of the requested item.
-
-        Args:
-            prop (User property): The user property to retrieve.
-
-        Returns:
-            str: The value of the requested property.
-        """
-        pprint.pprint(self)
-        return prop
-
-    def getContactInfo(self):
-        """Returns a sequence of ContactInfo objects.
-
-        Each of these objects will have a contactType and value property
-        representing the contact information, both strings.
-
-        Returns:
-            list[ContactInfo]: A sequence of ContactInfo objects.
-        """
-        pprint.pprint(self)
-        ci_email = ContactInfo("email", "johdoe@mycompany.com")
-        ci_phone = ContactInfo("phone", "+1 5551324567")
-        ci_sms = ContactInfo("sms", "+1 5557654321")
-        return [ci_email, ci_phone, ci_sms]
-
-    def getId(self):
-        """Returns the internal identifier object that the backing user
-        source needs to identify this user.
-
-        Returns:
-            str: The internal identifier object that the backing user
-                source needs to identify this user.
-        """
-        pprint.pprint(self)
-        return 1
-
-    def getOrDefault(self, prop):
-        """Returns a default value if the requested item is not
-        present.
-
-        Args:
-            prop (Property): The user property to retrieve.
-
-        Returns:
-            object: The value of the requested property.
-        """
-        pprint.pprint([self, prop])
-
-    def getOrElse(self, prop, value):
-        """Get the value for a given Property, or else fall back to
-        value if it's not present.
-
-        Args:
-            prop (Property): The Property for which a value is to be
-                retrieved.
-            value (object): The value to default to if property isn't
-                present.
-
-        Returns:
-            object: The value of property if present, value if not.
-        """
-        pprint.pprint([self, prop])
-        return value
-
-    def getRoles(self):
-        """Returns a sequence of strings representing the roles that
-        this user belongs to.
-
-        Returns:
-             list[str]: Sequence of strings representing the roles that
-                this user belongs to.
-        """
-        pprint.pprint(self)
-        return User.Roles
+from com.inductiveautomation.ignition.client.util.gui.scheduling import (
+    ScheduleModel,
+)
+from com.inductiveautomation.ignition.common.messages import UIResponse
+from com.inductiveautomation.ignition.common.user import User
+from com.inductiveautomation.ignition.common.user.schedule import HolidayModel
+from java.util import Locale
 
 
 def addHoliday(holiday):

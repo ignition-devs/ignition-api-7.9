@@ -8,7 +8,6 @@ The following functions give you access to view various Gateway and
 Client data, as well as interact with other various systems.
 """
 
-
 __all__ = [
     "beep",
     "execute",
@@ -58,66 +57,15 @@ import sys
 
 import system.__version__ as version
 import system.date
+from com.inductiveautomation.ignition.common import Dataset
+from com.inductiveautomation.ignition.common.script.builtin import (
+    DatasetUtilities,
+)
+from com.inductiveautomation.ignition.common.script.message import Request
+from com.inductiveautomation.ignition.common.util import LoggerEx
 from java.awt import Toolkit
-from java.lang import Object, Thread
+from java.lang import Thread
 from java.util import Date
-from system.dataset import Dataset, PyDataSet
-
-
-class LoggerEx(Object):
-    """This class is a wrapper around a logger which provides additional
-    useful tools. To create one, use the newBuilder() function and
-    configure the builder.
-    """
-
-    pass
-
-
-class Request(Object):
-    def block(self):
-        pass
-
-    def cancel(self):
-        pass
-
-    def checkTimeout(self):
-        pass
-
-    def compose(self, requestWatchers):
-        pass
-
-    def dispatchFunc(self):
-        pass
-
-    def finishExceptionally(self, e):
-        pass
-
-    def finishSuccessfully(self, value):
-        pass
-
-    def get(self):
-        pass
-
-    def getError(self):
-        pass
-
-    def getLongId(self):
-        pass
-
-    def internalOperationCompleted(self):
-        pass
-
-    def internalWait(self):
-        pass
-
-    def onError(self, func):
-        pass
-
-    def onSuccess(self, func):
-        pass
-
-    def startTime(self):
-        pass
 
 
 def beep():
@@ -423,7 +371,7 @@ def getSessionInfo(usernameFilter=None, projectFilter=None):
             sessions.
     """
     pprint.pprint([usernameFilter, projectFilter])
-    return PyDataSet()
+    return DatasetUtilities.PyDataSet()
 
 
 def getSystemFlags():

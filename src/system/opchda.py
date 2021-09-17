@@ -8,7 +8,6 @@ The following functions give you access to interact with the HDA types
 of OPC servers.
 """
 
-
 __all__ = [
     "browse",
     "getAggregates",
@@ -25,71 +24,9 @@ __all__ = [
 
 import pprint
 
-from java.lang import Object
+from com.inductiveautomation.ignition.common.browsing import BrowseResults
+from com.inductiveautomation.ignition.common.sqltags.history import Aggregate
 from java.util import Date
-
-
-class Aggregate(object):
-    """This interface defines an aggregation function used by the
-    history query system.
-
-    Different types of history providers may support different Aggregate
-    functions, and may define new types of aggregates. The name and
-    description are for informational purposes, aggregates are only
-    identified by their id (name and description should not be taken
-    into account).
-
-    The general implementation class is AggregateInfo. Common or "well
-    known" aggregates are defined in the AggregationMode enum. The
-    system works like this for historical reasons, previous to 7.7 only
-    the AggregationMode aggregates were used. After, with the
-    introduction of history providers as an extension point, new
-    providers could define any aggregation function.
-    """
-
-    def getDesc(self):
-        pass
-
-    def getId(self):
-        pass
-
-    def getName(self):
-        pass
-
-
-class BrowseResults(Object):
-    """BrowseResults class."""
-
-    def getContinuationPoint(self):
-        pass
-
-    def getResultQuality(self):
-        pass
-
-    def getResults(self):
-        pass
-
-    def getReturnedSize(self):
-        pass
-
-    def getTotalAvailableSize(self):
-        pass
-
-    def setContinuationPoint(self, continuationPoint):
-        pass
-
-    def setResultQuality(self, value):
-        pass
-
-    def setResults(self, results):
-        pass
-
-    def setTotalAvailableResults(self, totalAvailableResults):
-        pass
-
-
-class ReadResult(Object):
-    pass
 
 
 def browse(root):
@@ -228,7 +165,7 @@ def readAttributes(serverName, itemId, attributeIds, startDate, endDate):
             QualifiedValues.
     """
     pprint.pprint([serverName, itemId, attributeIds, startDate, endDate])
-    return [ReadResult()]
+    return []
 
 
 def readProcessed(
@@ -272,7 +209,7 @@ def readProcessed(
             aggregates,
         ]
     )
-    return [ReadResult()]
+    return []
 
 
 def readRaw(
@@ -303,7 +240,7 @@ def readRaw(
     pprint.pprint(
         [serverName, itemIds, startDate, endDate, maxValues, boundingValues]
     )
-    return [ReadResult()]
+    return []
 
 
 def replace(serverName, itemId, value, date, quality):

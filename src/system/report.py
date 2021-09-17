@@ -17,8 +17,8 @@ __all__ = [
 
 import pprint
 
+from com.inductiveautomation.ignition.common import Dataset
 from java.lang import IllegalArgumentException
-from system.dataset import Dataset
 
 
 def executeAndDistribute(
