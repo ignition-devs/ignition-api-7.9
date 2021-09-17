@@ -4,6 +4,8 @@ __all__ = [
     "SystemUtilities",
 ]
 
+import pprint
+
 from com.inductiveautomation.ignition.common import Dataset
 from java.lang import Object
 from java.util import Locale
@@ -179,7 +181,7 @@ class SProcCall(Object):
             object: The value of the previously registered
                 out-parameter.
         """
-        print(self, param)
+        pprint.pprint([self, param])
         return 0
 
     def getProcedureName(self):
@@ -193,7 +195,7 @@ class SProcCall(Object):
             Dataset: The dataset that is the resulting data of the
                 stored procedure, if any.
         """
-        print(self)
+        pprint.pprint(self)
         return Dataset()
 
     def getReturnValue(self):
@@ -204,7 +206,7 @@ class SProcCall(Object):
              int: The return value, if registerReturnParam had been
                 called.
         """
-        print(self)
+        pprint.pprint(self)
         return 0
 
     def getTxId(self):
@@ -218,7 +220,7 @@ class SProcCall(Object):
              int: The number of rows modified by the stored procedure,
                 or -1 if not applicable.
         """
-        print(self)
+        pprint.pprint(self)
         return 1
 
     def isSkipAudit(self):
@@ -233,7 +235,7 @@ class SProcCall(Object):
             typeCode (int): Type code constant.
             value (object): Value of type typeCode.
         """
-        print(self, param, typeCode, value)
+        pprint.pprint([self, param, typeCode, value])
 
     def registerOutParam(self, param, typeCode):
         """Registers an out parameter for the stored procedure.
@@ -243,7 +245,7 @@ class SProcCall(Object):
                 (str).
             typeCode (int): Type code constant.
         """
-        print(self, param, typeCode)
+        pprint.pprint([self, param, typeCode])
 
     def registerReturnParam(self, typeCode):
         """Use this function to specify the datatype of the returned
@@ -252,7 +254,7 @@ class SProcCall(Object):
         Args:
             typeCode (int): Type code constant.
         """
-        print(self, typeCode)
+        pprint.pprint([self, typeCode])
 
     def setDatasource(self, datasource):
         pass

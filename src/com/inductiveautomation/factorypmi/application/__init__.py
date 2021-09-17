@@ -1,5 +1,7 @@
 __all__ = ["FPMIWindow"]
 
+import pprint
+
 from javax.swing import JInternalFrame
 
 
@@ -26,4 +28,4 @@ class FPMIWindow(JInternalFrame):
         return self._path
 
     def getRootContainer(self):
-        print(self)
+        pprint.pprint(self)

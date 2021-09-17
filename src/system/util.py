@@ -1,7 +1,3 @@
-# Copyright (C) 2018-2021
-# Author: Cesar Roman
-# Contact: cesar@thecesrom.dev
-
 """Utility Functions.
 
 The following functions give you access to view various Gateway and
@@ -450,7 +446,7 @@ def jsonDecode(jsonString):
     Returns:
         dict: The decoded Python object.
     """
-    print(jsonString)
+    pprint.pprint(jsonString)
     return {"key": "value"}
 
 
@@ -467,7 +463,7 @@ def jsonEncode(pyObj, indentFactor=4):
     Returns:
         str: The encoded JSON string.
     """
-    print(pyObj, indentFactor)
+    pprint.pprint([pyObj, indentFactor])
     return ""
 
 

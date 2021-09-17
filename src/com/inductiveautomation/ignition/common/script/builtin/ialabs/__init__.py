@@ -118,7 +118,7 @@ class TagAlarmDefinition(Object):
         self.alarmProperties = alarmProperties
 
     def getAlarmProperties(self):
-        print(self)
+        pprint.pprint(self)
         return TagAlarmProperty()
 
 
