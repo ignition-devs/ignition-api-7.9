@@ -31,12 +31,17 @@ Before you begin, ensure you have met the following requirements:
 
 Ignition consists of the following packages:
 
+* com
 * java/javax
 * system
 
+### com
+
+These are libraries for some of Inductive Automation's Java packages and functions that are imported in `system` packages.
+
 ### java/javax
 
-These are libraries for some Java packages and functions that are imported in `system` packages meant to be used on systems where no JDK can be installed, and the project interpreter is Python 2.7.
+These are libraries for some Java packages and functions that are imported in `system` packages meant to be used on systems where no JDK can be installed, and the project interpreter is Python 2.
 
 ### system
 
@@ -44,38 +49,38 @@ Is a package that includes all Ignition Scripting Functions.
 
 ## Installation and usage
 
-To use Ignition, download the code targeted to your desired version from the [releases page](https://github.com/thecesrom/Ignition/releases) and add it as a dependency to your scripting project.
-
-Also, once you've downloaded and unzipped the source code you may install it using the `setup.py`:
+Although this version of Ignition depends on Jython 2.5.3, which corresponds to Python 2.5, you may still install it via `pip` with Python 2.7.18.
 
 ```bash
-$ cd ~/Downloads/v7.9.X
-$ python setup.py install --record files.txt 
+$ python2 -m pip install ignition-api==7.9.18.post1
 ```
 
-This will install it as package to your Python installation, which will allow you to call Ignition Scripting functions from Python's REPL.
+This will install it as package to your Python installation, which will allow you to call Ignition Scripting functions from Python's REPL, and get code completion using an IDE (we recommend PyCharm).
 
 ```bash
-$ python
-Python 2.5.6 (r256, Sep  5 2021, 17:50:57) 
-[GCC Apple LLVM 12.0.0 (clang-1200.0.32.29)] on darwin
+Python 2.7.18 (default, Nov  9 2020, 16:23:15) 
+[GCC Apple LLVM 12.0.0 (clang-1200.0.32.21)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
->>> import system.gui
->>> print system.gui.__doc__
-GUI Functions.
+>>> import system.util
+>>> print system.util.__doc__
+Utility Functions.
 
-The following functions allow you to control windows and create popup
-interfaces.
->>> system.gui.warningBox("This one is a warning.")
-['This one is a warning.', 'Warning']
+The following functions give you access to view various Gateway and
+Client data, as well as interact with other various systems.
+
+>>> system.util.beep()
 >>> quit()
 ```
 
 And to uninstall:
+
 ```bash
-$ cd ~/Downloads/v7.9.X
-$ cat files.txt | xargs rm -rf
+$ python2 -m pip uninstall ignition-api
 ```
+
+### Downloading from releases
+
+You may also download the code targeted to your desired version from the [releases page](https://github.com/thecesrom/Ignition/releases) and add it as a dependency to your scripting project.
 
 ## Contributing to Ignition
 
