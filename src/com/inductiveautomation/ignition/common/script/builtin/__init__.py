@@ -129,34 +129,13 @@ class DatasetUtilities(Object):
         pass
 
     class PyDataSet(Dataset):
-        def getColumnCount(self):
+        def __getitem__(self, item):
             pass
 
-        def getColumnIndex(self, name):
+        def __iter__(self):
             pass
 
-        def getColumnName(self, col):
-            pass
-
-        def getColumnNames(self):
-            pass
-
-        def getColumnType(self, col):
-            pass
-
-        def getColumnTypes(self):
-            pass
-
-        def getPrimitiveValueAt(self, row, col):
-            pass
-
-        def getQualityAt(self, row, col):
-            pass
-
-        def getRowCount(self):
-            pass
-
-        def getValueAt(self, *args):
+        def __len__(self):
             pass
 
 

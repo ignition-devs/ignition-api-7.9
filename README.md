@@ -52,7 +52,7 @@ Is a package that includes all Ignition Scripting Functions.
 Although this version of Ignition depends on Jython 2.5.3, which corresponds to Python 2.5, you may still install it via `pip` with Python 2.7.18.
 
 ```bash
-$ python2 -m pip install ignition-api==7.9.18.post1
+$ python2 -m pip install ignition-api==7.9.18.post2
 ```
 
 This will install it as package to your Python installation, which will allow you to call Ignition Scripting functions from Python's REPL, and get code completion using an IDE (we recommend PyCharm).
