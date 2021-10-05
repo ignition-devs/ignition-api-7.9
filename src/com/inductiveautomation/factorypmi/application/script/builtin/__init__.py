@@ -1,4 +1,9 @@
-__all__ = ["INavUtilities", "PrintUtilities", "WindowUtilities"]
+__all__ = [
+    "INavUtilities",
+    "NavUtilities",
+    "PrintUtilities",
+    "WindowUtilities",
+]
 
 import pprint
 
@@ -11,6 +16,44 @@ class INavUtilities(object):
     and NavUtilitiesDispatcher.
     """
 
+    def centerWindow(self, arg):
+        raise NotImplementedError
+
+    def closeParentWindow(self, event):
+        raise NotImplementedError
+
+    def closeWindow(self, arg):
+        raise NotImplementedError
+
+    def getCurrentWindow(self):
+        raise NotImplementedError
+
+    def goBack(self):
+        raise NotImplementedError
+
+    def goForward(self):
+        raise NotImplementedError
+
+    def goHome(self):
+        raise NotImplementedError
+
+    def openWindow(self, *args):
+        raise NotImplementedError
+
+    def openWindowImpl(self, path, params, openAdditional):
+        raise NotImplementedError
+
+    def openWindowInstance(self, *args):
+        raise NotImplementedError
+
+    def swapTo(self, *args):
+        raise NotImplementedError
+
+    def swapWindow(self, *args):
+        raise NotImplementedError
+
+
+class NavUtilities(INavUtilities):
     def centerWindow(self, arg):
         pass
 

@@ -1,4 +1,4 @@
-__all__ = ["QualifiedValue", "Quality"]
+__all__ = ["BasicQuality", "BasicQualifiedValue", "QualifiedValue", "Quality"]
 
 
 class QualifiedValue(object):
@@ -6,6 +6,17 @@ class QualifiedValue(object):
     it.
     """
 
+    def getQuality(self):
+        raise NotImplementedError
+
+    def getTimestamp(self):
+        raise NotImplementedError
+
+    def getValue(self):
+        raise NotImplementedError
+
+
+class BasicQualifiedValue(QualifiedValue):
     def getQuality(self):
         pass
 
@@ -17,6 +28,23 @@ class QualifiedValue(object):
 
 
 class Quality(object):
+    def getDescription(self):
+        raise NotImplementedError
+
+    def getLevel(self):
+        raise NotImplementedError
+
+    def getName(self):
+        raise NotImplementedError
+
+    def getQualityCode(self):
+        raise NotImplementedError
+
+    def isGood(self):
+        raise NotImplementedError
+
+
+class BasicQuality(Quality):
     def getDescription(self):
         pass
 

@@ -53,9 +53,10 @@ import sys
 
 import system.__version__ as version
 import system.date
-from com.inductiveautomation.ignition.common import Dataset
+from com.inductiveautomation.ignition.common import BasicDataset, Dataset
 from com.inductiveautomation.ignition.common.script.builtin import (
     DatasetUtilities,
+    SystemUtilities,
 )
 from com.inductiveautomation.ignition.common.script.message import Request
 from com.inductiveautomation.ignition.common.util import LoggerEx
@@ -556,7 +557,7 @@ def queryAuditLog(
             contextFilter,
         ]
     )
-    return Dataset()
+    return BasicDataset()
 
 
 def retarget(
@@ -778,7 +779,7 @@ def sendRequestAsync(
             onError,
         ]
     )
-    return Request()
+    return SystemUtilities.RequestImpl(1000)
 
 
 def setConnectionMode(mode):

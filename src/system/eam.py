@@ -9,7 +9,7 @@ __all__ = ["getGroups", "queryAgentHistory", "queryAgentStatus", "runTask"]
 import pprint
 
 import system.date
-from com.inductiveautomation.ignition.common import Dataset
+from com.inductiveautomation.ignition.common import BasicDataset, Dataset
 from com.inductiveautomation.ignition.common.messages import UIResponse
 from java.util import Date, Locale
 
@@ -53,7 +53,7 @@ def queryAgentHistory(
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
     pprint.pprint([groupIds, agentIds, startDate, endDate, limit])
-    return Dataset()
+    return BasicDataset()
 
 
 def queryAgentStatus(groupIds=None, agentIds=None, isConnected=True):
@@ -76,7 +76,7 @@ def queryAgentStatus(groupIds=None, agentIds=None, isConnected=True):
             a new agent.
     """
     pprint.pprint([groupIds, agentIds, isConnected])
-    return Dataset()
+    return BasicDataset()
 
 
 def runTask(taskname):

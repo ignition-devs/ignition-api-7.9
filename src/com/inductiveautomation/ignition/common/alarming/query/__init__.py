@@ -1,7 +1,7 @@
-__all__ = ["AlarmQueryResult"]
+__all__ = ["AlarmQueryResult", "AlarmQueryResultImpl"]
 
 
-class AlarmQueryResult:
+class AlarmQueryResult(object):
     """This is the result of a query against the alarming system, for
     both status and history.
 
@@ -10,7 +10,18 @@ class AlarmQueryResult:
     dataset.
     """
 
-    def __init__(self):
+    def getAssociatedDate(self, uuid):
+        raise NotImplementedError
+
+    def getDataSet(self):
+        raise NotImplementedError
+
+    def getEvent(self, uuid):
+        raise NotImplementedError
+
+
+class AlarmQueryResultImpl(AlarmQueryResult):
+    def __init__(self, *args):
         pass
 
     def getAssociatedDate(self, uuid):

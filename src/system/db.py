@@ -38,7 +38,7 @@ __all__ = [
 
 import pprint
 
-from com.inductiveautomation.ignition.common import Dataset
+from com.inductiveautomation.ignition.common import BasicDataset, Dataset
 from com.inductiveautomation.ignition.common.script.builtin import (
     DatasetUtilities,
     SProcCall,
@@ -377,7 +377,7 @@ def getConnectionInfo(name=""):
             wasn't found.
     """
     pprint.pprint(name)
-    return Dataset()
+    return BasicDataset()
 
 
 def getConnections():
@@ -390,7 +390,7 @@ def getConnections():
         Dataset: A dataset, where each row represents a database
             connection.
     """
-    return Dataset()
+    return BasicDataset()
 
 
 def refresh(component, propertyName):

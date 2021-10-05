@@ -21,6 +21,8 @@ __all__ = [
 import pprint
 
 from com.inductiveautomation.ignition.common.model.values import (
+    BasicQualifiedValue,
+    BasicQuality,
     QualifiedValue,
     Quality,
 )
@@ -166,7 +168,7 @@ def readValue(opcServer, itemPath):
             specified.
     """
     pprint.pprint([opcServer, itemPath])
-    return QualifiedValue()
+    return BasicQualifiedValue()
 
 
 def readValues(opcServer, itemPaths):
@@ -223,7 +225,7 @@ def writeValue(opcServer, itemPath, value):
             check if the write succeeded.
     """
     pprint.pprint([opcServer, itemPath, value])
-    return Quality()
+    return BasicQuality()
 
 
 def writeValues(opcServer, itemPaths, values):

@@ -36,7 +36,10 @@ import pprint
 
 import system.date
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
-from com.inductiveautomation.ignition.common.model.values import QualifiedValue
+from com.inductiveautomation.ignition.common.model.values import (
+    BasicQualifiedValue,
+    QualifiedValue,
+)
 from com.inductiveautomation.ignition.common.script.builtin.ialabs import (
     BrowseTag,
     TagAlarmDefinition,
@@ -703,7 +706,7 @@ def read(tagPath):
             sub-members: value, quality, and timestamp.
     """
     pprint.pprint(tagPath)
-    return QualifiedValue()
+    return BasicQualifiedValue()
 
 
 def readAll(tagPaths):

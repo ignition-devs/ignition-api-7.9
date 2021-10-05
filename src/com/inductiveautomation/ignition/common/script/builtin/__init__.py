@@ -1,12 +1,9 @@
-__all__ = [
-    "DatasetUtilities",
-    "SProcCall",
-    "SystemUtilities",
-]
+__all__ = ["DatasetUtilities", "SProcCall", "SystemUtilities"]
 
 import pprint
 
-from com.inductiveautomation.ignition.common import Dataset
+from com.inductiveautomation.ignition.common import BasicDataset, Dataset
+from com.inductiveautomation.ignition.common.script.message import Request
 from java.lang import Object
 from java.util import Locale
 
@@ -129,6 +126,11 @@ class DatasetUtilities(Object):
         pass
 
     class PyDataSet(Dataset):
+        _ds = None
+
+        def __init__(self, ds=None):
+            self._ds = ds
+
         def __getitem__(self, item):
             pass
 
@@ -136,6 +138,36 @@ class DatasetUtilities(Object):
             pass
 
         def __len__(self):
+            pass
+
+        def getColumnCount(self):
+            pass
+
+        def getColumnIndex(self, name):
+            pass
+
+        def getColumnName(self, col):
+            pass
+
+        def getColumnNames(self):
+            pass
+
+        def getColumnType(self, col):
+            pass
+
+        def getColumnTypes(self):
+            pass
+
+        def getPrimitiveValueAt(self, row, col):
+            pass
+
+        def getQualityAt(self, row, col):
+            pass
+
+        def getRowCount(self):
+            pass
+
+        def getValueAt(self, row, col):
             pass
 
 
@@ -175,7 +207,7 @@ class SProcCall(Object):
                 stored procedure, if any.
         """
         pprint.pprint(self)
-        return Dataset()
+        return BasicDataset()
 
     def getReturnValue(self):
         """Returns the return value, if registerReturnParam had been
@@ -287,9 +319,6 @@ class SProcCall(Object):
 
 
 class SystemUtilities(Object):
-    def __init__(self, timeout):
-        self.timeout = timeout
-
     @staticmethod
     def logger(loggerName):
         pass
@@ -297,3 +326,37 @@ class SystemUtilities(Object):
     @staticmethod
     def parseTranslateArguments(*args, **kwargs):
         pass
+
+    class RequestImpl(Request):
+        def __init__(self, timeout):
+            self.timeout = timeout
+
+        def checkTimeout(self):
+            pass
+
+        def dispatchFunc(self):
+            pass
+
+        def finishExceptionally(self, e):
+            pass
+
+        def finishSuccessfully(self, value):
+            pass
+
+        def getLongId(self):
+            pass
+
+        def cancel(self):
+            pass
+
+        def get(self):
+            pass
+
+        def getError(self):
+            pass
+
+        def onError(self, func):
+            pass
+
+        def onSuccess(self, func):
+            pass

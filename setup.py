@@ -39,6 +39,7 @@ setup(
         "Operating System :: Microsoft :: Windows",
         "Operating System :: POSIX :: Linux",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2 :: Only",
         "Programming Language :: Python :: 2.5",
         "Programming Language :: Python :: 2.6",

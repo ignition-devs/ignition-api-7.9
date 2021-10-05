@@ -3,48 +3,30 @@ __all__ = ["Request", "RequestWatcher"]
 
 class RequestWatcher(object):
     def block(self):
+        raise NotImplementedError
+
+    def compose(self, requestWatchers):
+        raise NotImplementedError
+
+
+class Request(RequestWatcher):
+    def block(self):
         pass
+
+    def cancel(self):
+        raise NotImplementedError
 
     def compose(self, requestWatchers):
         pass
 
-
-class Request(RequestWatcher):
-    def cancel(self):
-        pass
-
-    def checkTimeout(self):
-        pass
-
-    def dispatchFunc(self):
-        pass
-
-    def finishExceptionally(self, e):
-        pass
-
-    def finishSuccessfully(self, value):
-        pass
-
     def get(self):
-        pass
+        raise NotImplementedError
 
     def getError(self):
-        pass
-
-    def getLongId(self):
-        pass
-
-    def internalOperationCompleted(self):
-        pass
-
-    def internalWait(self):
-        pass
+        raise NotImplementedError
 
     def onError(self, func):
-        pass
+        raise NotImplementedError
 
     def onSuccess(self, func):
-        pass
-
-    def startTime(self):
-        pass
+        raise NotImplementedError

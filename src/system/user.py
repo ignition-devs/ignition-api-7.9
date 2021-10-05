@@ -34,7 +34,7 @@ from com.inductiveautomation.ignition.client.util.gui.scheduling import (
     ScheduleModel,
 )
 from com.inductiveautomation.ignition.common.messages import UIResponse
-from com.inductiveautomation.ignition.common.user import User
+from com.inductiveautomation.ignition.common.user import PyUser, User
 from com.inductiveautomation.ignition.common.user.schedule import HolidayModel
 from java.util import Locale
 
@@ -260,7 +260,7 @@ def getUser(userSource, username):
         User: A User object.
     """
     pprint.pprint([userSource, username])
-    return User()
+    return PyUser()
 
 
 def getUsers(userSource):

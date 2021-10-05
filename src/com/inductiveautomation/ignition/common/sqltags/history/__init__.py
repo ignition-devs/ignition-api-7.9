@@ -1,4 +1,6 @@
-__all__ = ["Aggregate"]
+__all__ = ["Aggregate", "AggregateInfo"]
+
+from java.lang import Object
 
 
 class Aggregate(object):
@@ -19,6 +21,17 @@ class Aggregate(object):
     providers could define any aggregation function.
     """
 
+    def getDesc(self):
+        raise NotImplementedError
+
+    def getId(self):
+        raise NotImplementedError
+
+    def getName(self):
+        raise NotImplementedError
+
+
+class AggregateInfo(Object, Aggregate):
     def getDesc(self):
         pass
 

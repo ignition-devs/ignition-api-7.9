@@ -4,6 +4,9 @@ from java.lang import Object
 
 
 class BrowseResults(Object):
+    def __init__(self, *args):
+        pass
+
     def getContinuationPoint(self):
         pass
 
