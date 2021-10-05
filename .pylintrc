@@ -75,12 +75,10 @@ confidence=
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
 disable=consider-using-f-string,
-        deprecated-class,
+        duplicate-code,
         missing-class-docstring,
         missing-function-docstring,
         missing-module-docstring,
-        no-member,
-        no-name-in-module,
         redefined-builtin,
         redefined-outer-name,
         signature-differs,
@@ -92,7 +90,7 @@ disable=consider-using-f-string,
         unused-import,
         useless-object-inheritance,
         useless-super-delegation,
-        wrong-import-order
+        wrong-import-order,
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
