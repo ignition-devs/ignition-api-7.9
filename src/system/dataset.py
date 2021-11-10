@@ -4,6 +4,8 @@ The following functions give you access to view and interact with
 datasets.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "addColumn",
     "addRow",
@@ -30,7 +32,6 @@ __all__ = [
 ]
 
 import os.path
-import pprint
 
 from com.inductiveautomation.ignition.common import BasicDataset, Dataset
 from com.inductiveautomation.ignition.common.script.builtin import (
@@ -70,7 +71,7 @@ def addColumn(dataset, colIndex, col, colName, colType):
     Returns:
         Dataset: A new dataset with the new column inserted or appended.
     """
-    pprint.pprint([dataset, colIndex, col, colName, colType])
+    print(dataset, colIndex, col, colName, colType)
     return BasicDataset()
 
 
@@ -100,7 +101,7 @@ def addRow(dataset, rowIndex, row):
     Returns:
         Dataset: A new dataset with the new row inserted or appended.
     """
-    pprint.pprint([dataset, rowIndex, row])
+    print(dataset, rowIndex, row)
     return BasicDataset()
 
 
@@ -130,7 +131,7 @@ def addRows(dataset, rowIndex, rows):
     Returns:
         Dataset: A new dataset with the new row inserted or appended.
     """
-    pprint.pprint([dataset, rowIndex, rows])
+    print(dataset, rowIndex, rows)
     return BasicDataset()
 
 
@@ -150,7 +151,7 @@ def appendDataset(dataset1, dataset2):
         Dataset: A new dataset that is a combination of the original two
             datasets.
     """
-    pprint.pprint([dataset1, dataset2])
+    print(dataset1, dataset2)
     return BasicDataset()
 
 
@@ -165,7 +166,7 @@ def clearDataset(dataset):
     Returns:
         Dataset: A new dataset with no data.
     """
-    pprint.pprint(dataset)
+    print(dataset)
     return BasicDataset()
 
 
@@ -190,7 +191,7 @@ def dataSetToExcel(showHeaders, datasets, nullsEmpty=None):
         str: An Excel-compatible XML-based workbook, with one worksheet
             per dataset.
     """
-    pprint.pprint([showHeaders, datasets, nullsEmpty])
+    print(showHeaders, datasets, nullsEmpty)
     return ""
 
 
@@ -209,7 +210,7 @@ def dataSetToHTML(showHeaders, dataset, title):
     Returns:
         str: The HTML page as a string.
     """
-    pprint.pprint([showHeaders, dataset, title])
+    print(showHeaders, dataset, title)
     return "<html><head>%s</head><body>data</body></html>" % title
 
 
@@ -235,7 +236,7 @@ def deleteRow(dataset, rowIndex):
         IndexError: If rowIndex is less than zero or greater than the
             row count of the dataset -1.
     """
-    pprint.pprint([dataset, rowIndex])
+    print(dataset, rowIndex)
     if rowIndex < 0:
         raise IndexError("Error")
 
@@ -266,7 +267,7 @@ def deleteRows(dataset, rowIndices):
         IndexError: If any element is less than zero or greater than the
             number of rows in the dataset - 1.
     """
-    pprint.pprint([dataset, rowIndices])
+    print(dataset, rowIndices)
     if -1 in rowIndices:
         raise IndexError("Error")
 
@@ -287,7 +288,7 @@ def exportCSV(filename, showHeaders, dataset):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    pprint.pprint([filename, showHeaders, dataset])
+    print(filename, showHeaders, dataset)
     return os.path.expanduser("~")
 
 
@@ -311,7 +312,7 @@ def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    pprint.pprint([filename, showHeaders, dataset, nullsEmpty])
+    print(filename, showHeaders, dataset, nullsEmpty)
     return os.path.expanduser("~")
 
 
@@ -331,7 +332,7 @@ def exportHTML(filename, showHeaders, dataset, title):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    pprint.pprint([filename, showHeaders, dataset, title])
+    print(filename, showHeaders, dataset, title)
     return os.path.expanduser("~")
 
 
@@ -348,7 +349,7 @@ def filterColumns(dataset, columns):
     Returns:
         Dataset: A new dataset containing the filtered columns.
     """
-    pprint.pprint([dataset, columns])
+    print(dataset, columns)
     return BasicDataset()
 
 
@@ -367,7 +368,7 @@ def formatDates(dataset, dateFormat, locale=Locale.ENGLISH):
     Returns:
         Dataset: A new dataset, containing the formatted dates.
     """
-    pprint.pprint([dataset, dateFormat, locale])
+    print(dataset, dateFormat, locale)
     return BasicDataset()
 
 
@@ -387,7 +388,7 @@ def fromCSV(csv):
     Returns:
         Dataset: A new dataset.
     """
-    pprint.pprint(csv)
+    print(csv)
     return BasicDataset()
 
 
@@ -400,7 +401,7 @@ def getColumnHeaders(dataset):
     Returns:
         list[str]: A list of column header strings.
     """
-    pprint.pprint(dataset)
+    print(dataset)
     return []
 
 
@@ -427,7 +428,7 @@ def setValue(dataset, rowIndex, columnName, value):
          Dataset: A new dataset, with the new value set at the given
             location.
     """
-    pprint.pprint([dataset, rowIndex, columnName, value])
+    print(dataset, rowIndex, columnName, value)
     return BasicDataset()
 
 
@@ -447,7 +448,7 @@ def sort(dataset, keyColumn, ascending=True):
     Returns:
         Dataset: A new sorted dataset.
     """
-    pprint.pprint([dataset, keyColumn, ascending])
+    print(dataset, keyColumn, ascending)
     return BasicDataset()
 
 
@@ -473,7 +474,7 @@ def toCSV(dataset, showHeaders=True, forExport=False, localized=False):
     Returns:
         str: The CSV data as a string.
     """
-    pprint.pprint([dataset, showHeaders, forExport, localized])
+    print(dataset, showHeaders, forExport, localized)
     return ""
 
 
@@ -492,7 +493,7 @@ def toDataSet(*args):
     Returns:
         Dataset: The newly created dataset.
     """
-    pprint.pprint(args)
+    print(args)
     return BasicDataset()
 
 
@@ -507,7 +508,7 @@ def toPyDataSet(dataset):
     Returns:
         PyDataSet: The newly created PyDataSet.
     """
-    pprint.pprint(dataset)
+    print(dataset)
     return DatasetUtilities.PyDataSet()
 
 
@@ -536,5 +537,5 @@ def updateRow(dataset, rowIndex, changes):
          Dataset: A new dataset with the values at the specified row
             updated according to the values in the dictionary.
     """
-    pprint.pprint([dataset, rowIndex, changes])
+    print(dataset, rowIndex, changes)
     return BasicDataset()

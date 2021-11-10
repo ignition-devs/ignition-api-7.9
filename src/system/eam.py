@@ -4,9 +4,9 @@ The following functions give you access to view EAM information from the
 Gateway.
 """
 
-__all__ = ["getGroups", "queryAgentHistory", "queryAgentStatus", "runTask"]
+from __future__ import print_function
 
-import pprint
+__all__ = ["getGroups", "queryAgentHistory", "queryAgentStatus", "runTask"]
 
 import system.date
 from com.inductiveautomation.ignition.common import BasicDataset, Dataset
@@ -52,7 +52,7 @@ def queryAgentHistory(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    pprint.pprint([groupIds, agentIds, startDate, endDate, limit])
+    print(groupIds, agentIds, startDate, endDate, limit)
     return BasicDataset()
 
 
@@ -75,7 +75,7 @@ def queryAgentStatus(groupIds=None, agentIds=None, isConnected=True):
             RunningStateInt, LicenseKey, and Version, where each row is
             a new agent.
     """
-    pprint.pprint([groupIds, agentIds, isConnected])
+    print(groupIds, agentIds, isConnected)
     return BasicDataset()
 
 
@@ -95,5 +95,5 @@ def runTask(taskname):
         UIResponse: A UIResponse with a list of infos, errors, and
             warnings.
     """
-    pprint.pprint(taskname)
+    print(taskname)
     return UIResponse(Locale.ENGLISH)

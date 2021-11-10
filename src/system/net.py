@@ -3,6 +3,7 @@
 The following functions give you access to interact with http services.
 """
 
+from __future__ import print_function
 
 __all__ = [
     "getExternalIpAddress",
@@ -17,7 +18,6 @@ __all__ = [
     "sendEmail",
 ]
 
-import pprint
 import socket
 
 
@@ -80,7 +80,7 @@ def getRemoteServers(runningOnly=True):
         list[str]: A List of Strings representing Gateway Network server
             ids.
     """
-    pprint.pprint(runningOnly)
+    print(runningOnly)
     return []
 
 
@@ -119,17 +119,15 @@ def httpDelete(
     Returns:
         object: The content returned for the DELETE operation.
     """
-    pprint.pprint(
-        [
-            url,
-            contentType,
-            connectTimeout,
-            readTimeout,
-            username,
-            password,
-            headerValues,
-            bypassCertValidation,
-        ]
+    print(
+        url,
+        contentType,
+        connectTimeout,
+        readTimeout,
+        username,
+        password,
+        headerValues,
+        bypassCertValidation,
     )
     return object
 
@@ -182,18 +180,16 @@ def httpGet(
     Returns:
         str: The content found at the given URL.
     """
-    pprint.pprint(
-        [
-            url,
-            connectTimeout,
-            readTimeout,
-            username,
-            password,
-            headerValues,
-            bypassCertValidation,
-            useCaches,
-            throwOnError,
-        ]
+    print(
+        url,
+        connectTimeout,
+        readTimeout,
+        username,
+        password,
+        headerValues,
+        bypassCertValidation,
+        useCaches,
+        throwOnError,
     )
     return ""
 
@@ -215,7 +211,7 @@ def httpPost(url, *args):
     Returns:
         str: The content returned for the POST operation.
     """
-    pprint.pprint([url, args])
+    print(url, args)
     return ""
 
 
@@ -233,7 +229,7 @@ def httpPut(url, *args, **kwargs):
     Returns:
         str: The content returned by the PUT operation.
     """
-    pprint.pprint([url, args, kwargs])
+    print(url, args, kwargs)
     return ""
 
 
@@ -248,7 +244,7 @@ def openURL(url, useApplet=False):
             as an Applet, then the browser instance that launched the
             applet will be used to open the URL. Optional.
     """
-    pprint.pprint([url, useApplet])
+    print(url, useApplet)
 
 
 def sendEmail(
@@ -315,24 +311,22 @@ def sendEmail(
             recipients reply to. If omitted, this defaults to the from
             address. Optional.
     """
-    pprint.pprint(
-        [
-            smtp,
-            fromAddr,
-            subject,
-            body,
-            html,
-            to,
-            attachmentNames,
-            attachmentData,
-            timeout,
-            username,
-            password,
-            priority,
-            smtpProfile,
-            cc,
-            bcc,
-            retries,
-            replyTo,
-        ]
+    print(
+        smtp,
+        fromAddr,
+        subject,
+        body,
+        html,
+        to,
+        attachmentNames,
+        attachmentData,
+        timeout,
+        username,
+        password,
+        priority,
+        smtpProfile,
+        cc,
+        bcc,
+        retries,
+        replyTo,
     )

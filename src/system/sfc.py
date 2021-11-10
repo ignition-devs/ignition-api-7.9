@@ -4,6 +4,8 @@ The following functions give you access to interact with the SFCs in the
 Gateway.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "cancelChart",
     "getRunningCharts",
@@ -15,8 +17,6 @@ __all__ = [
     "setVariables",
     "startChart",
 ]
-
-import pprint
 
 from com.inductiveautomation.ignition.common import BasicDataset, Dataset
 from com.inductiveautomation.sfc.api import PyChartScope
@@ -31,7 +31,7 @@ def cancelChart(instanceId):
     Args:
         instanceId (str): The ID of the chart instance to cancel.
     """
-    pprint.pprint(instanceId)
+    print(instanceId)
 
 
 def getRunningCharts(charPath=None):
@@ -49,7 +49,7 @@ def getRunningCharts(charPath=None):
     Returns:
         Dataset: A dataset with information on the active chart.
     """
-    pprint.pprint(charPath)
+    print(charPath)
     return BasicDataset()
 
 
@@ -66,7 +66,7 @@ def getVariables(instanceId):
         PyChartScope: A python dictionary of variables. Step scopes for
             active steps are found under the "activeSteps" key.
     """
-    pprint.pprint(instanceId)
+    print(instanceId)
     return PyChartScope()
 
 
@@ -79,7 +79,7 @@ def pauseChart(instanceId):
     Args:
         instanceId (str): The ID of the chart instance to pause.
     """
-    pprint.pprint(instanceId)
+    print(instanceId)
 
 
 def redundantCheckpoint(instanceId):
@@ -90,7 +90,7 @@ def redundantCheckpoint(instanceId):
     Args:
         instanceId (str): The instance identifier of the chart.
     """
-    pprint.pprint(instanceId)
+    print(instanceId)
 
 
 def resumeChart(instanceId):
@@ -119,7 +119,7 @@ def setVariable(instanceId, stepId, variableName, variableValue):
         variableName (str): The name of the variable to set.
         variableValue (object): The value for the variable to be set to.
     """
-    pprint.pprint([instanceId, stepId, variableName, variableValue])
+    print(instanceId, stepId, variableName, variableValue)
 
 
 def setVariables(instanceId, stepId, variableMap):
@@ -132,7 +132,7 @@ def setVariables(instanceId, stepId, variableMap):
         variableMap (dict): A dictionary containing the name:value pairs
             of the variables to set.
     """
-    pprint.pprint([instanceId, stepId, variableMap])
+    print(instanceId, stepId, variableMap)
 
 
 def startChart(path, arguments):
@@ -150,5 +150,5 @@ def startChart(path, arguments):
     Returns:
         str: The unique ID of this chart.
     """
-    pprint.pprint([path, arguments])
+    print(path, arguments)
     return "UUID"

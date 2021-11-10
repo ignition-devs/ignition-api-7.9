@@ -4,6 +4,7 @@ The following functions give you access to view and edit device
 connections in the Gateway.
 """
 
+from __future__ import print_function
 
 __all__ = [
     "addDevice",
@@ -14,8 +15,6 @@ __all__ = [
     "setDeviceEnabled",
     "setDeviceHostname",
 ]
-
-import pprint
 
 from com.inductiveautomation.ignition.common import BasicDataset, Dataset
 
@@ -40,7 +39,7 @@ def addDevice(deviceType, deviceName, deviceProps):
             properties that appear when manually creating a device
             connection.
     """
-    pprint.pprint([deviceType, deviceName, deviceProps])
+    print(deviceType, deviceName, deviceProps)
 
 
 def getDeviceHostname(deviceName):
@@ -53,7 +52,7 @@ def getDeviceHostname(deviceName):
         str: The hostname of the device. Null if device doesn't have a
             hostname.
     """
-    pprint.pprint(deviceName)
+    print(deviceName)
 
 
 def listDevices():
@@ -76,7 +75,7 @@ def refreshBrowse(deviceName):
     Args:
         deviceName (str): The name of the device in Ignition.
     """
-    pprint.pprint(deviceName)
+    print(deviceName)
 
 
 def removeDevice(deviceName):
@@ -85,7 +84,7 @@ def removeDevice(deviceName):
     Args:
         deviceName (str): The name of the device in Ignition.
     """
-    pprint.pprint(deviceName)
+    print(deviceName)
 
 
 def setDeviceEnabled(deviceName, enabled):
@@ -95,7 +94,7 @@ def setDeviceEnabled(deviceName, enabled):
         deviceName (str): The name of the device in Ignition.
         enabled (bool): The enabled status of the device.
     """
-    pprint.pprint([deviceName, enabled])
+    print(deviceName, enabled)
 
 
 def setDeviceHostname(deviceName, hostname):
@@ -107,4 +106,4 @@ def setDeviceHostname(deviceName, hostname):
         deviceName (str): The name of the device in Ignition.
         hostname (str): The new IP address or hostname.
     """
-    pprint.pprint([deviceName, hostname])
+    print(deviceName, hostname)

@@ -4,6 +4,8 @@ The following functions give you access to view various Gateway and
 Client data, as well as interact with other various systems.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "beep",
     "execute",
@@ -48,7 +50,6 @@ __all__ = [
 import getpass
 import os
 import platform
-import pprint
 import sys
 
 import system.__version__ as version
@@ -83,11 +84,11 @@ def beep():
 
                 winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
             except ImportError:
-                pprint.pprint("Beep!")
+                print("Beep!")
         elif platforms[sys.platform] == "macOS":
             os.system('say "beep"')
     else:
-        pprint.pprint("Beep!")
+        print("Beep!")
 
 
 def execute(commands):
@@ -102,7 +103,7 @@ def execute(commands):
         commands (list[str]): A list containing the command (1st entry)
             and associated arguments (remaining entries) to execute.
     """
-    pprint.pprint(commands)
+    print(commands)
 
 
 def exit(force=False):
@@ -117,7 +118,7 @@ def exit(force=False):
         force (bool): If True (1), the shutdown-intercept script will be
             skipped. Default is False (0). Optional.
     """
-    pprint.pprint(force)
+    print(force)
 
 
 def getAvailableLocales():
@@ -226,7 +227,7 @@ def getGatewayStatus(
         str: A string that indicates the status of the Gateway. A status
             of RUNNING means that the Gateway is fully functional.
     """
-    pprint.pprint([gatewayAddress, connectTimeoutMillis, socketTimeoutMillis])
+    print(gatewayAddress, connectTimeoutMillis, socketTimeoutMillis)
     return "RUNNING"
 
 
@@ -281,7 +282,7 @@ def getLogger(name):
         LoggerEx: A new Logger object used to log informational and
             error messages.
     """
-    pprint.pprint(name)
+    print(name)
     return LoggerEx()
 
 
@@ -367,7 +368,7 @@ def getSessionInfo(usernameFilter=None, projectFilter=None):
         PyDataSet: A dataset representing the Gateway's current
             sessions.
     """
-    pprint.pprint([usernameFilter, projectFilter])
+    print(usernameFilter, projectFilter)
     return DatasetUtilities.PyDataSet()
 
 
@@ -405,7 +406,7 @@ def invokeAsynchronous(function):
     Returns:
         Thread: The executing thread.
     """
-    pprint.pprint(function)
+    print(function)
     return Thread()
 
 
@@ -431,7 +432,7 @@ def invokeLater(function, delay=0):
             be invoked after all currently pending events are processed.
             Optional.
     """
-    pprint.pprint([function, delay])
+    print(function, delay)
 
 
 def jsonDecode(jsonString):
@@ -447,7 +448,7 @@ def jsonDecode(jsonString):
     Returns:
         dict: The decoded Python object.
     """
-    pprint.pprint(jsonString)
+    print(jsonString)
     return {"key": "value"}
 
 
@@ -464,7 +465,7 @@ def jsonEncode(pyObj, indentFactor=4):
     Returns:
         str: The encoded JSON string.
     """
-    pprint.pprint([pyObj, indentFactor])
+    print(pyObj, indentFactor)
     return ""
 
 
@@ -478,7 +479,7 @@ def modifyTranslation(term, translation, locale="en"):
             identifying the language of the translation. Otherwise, the
             currently set language is used. Optional.
     """
-    pprint.pprint([term, translation, locale])
+    print(term, translation, locale)
 
 
 def playSoundClip(wav, volume=1.0, wait=False):
@@ -497,7 +498,7 @@ def playSoundClip(wav, volume=1.0, wait=False):
             to playSoundClip should wait for the clip to finish before
             it returns. Optional.
     """
-    pprint.pprint([wav, volume, wait])
+    print(wav, volume, wait)
 
 
 def queryAuditLog(
@@ -544,18 +545,16 @@ def queryAuditLog(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    pprint.pprint(
-        [
-            auditProfileName,
-            startDate,
-            endDate,
-            actorFilter,
-            actionFilter,
-            targetFilter,
-            valueFilter,
-            systemFilter,
-            contextFilter,
-        ]
+    print(
+        auditProfileName,
+        startDate,
+        endDate,
+        actorFilter,
+        actionFilter,
+        targetFilter,
+        valueFilter,
+        systemFilter,
+        contextFilter,
     )
     return BasicDataset()
 
@@ -598,7 +597,7 @@ def retarget(
             startup windows will be ignored, and this list will be used
             instead. Optional.
     """
-    pprint.pprint([projectName, gatewayAddress, params, startupWindows])
+    print(projectName, gatewayAddress, params, startupWindows)
 
 
 def sendMessage(
@@ -653,18 +652,16 @@ def sendMessage(
             system that was selected for delivery, where each List item
             is comma-delimited.
     """
-    pprint.pprint(
-        [
-            project,
-            messageHandler,
-            payload,
-            scope,
-            clientSessionId,
-            user,
-            hasRole,
-            hostName,
-            remoteServers,
-        ]
+    print(
+        project,
+        messageHandler,
+        payload,
+        scope,
+        clientSessionId,
+        user,
+        hasRole,
+        hostName,
+        remoteServers,
     )
 
 
@@ -708,15 +705,13 @@ def sendRequest(
     Returns:
         object: The return from the message handler.
     """
-    pprint.pprint(
-        [
-            project,
-            messageHandler,
-            payload,
-            hostName,
-            remoteServer,
-            timeoutSec,
-        ]
+    print(
+        project,
+        messageHandler,
+        payload,
+        hostName,
+        remoteServer,
+        timeoutSec,
     )
 
 
@@ -767,17 +762,15 @@ def sendRequestAsync(
         Request: The Request object that can be used while waiting for
             the message handler callback.
     """
-    pprint.pprint(
-        [
-            project,
-            messageHandler,
-            payload,
-            hostName,
-            remoteServer,
-            timeoutSec,
-            onSuccess,
-            onError,
-        ]
+    print(
+        project,
+        messageHandler,
+        payload,
+        hostName,
+        remoteServer,
+        timeoutSec,
+        onSuccess,
+        onError,
     )
     return SystemUtilities.RequestImpl(1000)
 
@@ -796,7 +789,7 @@ def setConnectionMode(mode):
         mode (int): The new connection mode. 1 = Disconnected,
             2 = Read-only, 3 = Read/Write.
     """
-    pprint.pprint(mode)
+    print(mode)
 
 
 def setConnectTimeout(connectTimeout):
@@ -808,7 +801,7 @@ def setConnectTimeout(connectTimeout):
         connectTimeout (int): The new connect timeout, specified in
             milliseconds.
     """
-    pprint.pprint(connectTimeout)
+    print(connectTimeout)
 
 
 def setLocale(locale):
@@ -824,7 +817,7 @@ def setLocale(locale):
     Raises:
         IllegalArgumentException: If passed an invalid local code.
     """
-    pprint.pprint(locale)
+    print(locale)
 
 
 def setLoggingLevel(loggerName, loggerLevel):
@@ -839,7 +832,7 @@ def setLoggingLevel(loggerName, loggerLevel):
         loggerLevel (str): The level you want to change to logger to:
             "trace", "debug", "info", "warn" or "error".
     """
-    pprint.pprint([loggerName, loggerLevel])
+    print(loggerName, loggerLevel)
 
 
 def setReadTimeout(readTimeout):
@@ -851,7 +844,7 @@ def setReadTimeout(readTimeout):
         readTimeout (int): The new read timeout, specified in
             milliseconds.
     """
-    pprint.pprint(readTimeout)
+    print(readTimeout)
 
 
 def threadDump():
@@ -884,5 +877,5 @@ def translate(term, locale=None, strict=False):
     Returns:
         str: The translated term.
     """
-    pprint.pprint([term, locale, strict])
+    print(term, locale, strict)
     return term

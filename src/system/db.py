@@ -4,6 +4,8 @@ The following functions give you access to view and modify data in the
 database.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "addDatasource",
     "beginTransaction",
@@ -35,8 +37,6 @@ __all__ = [
     "setDatasourceEnabled",
     "setDatasourceMaxConnections",
 ]
-
-import pprint
 
 from com.inductiveautomation.ignition.common import BasicDataset, Dataset
 from com.inductiveautomation.ignition.common.script.builtin import (
@@ -120,18 +120,16 @@ def addDatasource(
             JDBC driver.
         maxConnections (int): Default is 8.
     """
-    pprint.pprint(
-        [
-            jdbcDriver,
-            name,
-            description,
-            connectUrl,
-            username,
-            password,
-            props,
-            validationQuery,
-            maxConnections,
-        ]
+    print(
+        jdbcDriver,
+        name,
+        description,
+        connectUrl,
+        username,
+        password,
+        props,
+        validationQuery,
+        maxConnections,
     )
 
 
@@ -175,7 +173,7 @@ def beginTransaction(database=None, isolationLevel=None, timeout=None):
             argument for all other calls to have them execute against
             this transaction.
     """
-    pprint.pprint([database, isolationLevel, timeout])
+    print(database, isolationLevel, timeout)
     return "transaction_id"
 
 
@@ -195,7 +193,7 @@ def clearAllNamedQueryCaches(*args):
     Args:
         *args: Variable length argument list.
     """
-    pprint.pprint(args)
+    print(args)
 
 
 def clearNamedQueryCache(*args):
@@ -214,7 +212,7 @@ def clearNamedQueryCache(*args):
     Args:
         *args: Variable length argument list.
     """
-    pprint.pprint(args)
+    print(args)
 
 
 def closeTransaction(tx):
@@ -227,7 +225,7 @@ def closeTransaction(tx):
     Args:
         tx (str): The transaction ID.
     """
-    pprint.pprint(tx)
+    print(tx)
 
 
 def commitTransaction(tx):
@@ -243,7 +241,7 @@ def commitTransaction(tx):
     Args:
         tx (str): The transaction ID.
     """
-    pprint.pprint(tx)
+    print(tx)
 
 
 def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
@@ -267,7 +265,7 @@ def createSProcCall(procedureName, database=None, tx=None, skipAudit=None):
             configured and then used as the argument to
             system.db.execSProcCall.
     """
-    pprint.pprint([procedureName, database, tx, skipAudit])
+    print(procedureName, database, tx, skipAudit)
     return SProcCall()
 
 
@@ -284,7 +282,7 @@ def dateFormat(date, formatPattern):
         str: The date as a string formatted according to the format
             pattern.
     """
-    pprint.pprint([date, formatPattern])
+    print(date, formatPattern)
     return ""
 
 
@@ -300,7 +298,7 @@ def execSProcCall(callContext):
             configured. Use system.db.createSProcCall to create a call
             context.
     """
-    pprint.pprint(callContext)
+    print(callContext)
 
 
 def exportCSV(filename, showHeaders, dataset):
@@ -317,7 +315,7 @@ def exportCSV(filename, showHeaders, dataset):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    pprint.pprint([filename, showHeaders, dataset])
+    print(filename, showHeaders, dataset)
 
 
 def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
@@ -339,7 +337,7 @@ def exportExcel(filename, showHeaders, dataset, nullsEmpty=False):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    pprint.pprint([filename, showHeaders, dataset, nullsEmpty])
+    print(filename, showHeaders, dataset, nullsEmpty)
 
 
 def exportHTML(filename, showHeaders, dataset, title):
@@ -358,7 +356,7 @@ def exportHTML(filename, showHeaders, dataset, title):
         str: The path to the saved file, or None if the action was
             canceled by the user.
     """
-    pprint.pprint([filename, showHeaders, dataset, title])
+    print(filename, showHeaders, dataset, title)
 
 
 def getConnectionInfo(name=""):
@@ -376,7 +374,7 @@ def getConnectionInfo(name=""):
             database connection, or an empty dataset if the connection
             wasn't found.
     """
-    pprint.pprint(name)
+    print(name)
     return BasicDataset()
 
 
@@ -413,7 +411,7 @@ def refresh(component, propertyName):
         bool: True (1) if the property was found and refreshed
             successfully.
     """
-    pprint.pprint([component, propertyName])
+    print(component, propertyName)
     return True
 
 
@@ -423,7 +421,7 @@ def removeDatasource(name):
     Args:
         name (str): The name of the database connection in Ignition.
     """
-    pprint.pprint(name)
+    print(name)
 
 
 def rollbackTransaction(tx):
@@ -437,7 +435,7 @@ def rollbackTransaction(tx):
     Args:
         tx (str): The transaction ID.
     """
-    pprint.pprint(tx)
+    print(tx)
 
 
 def runNamedQuery(*args):
@@ -463,7 +461,7 @@ def runNamedQuery(*args):
             Query, or an object matching the datatype of the value
             returned by a Scalar Query.
     """
-    pprint.pprint(args)
+    print(args)
 
 
 def runPrepQuery(query, args, database="", tx=None):
@@ -499,7 +497,7 @@ def runPrepQuery(query, args, database="", tx=None):
     Returns:
         PyDataSet: The results of the query as a PyDataSet.
     """
-    pprint.pprint([query, args, database, tx])
+    print(query, args, database, tx)
     return DatasetUtilities.PyDataSet()
 
 
@@ -543,7 +541,7 @@ def runPrepUpdate(
             that was generated, depending on the value of the getKey
             flag.
     """
-    pprint.pprint([query, args, database, tx, getKey, skipAudit])
+    print(query, args, database, tx, getKey, skipAudit)
     return 1
 
 
@@ -567,7 +565,7 @@ def runQuery(query, database="", tx=None):
     Returns:
         PyDataSet: The results of the query as a PyDataSet.
     """
-    pprint.pprint([query, database, tx])
+    print(query, database, tx)
     return DatasetUtilities.PyDataSet()
 
 
@@ -596,7 +594,7 @@ def runSFPrepUpdate(query, args, datasources):
         bool: Returns True if successfully sent to store-and-forward
             system.
     """
-    pprint.pprint([query, args, datasources])
+    print(query, args, datasources)
     return True
 
 
@@ -613,7 +611,7 @@ def runSFUpdateQuery(query, datasources):
     Returns:
         bool: Returns True if successful and False if not.
     """
-    pprint.pprint([query, datasources])
+    print(query, datasources)
     return True
 
 
@@ -642,7 +640,7 @@ def runScalarPrepQuery(query, args, database="", tx=None):
          object: The value from the first row and first column of the
             results. Returns None if no rows were returned.
     """
-    pprint.pprint([query, args, database, tx])
+    print(query, args, database, tx)
 
 
 def runScalarQuery(query, database, tx):
@@ -665,7 +663,7 @@ def runScalarQuery(query, database, tx):
          object: The value from the first row and first column of the
             results. Returns None if no rows were returned.
     """
-    pprint.pprint([query, database, tx])
+    print(query, database, tx)
 
 
 def runUpdateQuery(query, database="", tx=None, getKey=False, skipAudit=True):
@@ -702,7 +700,7 @@ def runUpdateQuery(query, database="", tx=None, getKey=False, skipAudit=True):
             that was generated, depending on the value of the getKey
             flag.
     """
-    pprint.pprint([query, database, tx, getKey, skipAudit])
+    print(query, database, tx, getKey, skipAudit)
     return 1
 
 
@@ -713,7 +711,7 @@ def setDatasourceConnectURL(name, connectUrl):
         name (str): The name of the database connection in Ignition.
         connectUrl (str): The new connect URL.
     """
-    pprint.pprint([name, connectUrl])
+    print(name, connectUrl)
 
 
 def setDatasourceEnabled(name, enabled):
@@ -724,7 +722,7 @@ def setDatasourceEnabled(name, enabled):
         enabled (bool): True if the connection should be enabled, False
             otherwise.
     """
-    pprint.pprint([name, enabled])
+    print(name, enabled)
 
 
 def setDatasourceMaxConnections(name, maxConnections):
@@ -735,4 +733,4 @@ def setDatasourceMaxConnections(name, maxConnections):
         name (str): The name of the database connection in Ignition.
         maxConnections (int): The number of maximum connections allowed.
     """
-    pprint.pprint([name, maxConnections])
+    print(name, maxConnections)

@@ -4,6 +4,8 @@ The following functions allow you to control windows and create popup
 interfaces.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "chooseColor",
     "closeDesktop",
@@ -38,8 +40,6 @@ __all__ = [
     "warningBox",
 ]
 
-import pprint
-
 from com.inductiveautomation.factorypmi.application import FPMIWindow
 from com.inductiveautomation.factorypmi.application.script.builtin import (
     WindowUtilities,
@@ -58,7 +58,7 @@ COORD_DESIGNER = 1
 
 
 def _dummy(message, title):
-    pprint.pprint([message, title])
+    print(message, title)
 
 
 def chooseColor(initialColor, dialogTitle="Choose Color"):
@@ -74,7 +74,7 @@ def chooseColor(initialColor, dialogTitle="Choose Color"):
     Returns:
         Color: The new color chosen by the user.
     """
-    pprint.pprint([initialColor, dialogTitle])
+    print(initialColor, dialogTitle)
     return Color()
 
 
@@ -89,7 +89,7 @@ def closeDesktop(handle="primary"):
             Alternatively, the handle "primary" can be used to refer to
             the Primary Desktop.
     """
-    pprint.pprint(handle)
+    print(handle)
 
 
 def color(*args):
@@ -102,7 +102,7 @@ def color(*args):
     Returns:
         Color: The newly created color.
     """
-    pprint.pprint(args)
+    print(args)
 
 
 def confirm(message, title="Confirm", allowCancel=False):
@@ -119,7 +119,7 @@ def confirm(message, title="Confirm", allowCancel=False):
         bool: True (1) if the user selected "Yes", False (0) if the user
             selected "No", None if the user selected "Cancel".
     """
-    pprint.pprint([message, title, allowCancel])
+    print(message, title, allowCancel)
     return True
 
 
@@ -138,7 +138,7 @@ def convertPointToScreen(x, y, event):
     Returns:
         tuple: A tuple of (x,y) in screen coordinates.
     """
-    pprint.pprint([x, y, event])
+    print(x, y, event)
     return x, y
 
 
@@ -155,7 +155,7 @@ def createPopupMenu(itemNames, itemFunctions):
     Returns:
         JPopupMenu: The javax.swing.JPopupMenu that was created.
     """
-    pprint.pprint([itemNames, itemFunctions])
+    print(itemNames, itemFunctions)
     return JPopupMenu()
 
 
@@ -173,7 +173,7 @@ def desktop(handle="primary"):
         WindowUtilities: A copy of system.gui that will be relative to
             the desktop named by the given handle.
     """
-    pprint.pprint(handle)
+    print(handle)
     return WindowUtilities()
 
 
@@ -202,7 +202,7 @@ def findWindow(path):
             is not open, or have more than one entry if multiple windows
             are open.
     """
-    pprint.pprint(path)
+    print(path)
     return []
 
 
@@ -270,7 +270,7 @@ def getParentWindow(event):
         object: The window that contains the component that fired the
             event.
     """
-    pprint.pprint(event)
+    print(event)
     return object
 
 
@@ -290,7 +290,7 @@ def getQuality(component, propertyName):
     Returns:
         int: The data quality of the given property as an integer.
     """
-    pprint.pprint([component, propertyName])
+    print(component, propertyName)
     return 192
 
 
@@ -320,7 +320,7 @@ def getSibling(event, name):
     Returns:
         object: The sibling component itself.
     """
-    pprint.pprint([event, name])
+    print(event, name)
     return FPMIWindow("Sibling")
 
 
@@ -337,7 +337,7 @@ def getWindow(name):
             .getRootContainer() to grab the root container of the
             window.
     """
-    pprint.pprint(name)
+    print(name)
     return FPMIWindow("Main Window")
 
 
@@ -370,7 +370,7 @@ def inputBox(message, defaultText=None):
     Returns:
         str: The string value that was entered in the input box.
     """
-    pprint.pprint([message, defaultText])
+    print(message, defaultText)
 
 
 def isTouchscreenModeEnabled():
@@ -431,7 +431,7 @@ def openDesktop(
     Returns:
         JFrame: A reference to the new Desktop frame.
     """
-    pprint.pprint([screen, handle, title, width, height, x, y, windows])
+    print(screen, handle, title, width, height, x, y, windows)
     return JFrame()
 
 
@@ -465,7 +465,7 @@ def passwordBox(message, title="Password", echoChar="*"):
         str: The password that was entered, or None if the prompt was
             canceled.
     """
-    pprint.pprint([message, title, echoChar])
+    print(message, title, echoChar)
     return "password"
 
 
@@ -478,7 +478,7 @@ def setScreenIndex(index):
         index (int): The new monitor index for this client to move to. 0
             based.
     """
-    pprint.pprint(index)
+    print(index)
 
 
 def setTouchscreenModeEnabled(enabled):
@@ -488,7 +488,7 @@ def setTouchscreenModeEnabled(enabled):
         enabled (bool): The new value for touchscreen mode being
             enabled.
     """
-    pprint.pprint(enabled)
+    print(enabled)
 
 
 def showNumericKeypad(initialValue=None, fontSize=None, usePasswordMode=False):
@@ -508,7 +508,7 @@ def showNumericKeypad(initialValue=None, fontSize=None, usePasswordMode=False):
     Returns:
         object: The value that was entered in the keypad.
     """
-    pprint.pprint([initialValue, fontSize, usePasswordMode])
+    print(initialValue, fontSize, usePasswordMode)
     return 43
 
 
@@ -530,7 +530,7 @@ def showTouchscreenKeyboard(
     Returns:
         str: The text that was "typed" in the on-screen keyboard.
     """
-    pprint.pprint([initialText, fontSize, passwordMode])
+    print(initialText, fontSize, passwordMode)
     return ""
 
 
@@ -586,19 +586,17 @@ def transform(
         object: An animation object that the script can use to pause(),
             resume(), or cancel() the transformation.
     """
-    pprint.pprint(
-        [
-            component,
-            newX,
-            newY,
-            newWidth,
-            newHeight,
-            duration,
-            callback,
-            framesPerSecond,
-            acceleration,
-            coordSpace,
-        ]
+    print(
+        component,
+        newX,
+        newY,
+        newWidth,
+        newHeight,
+        duration,
+        callback,
+        framesPerSecond,
+        acceleration,
+        coordSpace,
     )
 
 

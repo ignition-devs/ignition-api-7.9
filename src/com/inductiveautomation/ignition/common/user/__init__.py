@@ -1,6 +1,5 @@
 __all__ = ["ContactInfo", "PyUser", "User"]
 
-import pprint
 
 from java.lang import Object
 
@@ -141,7 +140,7 @@ class PyUser(User):
         Args:
             args: Variable length argument list.
         """
-        pprint.pprint([self, args])
+        print(self, args)
 
     def addRole(self, role):
         """Convenience method for scripting to add a new role easily.
@@ -152,7 +151,7 @@ class PyUser(User):
             role (str): A new role to add. If empty or null, no
                 effect.
         """
-        pprint.pprint([self, role])
+        print(self, role)
 
     def addRoles(self, roles):
         """Adds the provided roles to this user.
@@ -160,7 +159,7 @@ class PyUser(User):
         Args:
             roles (list[str]): A list of roles.
         """
-        pprint.pprint([self, roles])
+        print(self, roles)
 
     def addScheduleAdjustment(self, start, end, available=True, note=None):
         """Convenience method for scripting to add a new schedule
@@ -175,7 +174,7 @@ class PyUser(User):
                 this period. Optional.
             note (str): May be null or empty. Optional.
         """
-        pprint.pprint([self, start, end, available, note])
+        print(self, start, end, available, note)
 
     def addScheduleAdjustments(self, scheduleAdjustments):
         """Add Schedule Adjustments.
@@ -184,7 +183,7 @@ class PyUser(User):
             scheduleAdjustments (ScheduleAdjustment): ScheduleAdjustment
                 object.
         """
-        pprint.pprint([self, scheduleAdjustments])
+        print(self, scheduleAdjustments)
 
     def contains(self, prop):
         """Returns if this users contains a given property."""
@@ -199,7 +198,7 @@ class PyUser(User):
         Returns:
             str: The value of the requested property.
         """
-        pprint.pprint(self)
+        print(self)
         return propertyName
 
     def getContactInfo(self):
@@ -218,7 +217,7 @@ class PyUser(User):
 
     def getCount(self):
         """Get count."""
-        pprint.pprint(self)
+        print(self)
         return 1
 
     def getId(self):
@@ -237,7 +236,7 @@ class PyUser(User):
         Returns:
             object: The value of the requested property.
         """
-        pprint.pprint([self, prop])
+        print(self, prop)
 
     def getOrElse(self, property, value):
         """Get the value for a given Property, or else fall back to

@@ -4,6 +4,8 @@ The following functions give you access to view and interact with the
 Alarm system in Ignition.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "acknowledge",
     "cancel",
@@ -16,8 +18,6 @@ __all__ = [
     "shelve",
     "unshelve",
 ]
-
-import pprint
 
 import system.date
 from com.inductiveautomation.ignition.common.alarming.evaluation import (
@@ -49,7 +49,7 @@ def acknowledge(alarmIds, notes=None, username=None):
             scoped script. This parameter should be omitted from any
             client-based scripts. Optional.
     """
-    pprint.pprint([alarmIds, notes, username])
+    print(alarmIds, notes, username)
 
 
 def cancel(alarmIds):
@@ -63,7 +63,7 @@ def cancel(alarmIds):
     Args:
         alarmIds (list[str]): List of alarm event ids (uuids) to cancel.
     """
-    pprint.pprint(alarmIds)
+    print(alarmIds)
 
 
 def createRoster(name, description=""):
@@ -75,7 +75,7 @@ def createRoster(name, description=""):
         description (str): A description for the new roster. Required,
             but can be blank. Optional.
     """
-    pprint.pprint([name, description])
+    print(name, description)
 
 
 def getRosters():
@@ -195,23 +195,21 @@ def queryJournal(
     startDate = (
         system.date.addHours(endDate, -8) if startDate is None else startDate
     )
-    pprint.pprint(
-        [
-            startDate,
-            endDate,
-            journalName,
-            priority,
-            state,
-            path,
-            source,
-            displaypath,
-            all_properties,
-            any_properties,
-            defined,
-            includeData,
-            includeSystem,
-            isSystem,
-        ]
+    print(
+        startDate,
+        endDate,
+        journalName,
+        priority,
+        state,
+        path,
+        source,
+        displaypath,
+        all_properties,
+        any_properties,
+        defined,
+        includeData,
+        includeSystem,
+        isSystem,
     )
     return AlarmQueryResultImpl()
 
@@ -277,18 +275,16 @@ def queryStatus(
             Path, Display Path, Event Time, State (as an integer), and
             Priority (as an integer).
     """
-    pprint.pprint(
-        [
-            priority,
-            state,
-            path,
-            source,
-            displaypath,
-            all_properties,
-            any_properties,
-            defined,
-            includeShelved,
-        ]
+    print(
+        priority,
+        state,
+        path,
+        source,
+        displaypath,
+        all_properties,
+        any_properties,
+        defined,
+        includeShelved,
     )
     return AlarmQueryResultImpl()
 
@@ -314,7 +310,7 @@ def shelve(path, timeoutSeconds, timeoutMinutes):
             alarms for, specified in minutes. 0 indicates that matching
             alarm events should now be allowed to pass.
     """
-    pprint.pprint([path, timeoutSeconds, timeoutMinutes])
+    print(path, timeoutSeconds, timeoutMinutes)
 
 
 def unshelve(path):
@@ -325,4 +321,4 @@ def unshelve(path):
             If a path ends in "/*", the results will include anything
             below that path.
     """
-    pprint.pprint(path)
+    print(path)

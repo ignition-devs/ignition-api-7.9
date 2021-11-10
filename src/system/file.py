@@ -3,7 +3,7 @@
 The following functions give you access to read and write to files.
 """
 
-from __future__ import with_statement
+from __future__ import print_function
 
 __all__ = [
     "fileExists",
@@ -17,7 +17,6 @@ __all__ = [
 ]
 
 import os.path
-import pprint
 import tempfile
 from codecs import open
 
@@ -70,7 +69,7 @@ def openFile(extension=None, defaultLocation=None):
     Returns:
         str: The path to the selected file, or None if canceled.
     """
-    pprint.pprint([extension, defaultLocation])
+    print(extension, defaultLocation)
 
 
 def openFiles(extension=None, defaultLocation=None):
@@ -90,7 +89,7 @@ def openFiles(extension=None, defaultLocation=None):
     Returns:
         list[str]: The paths to the selected files, or None if canceled.
     """
-    pprint.pprint([extension, defaultLocation])
+    print(extension, defaultLocation)
 
 
 def readFileAsBytes(filepath):
@@ -155,7 +154,7 @@ def saveFile(filename, extension=None, typeDesc=None):
         str: The path to the file that the user decided to save to, or
             None if they canceled.
     """
-    pprint.pprint([filename, extension, typeDesc])
+    print(filename, extension, typeDesc)
 
 
 def writeFile(filepath, data, append=False):
@@ -175,4 +174,4 @@ def writeFile(filepath, data, append=False):
             already exists. If False(0), the file will be overwritten if
             it exists. The default is False(0). Optional.
     """
-    pprint.pprint([filepath, data, append])
+    print(filepath, data, append)

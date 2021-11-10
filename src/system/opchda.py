@@ -4,6 +4,8 @@ The following functions give you access to interact with the HDA types
 of OPC servers.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "browse",
     "getAggregates",
@@ -17,8 +19,6 @@ __all__ = [
     "readRaw",
     "replace",
 ]
-
-import pprint
 
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
 from com.inductiveautomation.ignition.common.sqltags.history import Aggregate
@@ -36,7 +36,7 @@ def browse(root):
         list[BrowseResults]: The BrowseResults that that would result
             for the operation at that root.
     """
-    pprint.pprint(root)
+    print(root)
     return [BrowseResults()]
 
 
@@ -51,7 +51,7 @@ def getAggregates(serverName):
         list[Aggregate]: A list of supported Aggregate objects. Each
             object has 'id', 'name', and 'desc' properties defined.
     """
-    pprint.pprint(serverName)
+    print(serverName)
     return [Aggregate()]
 
 
@@ -67,7 +67,7 @@ def getAttributes(serverName):
         list[Aggregate]: A list of supported Aggregate objects. Each
             object has 'id', 'name', and 'desc' properties defined.
     """
-    pprint.pprint(serverName)
+    print(serverName)
     return [Aggregate()]
 
 
@@ -97,7 +97,7 @@ def insert(serverName, itemId, value, date, quality):
     Returns:
         int: The items quality form the operation.
     """
-    pprint.pprint([serverName, itemId, value, date, quality])
+    print(serverName, itemId, value, date, quality)
     return 192
 
 
@@ -115,7 +115,7 @@ def insertReplace(serverName, itemId, value, date, quality):
     Returns:
         int: The items quality form the operation.
     """
-    pprint.pprint([serverName, itemId, value, date, quality])
+    print(serverName, itemId, value, date, quality)
     return 192
 
 
@@ -130,7 +130,7 @@ def isServerAvailable(serverName):
         bool: Will be True if the server is available and can be
             queried, False if not.
     """
-    pprint.pprint(serverName)
+    print(serverName)
     return True
 
 
@@ -160,7 +160,7 @@ def readAttributes(serverName, itemId, attributeIds, startDate, endDate):
             call was successful, and is itself a list of
             QualifiedValues.
     """
-    pprint.pprint([serverName, itemId, attributeIds, startDate, endDate])
+    print(serverName, itemId, attributeIds, startDate, endDate)
     return []
 
 
@@ -195,15 +195,13 @@ def readProcessed(
             call was successful, and is itself a list of
             QualifiedValues.
     """
-    pprint.pprint(
-        [
-            serverName,
-            itemIds,
-            startDate,
-            endDate,
-            resampleIntervalMS,
-            aggregates,
-        ]
+    print(
+        serverName,
+        itemIds,
+        startDate,
+        endDate,
+        resampleIntervalMS,
+        aggregates,
     )
     return []
 
@@ -233,9 +231,7 @@ def readRaw(
             call was successful, and is itself a list of
             QualifiedValues.
     """
-    pprint.pprint(
-        [serverName, itemIds, startDate, endDate, maxValues, boundingValues]
-    )
+    print([serverName, itemIds, startDate, endDate, maxValues, boundingValues])
     return []
 
 
@@ -253,5 +249,5 @@ def replace(serverName, itemId, value, date, quality):
     Returns:
         int: The items quality resulting from the operation.
     """
-    pprint.pprint([serverName, itemId, value, date, quality])
+    print(serverName, itemId, value, date, quality)
     return 192

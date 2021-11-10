@@ -1,6 +1,6 @@
-__all__ = ["DatasetUtilities", "SProcCall", "SystemUtilities"]
+from __future__ import print_function
 
-import pprint
+__all__ = ["DatasetUtilities", "SProcCall", "SystemUtilities"]
 
 from com.inductiveautomation.ignition.common import BasicDataset, Dataset
 from com.inductiveautomation.ignition.common.script.message import Request
@@ -192,7 +192,7 @@ class SProcCall(Object):
             object: The value of the previously registered
                 out-parameter.
         """
-        pprint.pprint([self, param])
+        print(self, param)
         return 0
 
     def getProcedureName(self):
@@ -206,7 +206,7 @@ class SProcCall(Object):
             Dataset: The dataset that is the resulting data of the
                 stored procedure, if any.
         """
-        pprint.pprint(self)
+        print(self)
         return BasicDataset()
 
     def getReturnValue(self):
@@ -217,7 +217,7 @@ class SProcCall(Object):
              int: The return value, if registerReturnParam had been
                 called.
         """
-        pprint.pprint(self)
+        print(self)
         return 0
 
     def getTxId(self):
@@ -231,7 +231,7 @@ class SProcCall(Object):
              int: The number of rows modified by the stored procedure,
                 or -1 if not applicable.
         """
-        pprint.pprint(self)
+        print(self)
         return 1
 
     def isSkipAudit(self):
@@ -246,7 +246,7 @@ class SProcCall(Object):
             typeCode (int): Type code constant.
             value (object): Value of type typeCode.
         """
-        pprint.pprint([self, param, typeCode, value])
+        print(self, param, typeCode, value)
 
     def registerOutParam(self, param, typeCode):
         """Registers an out parameter for the stored procedure.
@@ -256,7 +256,7 @@ class SProcCall(Object):
                 (str).
             typeCode (int): Type code constant.
         """
-        pprint.pprint([self, param, typeCode])
+        print(self, param, typeCode)
 
     def registerReturnParam(self, typeCode):
         """Use this function to specify the datatype of the returned
@@ -265,7 +265,7 @@ class SProcCall(Object):
         Args:
             typeCode (int): Type code constant.
         """
-        pprint.pprint([self, typeCode])
+        print(self, typeCode)
 
     def setDatasource(self, datasource):
         pass

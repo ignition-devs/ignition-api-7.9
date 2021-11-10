@@ -4,6 +4,8 @@ The following functions give you access to view and edit users in the
 Gateway.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "addHoliday",
     "addRole",
@@ -27,8 +29,6 @@ __all__ = [
     "removeSchedule",
 ]
 
-import pprint
-
 import system.date
 from com.inductiveautomation.ignition.client.util.gui.scheduling import (
     ScheduleModel,
@@ -49,7 +49,7 @@ def addHoliday(holiday):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    pprint.pprint(holiday)
+    print(holiday)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -69,7 +69,7 @@ def addRole(userSource, role):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    pprint.pprint([userSource, role])
+    print(userSource, role)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -83,7 +83,7 @@ def addSchedule(schedule):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the add.
     """
-    pprint.pprint(schedule)
+    print(schedule)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -99,7 +99,7 @@ def editHoliday(holidayName, holiday):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    pprint.pprint([holidayName, holiday])
+    print(holidayName, holiday)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -120,7 +120,7 @@ def editRole(userSource, oldName, newName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    pprint.pprint([userSource, oldName, newName])
+    print(userSource, oldName, newName)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -136,7 +136,7 @@ def editSchedule(scheduleName, schedule):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the edit.
     """
-    pprint.pprint([scheduleName, schedule])
+    print(scheduleName, schedule)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -150,7 +150,7 @@ def getHoliday(holidayName):
     Returns:
         HolidayModel: The holiday, or None if not found.
     """
-    pprint.pprint(holidayName)
+    print(holidayName)
 
 
 def getHolidayNames():
@@ -183,7 +183,7 @@ def getRoles(userSource):
         list[str]: A List of Strings that holds all the roles in the
             user source.
     """
-    pprint.pprint(userSource)
+    print(userSource)
 
 
 def getSchedule(scheduleName):
@@ -198,7 +198,7 @@ def getSchedule(scheduleName):
             BasicSchedule, CompositeSchedule, or another type registered
             by a module, or None if not found.
     """
-    pprint.pprint(scheduleName)
+    print(scheduleName)
 
 
 def getScheduleNames():
@@ -229,7 +229,7 @@ def getScheduledUsers(userSource, date=None):
             taking schedule adjustments into account.
     """
     date = system.date.now() if date is None else date
-    pprint.pprint([userSource, date])
+    print(userSource, date)
 
 
 def getSchedules():
@@ -259,7 +259,7 @@ def getUser(userSource, username):
     Returns:
         User: A User object.
     """
-    pprint.pprint([userSource, username])
+    print(userSource, username)
     return PyUser()
 
 
@@ -276,7 +276,7 @@ def getUsers(userSource):
     Returns:
         list[User]: A list of User objects.
     """
-    pprint.pprint(userSource)
+    print(userSource)
     # You may return more than one User object.
     return [User()]
 
@@ -296,7 +296,7 @@ def isUserScheduled(user, date=None):
             False if not.
     """
     date = system.date.now() if date is None else date
-    pprint.pprint([user, date])
+    print(user, date)
     return True
 
 
@@ -311,7 +311,7 @@ def removeHoliday(holidayName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    pprint.pprint(holidayName)
+    print(holidayName)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -330,7 +330,7 @@ def removeRole(userSource, role):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    pprint.pprint([userSource, role])
+    print(userSource, role)
     return UIResponse(Locale.ENGLISH)
 
 
@@ -348,5 +348,5 @@ def removeSchedule(scheduleName):
         UIResponse: An object with lists of warnings, errors, and info
             about the success or failure of the deletion.
     """
-    pprint.pprint(scheduleName)
+    print(scheduleName)
     return UIResponse(Locale.ENGLISH)

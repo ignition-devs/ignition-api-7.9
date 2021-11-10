@@ -3,6 +3,7 @@
 The following functions give you access to test and modify dates.
 """
 
+from __future__ import print_function
 
 __all__ = [
     "addDays",
@@ -50,7 +51,6 @@ __all__ = [
     "yearsBetween",
 ]
 
-import pprint
 from calendar import monthrange
 from datetime import datetime, timedelta
 from time import localtime, mktime
@@ -685,7 +685,7 @@ def parse(
     Returns:
         Date: The parsed date.
     """
-    pprint.pprint([dateString, formatString, locale])
+    print(dateString, formatString, locale)
     return now()
 
 

@@ -4,6 +4,8 @@ The following functions allow you to open and close windows in the
 client.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "centerWindow",
     "closeParentWindow",
@@ -18,8 +20,6 @@ __all__ = [
     "swapTo",
     "swapWindow",
 ]
-
-import pprint
 
 from com.inductiveautomation.factorypmi.application import FPMIWindow
 from com.inductiveautomation.factorypmi.application.script.builtin import (
@@ -40,7 +40,7 @@ def centerWindow(arg):
         arg (object): The path of the window (str) or a reference to the
             window (FPMIWindow) to center.
     """
-    pprint.pprint(arg)
+    print(arg)
 
 
 def closeParentWindow(event):
@@ -50,7 +50,7 @@ def closeParentWindow(event):
         event (EventObject): A component event object. The enclosing
             window for the component will be closed.
     """
-    pprint.pprint(event)
+    print(event)
 
 
 def closeWindow(arg):
@@ -64,7 +64,7 @@ def closeWindow(arg):
             FPMIWindow instance or the path of the window to close as a
             String.
     """
-    pprint.pprint(arg)
+    print(arg)
 
 
 def desktop(handle="primary"):
@@ -81,7 +81,7 @@ def desktop(handle="primary"):
         INavUtilities: A copy of system.nav that will alter the desktop
             named by the given handle.
     """
-    pprint.pprint(handle)
+    print(handle)
     return NavUtilities()
 
 
@@ -151,7 +151,7 @@ def openWindow(path, params=None):
     Returns:
         FPMIWindow: A reference to the opened window.
     """
-    pprint.pprint([path, params])
+    print(path, params)
     return FPMIWindow("Opened Window")
 
 
@@ -174,7 +174,7 @@ def openWindowInstance(path, params=None):
     Returns:
         FPMIWindow: A reference to the opened window.
     """
-    pprint.pprint([path, params])
+    print(path, params)
     return FPMIWindow("Window Instance")
 
 
@@ -199,7 +199,7 @@ def swapTo(path, params=None):
     Returns:
         FPMIWindow: A reference to the swapped-to window.
     """
-    pprint.pprint([path, params])
+    print(path, params)
     return FPMIWindow("Swapped To")
 
 
@@ -226,5 +226,5 @@ def swapWindow(arg, swapToPath, params=None):
     Returns:
         FPMIWindow: A reference to the swapped-to window.
     """
-    pprint.pprint([arg, swapToPath, params])
+    print(arg, swapToPath, params)
     return FPMIWindow("Swapped To")

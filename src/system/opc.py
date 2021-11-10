@@ -4,6 +4,8 @@ The following functions allow you to read, write and browser OPC
 servers.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "browse",
     "browseServer",
@@ -17,8 +19,6 @@ __all__ = [
     "writeValue",
     "writeValues",
 ]
-
-import pprint
 
 from com.inductiveautomation.ignition.common.model.values import (
     BasicQualifiedValue,
@@ -50,7 +50,7 @@ def browse(opcServer, device, folderPath, opcItemPath):
             getOpcItemPath(), getType(), getDisplayName(),
             getDisplayPath(), getDataType().
     """
-    pprint.pprint([opcServer, device, folderPath, opcItemPath])
+    print(opcServer, device, folderPath, opcItemPath)
     return [OPCBrowseTag()]
 
 
@@ -67,7 +67,7 @@ def browseServer(opcServer, nodeId):
     Returns:
         object: A list of OPCBrowseElement/PyOPCTag objects.
     """
-    pprint.pprint([opcServer, nodeId])
+    print(opcServer, nodeId)
     return []
 
 
@@ -93,7 +93,7 @@ def browseSimple(opcServer, device, folderPath, opcItemPath):
             getOpcItemPath(), getType(), getDisplayName(),
             getDisplayPath(), getDataType().
     """
-    pprint.pprint([opcServer, device, folderPath, opcItemPath])
+    print(opcServer, device, folderPath, opcItemPath)
     return [OPCBrowseTag()]
 
 
@@ -116,7 +116,7 @@ def getServerState(opcServer):
         str: A string representing the current state of the connection,
             or None if the connection doesn't exist.
     """
-    pprint.pprint(opcServer)
+    print(opcServer)
     return "CONNECTED"
 
 
@@ -140,7 +140,7 @@ def isServerEnabled(serverName):
         bool: True if the connection is enabled, False if the connection
             is disabled.
     """
-    pprint.pprint(serverName)
+    print(serverName)
     return True
 
 
@@ -167,7 +167,7 @@ def readValue(opcServer, itemPath):
             timestamp returned from the OPC server for the address
             specified.
     """
-    pprint.pprint([opcServer, itemPath])
+    print(opcServer, itemPath)
     return BasicQualifiedValue()
 
 
@@ -191,7 +191,7 @@ def readValues(opcServer, itemPaths):
             value, quality, and timestamp returned from the OPC server
             for the corresponding address.
     """
-    pprint.pprint([opcServer, itemPaths])
+    print(opcServer, itemPaths)
     return [QualifiedValue()]
 
 
@@ -203,7 +203,7 @@ def setServerEnabled(serverName, enabled):
         enabled (bool): The new state the connection should be set to:
             True to enable the connection, False to disable.
     """
-    pprint.pprint([serverName, enabled])
+    print(serverName, enabled)
 
 
 def writeValue(opcServer, itemPath, value):
@@ -224,7 +224,7 @@ def writeValue(opcServer, itemPath, value):
         Quality: The status of the write. Use returnValue.isGood() to
             check if the write succeeded.
     """
-    pprint.pprint([opcServer, itemPath, value])
+    print(opcServer, itemPath, value)
     return BasicQuality()
 
 
@@ -249,5 +249,5 @@ def writeValues(opcServer, itemPaths, values):
         list[Quality]: An array of Quality objects, each entry
             corresponding in order to the addresses specified.
     """
-    pprint.pprint([opcServer, itemPaths, values])
+    print(opcServer, itemPaths, values)
     return [Quality()]

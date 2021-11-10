@@ -1,11 +1,11 @@
+from __future__ import print_function
+
 __all__ = [
     "INavUtilities",
     "NavUtilities",
     "PrintUtilities",
     "WindowUtilities",
 ]
-
-import pprint
 
 from java.awt.image import BufferedImage
 from java.lang import Object
@@ -93,10 +93,10 @@ class NavUtilities(INavUtilities):
 
 class PrintUtilities(Object):
     def __init__(self, app):
-        pprint.pprint([self, app])
+        print(self, app)
 
     def createImage(self, c):
-        pprint.pprint([self, c])
+        print(self, c)
         width = height = imageType = 1
         return BufferedImage(width, height, imageType)
 

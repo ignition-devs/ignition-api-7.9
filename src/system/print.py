@@ -3,9 +3,9 @@
 The following functions allow you to send to a printer.
 """
 
-__all__ = ["createImage", "createPrintJob", "printToImage"]
+from __future__ import print_function
 
-import pprint
+__all__ = ["createImage", "createPrintJob", "printToImage"]
 
 from com.inductiveautomation.factorypmi.application.script.builtin import (
     PrintUtilities,
@@ -48,7 +48,7 @@ def createPrintJob(component):
         JythonPrintJob: A print job that can then be customized and
             started. To start the print job, use .print().
     """
-    pprint.pprint(component)
+    print(component)
     return PrintUtilities.JythonPrintJob()
 
 
@@ -68,4 +68,4 @@ def printToImage(component, filename=None):
         component (Component): The component to render.
         filename (str): A filename to save the image as. Optional.
     """
-    pprint.pprint([component, filename])
+    print(component, filename)

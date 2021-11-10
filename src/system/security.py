@@ -4,6 +4,7 @@ The following functions give you access to interact with the users and
 roles in the Gateway.
 """
 
+from __future__ import print_function
 
 __all__ = [
     "getRoles",
@@ -17,9 +18,7 @@ __all__ = [
     "validateUser",
 ]
 
-
 import getpass
-import pprint
 
 
 def getRoles():
@@ -53,7 +52,7 @@ def getUserRoles(username, password, authProfile="", timeout=60000):
         tuple[str]: A list of the roles that this user has, if the user
             authenticates successfully. Otherwise, returns None.
     """
-    pprint.pprint([username, password, authProfile, timeout])
+    print(username, password, authProfile, timeout)
     return "Administrator", "Developer"
 
 
@@ -86,7 +85,7 @@ def lockScreen(obscure=False):
         obscure (bool): If True(1), the locked screen will be opaque,
             otherwise it will be partially visible. Optional.
     """
-    pprint.pprint(obscure)
+    print(obscure)
 
 
 def logout():
@@ -121,7 +120,7 @@ def switchUser(username, password, event, hideError=False):
         bool: False(0) if the switch user operation failed, True (1)
             otherwise.
     """
-    pprint.pprint([username, password, event, hideError])
+    print(username, password, event, hideError)
     return True
 
 
@@ -152,5 +151,5 @@ def validateUser(username, password, authProfile="", timeout=60000):
         bool: False(0) if the user failed to authenticate, True(1) if
             the username/password was a valid combination.
     """
-    pprint.pprint([username, password, authProfile, timeout])
+    print(username, password, authProfile, timeout)
     return True

@@ -2,6 +2,7 @@
 programming language.
 """
 
+from __future__ import print_function
 
 __all__ = [
     "Exception",
@@ -13,9 +14,9 @@ __all__ = [
 ]
 
 import copy
-import pprint
 import time
-from __builtin__ import Exception as PyException
+
+import __builtin__ as builtins
 
 
 class Object(object):
@@ -71,7 +72,7 @@ class Object(object):
             bool: True if this object is the same as the obj argument;
                 False otherwise.
         """
-        pprint.pprint([self, obj])
+        print(self, obj)
         return True
 
     def getClass(self):
@@ -120,7 +121,7 @@ class Object(object):
         pass
 
 
-class Throwable(Object, PyException):
+class Throwable(Object, builtins.Exception):
     """The Throwable class is the superclass of all errors and
     exceptions in the Java language.
     """
@@ -136,8 +137,9 @@ class Throwable(Object, PyException):
                 permitted, and indicates that the cause is nonexistent
                 or unknown.).
         """
-        PyException.__init__(self, message)
         self._cause = cause
+        self.message = message
+        builtins.Exception.__init__(self, message)
 
     @property
     def cause(self):

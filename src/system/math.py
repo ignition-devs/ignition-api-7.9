@@ -3,6 +3,8 @@
 The following functions assist with running statistical analysis.
 """
 
+from __future__ import print_function
+
 __all__ = [
     "geometricMean",
     "kurtosis",
@@ -25,8 +27,8 @@ __all__ = [
     "variance",
 ]
 
+
 import __builtin__ as builtins
-import pprint
 
 
 def geometricMean(values):
@@ -48,7 +50,7 @@ def geometricMean(values):
             null. Because this uses logs to compute the geometric mean,
             will return nan if any entries are negative.
     """
-    pprint.pprint(values)
+    print(values)
     return float(43)
 
 
@@ -76,7 +78,7 @@ def kurtosis(values):
             Additionally, returns nan if the values returned fewer than
             4 values.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def max(values):
@@ -114,7 +116,7 @@ def mean(values):
         float: The maximum value contained in the 'values' parameter, or
             nan if the input was empty or null.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def meanDifference(values1, values2):
@@ -142,7 +144,7 @@ def meanDifference(values1, values2):
         DimensionMismatchException: If the two sequences have different
             lengths.
     """
-    pprint.pprint([values1, values2])
+    print(values1, values2)
 
 
 def median(values):
@@ -161,7 +163,7 @@ def median(values):
     Returns:
         float: The median, or nan if the input was empty or null.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def min(values):
@@ -200,7 +202,7 @@ def mode(values):
             'values' parameter. If the values parameter was empty, then
             an empty list will be returned instead.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def normalize(values):
@@ -226,7 +228,7 @@ def normalize(values):
             if the input was empty or None. If the standard deviation is
             0, will return an array of float nan (Not a Number).
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def percentile(values, percentile):
@@ -251,7 +253,7 @@ def percentile(values, percentile):
         float: An estimate of the requested percentile of the input, or
             nan if the input was empty or null.
     """
-    pprint.pprint([values, percentile])
+    print(values, percentile)
 
 
 def populationVariance(values):
@@ -272,7 +274,7 @@ def populationVariance(values):
         float: The population variance, or nan if the input was empty or
             null.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def product(values):
@@ -292,7 +294,7 @@ def product(values):
         float: The product of all values in the 'values' parameter, or
             nan if the input was empty or null.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def skewness(values):
@@ -315,7 +317,7 @@ def skewness(values):
         float: The skewness of the 'values' parameter, or nan if values
             was empty or null.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def standardDeviation(values):
@@ -337,7 +339,7 @@ def standardDeviation(values):
         float: The standard deviation of the 'values' parameter, or nan
             if the values was empty or null.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def sum(values):
@@ -384,7 +386,7 @@ def sumDifference(values1, values2):
         DimensionMismatchException: If the two sequences have different
             lengths.
     """
-    pprint.pprint([values1, values2])
+    print(values1, values2)
 
 
 def sumLog(values):
@@ -403,7 +405,7 @@ def sumLog(values):
         float: The sum of the natural logs of the input values, or nan
             if the input was empty, None, or contains negative numbers.
     """
-    pprint.pprint(values)
+    print(values)
 
 
 def sumSquares(values):
@@ -447,4 +449,4 @@ def variance(values):
         float: The sum of all values in the 'values' parameter, or nan
             if the input was empty or null.
     """
-    pprint.pprint(values)
+    print(values)

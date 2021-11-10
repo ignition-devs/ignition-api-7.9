@@ -1,11 +1,11 @@
+from __future__ import print_function
+
 __all__ = [
     "BrowseTag",
     "OPCBrowseTag",
     "TagAlarmDefinition",
     "TagAlarmProperty",
 ]
-
-import pprint
 
 from java.lang import Object
 
@@ -44,31 +44,31 @@ class BrowseTag(Object):
         return self.valueSource
 
     def isDB(self):
-        pprint.pprint(self)
+        print(self)
         return True
 
     def isExpression(self):
-        pprint.pprint(self)
+        print(self)
         return True
 
     def isFolder(self):
-        pprint.pprint(self)
+        print(self)
         return True
 
     def isMemory(self):
-        pprint.pprint(self)
+        print(self)
         return True
 
     def isOPC(self):
-        pprint.pprint(self)
+        print(self)
         return True
 
     def isQuery(self):
-        pprint.pprint(self)
+        print(self)
         return True
 
     def isUDT(self):
-        pprint.pprint(self)
+        print(self)
         return True
 
     def toString(self):
@@ -118,7 +118,7 @@ class TagAlarmDefinition(Object):
         self.alarmProperties = alarmProperties
 
     def getAlarmProperties(self):
-        pprint.pprint(self)
+        print(self)
         return TagAlarmProperty()
 
 
