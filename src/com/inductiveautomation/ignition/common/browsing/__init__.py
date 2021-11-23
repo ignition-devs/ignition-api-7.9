@@ -1,4 +1,6 @@
-__all__ = ["BrowseResults"]
+from __future__ import print_function, unicode_literals
+
+__all__ = ["BrowseResults", "Result", "TagInfoResult"]
 
 from java.lang import Object
 
@@ -14,7 +16,8 @@ class BrowseResults(Object):
         pass
 
     def getResults(self):
-        pass
+        print(self)
+        return [TagInfoResult()]
 
     def getReturnedSize(self):
         pass
@@ -32,4 +35,32 @@ class BrowseResults(Object):
         pass
 
     def setTotalAvailableResults(self, totalAvailableResults):
+        pass
+
+
+class Result(object):
+    def getDisplayPath(self):
+        raise NotImplementedError
+
+    def getPath(self):
+        raise NotImplementedError
+
+    def getType(self):
+        raise NotImplementedError
+
+    def hasChildren(self):
+        raise NotImplementedError
+
+
+class TagInfoResult(Object, Result):
+    def getDisplayPath(self):
+        pass
+
+    def getPath(self):
+        pass
+
+    def getType(self):
+        pass
+
+    def hasChildren(self):
         pass

@@ -24,7 +24,7 @@ If you can't find it, feel free to submit your request on our [Discussions](http
 
 Before you begin, ensure you have met the following requirements:
 
-* You have installed Python 2.5.4 ([download here](https://www.python.org/downloads/release/python-254/))
+* You have installed Python 2.7.18 ([download here](https://www.python.org/downloads/release/python-2718/))
 * You are familiar with [Ignition 7.9 Scripting Functions](https://docs.inductiveautomation.com/display/DOC79/Scripting+Functions)
 
 ## Packages
@@ -49,20 +49,26 @@ Is a package that includes all Ignition Scripting Functions.
 
 ## Installation and usage
 
-Although this version of Ignition depends on Jython 2.5.3, which corresponds to Python 2.5, you may still install it via `pip` with Python 2.7.18.
+To use Ignition, you may install it by doing any of the following.
+
+### Installing with `pip`
+
+The preferred method is to install it by running `pip`. It requires Python 2.7.18.
 
 ```bash
-python2 -m pip install ignition-api==7.9.18.post2
+python2 -m pip install ignition-api==7.9.18.post3
 ```
 
 This will install it as package to your Python installation, which will allow you to call Ignition Scripting functions from Python's REPL, and get code completion using an IDE (we recommend PyCharm).
 
 ```bash
+$ python2
 Python 2.7.18 (default, Nov  9 2020, 16:23:15) 
 [GCC Apple LLVM 12.0.0 (clang-1200.0.32.21)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
+>>> from __future__ import print_function
 >>> import system.util
->>> print system.util.__doc__
+>>> print(system.util.__doc__)
 Utility Functions.
 
 The following functions give you access to view various Gateway and
@@ -81,6 +87,15 @@ python2 -m pip uninstall ignition-api
 ### Downloading from releases
 
 You may also download the code targeted to your desired version from the [releases page](https://github.com/thecesrom/Ignition/releases) and add it as a dependency to your scripting project.
+
+#### Using Ignition as a dependency on PyCharm
+
+To include Ignition as a dependency on PyCharm, you will need to attach it to your project.
+
+1. Clone the repo or download from [releases](https://github.com/thecesrom/Ignition/releases)
+2. With your project open where you want to include `Ignition`, navigate to `File > Open` and select the `Ignition` project folder
+3. Choose `Attach` when prompted
+4. Under the `Ignition` project folder, right-click on the `src/` folder and choose `Mark Directory as > Sources Root`
 
 ## Contributing to Ignition
 

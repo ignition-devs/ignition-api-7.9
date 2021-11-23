@@ -3,7 +3,7 @@
 The following functions give you access to interact with Ignition Tags.
 """
 
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 
 __all__ = [
     "addTag",
@@ -34,37 +34,34 @@ __all__ = [
     "writeSynchronous",
 ]
 
+from typing import Any, Dict, List, Optional, Union
 
-import system.date
+from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
-from com.inductiveautomation.ignition.common.model.values import (
-    BasicQualifiedValue,
-    QualifiedValue,
-)
+from com.inductiveautomation.ignition.common.model.values import BasicQualifiedValue
 from com.inductiveautomation.ignition.common.script.builtin.ialabs import (
     BrowseTag,
     TagAlarmDefinition,
 )
-from com.inductiveautomation.ignition.common.tags.config import (
-    TagConfiguration,
-)
+from com.inductiveautomation.ignition.common.tags.config import TagConfiguration
 from java.util import Date
 
 
 def addTag(
-    parentPath,
-    name,
-    tagType,
-    dataType,
-    accessRights,
-    enabled,
-    value,
-    attributes,
-    parameters,
-    overrides,
-    alarmList,
-    alarmConfig,
+    parentPath,  # type: Union[str, unicode]
+    name,  # type: Union[str, unicode]
+    tagType,  # type: Union[str, unicode]
+    dataType,  # type: Union[str, unicode]
+    accessRights,  # type: Union[str, unicode]
+    enabled,  # type: bool
+    value,  # type: Any
+    attributes,  # type: Dict[Union[str, unicode], Any]
+    parameters,  # type: Dict[Union[str, unicode], Any]
+    overrides,  # type: Dict[Union[str, unicode], Any]
+    alarmList,  # type: Union[str, unicode]
+    alarmConfig,  # type: Dict[Union[str, unicode], Any]
 ):
+    # type: (...) -> None
     """Adds a new tag in Ignition.
 
     You can add OPC, memory, expression, query, folder, and UDT instance
@@ -72,27 +69,27 @@ def addTag(
     to project.
 
     Args:
-        parentPath (str): The folder to add the tag to. Leave blank for
-            the root folder.
-        name (str): The name of the tag.
-        tagType (str): The type of tag to create. Possible values are
-            OPC, MEMORY, EXPRESSION, QUERY, Folder, and UDT_INST.
-        dataType (str): The data type of the tag. Not used for UDT
-            instances or folders. Possible basic values are Int1, Int2,
-            Int4, Int8, Float4, Float8, Boolean, String, DataSet, and
+        parentPath: The folder to add the tag to. Leave blank for the
+            root folder.
+        name: The name of the tag.
+        tagType: The type of tag to create. Possible values are OPC,
+            MEMORY, EXPRESSION, QUERY, Folder, and UDT_INST.
+        dataType: The data type of the tag. Not used for UDT instances
+            or folders. Possible basic values are Int1, Int2, Int4,
+            Int8, Float4, Float8, Boolean, String, DataSet, and
             DateTime. Possible array values are Int4Array, Int8Array,
             Float8Array, BooleanArray, StringArray, DateTimeArray.
-        accessRights (str): The access rights for a tag. Possible values
-            are Read_Only, Read_Write, and Custom.
-        enabled (bool): If True, the tag will be enabled.
-        value (object): The value of the tag. Used for memory tags.
-        attributes (dict): The tag's configuration attributes.
-        parameters (dict): The parameters for a UDT instance tag.
-        overrides (dict): All of the overrides for a UDT instance tag.
-        alarmList (str): List of legacy alarms for the tag. The legacy
-            alarm system was retired in 7.6.0, so the alarmConfig
-            parameter should be utilized on newer versions.
-        alarmConfig (dict): The alarm configuration for the tag. See
+        accessRights: The access rights for a tag. Possible values are
+            Read_Only, Read_Write, and Custom.
+        enabled: If True, the tag will be enabled.
+        value: The value of the tag. Used for memory tags.
+        attributes: The tag's configuration attributes.
+        parameters: The parameters for a UDT instance tag.
+        overrides: All of the overrides for a UDT instance tag.
+        alarmList: List of legacy alarms for the tag. The legacy alarm
+            system was retired in 7.6.0, so the alarmConfig parameter
+            should be utilized on newer versions.
+        alarmConfig: The alarm configuration for the tag. See
             editAlarmConfig for details on how to use this parameter.
     """
     print(
@@ -112,6 +109,7 @@ def addTag(
 
 
 def browseConfiguration(path, recursive):
+    # type: (Union[str, unicode], bool) -> List[TagConfiguration]
     """Browses a folder path or UDT and returns Tag configuration
     information for each Tag within the specified path.
 
@@ -119,34 +117,37 @@ def browseConfiguration(path, recursive):
     configurable attribute on a Tag.
 
     Args:
-        path (str): The path that will be browsed, typically to a folder
-            or UDT instance. Leave blank to browse the root folder. A
-            Tag Provider may be specified as follows: "[TagProvider]".
-            If the Tag Provider is omitted, client scoped calls will be
+        path: The path that will be browsed, typically to a folder or
+            UDT instance. Leave blank to browse the root folder. A Tag
+            Provider may be specified as follows: "[TagProvider]". If
+            the Tag Provider is omitted, client scoped calls will be
             made against the project's default provider. Gateway scoped
             calls must include a Tag Provider. When browsing UDTs,
             specifying the UDT path will browse the Tags inside the UDT.
             To browse the UDT instance, specify the parent of the
             instance.
-        recursive (bool): If True, will recursively search for Tags in
-            folders. Each folder will return a 'tags' property
-            containing the nested TagConfigurations in another list.
+        recursive: If True, will recursively search for Tags in folders.
+            Each folder will return a 'tags' property containing the
+            nested TagConfigurations in another list.
 
     Returns:
-        list(TagConfiguration): A list of TagConfiguration objects.
-            Attributes on the object may be read by calling
-            tag.get(propertyObject). A list of attributes with
-            configuration information can be obtained by calling
-            getProperties(). Only attributes with non-default values
-            will appear in the attribute list.
+        A list of TagConfiguration objects. Attributes on the object may
+        be read by calling tag.get(propertyObject). A list of attributes
+        with configuration information can be obtained by calling
+        getProperties(). Only attributes with non-default values will
+        appear in the attribute list.
     """
     print(path, recursive)
     return [TagConfiguration()]
 
 
 def browseHistoricalTags(
-    path, nameFilters=None, maxSize=None, continuationPoint=None
+    path,  # type: Union[str, unicode]
+    nameFilters=None,  # type: Optional[List[Union[str, unicode]]]
+    maxSize=None,  # type: Optional[int]
+    continuationPoint=None,  # type: Optional[Any]
 ):
+    # type: (...) -> BrowseResults
     """Will browse for any historical Tags at the provided historical
     path.
 
@@ -154,35 +155,35 @@ def browseHistoricalTags(
     through any children. Will return with a BrowseResults object.
 
     Args:
-        path (str): The Historical Tag Path to browse. See the Tag
-            Export page for a description of how to construct a
-            historical Tag Path.
-        nameFilters (list[str]): A list of name filters to be applied to
-            the result set. Optional.
-        maxSize (int): The maximum size of the result set. Optional.
-        continuationPoint (object): Sets the continuation point in order
-            to continue a browse that was previously started and then
+        path: The Historical Tag Path to browse. See the Tag Export page
+            for a description of how to construct a historical Tag Path.
+        nameFilters: A list of name filters to be applied to the result
+            set. Optional.
+        maxSize: The maximum size of the result set. Optional.
+        continuationPoint: Sets the continuation point in order to
+            continue a browse that was previously started and then
             limited. Use .getContinuationPoint() on the BrowseResults
             object to get the continuation point. Optional.
 
     Returns:
-        BrowseResults: An object that contains the results as well as
-            the Continuation Point. Get the results by calling
-            .getResults() on the BrowseResults object.
+        An object that contains the results as well as the Continuation
+        Point. Get the results by calling .getResults() on the
+        BrowseResults object.
     """
     print(path, nameFilters, maxSize, continuationPoint)
     return BrowseResults()
 
 
 def browseTags(
-    parentPath,
-    tagPath=None,
-    tagType=None,
-    dataType=None,
-    udtParentType=None,
-    recursive=False,
-    sort="ASC",
+    parentPath,  # type: Union[str, unicode]
+    tagPath=None,  # type: Optional[Union[str, unicode]]
+    tagType=None,  # type: Optional[Union[str, unicode]]
+    dataType=None,  # type: Optional[Union[str, unicode]]
+    udtParentType=None,  # type: Optional[Union[str, unicode]]
+    recursive=False,  # type: Optional[bool]
+    sort="ASC",  # type: Optional[Union[str, unicode]]
 ):
+    # type: (...) -> List[BrowseTag]
     """Returns an array of tags from a specific folder.
 
     The function supports filtering and recursion. Leave filters blank
@@ -191,34 +192,32 @@ def browseTags(
     If called in the gateway scope, a Tag Provider must be specified.
 
     Args:
-        parentPath (str): The parent folder path. Leave blank for the
-            root folder. Note: you can specify the tag provider name in
+        parentPath: The parent folder path. Leave blank for the root
+            folder. Note: you can specify the tag provider name in
             square brackets at the beginning of the parentPath string.
             Example: "[myTagProvider]MyTagsFolder". If the tag provider
             name is left off then the project default provider will be
             used.
-        tagPath (str): Filters on a tag path. Use * as a wildcard for
-            any number of characters and a ? for a single character.
+        tagPath: Filters on a tag path. Use * as a wildcard for any
+            number of characters and a ? for a single character.
             Optional.
-        tagType (str): Filters on a tag type. Possible values are OPC,
-            MEMORY, DB, QUERY, Folder, DERIVED and UDT_INST. Optional.
-        dataType (str): The data type of the tag. Not used for UDT
-            instances or folders. Possible values are Int1, Int2, Int4,
-            Int8, Float4, Float8, Boolean, String, and DateTime.
-            Optional.
-        udtParentType (str): The name of the parent UDT. Optional.
-        recursive (bool): Recursively search for tags inside of folders.
-            Note: It is highly recommended that recursive is set to
-            False, as server timeouts are more likely to occur.
-            Optional.
-        sort (str): Sets the sort order, possible values are ASC and
-            DESC. Sorting is done on the full path of the tag. Optional.
+        tagType: Filters on a tag type. Possible values are OPC, MEMORY,
+            DB, QUERY, Folder, DERIVED and UDT_INST. Optional.
+        dataType: The data type of the tag. Not used for UDT instances
+            or folders. Possible values are Int1, Int2, Int4, Int8,
+            Float4, Float8, Boolean, String, and DateTime. Optional.
+        udtParentType: The name of the parent UDT. Optional.
+        recursive: Recursively search for tags inside of folders. Note:
+            It is highly recommended that recursive is set to False, as
+            server timeouts are more likely to occur. Optional.
+        sort: Sets the sort order, possible values are ASC and DESC.
+            Sorting is done on the full path of the tag. Optional.
 
     Returns:
-        list[BrowseTag]: An array of BrowseTag. BrowseTag has the
-            following variables: name, path, fullPath, type, dataType,
-            and the following functions: isFolder(), isUDT(), isOPC(),
-            isMemory(), isExpression(), isQuery().
+        An array of BrowseTag. BrowseTag has the following variables:
+        name, path, fullPath, type, dataType, and the following
+        functions: isFolder(), isUDT(), isOPC(), isMemory(),
+        isExpression(), isQuery().
     """
     print(
         parentPath,
@@ -232,88 +231,93 @@ def browseTags(
     return [BrowseTag()]
 
 
-def browseTagsSimple(parentPath, sort):
+def browseTagsSimple(
+    parentPath,  # type: Union[str, unicode]
+    sort,  # type: Union[str, unicode]
+):
+    # type: (...) -> List[BrowseTag]
     """Returns a sorted array of tags from a specific folder.
 
     Args:
-        parentPath (str): The parent folder path. Leave blank for the
-            root folder. Note: you can specify the tag provider name in
+        parentPath: The parent folder path. Leave blank for the root
+            folder. Note: you can specify the tag provider name in
             square brackets at the beginning of the parentPath string.
             Example: "[myTagProvider]MyTagsFolder". If the tag provider
             name is left off then the project default provider will be
             used.
-        sort (str): Sets the sort order, possible values are ASC and
-            DESC.
+        sort: Sets the sort order, possible values are ASC and DESC.
 
     Returns:
-        list[BrowseTag]: An array of BrowseTag. BrowseTag has the
-            following variables: name, path, fullPath, type, dataType,
-            and the following functions: isFolder(), isUDT(), isOPC(),
-            isMemory(), isExpression(), isQuery().
+        An array of BrowseTag. BrowseTag has the following variables:
+        name, path, fullPath, type, dataType, and the following
+        functions: isFolder(), isUDT(), isOPC(), isMemory(),
+        isExpression(), isQuery().
     """
     print(parentPath, sort)
     return [BrowseTag()]
 
 
-def editAlarmConfig(tagPaths, alarmConfig):
+def editAlarmConfig(
+    tagPaths,  # type: List[Union[str, unicode]]
+    alarmConfig,  # type: Dict[Union[str, unicode], List[List[Union[str, unicode]]]]
+):
+    # type: (...) -> None
     """Edit the alarm configuration of multiple existing tags in
     Ignition with a single call.
 
     Args:
-        tagPaths (list[str]): The full path to the tag you want to edit.
-            Note: you can specify the tag provider name in square
-            brackets at the beginning of the parentPath string. Example:
+        tagPaths: The full path to the tag you want to edit. Note: you
+            can specify the tag provider name in square brackets at the
+            beginning of the parentPath string. Example:
             "[myTagProvider]MyTagsFolder". If the tag provider name is
             left off then the project default provider will be used.
-        alarmConfig (dict): A dictionary of multi-dimensional lists
-            containing the new alarm configuration. The key in the
-            dictionary will be the name of the alarm being to edit, and
-            the value is a list of lists. The nested lists use the
-            format ["name", "Value", "newValue"]. Note that item 1 is
-            always "Value".
+        alarmConfig: A dictionary of multi-dimensional lists containing
+            the new alarm configuration. The key in the dictionary will
+            be the name of the alarm being to edit, and the value is a
+            list of lists. The nested lists use the format ["name",
+            "Value", "newValue"]. Note that item 1 is always "Value".
     """
     print(tagPaths, alarmConfig)
 
 
 def editTag(
-    tagPath,
-    attributes=None,
-    parameters=None,
-    accessRights=None,
-    overrides=None,
-    alarmList=None,
-    alarmConfig=None,
+    tagPath,  # type: Union[str, unicode]
+    attributes=None,  # type: Optional[Dict]
+    parameters=None,  # type: Optional[Dict]
+    accessRights=None,  # type: Optional[Union[str, unicode]]
+    overrides=None,  # type: Optional[Dict]
+    alarmList=None,  # type: Optional[Union[str, unicode]]
+    alarmConfig=None,  # type: Optional[Dict]
 ):
+    # type: (...) -> None
     """Edits an existing Tag in Ignition.
 
     This will not work on Client Tags, because there is a Client
     Provider for each project.
 
     Args:
-        tagPath (str): The full path to the Tag you want to edit. For
-            members of UDT instances, the tagPath will be the path to
-            the UDT instance, with the overrides parameter listing out
-            the member Tags to edit. Note: you can specify the Tag
-            provider name in square brackets at the beginning of the
-            parentPath string. Example: "[myTagProvider]MyTagsFolder".
-            If the Tag provider name is left off then the project
-            default provider will be used.
-        attributes (dict): The Tag's configuration attributes. Optional.
-        parameters (dict): The parameters for a UDT instance Tag.
-            Optional.
-        accessRights (string): The access rights for the Tags. Possible
-            values are Read_Only, Read_Write, and Custom. Optional.
-        overrides (dict): All of the overrides for a UDT instance Tag.
-            The dictionary should be in the form of the names of member
-            Tags as keys, with the values being a dictionary of
+        tagPath: The full path to the Tag you want to edit. For members
+            of UDT instances, the tagPath will be the path to the UDT
+            instance, with the overrides parameter listing out the
+            member Tags to edit. Note: you can specify the Tag provider
+            name in square brackets at the beginning of the parentPath
+            string. Example: "[myTagProvider]MyTagsFolder". If the Tag
+            provider name is left off then the project default provider
+            will be used.
+        attributes: The Tag's configuration attributes. Optional.
+        parameters: The parameters for a UDT instance Tag. Optional.
+        accessRights: The access rights for the Tags. Possible s are
+            Read_Only, Read_Write, and Custom. Optional.
+        overrides: All of the overrides for a UDT instance Tag. The
+            dictionary should be in the form of the names of member Tags
+            as keys, with the values being a dictionary of
             properties/overrides ie. {'memberTagName':{dictionary of
             overrides}}. Optional.
-        alarmList (str): List of legacy alarms for the Tag. The legacy
-            alarm system was retired in 7.6.0. Newer systems should
-            utilize the system.tag.editAlarmConfig function instead.
-            Optional.
-        alarmConfig (dict): The alarm configuration for the Tag. Note
-            that this parameter cannot edit alarms on UDTs. Instead, the
+        alarmList: List of legacy alarms for the Tag. The legacy alarm
+            system was retired in 7.6.0. Newer systems should utilize
+            the system.tag.editAlarmConfig function instead. Optional.
+        alarmConfig: The alarm configuration for the Tag. Note that this
+            parameter cannot edit alarms on UDTs. Instead, the
             system.tag.editAlarmConfig function (which can also edit
             alarms on non-UDT Tags) should be used instead. See
             editAlarmConfig for details on how to use this parameter.
@@ -331,45 +335,46 @@ def editTag(
 
 
 def editTags(
-    tagPaths,
-    attributes,
-    parameters,
-    accessRights,
-    overrides,
-    alarmList,
-    alarmConfig,
-    provider,
-    json,
+    tagPaths,  # type: List[Union[str, unicode]]
+    attributes,  # type: Dict
+    parameters,  # type: Dict
+    accessRights,  # type: Union[str, unicode]
+    overrides,  # type: Dict
+    alarmList,  # type: Union[str, unicode]
+    alarmConfig,  # type: Dict
+    provider="",  # type: Optional[Union[str, unicode]]
+    json=None,  # type: Optional[Union[str, unicode]]
 ):
+    # type: (...) -> None
     """Edit multiple existing Tags in Ignition with a single call.
 
     This will not work on Client Tags, because there is a Client
     Provider for each project.
 
     Args:
-        tagPaths (list[str]): The full path to the Tag you want to edit.
-            For members of UDT instances, the tagPath will be the path
-            to the UDT instance, with the overrides parameter listing
-            out the member Tags to edit. Note: you can specify the Tag
-            provider name in square brackets at the beginning of the
-            parentPath string. Example: "[myTagProvider]MyTagsFolder".
-            If the Tag provider name is left off then the project
-            default provider will be used.
-        attributes (dict): The Tag's configuration attributes.
-        parameters (dict): The parameters for a UDT instance Tag.
-        accessRights (str): The access rights for a Tag. Possible values
-            are Read_Only, Read_Write, and Custom.
-        overrides (dict): All of the overrides for a UDT instance Tag.
-        alarmList (str): List of legacy alarms for the Tag. The legacy
-            alarm system was retired in 7.6.0, so the alarmConfig
-            parameter should be utilized on newer versions.
-        alarmConfig (dict): The alarm configuration for the Tag.
-        provider (str): The name of the Tag provider, used in
-            conjunction with the JSON argument. The default value is the
-            default Tag provider. Optional.
-        json (str): The properties to edit on Tags, represented as a
-            JSON object. When using this, it acts as a replacement for
-            other parameters. Optional.
+        tagPaths: The full path to the Tag you want to edit. For members
+            of UDT instances, the tagPath will be the path to the UDT
+            instance, with the overrides parameter listing out the
+            member Tags to edit. Note: you can specify the Tag provider
+            name in square brackets at the beginning of the parentPath
+            string. Example: "[myTagProvider]MyTagsFolder". If the Tag
+            provider name is left off then the project default provider
+            will be used.
+        attributes: The Tag's configuration attributes.
+        parameters: The parameters for a UDT instance Tag.
+        accessRights: The access rights for a Tag. Possible values are
+            Read_Only, Read_Write, and Custom.
+        overrides: All of the overrides for a UDT instance Tag.
+        alarmList: List of legacy alarms for the Tag. The legacy alarm
+            system was retired in 7.6.0, so the alarmConfig parameter
+            should be utilized on newer versions.
+        alarmConfig: The alarm configuration for the Tag.
+        provider: The name of the Tag provider, used in conjunction with
+            the JSON argument. The default value is the default Tag
+            provider. Optional.
+        json: The properties to edit on Tags, represented as a JSON
+            object. When using this, it acts as a replacement for other
+            parameters. Optional.
     """
     print(
         tagPaths,
@@ -385,71 +390,76 @@ def editTags(
 
 
 def exists(tagPath):
+    # type: (Union[str, unicode]) -> bool
     """Checks whether or not a tag with a given path exists.
 
     Args:
-        tagPath (str): The path of the tag to look up.
+        tagPath: The path of the tag to look up.
 
     Returns:
-        bool: True if a tag exists for the given path, False otherwise.
+        True if a tag exists for the given path, False otherwise.
     """
     print(tagPath)
     return True
 
 
 def getAlarmStates(tagPath):
+    # type: (Union[str, unicode]) -> List[TagAlarmDefinition]
     """Returns an array of alarm definitions for a specific tag.
 
     Args:
-        tagPath (str): The full path to the tag. Note: you can specify
-            the tag provider name in square brackets at the beginning of
-            the parentPath string. Example:
-            "[myTagProvider]MyTagsFolder". If the tag provider name is
-            left off then the project default provider will be used.
+        tagPath: The full path to the tag. Note: you can specify the tag
+            provider name in square brackets at the beginning of the
+            parentPath string. Example: "[myTagProvider]MyTagsFolder".
+            If the tag provider name is left off then the project
+            default provider will be used.
 
     Returns:
-        list[TagAlarmDefinition]: An array of TagAlarmDefinition.
+        An array of TagAlarmDefinition.
     """
     print(tagPath)
     return [TagAlarmDefinition("alarm", None)]
 
 
 def isOverlaysEnabled():
+    # type: () -> bool
     """Returns whether or not the current client's quality overlay
     system is currently enabled.
 
     Returns:
-         bool: True (1) if overlays are currently enabled.
+         True (1) if overlays are currently enabled.
     """
     return False
 
 
 def loadFromFile(filePath, provider, mode):
+    # type: (Union[str, unicode], Union[str, unicode], int) -> None
     """This function locates an exported tag file and loads the tags
     into the specified tag provider.
 
     Args:
-        filePath (str): The path of the tag file to import from.
-        provider (str): The name of the provider to import to.
-        mode (int): Dictates what happens if the tag already exists.
+        filePath: The path of the tag file to import from.
+        provider: The name of the provider to import to.
+        mode: Dictates what happens if the tag already exists.
             0 = overwrite, 1 = ignore.
     """
     print(filePath, provider, mode)
 
 
 def queryTagCalculations(
-    paths,
-    calculations,
-    startDate=None,
-    endDate=None,
-    rangeHours=None,
-    rangeMinutes=None,
-    aliases=None,
-    includeBoundingValues=True,
-    validatesSCExec=True,
-    noInterpolation=False,
-    ignoreBadQuality=False,
+    paths,  # type: List[Union[str, unicode]]
+    calculations,  # type: List[Union[str, unicode]]
+    startDate=None,  # type: Optional[Date]
+    endDate=None,  # type: Optional[Date]
+    rangeHours=None,  # type: Optional[int]
+    rangeMinutes=None,  # type: Optional[int]
+    aliases=None,  # type: Optional[List[Union[str, unicode]]]
+    includeBoundingValues=True,  # type: Optional[bool]
+    validatesSCExec=True,  # type: Optional[bool]
+    noInterpolation=False,  # type: Optional[bool]
+    ignoreBadQuality=False,  # type: Optional[bool]
 ):
+    # type: (...) -> BasicDataset
     """Queries various calculations (aggregations) for a set of tags
     over a specified range.
 
@@ -462,58 +472,51 @@ def queryTagCalculations(
     system.tag.queryTagHistory
 
     Args:
-        paths (list[str]): An array of tag paths (strings) to query
-            calculations for. The resulting dataset will have a row for
-            each tag, and a column for each calculation.
-        calculations (list[str]): An array of calculations (aggregation
-            functions) to execute for each tag. Valid values are:
-            "Average" (time-weighted), "MinMax", "LastValue",
-            "SimpleAverage", "Sum", "Minimum", "Maximum", "DurationOn",
-            "DurationOff", "CountOn", "CountOff", "Count", "Range",
-            "Variance", "StdDev", "PctGood", and "PctBad".
-        startDate (Date): The starting point for the calculation
-            window. If omitted, and range is not used, 8 hours before
-            the current time is used. Optional.
-        endDate (Date): The end of the calculation window. If
-            omitted, and range is not used, uses the current time.
-            Optional.
-        rangeHours (int): Allows you to specify the query range in
-            hours, instead of using start and end date. Can be positive
-            or negative, and can be used in conjunction with startDate
-            or endDate. Optional.
-        rangeMinutes (int): Same as rangeHours, but in minutes.
-            Optional.
-        aliases (list[str]): Aliases that will be used to override the
-            tag path names in the result dataset. Must be 1-to-1 with
-            the tag paths. If not specified, the tag paths themselves
-            will be used. Optional.
-        includeBoundingValues (bool): A boolean flag indicating that the
-            system should attempt to load values before and after the
-            query bounds for the purpose of interpolation. The effect
-            depends on the aggregates used. The default is "True".
-            Optional.
-        validatesSCExec (bool): A boolean flag indicating whether or not
-            data should be validated against the scan class execution
+        paths: An array of tag paths (strings) to query calculations
+            for. The resulting dataset will have a row for each tag, and
+            a column for each calculation.
+        calculations: An array of calculations (aggregation functions)
+            to execute for each tag. Valid values are: "Average"
+            (time-weighted), "MinMax", "LastValue", "SimpleAverage",
+            "Sum", "Minimum", "Maximum", "DurationOn", "DurationOff",
+            "CountOn", "CountOff", "Count", "Range", "Variance",
+            "StdDev", "PctGood", and "PctBad".
+        startDate: The starting point for the calculation window. If
+            omitted, and range is not used, 8 hours before the current
+            time is used. Optional.
+        endDate: The end of the calculation window. If omitted, and
+            range is not used, uses the current time. Optional.
+        rangeHours: Allows you to specify the query range in hours,
+            instead of using start and end date. Can be positive or
+            negative, and can be used in conjunction with startDate or
+            endDate. Optional.
+        rangeMinutes: Same as rangeHours, but in minutes. Optional.
+        aliases: Aliases that will be used to override the tag path
+            names in the result dataset. Must be 1-to-1 with the tag
+            paths. If not specified, the tag paths themselves will be
+            used. Optional.
+        includeBoundingValues: A boolean flag indicating that the system
+            should attempt to load values before and after the query
+            bounds for the purpose of interpolation. The effect depends
+            on the aggregates used. The default is "True". Optional.
+        validatesSCExec: A boolean flag indicating whether or not data
+            should be validated against the scan class execution
             records. If False, calculations may include data that is
             assumed to be good, even though the system may not have been
             running. Default is "True". Optional.
-        noInterpolation (bool): A boolean flag indicating that the
-            system should not attempt to interpolate values in
-            situations where it normally would, such as for analog tags.
-            Default is "False". Optional.
-        ignoreBadQuality (bool): A boolean flag indicating that bad
-            quality values should not be used in the query process. If
-            set, any value with a "bad" quality will be completely
-            ignored in calculations. Default is "False". Optional.
+        noInterpolation: A boolean flag indicating that the system
+            should not attempt to interpolate values in situations where
+            it normally would, such as for analog tags. Default is
+            "False". Optional.
+        ignoreBadQuality: A boolean flag indicating that bad quality
+            values should not be used in the query process. If set, any
+            value with a "bad" quality will be completely ignored in
+            calculations. Default is "False". Optional.
 
     Returns:
-        Dataset: A dataset representing the calculations over the
-            specified range.
+        A dataset representing the calculations over the specified
+        range.
     """
-    endDate = system.date.now() if endDate is None else endDate
-    startDate = (
-        system.date.addHours(endDate, -8) if startDate is None else startDate
-    )
     print(
         paths,
         calculations,
@@ -527,9 +530,11 @@ def queryTagCalculations(
         noInterpolation,
         ignoreBadQuality,
     )
+    return BasicDataset()
 
 
 def queryTagDensity(paths, startDate, endDate):
+    # type: (List[Union[str, unicode]], Date, Date) -> BasicDataset
     """Queries the Tag history system for information about the density
     of data.
 
@@ -546,37 +551,38 @@ def queryTagDensity(paths, startDate, endDate):
     would be 0.75.
 
     Args:
-        paths (list[str]): An array of Tag paths (strings) to query.
-        startDate (Date): The start of the range to query.
-        endDate (Date): The end of the range to query.
+        paths: An array of Tag paths (strings) to query.
+        startDate: The start of the range to query.
+        endDate: The end of the range to query.
 
     Returns:
-        Dataset: A 2-column dataset consisting of a timestamp and a
-            weight. Each row is valid until the next row.
+        A 2-column dataset consisting of a timestamp and a weight. Each
+        row is valid until the next row.
     """
     print(paths, startDate, endDate)
-    return [0, 0]
+    return BasicDataset()
 
 
 def queryTagHistory(
-    paths,
-    startDate=None,
-    endDate=None,
-    returnSize=-1,
-    aggregationMode="Average",
-    returnFormat="Wide",
-    columnNames=None,
-    intervalHours=None,
-    intervalMinutes=None,
-    rangeHours=None,
-    rangeMinutes=None,
-    aggregationModes=None,
-    includeBoundingValues=None,
-    validateSCExec=None,
-    noInterpolation=None,
-    ignoreBadQuality=None,
-    timeout=None,
+    paths,  # type: List[Union[str, unicode]]
+    startDate=None,  # type: Optional[Date]
+    endDate=None,  # type: Optional[Date]
+    returnSize=-1,  # type: Optional[int]
+    aggregationMode="Average",  # type: Optional[Union[str, unicode]]
+    returnFormat="Wide",  # type: Optional[Union[str, unicode]]
+    columnNames=None,  # type: Optional[List[Union[str, unicode]]]
+    intervalHours=None,  # type: Optional[int]
+    intervalMinutes=None,  # type: Optional[int]
+    rangeHours=None,  # type: Optional[int]
+    rangeMinutes=None,  # type: Optional[int]
+    aggregationModes=None,  # type: Optional[List[Union[str, unicode]]]
+    includeBoundingValues=None,  # type: Optional[bool]
+    validateSCExec=None,  # type: Optional[bool]
+    noInterpolation=None,  # type: Optional[bool]
+    ignoreBadQuality=None,  # type: Optional[bool]
+    timeout=None,  # type: Optional[int]
 ):
+    # type: (...) -> BasicDataset
     """Issues a query to the Tag Historian.
 
     Querying tag history involves specifying the tags and the date
@@ -585,75 +591,69 @@ def queryTagHistory(
     together into a coherent, tabular result set.
 
     Args:
-        paths (list[str]): An array of tag paths (strings) to query.
-            Each tag path specified will be a column in the result
-            dataset.
-        startDate (Date): The earliest value to retrieve. If
-            omitted, 8 hours before current time is used. Optional.
-        endDate (Date): The latest value to retrieve. If omitted,
-            current time is used. Optional.
-        returnSize (int): The number of samples to return. -1 will
-            return values as they changed, and 0 will return the
-            "natural" number of values based on the logging rates of the
-            scan class(es) involved. -1 is the default. Optional.
-        aggregationMode (str): The mode to use when aggregating multiple
+        paths: An array of tag paths (strings) to query. Each tag path
+            specified will be a column in the result dataset.
+        startDate: The earliest value to retrieve. If omitted, 8 hours
+            before current time is used. Optional.
+        endDate: The latest value to retrieve. If omitted, current time
+            is used. Optional.
+        returnSize: The number of samples to return. -1 will return
+            values as they changed, and 0 will return the "natural"
+            number of values based on the logging rates of the scan
+            class(es) involved. -1 is the default. Optional.
+        aggregationMode: The mode to use when aggregating multiple
             samples into one time slice. Valid values are: "Average"
             (time-weighted), "MinMax", "LastValue", "SimpleAverage",
             "Sum", "Minimum", "Maximum", "DurationOn", "DurationOff",
             "CountOn", "CountOff", "Count", "Range", "Variance",
             "StdDev", "PctGood", and "PctBad". Optional.
-        returnFormat (str): Use "Wide" to have a column per tag queried,
-            or "Tall" to have a fixed-column format. Default is "Wide".
+        returnFormat: Use "Wide" to have a column per tag queried, or
+            "Tall" to have a fixed-column format. Default is "Wide".
             Optional.
-        columnNames (list[str]): Aliases that will be used to override
-            the column names in the result dataset. Must be 1-to-1 with
-            the tag paths. If not specified, the tag paths themselves
-            will be used as column titles. Optional.
-        intervalHours (int): Allows you to specify the window interval
-            in terms of hours, as opposed to using a specific return
-            size. Optional.
-        intervalMinutes (int): Same as intervalHours, but in minutes.
-            Can be used on its own, or in conjunction with
-            intervalHours. Optional.
-        rangeHours (int): Allows you to specify the query range in
-            hours, instead of using start and end date. Can be positive
-            or negative, and can be used in conjunction with startDate
-            or endDate. Optional.
-        rangeMinutes (int): Same as rangeHours, but in minutes.
+        columnNames: Aliases that will be used to override the column
+            names in the result dataset. Must be 1-to-1 with the tag
+            paths. If not specified, the tag paths themselves will be
+            used as column titles. Optional.
+        intervalHours: Allows you to specify the window interval in
+            terms of hours, as opposed to using a specific return size.
             Optional.
-        aggregationModes (list[str]): A one-to-one list with paths
-            specifying an aggregation mode per column. Optional.
-        includeBoundingValues (bool): A boolean flag indicating that the
-            system should attempt to include values for the query bound
-            times if possible. The default for this property depends on
-            the query mode, so unless a specific behavior is desired, it
-            is best to not include this parameter. Optional.
-        validateSCExec (bool): A boolean flag indicating whether or not
-            data should be validated against the scan class execution
+        intervalMinutes: Same as intervalHours, but in minutes. Can be
+            used on its own, or in conjunction with intervalHours.
+            Optional.
+        rangeHours: Allows you to specify the query range in hours,
+            instead of using start and end date. Can be positive or
+            negative, and can be used in conjunction with startDate or
+            endDate. Optional.
+        rangeMinutes: Same as rangeHours, but in minutes. Optional.
+        aggregationModes: A one-to-one list with paths specifying an
+            aggregation mode per column. Optional.
+        includeBoundingValues: A boolean flag indicating that the system
+            should attempt to include values for the query bound times
+            if possible. The default for this property depends on the
+            query mode, so unless a specific behavior is desired, it is
+            best to not include this parameter. Optional.
+        validateSCExec: A boolean flag indicating whether or not data
+            should be validated against the scan class execution
             records. If False, data will appear flat (but good quality)
             for periods of time in which the system wasn't running. If
             True, the same data would be bad quality during downtime
             periods. Optional.
-        noInterpolation (bool): A boolean flag indicating that the
-            system should not attempt to interpolate values in
-            situations where it normally would. This will also prevent
-            the return of rows that are purely interpolated. Optional.
-        ignoreBadQuality (bool): A boolean flag indicating that bad
-            quality values should not be used in the query process. If
-            set, any value with a "bad" quality will be completely
-            ignored in calculations and in the result set. Optional.
-        timeout (int): Timeout in milliseconds for Client Scope. This
-            property is ignored in the Gateway Scope. Optional.
+        noInterpolation: A boolean flag indicating that the system
+            should not attempt to interpolate values in situations where
+            it normally would. This will also prevent the return of rows
+            that are purely interpolated. Optional.
+        ignoreBadQuality: A boolean flag indicating that bad quality
+            values should not be used in the query process. If set, any
+            value with a "bad" quality will be completely ignored in
+            calculations and in the result set. Optional.
+        timeout: Timeout in milliseconds for Client Scope. This property
+            is ignored in the Gateway Scope. Optional.
 
     Returns:
-        Dataset: A dataset representing the historian values for the
-            specified tag paths. The first column will be the timestamp,
-            and each column after that represents a tag.
+        A dataset representing the historian values for the specified
+        tag paths. The first column will be the timestamp, and each
+        column after that represents a tag.
     """
-    endDate = system.date.now() if endDate is None else endDate
-    startDate = (
-        system.date.addHours(endDate, -8) if startDate is None else startDate
-    )
     print(
         paths,
         startDate,
@@ -673,9 +673,11 @@ def queryTagHistory(
         ignoreBadQuality,
         timeout,
     )
+    return BasicDataset()
 
 
 def read(tagPath):
+    # type: (Union[str, unicode]) -> BasicQualifiedValue
     """Reads the value of the tag at the given tag path.
 
     Returns a qualified value object. You can read the value, quality,
@@ -687,18 +689,19 @@ def read(tagPath):
     a list of available attributes.
 
     Args:
-        tagPath (str): Reads from the given tag path. If no property is
+        tagPath: Reads from the given tag path. If no property is
             specified in the path, the Value property is assumed.
 
     Returns:
-        QualifiedValue: A qualified value. This object has three
-            sub-members: value, quality, and timestamp.
+        A qualified value. This object has three sub-members: value,
+        quality, and timestamp.
     """
     print(tagPath)
     return BasicQualifiedValue()
 
 
 def readAll(tagPaths):
+    # type: (List[Union[str, unicode]]) -> List[BasicQualifiedValue]
     """Reads the values of each tag in the tag path list.
 
     Returns a sequence of qualified value objects. You can read the
@@ -707,38 +710,40 @@ def readAll(tagPaths):
     read() many times.
 
     Args:
-        tagPaths (list[str]): A sequence of tag paths to read from.
+        tagPaths: A sequence of tag paths to read from.
 
     Returns:
-        list[QualifiedValue]: A sequence of qualified values
-            corresponding to each tag path given. Each qualified value
-            will have three sub-members: value, quality, and timestamp.
+        A sequence of qualified values corresponding to each tag path
+        given. Each qualified value will have three sub-members: value,
+        quality, and timestamp.
     """
     print(tagPaths)
-    return [QualifiedValue() for _ in range(len(tagPaths))]
+    return [BasicQualifiedValue() for _ in range(len(tagPaths))]
 
 
 def removeTag(tagPath):
+    # type: (Union[str, unicode]) -> None
     """Removes a tag from Ignition.
 
     Args:
-        tagPath (str): The path to the tag you want to remove. You can
-            specify the tag provider name in square brackets at the
-            beginning of the parentPath string. Example:
+        tagPath: The path to the tag you want to remove. You can specify
+            the tag provider name in square brackets at the beginning of
+            the parentPath string. Example:
             "[myTagProvider]MyTagsFolder". If the tag provider name is
             left off, then the project default provider will be used.
-            Note that an empty path ( '' ) will remove all tags.
+            Note that an empty path ('') will remove all tags.
     """
     print(tagPath)
 
 
 def removeTags(tagPaths):
+    # type: (List[Union[str, unicode]]) -> None
     """Removes multiple tags from Ignition with a single call.
 
     Args:
-        tagPaths (list[str]): An array of the paths to the tags you want
-            to remove. You can specify the tag provider name in square
-            brackets at the beginning of the parentPath string. Example:
+        tagPaths: An array of the paths to the tags you want to remove.
+            You can specify the tag provider name in square brackets at
+            the beginning of the parentPath string. Example:
             "[myTagProvider]MyTagsFolder". If the tag provider name is
             left off, then the project default provider will be used.
             Note that an empty path (['']) will remove all tags.
@@ -747,38 +752,40 @@ def removeTags(tagPaths):
 
 
 def scan(provider, scname):
+    # type: (Union[str, unicode], Union[str, unicode]) -> None
     """Forces execution of a scan class.
 
     On a leased scan class, if both the fast and slow rate are set to 0,
     this will not execute.
 
     Args:
-        provider (str): The name of the scan class provider. If blank,
-            it will use the default. Required if used in the gateway
-            scope.
-        scname (str): The name of the scan class to execute.
+        provider: The name of the scan class provider. If blank, it will
+            use the default. Required if used in the gateway scope.
+        scname: The name of the scan class to execute.
     """
     print(provider, scname)
 
 
 def setOverlaysEnabled(enabled):
+    # type: (bool) -> None
     """Enables or disables the component quality overlay system.
 
     Args:
-        enabled (bool): True (1) to turn on tag overlays, False (0) to
-            turn them off.
+        enabled: True (1) to turn on tag overlays, False (0) to turn
+            them off.
     """
     print(enabled)
 
 
 def storeTagHistory(
-    historyprovider,
-    tagprovider,
-    paths,
-    values,
-    qualities=None,
-    timestamps=None,
+    historyprovider,  # type: Union[str, unicode]
+    tagprovider,  # type: Union[str, unicode]
+    paths,  # type: List[Union[str, unicode]]
+    values,  # type: List[Any]
+    qualities=None,  # type: Optional[List[int]]
+    timestamps=None,  # type: Optional[List[Date]]
 ):
+    # type: (...) -> None
     """Inserts data into the tag history system, allowing Tag history to
     be recorded via scripting.
 
@@ -799,28 +806,28 @@ def storeTagHistory(
     entry will be added the next time this function is called.
 
     Args:
-        historyprovider (str): The historical provider to store to.
-        tagprovider (str): The name of the realtime tag provider to
-            associate these tags with. The tag provider does not need to
-            exist, and the tag paths do not need to exist in it.
-        paths (list[str]): A list of paths to store. The values,
-            qualities, and timestamps are one-to-one with the paths. A
-            single path may be present multiple times in order to store
-            multiple values.
-        values (list[object]): A list of values to store.
-        qualities (list[int]): A list of integer quality codes
-            corresponding to the values. Quality codes can be found on
-            the Tag Quality and Overlays page. If omitted, GOOD quality
-            will be used. Optional.
-        timestamps (list[Date]): A list of Date timestamps corresponding
-            to the values. If omitted, the current time will be used. A
+        historyprovider: The historical provider to store to.
+        tagprovider: The name of the realtime tag provider to associate
+            these tags with. The tag provider does not need to exist,
+            and the tag paths do not need to exist in it.
+        paths: A list of paths to store. The values, qualities, and
+            timestamps are one-to-one with the paths. A single path may
+            be present multiple times in order to store multiple values.
+        values: A list of values to store.
+        qualities: A list of integer quality codes corresponding to the
+            values. Quality codes can be found on the Tag Quality and
+            Overlays page. If omitted, GOOD quality will be used.
+            Optional.
+        timestamps: A list of Date timestamps corresponding to the
+            values. If omitted, the current time will be used. A
             java.util.date object may be passed, so the system.date
             functions can be used to return a timestamp. Optional.
     """
-    print([historyprovider, tagprovider, paths, values, qualities, timestamps])
+    print(historyprovider, tagprovider, paths, values, qualities, timestamps)
 
 
 def write(tagPath, value, suppressErrors=False):
+    # type: (Union[str, unicode], Any, Optional[bool]) -> int
     """Writes a value to a tag.
 
     Note that this function writes asynchronously. This means that the
@@ -828,20 +835,21 @@ def write(tagPath, value, suppressErrors=False):
     write occurs sometime later on a different thread.
 
     Args:
-        tagPath (str): The path of the tag to write to.
-        value (object): The value to write.
-        suppressErrors (bool): A flag indicating whether or not to
-            suppress errors. Optional.
+        tagPath: The path of the tag to write to.
+        value: The value to write.
+        suppressErrors: A flag indicating whether or not to suppress
+            errors. Optional.
 
     Returns:
-        int: 0 if the write failed immediately, 1 if it succeeded
-            immediately, and 2 if it is pending.
+        0 if the write failed immediately, 1 if it succeeded
+        immediately, and 2 if it is pending.
     """
     print(tagPath, value, suppressErrors)
     return 1
 
 
 def writeAll(tagPaths, values):
+    # type: (List[Union[str, unicode]], List[Any]) -> List[int]
     """Performs an asynchronous bulk write.
 
     Takes two sequences that must have the same number of entries. The
@@ -850,19 +858,24 @@ def writeAll(tagPaths, values):
     than calling write multiple times.
 
     Args:
-        tagPaths (list[str]): The paths of the tags to write to.
-        values (list[object]): The values to write.
+        tagPaths: The paths of the tags to write to.
+        values: The values to write.
 
     Returns:
-        list[int]: Array of ints with an element for each tag written
-            to: 0 if the write failed immediately, 1 if it succeeded
-            immediately, and 2 if it is pending.
+        Array of ints with an element for each tag written to: 0 if the
+        write failed immediately, 1 if it succeeded immediately, and 2
+        if it is pending.
     """
     print(tagPaths, values)
     return [1] * len(tagPaths)
 
 
-def writeAllSynchronous(tagPaths, values, timeout=45000):
+def writeAllSynchronous(
+    tagPaths,  # type: List[Union[str, unicode]]
+    values,  # type: List[Any]
+    timeout=45000,  # type: Optional[int]
+):
+    # type: (...) -> None
     """Performs a synchronous write to multiple tags.
 
     Synchronous means that execution will not continue until this
@@ -879,16 +892,16 @@ def writeAllSynchronous(tagPaths, values, timeout=45000):
     determines the order that the writes will occur.
 
     Args:
-        tagPaths (list[str]): The paths of the tags to write to.
-        values (list[object]): The values to write.
-        timeout (int): How long to wait in milliseconds before timing
-            out pending writes. The default is 45000 milliseconds.
-            Optional.
+        tagPaths: The paths of the tags to write to.
+        values: The values to write.
+        timeout: How long to wait in milliseconds before timing out
+            pending writes. The default is 45000 milliseconds. Optional.
     """
     print(tagPaths, values, timeout)
 
 
 def writeSynchronous(tagPath, value, timeout=45000):
+    # type: (Union[str, unicode], Any, Optional[int]) -> None
     """Performs a write to a tag, synchronously.
 
     This means that you know at the end of this function whether or not
@@ -900,10 +913,9 @@ def writeSynchronous(tagPath, value, timeout=45000):
     scripts like timer scripts.
 
     Args:
-        tagPath (str): The path of the tag to write to.
-        value (object): The value to write.
-        timeout (int): How long to wait in milliseconds before timing
-            out pending writes. The default is 45000 milliseconds.
-            Optional.
+        tagPath: The path of the tag to write to.
+        value: The value to write.
+        timeout: How long to wait in milliseconds before timing out
+            pending writes. The default is 45000 milliseconds. Optional.
     """
     print(tagPath, value, timeout)
