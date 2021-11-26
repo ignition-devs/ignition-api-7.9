@@ -98,6 +98,9 @@ ipython_config.py
 #   install all needed dependencies.
 #Pipfile.lock
 
+# Jython
+.jython_cache/
+
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
 
