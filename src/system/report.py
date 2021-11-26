@@ -4,7 +4,7 @@ The following functions give you access to report details and the
 ability to run reports.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "executeAndDistribute",
@@ -13,18 +13,18 @@ __all__ = [
     "getReportNamesAsList",
 ]
 
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, AnyStr, Dict, List, Optional
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from java.lang import IllegalArgumentException
 
 
 def executeAndDistribute(
-    path,  # type: Union[str, unicode]
-    project="project",  # type: Optional[Union[str, unicode]]
-    parameters=None,  # type: Optional[Dict[Union[str, unicode], int]]
-    action=None,  # type: Optional[Union[str, unicode]]
-    actionSettings=None,  # type: Optional[Dict[Union[str, unicode], Any]]
+    path,  # type: AnyStr
+    project="project",  # type: Optional[AnyStr]
+    parameters=None,  # type: Optional[Dict[AnyStr, int]]
+    action=None,  # type: Optional[AnyStr]
+    actionSettings=None,  # type: Optional[Dict[AnyStr, Any]]
 ):
     # type: (...) -> None
     """Executes and distributes a report.
@@ -56,10 +56,10 @@ def executeAndDistribute(
 
 
 def executeReport(
-    path,  # type: Union[str, unicode]
-    project="project",  # type: Optional[Union[str, unicode]]
-    parameters=None,  # type: Optional[Dict[Union[str, unicode], int]]
-    fileType="pdf",  # type: Optional[Union[str, unicode]]
+    path,  # type: AnyStr
+    project="project",  # type: Optional[AnyStr]
+    parameters=None,  # type: Optional[Dict[AnyStr, int]]
+    fileType="pdf",  # type: Optional[AnyStr]
 ):
     # type: (...) -> Any
     """Immediately executes an existing report and returns a byte[] of
@@ -89,7 +89,7 @@ def executeReport(
 
 
 def getReportNamesAsDataset(project="project"):
-    # type: (Optional[Union[str, unicode]]) -> BasicDataset
+    # type: (Optional[AnyStr]) -> BasicDataset
     """Gets a data of all reports for a project.
 
     This dataset is particularly suited for display in a Tree View
@@ -114,7 +114,7 @@ def getReportNamesAsDataset(project="project"):
 
 
 def getReportNamesAsList(project="project"):
-    # type: (Optional[Union[str, unicode]]) -> List[Union[str, unicode]]
+    # type: (Optional[AnyStr]) -> List[AnyStr]
     """Gets a list of all reports for a project.
 
     Args:

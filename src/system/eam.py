@@ -4,11 +4,11 @@ The following functions give you access to view EAM information from the
 Gateway.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = ["getGroups", "queryAgentHistory", "queryAgentStatus", "runTask"]
 
-from typing import List, Optional, Union
+from typing import AnyStr, List, Optional
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.ignition.common.messages import UIResponse
@@ -16,7 +16,7 @@ from java.util import Date, Locale
 
 
 def getGroups():
-    # type: () -> List[Union[str, unicode]]
+    # type: () -> List[AnyStr]
     """Returns the names of the defined agent organizational groups in
     the Gateway.
 
@@ -27,8 +27,8 @@ def getGroups():
 
 
 def queryAgentHistory(
-    groupIds=None,  # type: Optional[List[Union[str, unicode]]]
-    agentIds=None,  # type: Optional[List[Union[str, unicode]]]
+    groupIds=None,  # type: Optional[List[AnyStr]]
+    agentIds=None,  # type: Optional[List[AnyStr]]
     startDate=None,  # type: Optional[Date]
     endDate=None,  # type: Optional[Date]
     limit=100,  # type: Optional[int]
@@ -59,8 +59,8 @@ def queryAgentHistory(
 
 
 def queryAgentStatus(
-    groupIds=None,  # type: Optional[List[Union[str, unicode]]]
-    agentIds=None,  # type: Optional[List[Union[str, unicode]]]
+    groupIds=None,  # type: Optional[List[AnyStr]]
+    agentIds=None,  # type: Optional[List[AnyStr]]
     isConnected=True,  # type: Optional[bool]
 ):
     # type: (...) -> BasicDataset
@@ -87,7 +87,7 @@ def queryAgentStatus(
 
 
 def runTask(taskname):
-    # type: (Union[str, unicode]) -> UIResponse
+    # type: (AnyStr) -> UIResponse
     """Takes the name of a task as an argument as a string (must be
     configured on the Controller before hand), attempts to execute the
     task.

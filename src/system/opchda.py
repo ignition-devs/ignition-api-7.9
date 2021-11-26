@@ -4,7 +4,7 @@ The following functions give you access to interact with the HDA types
 of OPC servers.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "browse",
@@ -20,7 +20,7 @@ __all__ = [
     "replace",
 ]
 
-from typing import Any, List, Union
+from typing import Any, AnyStr, List
 
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
 from com.inductiveautomation.ignition.common.sqltags.history import AggregateInfo
@@ -28,7 +28,7 @@ from java.util import Date
 
 
 def browse(root):
-    # type: (Union[str, unicode]) -> List[BrowseResults]
+    # type: (AnyStr) -> List[BrowseResults]
     """Performs a browse at the given root.
 
     Args:
@@ -43,7 +43,7 @@ def browse(root):
 
 
 def getAggregates(serverName):
-    # type: (Union[str, unicode]) -> List[AggregateInfo]
+    # type: (AnyStr) -> List[AggregateInfo]
     """Will query the server for aggregates that it supports.
 
     Args:
@@ -58,7 +58,7 @@ def getAggregates(serverName):
 
 
 def getAttributes(serverName):
-    # type: (Union[str, unicode]) -> List[AggregateInfo]
+    # type: (AnyStr) -> List[AggregateInfo]
     """Queries the given server for the item attributes that are
     available with system.opchda.readAttributes().
 
@@ -74,7 +74,7 @@ def getAttributes(serverName):
 
 
 def getServers():
-    # type: () -> List[Union[str, unicode]]
+    # type: () -> List[AnyStr]
     """Returns a list of the OPC-HDA servers configured on the system.
 
     This call will return all configured and enabled servers, including
@@ -87,8 +87,8 @@ def getServers():
 
 
 def insert(
-    serverName,  # type: Union[str, unicode]
-    itemId,  # type: Union[str, unicode]
+    serverName,  # type: AnyStr
+    itemId,  # type: AnyStr
     value,  # type: Any
     date,  # type: Any
     quality,  # type: int
@@ -112,8 +112,8 @@ def insert(
 
 
 def insertReplace(
-    serverName,  # type: Union[str, unicode]
-    itemId,  # type: Union[str, unicode]
+    serverName,  # type: AnyStr
+    itemId,  # type: AnyStr
     value,  # type: Any
     date,  # type: Date
     quality,  # type: int
@@ -137,7 +137,7 @@ def insertReplace(
 
 
 def isServerAvailable(serverName):
-    # type: (Union[str, unicode]) -> bool
+    # type: (AnyStr) -> bool
     """Checks to see if the specified OPC-HDA server is defined,
     enabled, and connected.
 
@@ -153,9 +153,9 @@ def isServerAvailable(serverName):
 
 
 def readAttributes(
-    serverName,  # type: Union[str, unicode]
-    itemId,  # type: Union[str, unicode]
-    attributeIds,  # type: Union[str, unicode]
+    serverName,  # type: AnyStr
+    itemId,  # type: AnyStr
+    attributeIds,  # type: AnyStr
     startDate,  # type: Date
     endDate,  # type: Date
 ):
@@ -188,8 +188,8 @@ def readAttributes(
 
 
 def readProcessed(
-    serverName,  # type: Union[str, unicode]
-    itemIds,  # type: List[Union[str, unicode]]
+    serverName,  # type: AnyStr
+    itemIds,  # type: List[AnyStr]
     startDate,  # type: Date
     endDate,  # type: Date
     resampleIntervalMS,  # type: int
@@ -233,8 +233,8 @@ def readProcessed(
 
 
 def readRaw(
-    serverName,  # type: Union[str, unicode]
-    itemIds,  # type: List[Union[str, unicode]]
+    serverName,  # type: AnyStr
+    itemIds,  # type: List[AnyStr]
     startDate,  # type: Date
     endDate,  # type: Date
     maxValues,  # type: int
@@ -266,8 +266,8 @@ def readRaw(
 
 
 def replace(
-    serverName,  # type: Union[str, unicode]
-    itemId,  # type: Union[str, unicode]
+    serverName,  # type: AnyStr
+    itemId,  # type: AnyStr
     value,  # type: Any
     date,  # type: Date
     quality,  # type: int

@@ -4,7 +4,7 @@ The following functions give you access to view various Gateway and
 Client data, as well as interact with other various systems.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "beep",
@@ -52,7 +52,7 @@ import json
 import os
 import platform
 import sys
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, AnyStr, Callable, Dict, List, Optional, Union
 
 import system.__version__ as version
 from com.inductiveautomation.ignition.common import BasicDataset
@@ -96,7 +96,7 @@ def beep():
 
 
 def execute(commands):
-    # type: (List[Union[str, unicode]]) -> None
+    # type: (List[AnyStr]) -> None
     """Executes the given commands via the operating system, in a
     separate process.
 
@@ -128,7 +128,7 @@ def exit(force=False):
 
 
 def getAvailableLocales():
-    # type: () -> List[Union[str, unicode]]
+    # type: () -> List[AnyStr]
     """Returns a collection of strings representing the Locales added
     to the Translation Manager, such as 'en' for English.
 
@@ -140,7 +140,7 @@ def getAvailableLocales():
 
 
 def getAvailableTerms():
-    # type: () -> List[Union[str, unicode]]
+    # type: () -> List[AnyStr]
     """Returns a collection of available terms defined in the
     translation system.
 
@@ -152,7 +152,7 @@ def getAvailableTerms():
 
 
 def getClientId():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Returns a hex-string that represents a number unique to the
     running client's session.
 
@@ -195,7 +195,7 @@ def getConnectionMode():
 
 
 def getEdition():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Returns the "edition" of the Vision client - "standard",
     "limited", or "panel".
 
@@ -206,7 +206,7 @@ def getEdition():
 
 
 def getGatewayAddress():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Returns the address of the gateway that the client is currently
     communicating with.
 
@@ -218,11 +218,11 @@ def getGatewayAddress():
 
 
 def getGatewayStatus(
-    gatewayAddress,  # type: Union[str, unicode]
+    gatewayAddress,  # type: AnyStr
     connectTimeoutMillis=None,  # type: Optional[int]
     socketTimeoutMillis=None,  # type: Optional[int]
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Returns a string that indicates the status of the Gateway.
 
     A status of RUNNING means that the Gateway is fully functional.
@@ -247,7 +247,7 @@ def getGatewayStatus(
 
 
 def getGlobals():
-    # type: () -> Dict[Union[str, unicode], Any]
+    # type: () -> Dict[AnyStr, Any]
     """This method returns a dictionary that provides access to the
     legacy global namespace.
 
@@ -279,7 +279,7 @@ def getInactivitySeconds():
 
 
 def getLocale():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Returns the current string representing the user's Locale, such
     as 'en' for English.
 
@@ -290,7 +290,7 @@ def getLocale():
 
 
 def getLogger(name):
-    # type: (Union[str, unicode]) -> LoggerEx
+    # type: (AnyStr) -> LoggerEx
     """Returns a Logger object that can be used to log messages to the
     console.
 
@@ -306,7 +306,7 @@ def getLogger(name):
 
 
 def getProjectName():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Returns the name of the project that is currently being run.
 
     Returns:
@@ -316,7 +316,7 @@ def getProjectName():
 
 
 def getProperty(propertyName):
-    # type: (Union[str, unicode]) -> Optional[Union[str, unicode]]
+    # type: (AnyStr) -> Optional[AnyStr]
     r"""Retrieves the value of a named system property.
 
     Some of the available properties are:
@@ -373,8 +373,8 @@ def getReadTimeout():
 
 
 def getSessionInfo(
-    usernameFilter=None,  # type: Optional[Union[str, unicode]]
-    projectFilter=None,  # type: Optional[Union[str, unicode]]
+    usernameFilter=None,  # type: Optional[AnyStr]
+    projectFilter=None,  # type: Optional[AnyStr]
 ):
     # type: (...) -> PyDataSet
     """Returns a PyDataSet holding information about all of the sessions
@@ -460,7 +460,7 @@ def invokeLater(function, delay=0):
 
 
 def jsonDecode(jsonString):
-    # type: (Union[str, unicode]) -> Any
+    # type: (AnyStr) -> Any
     """Takes a json String and converts it into a Python object such as
     a list or a dict.
 
@@ -476,7 +476,7 @@ def jsonDecode(jsonString):
 
 
 def jsonEncode(pyObj, indentFactor=4):
-    # type: (Union[List, Dict], Optional[int]) -> Union[str, unicode]
+    # type: (Union[List, Dict], Optional[int]) -> AnyStr
     """Takes a Python object such as a list or dict and converts into a
     json string.
 
@@ -493,9 +493,9 @@ def jsonEncode(pyObj, indentFactor=4):
 
 
 def modifyTranslation(
-    term,  # type: Union[str, unicode]
-    translation,  # type: Union[str, unicode]
-    locale="es_MX",  # type: Optional[Union[str, unicode]]
+    term,  # type: AnyStr
+    translation,  # type: AnyStr
+    locale="es_MX",  # type: Optional[AnyStr]
 ):
     # type: (...) -> None
     """This function allows you to add or modify a global translation.
@@ -531,14 +531,14 @@ def playSoundClip(wav, volume=1.0, wait=False):
 
 
 def queryAuditLog(
-    auditProfileName,  # type: Union[str, unicode]
+    auditProfileName,  # type: AnyStr
     startDate=None,  # type: Optional[Date]
     endDate=None,  # type: Optional[Date]
-    actorFilter=None,  # type: Optional[Union[str, unicode]]
-    actionFilter=None,  # type: Optional[Union[str, unicode]]
-    targetFilter=None,  # type: Optional[Union[str, unicode]]
-    valueFilter=None,  # type: Optional[Union[str, unicode]]
-    systemFilter=None,  # type: Optional[Union[str, unicode]]
+    actorFilter=None,  # type: Optional[AnyStr]
+    actionFilter=None,  # type: Optional[AnyStr]
+    targetFilter=None,  # type: Optional[AnyStr]
+    valueFilter=None,  # type: Optional[AnyStr]
+    systemFilter=None,  # type: Optional[AnyStr]
     contextFilter=None,  # type: Optional[int]
 ):
     # type: (...) -> BasicDataset
@@ -586,10 +586,10 @@ def queryAuditLog(
 
 
 def retarget(
-    projectName,  # type: Union[str, unicode]
-    gatewayAddress=None,  # type: Optional[Union[str, unicode]]
-    params=None,  # type: Optional[Dict[Union[str, unicode], Any]]
-    startupWindows=None,  # type: Optional[List[Union[str, unicode]]]
+    projectName,  # type: AnyStr
+    gatewayAddress=None,  # type: Optional[AnyStr]
+    params=None,  # type: Optional[Dict[AnyStr, Any]]
+    startupWindows=None,  # type: Optional[List[AnyStr]]
 ):
     # type: (...) -> None
     """This function allows you to programmatically 'retarget' the
@@ -631,17 +631,17 @@ def retarget(
 
 
 def sendMessage(
-    project,  # type: Union[str, unicode]
-    messageHandler,  # type: Union[str, unicode]
-    payload=None,  # type: Optional[Dict[Union[str, unicode], Any]]
-    scope=None,  # type: Optional[Union[str, unicode]]
-    clientSessionId=None,  # type: Optional[Union[str, unicode]]
-    user=None,  # type: Optional[Union[str, unicode]]
-    hasRole=None,  # type: Optional[Union[str, unicode]]
-    hostName=None,  # type: Optional[Union[str, unicode]]
-    remoteServers=None,  # type: Optional[List[Union[str, unicode]]]
+    project,  # type: AnyStr
+    messageHandler,  # type: AnyStr
+    payload=None,  # type: Optional[Dict[AnyStr, Any]]
+    scope=None,  # type: Optional[AnyStr]
+    clientSessionId=None,  # type: Optional[AnyStr]
+    user=None,  # type: Optional[AnyStr]
+    hasRole=None,  # type: Optional[AnyStr]
+    hostName=None,  # type: Optional[AnyStr]
+    remoteServers=None,  # type: Optional[List[AnyStr]]
 ):
-    # type: (...) -> List[Union[str, unicode]]
+    # type: (...) -> List[AnyStr]
     """This function sends a message to clients running under the
     Gateway, or to a project within the Gateway itself.
 
@@ -696,12 +696,12 @@ def sendMessage(
 
 
 def sendRequest(
-    project,  # type: Union[str, unicode]
-    messageHandler,  # type: Union[str, unicode]
-    payload=None,  # type: Optional[Dict[Union[str, unicode], Any]]
-    hostName=None,  # type: Optional[Union[str, unicode]]
-    remoteServer=None,  # type: Optional[Union[str, unicode]]
-    timeoutSec=None,  # type: Optional[Union[str, unicode]]
+    project,  # type: AnyStr
+    messageHandler,  # type: AnyStr
+    payload=None,  # type: Optional[Dict[AnyStr, Any]]
+    hostName=None,  # type: Optional[AnyStr]
+    remoteServer=None,  # type: Optional[AnyStr]
+    timeoutSec=None,  # type: Optional[AnyStr]
 ):
     # type: (...) -> Any
     """This function sends a message to the Gateway, working in a
@@ -746,11 +746,11 @@ def sendRequest(
 
 
 def sendRequestAsync(
-    project,  # type: Union[str, unicode]
-    messageHandler,  # type: Union[str, unicode]
-    payload=None,  # type: Optional[Dict[Union[str, unicode], Any]]
-    hostName=None,  # type: Optional[Union[str, unicode]]
-    remoteServer=None,  # type: Optional[Union[str, unicode]]
+    project,  # type: AnyStr
+    messageHandler,  # type: AnyStr
+    payload=None,  # type: Optional[Dict[AnyStr, Any]]
+    hostName=None,  # type: Optional[AnyStr]
+    remoteServer=None,  # type: Optional[AnyStr]
     timeoutSec=None,  # type: Optional[int]
     onSuccess=None,  # type: Optional[Callable]
     onError=None,  # type: Optional[Callable]
@@ -836,7 +836,7 @@ def setConnectTimeout(connectTimeout):
 
 
 def setLocale(locale):
-    # type: (Union[str, unicode]) -> None
+    # type: (AnyStr) -> None
     """Sets the user's current Locale.
 
     Any valid Java locale code (case-insensitive) can be used as a
@@ -853,7 +853,7 @@ def setLocale(locale):
 
 
 def setLoggingLevel(loggerName, loggerLevel):
-    # type: (Union[str, unicode], Union[str, unicode]) -> None
+    # type: (AnyStr, AnyStr) -> None
     """Sets the logging level on the given logger.
 
     This can be a logger you create, or a logger already defined in the
@@ -882,7 +882,7 @@ def setReadTimeout(readTimeout):
 
 
 def threadDump():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Creates a thread dump of the current running JVM.
 
     Returns:
@@ -892,11 +892,11 @@ def threadDump():
 
 
 def translate(
-    term,  # type: Union[str, unicode]
-    locale=None,  # type: Optional[Union[str, unicode]]
+    term,  # type: AnyStr
+    locale=None,  # type: Optional[AnyStr]
     strict=False,  # type: Optional[bool]
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """This function allows you to retrieve the global translation of a
     term from the translation database using the current locale.
 

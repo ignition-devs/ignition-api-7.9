@@ -4,7 +4,7 @@ The following functions give you access to interact with the SFCs in the
 Gateway.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "cancelChart",
@@ -18,14 +18,14 @@ __all__ = [
     "startChart",
 ]
 
-from typing import Any, Dict, Optional, Union
+from typing import Any, AnyStr, Dict, Optional
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.sfc.api import PyChartScope
 
 
 def cancelChart(instanceId):
-    # type: (Union[str, unicode]) -> None
+    # type: (AnyStr) -> None
     """Cancels the execution of a running chart instance.
 
     Any running steps will be told to stop, and the chart will enter
@@ -38,7 +38,7 @@ def cancelChart(instanceId):
 
 
 def getRunningCharts(charPath=None):
-    # type: (Optional[Union[str, unicode]]) -> BasicDataset
+    # type: (Optional[AnyStr]) -> BasicDataset
     """Retrieves information about running charts.
 
     Can search all running charts, or be filtered charts at a specific
@@ -58,7 +58,7 @@ def getRunningCharts(charPath=None):
 
 
 def getVariables(instanceId):
-    # type: (Union[str, unicode]) -> PyChartScope
+    # type: (AnyStr) -> PyChartScope
     """Get the variables in a chart instance's scope.
 
     Commonly used to check the value of a Chart Parameter, or determine
@@ -76,7 +76,7 @@ def getVariables(instanceId):
 
 
 def pauseChart(instanceId):
-    # type: (Union[str, unicode]) -> None
+    # type: (AnyStr) -> None
     """Pauses a running chart instance.
 
     Any running steps will be told to pause, and the chart will enter
@@ -89,7 +89,7 @@ def pauseChart(instanceId):
 
 
 def redundantCheckpoint(instanceId):
-    # type: (Union[str, unicode]) -> None
+    # type: (AnyStr) -> None
     """Synchronizes chart and step variables of the specified chart
     instance across a redundant cluster, allowing the chart instance to
     continue where it left off if a redundant failover occurs.
@@ -101,7 +101,7 @@ def redundantCheckpoint(instanceId):
 
 
 def resumeChart(instanceId):
-    # type: (Union[str, unicode]) -> None
+    # type: (AnyStr) -> None
     """Resumes a chart that was paused.
 
     Steps which were previously paused will be resumed, and chart will
@@ -118,9 +118,9 @@ def resumeChart(instanceId):
 
 
 def setVariable(
-    instanceId,  # type: Union[str, unicode]
-    stepId,  # type: Union[str, unicode]
-    variableName,  # type: Union[str, unicode]
+    instanceId,  # type: AnyStr
+    stepId,  # type: AnyStr
+    variableName,  # type: AnyStr
     variableValue,  # type: Any
 ):
     # type: (...) -> None
@@ -137,9 +137,9 @@ def setVariable(
 
 
 def setVariables(
-    instanceId,  # type: Union[str, unicode]
-    stepId,  # type: Union[str, unicode]
-    variableMap,  # type: Dict[Union[str, unicode], Any]
+    instanceId,  # type: AnyStr
+    stepId,  # type: AnyStr
+    variableMap,  # type: Dict[AnyStr, Any]
 ):
     # type: (...) -> None
     """Sets any number of variables inside a currently running chart.
@@ -155,10 +155,10 @@ def setVariables(
 
 
 def startChart(
-    path,  # type: Union[str, unicode]
-    arguments,  # type: Dict[Union[str, unicode], Any]
+    path,  # type: AnyStr
+    arguments,  # type: Dict[AnyStr, Any]
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Starts a new instance of a chart.
 
     The chart must be set to "Callable" execution mode.

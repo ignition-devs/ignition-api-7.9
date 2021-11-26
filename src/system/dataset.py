@@ -4,7 +4,7 @@ The following functions give you access to view and interact with
 datasets.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "addColumn",
@@ -32,7 +32,7 @@ __all__ = [
 ]
 
 import os.path
-from typing import Any, Dict, List, Optional, Type, Union
+from typing import Any, AnyStr, Dict, List, Optional, Type, Union
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.ignition.common.script.builtin import DatasetUtilities
@@ -45,7 +45,7 @@ def addColumn(
     dataset,  # type: BasicDataset
     colIndex,  # type: int
     col,  # type: List[Any]
-    colName,  # type: Union[str, unicode]
+    colName,  # type: AnyStr
     colType,  # type: Type
 ):
     # type: (...) -> BasicDataset
@@ -184,7 +184,7 @@ def dataSetToExcel(
     datasets,  # type: List[BasicDataset]
     nullsEmpty=False,  # type: Optional[bool]
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Formats the contents of one or more datasets as an excel
     spreadsheet, returning the results as a string.
 
@@ -212,9 +212,9 @@ def dataSetToExcel(
 def dataSetToHTML(
     showHeaders,  # type: bool
     dataset,  # type: BasicDataset
-    title,  # type: Union[str, unicode]
+    title,  # type: AnyStr
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Formats the contents of a dataset as an HTML page, returning the
     results as a string.
 
@@ -295,11 +295,11 @@ def deleteRows(dataset, rowIndices):
 
 
 def exportCSV(
-    filename,  # type: Union[str, unicode]
+    filename,  # type: AnyStr
     showHeaders,  # type: bool
     dataset,  # type: BasicDataset
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Exports the contents of a dataset as a CSV file, prompting the
     user to save the file to disk.
 
@@ -318,12 +318,12 @@ def exportCSV(
 
 
 def exportExcel(
-    filename,  # type: Union[str, unicode]
+    filename,  # type: AnyStr
     showHeaders,  # type: bool
     dataset,  # type: List[BasicDataset]
     nullsEmpty=False,  # type: Optional[bool]
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Exports the contents of a dataset as an Excel spreadsheet,
     prompting the user to save the file to disk.
 
@@ -348,12 +348,12 @@ def exportExcel(
 
 
 def exportHTML(
-    filename,  # type: Union[str, unicode]
+    filename,  # type: AnyStr
     showHeaders,  # type: bool
     dataset,  # type: BasicDataset
-    title,  # type: Union[str, unicode]
+    title,  # type: AnyStr
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Exports the contents of a dataset to an HTML page.
 
     Prompts the user to save the file to disk.
@@ -396,8 +396,8 @@ def filterColumns(
 
 def formatDates(
     dataset,  # type: BasicDataset
-    dateFormat,  # type: Union[str, unicode]
-    locale=Locale.ENGLISH,  # type: Optional[Any]
+    dateFormat,  # type: AnyStr
+    locale=Locale.ENGLISH,  # type: Optional[Locale]
 ):
     # type: (...) -> BasicDataset
     """Returns a new dataset with Date columns as strings formatted
@@ -419,7 +419,7 @@ def formatDates(
 
 
 def fromCSV(csv):
-    # type: (Union[str, unicode]) -> BasicDataset
+    # type: (AnyStr) -> BasicDataset
     """Converts a dataset stored in a CSV formatted string to a dataset
     that can be immediately assignable to a dataset property in your
     project.
@@ -440,7 +440,7 @@ def fromCSV(csv):
 
 
 def getColumnHeaders(dataset):
-    # type: (BasicDataset) -> List[Union[str, unicode]]
+    # type: (BasicDataset) -> List[AnyStr]
     """Takes in a dataset and returns the headers as a python list.
 
     Args:
@@ -456,7 +456,7 @@ def getColumnHeaders(dataset):
 def setValue(
     dataset,  # type: BasicDataset
     rowIndex,  # type: int
-    columnName,  # type: Union[str, unicode]
+    columnName,  # type: AnyStr
     value,  # type: Any
 ):
     # type: (...) -> BasicDataset
@@ -515,7 +515,7 @@ def toCSV(
     forExport=False,  # type: Optional[bool]
     localized=False,  # type: Optional[bool]
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Formats the contents of a dataset as CSV (comma separated
     values), returning the resulting CSV as a string.
 
@@ -542,7 +542,7 @@ def toCSV(
 
 
 def toDataSet(*args):
-    # type: (...) -> BasicDataset
+    # type: (*Any) -> BasicDataset
     """This function is used to convert PyDataSets to DataSets, and to
     create new datasets from raw Python lists.
 
@@ -580,7 +580,7 @@ def toPyDataSet(dataset):
 def updateRow(
     dataset,  # type: BasicDataset
     rowIndex,  # type: int
-    changes,  # type: Dict[Union[str, unicode], Any]
+    changes,  # type: Dict[AnyStr, Any]
 ):
     # type: (...) -> BasicDataset
     """Takes a dataset and returns a new dataset with a one row altered.

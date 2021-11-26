@@ -4,7 +4,7 @@ The following functions give you access to interact with the users and
 roles in the Gateway.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "getRoles",
@@ -19,13 +19,13 @@ __all__ = [
 ]
 
 import getpass
-from typing import Optional, Tuple, Union
+from typing import AnyStr, Optional, Tuple
 
 from java.util import EventObject
 
 
 def getRoles():
-    # type: () -> Tuple[Union[str, unicode], ...]
+    # type: () -> Tuple[AnyStr, ...]
     """Finds the roles that the currently logged in user has, returns
     them as a Python tuple of strings.
 
@@ -37,12 +37,12 @@ def getRoles():
 
 
 def getUserRoles(
-    username,  # type: Union[str, unicode]
-    password,  # type: Union[str, unicode]
-    authProfile="",  # type: Optional[Union[str, unicode]]
+    username,  # type: AnyStr
+    password,  # type: AnyStr
+    authProfile="",  # type: Optional[AnyStr]
     timeout=60000,  # type: Optional[int]
 ):
-    # type: (...) -> Tuple[Union[str, unicode], ...]
+    # type: (...) -> Tuple[AnyStr, ...]
     """Fetches the roles for a user from the Gateway.
 
     This may not be the currently logged in user. Requires the password
@@ -67,7 +67,7 @@ def getUserRoles(
 
 
 def getUsername():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Returns the currently logged-in username.
 
     Returns:
@@ -109,8 +109,8 @@ def logout():
 
 
 def switchUser(
-    username,  # type: Union[str, unicode]
-    password,  # type: Union[str, unicode]
+    username,  # type: AnyStr
+    password,  # type: AnyStr
     event,  # type: EventObject
     hideError=False,  # type: Optional[bool]
 ):
@@ -150,9 +150,9 @@ def unlockScreen():
 
 
 def validateUser(
-    username,  # type: Union[str, unicode]
-    password,  # type: Union[str, unicode]
-    authProfile="",  # type: Optional[Union[str, unicode]]
+    username,  # type: AnyStr
+    password,  # type: AnyStr
+    authProfile="",  # type: Optional[AnyStr]
     timeout=60000,  # type: Optional[int]
 ):
     # type: (...) -> bool

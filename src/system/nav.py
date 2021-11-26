@@ -4,7 +4,7 @@ The following functions allow you to open and close windows in the
 client.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "centerWindow",
@@ -21,7 +21,7 @@ __all__ = [
     "swapWindow",
 ]
 
-from typing import Any, Dict, Optional, Union
+from typing import Any, AnyStr, Dict, Optional, Union
 
 from com.inductiveautomation.factorypmi.application import FPMIWindow
 from com.inductiveautomation.factorypmi.application.script.builtin import NavUtilities
@@ -69,7 +69,7 @@ def closeWindow(arg):
 
 
 def desktop(handle="primary"):
-    # type: (Union[str, unicode]) -> NavUtilities
+    # type: (AnyStr) -> NavUtilities
     """Allows for invoking system.nav functions on a specific desktop.
 
     Args:
@@ -88,7 +88,7 @@ def desktop(handle="primary"):
 
 
 def getCurrentWindow():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Returns the path of the current "main screen" window, which is
     defined as the maximized window.
 
@@ -140,8 +140,8 @@ def goHome():
 
 
 def openWindow(
-    path,  # type: Union[str, unicode]
-    params=None,  # type: Optional[Dict[Union[str, unicode], Any]]
+    path,  # type: AnyStr
+    params=None,  # type: Optional[Dict[AnyStr, Any]]
 ):
     # type: (...) -> FPMIWindow
     """Opens the window with the given path.
@@ -165,8 +165,8 @@ def openWindow(
 
 
 def openWindowInstance(
-    path,  # type: Union[str, unicode]
-    params=None,  # type: Optional[Dict[Union[str, unicode], Any]]
+    path,  # type: AnyStr
+    params=None,  # type: Optional[Dict[AnyStr, Any]]
 ):
     # type: (...) -> FPMIWindow
     """Operates exactly like system.nav.openWindow, except that if the
@@ -191,8 +191,8 @@ def openWindowInstance(
 
 
 def swapTo(
-    path,  # type: Union[str, unicode]
-    params=None,  # type: Optional[Dict[Union[str, unicode], Any]]
+    path,  # type: AnyStr
+    params=None,  # type: Optional[Dict[AnyStr, Any]]
 ):
     # type: (...) -> FPMIWindow
     """Performs a window swap from the current main screen window to the
@@ -220,8 +220,8 @@ def swapTo(
 
 def swapWindow(
     arg,  # type: Union[str, unicode, EventObject]
-    swapToPath,  # type: Union[str, unicode]
-    params=None,  # type: Optional[Dict[Union[str, unicode], Any]]
+    swapToPath,  # type: AnyStr
+    params=None,  # type: Optional[Dict[AnyStr, Any]]
 ):
     # type: (...) -> FPMIWindow
     """Performs a window swap.

@@ -3,7 +3,7 @@
 The following functions give you access to read and write to files.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "fileExists",
@@ -16,14 +16,14 @@ __all__ = [
     "writeFile",
 ]
 
+import io
 import os.path
 import tempfile
-from codecs import open
-from typing import Any, List, Optional, Union
+from typing import Any, AnyStr, List, Optional
 
 
 def fileExists(filepath):
-    # type: (Union[str, unicode]) -> bool
+    # type: (AnyStr) -> bool
     """Checks to see if a file or folder at a given path exists.
 
     Args:
@@ -36,7 +36,7 @@ def fileExists(filepath):
 
 
 def getTempFile(extension):
-    # type: (Union[str, unicode]) -> Any
+    # type: (AnyStr) -> Any
     """Creates a new temp file on the host machine with a certain
     extension, returning the path to the file.
 
@@ -55,10 +55,10 @@ def getTempFile(extension):
 
 
 def openFile(
-    extension=None,  # type: Optional[Union[str, unicode]]
-    defaultLocation=None,  # type: Optional[Union[str, unicode]]
+    extension=None,  # type: Optional[AnyStr]
+    defaultLocation=None,  # type: Optional[AnyStr]
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     r"""Shows an "Open File" dialog box, prompting the user to choose a
     file to open.
 
@@ -80,10 +80,10 @@ def openFile(
 
 
 def openFiles(
-    extension=None,  # type: Optional[Union[str, unicode]]
-    defaultLocation=None,  # type: Optional[Union[str, unicode]]
+    extension=None,  # type: Optional[AnyStr]
+    defaultLocation=None,  # type: Optional[AnyStr]
 ):
-    # type: (...) -> List[Union[str, unicode]]
+    # type: (...) -> List[AnyStr]
     r"""Shows an "Open File" dialog box, prompting the user to choose a
     file or files to open.
 
@@ -105,7 +105,7 @@ def openFiles(
 
 
 def readFileAsBytes(filepath):
-    # type: (Union[str, unicode]) -> Any
+    # type: (AnyStr) -> Any
     """Opens the file found at path filename, and reads the entire file.
 
     Returns the file as an array of bytes. Commonly this array of bytes
@@ -122,15 +122,12 @@ def readFileAsBytes(filepath):
     Returns:
         The contents of the file as an array of bytes.
     """
-    with open(str(filepath), str("r+b")) as f:
+    with io.open(filepath, "r+b") as f:
         return f.read()
 
 
-def readFileAsString(
-    filepath,  # type: Union[str, unicode]
-    encoding="UTF-8",  # type: Optional[Union[str, unicode]]
-):
-    # type: (...) -> Union[str, unicode]
+def readFileAsString(filepath, encoding="UTF-8"):
+    # type: (AnyStr, Optional[AnyStr]) -> unicode
     """Opens the file found at path filename, and reads the entire file.
 
     Returns the file as a string. Common things to do with this string
@@ -148,16 +145,16 @@ def readFileAsString(
     Returns:
         The contents of the file as a string.
     """
-    with open(str(filepath), str("r"), str(encoding)) as f:
+    with io.open(filepath, "r", encoding=encoding) as f:
         return f.read()
 
 
 def saveFile(
-    filename,  # type: Union[str, unicode]
-    extension=None,  # type: Optional[Union[str, unicode]]
-    typeDesc=None,  # type: Optional[Union[str, unicode]]
+    filename,  # type: AnyStr
+    extension=None,  # type: Optional[AnyStr]
+    typeDesc=None,  # type: Optional[AnyStr]
 ):
-    # type: (...) -> Union[str, unicode]
+    # type: (...) -> AnyStr
     """Prompts the user to save a new file named filename.
 
     The optional extension and typeDesc arguments can be added to be
@@ -181,7 +178,7 @@ def saveFile(
 
 
 def writeFile(filepath, data, append=False):
-    # type: (Union[str, unicode], Any, Optional[bool]) -> None
+    # type: (AnyStr, Any, Optional[bool]) -> None
     """Writes the given data to the file at file path filename.
 
     If the file exists, the append argument determines whether or not it

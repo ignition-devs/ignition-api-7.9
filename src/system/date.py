@@ -3,7 +3,7 @@
 The following functions give you access to test and modify dates.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 __all__ = [
     "addDays",
@@ -53,7 +53,7 @@ __all__ = [
 
 from datetime import datetime
 from time import localtime, mktime
-from typing import Any, Optional, Union
+from typing import AnyStr, Optional
 
 from java.util import Date, Locale
 
@@ -222,7 +222,7 @@ def daysBetween(date_1, date_2):
 
 
 def format(date, format):
-    # type: (Date, Union[str, unicode]) -> Union[str, unicode]
+    # type: (Date, AnyStr) -> AnyStr
     """Returns the given date as a string, formatted according to a
     pattern.
 
@@ -441,7 +441,7 @@ def getSecond(date):
 
 
 def getTimezone():
-    # type: () -> Union[str, unicode]
+    # type: () -> AnyStr
     """Returns the ID of the current timezone.
 
     Returns:
@@ -664,9 +664,9 @@ def now():
 
 
 def parse(
-    dateString,  # type: Union[str, unicode]
-    formatString="yyyy-MM-dd HH:mm:ss",  # type: Optional[Union[str, unicode]]
-    locale=Locale.ENGLISH,  # type: Optional[Any]
+    dateString,  # type: AnyStr
+    formatString="yyyy-MM-dd HH:mm:ss",  # type: Optional[AnyStr]
+    locale=Locale.ENGLISH,  # type: Optional[Locale]
 ):
     # type: (...) -> Date
     """Attempts to parse a string and create a Date.
