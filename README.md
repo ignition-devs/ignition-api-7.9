@@ -56,7 +56,7 @@ To use Ignition, you may install it by doing any of the following.
 The preferred method is to install it by running `pip`. It requires Python 2.7.18.
 
 ```bash
-python2 -m pip install ignition-api==7.9.18.post4
+python2 -m pip install ignition-api==7.9.18.post5
 ```
 
 This will install it as package to your Python installation, which will allow you to call Ignition Scripting functions from Python's REPL, and get code completion using an IDE (we recommend PyCharm).
