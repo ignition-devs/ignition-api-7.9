@@ -19,13 +19,15 @@ __all__ = [
 ]
 
 import getpass
-from typing import AnyStr, Optional, Tuple
+from typing import Optional, Tuple, Union
 
 from java.util import EventObject
 
+String = Union[str, unicode]
+
 
 def getRoles():
-    # type: () -> Tuple[AnyStr, ...]
+    # type: () -> Tuple[String, ...]
     """Finds the roles that the currently logged in user has, returns
     them as a Python tuple of strings.
 
@@ -37,12 +39,12 @@ def getRoles():
 
 
 def getUserRoles(
-    username,  # type: AnyStr
-    password,  # type: AnyStr
-    authProfile="",  # type: Optional[AnyStr]
+    username,  # type: String
+    password,  # type: String
+    authProfile="",  # type: Optional[String]
     timeout=60000,  # type: Optional[int]
 ):
-    # type: (...) -> Tuple[AnyStr, ...]
+    # type: (...) -> Tuple[String, ...]
     """Fetches the roles for a user from the Gateway.
 
     This may not be the currently logged in user. Requires the password
@@ -67,7 +69,7 @@ def getUserRoles(
 
 
 def getUsername():
-    # type: () -> AnyStr
+    # type: () -> String
     """Returns the currently logged-in username.
 
     Returns:
@@ -109,8 +111,8 @@ def logout():
 
 
 def switchUser(
-    username,  # type: AnyStr
-    password,  # type: AnyStr
+    username,  # type: String
+    password,  # type: String
     event,  # type: EventObject
     hideError=False,  # type: Optional[bool]
 ):
@@ -150,9 +152,9 @@ def unlockScreen():
 
 
 def validateUser(
-    username,  # type: AnyStr
-    password,  # type: AnyStr
-    authProfile="",  # type: Optional[AnyStr]
+    username,  # type: String
+    password,  # type: String
+    authProfile="",  # type: Optional[String]
     timeout=60000,  # type: Optional[int]
 ):
     # type: (...) -> bool

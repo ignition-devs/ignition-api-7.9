@@ -17,7 +17,7 @@ __all__ = [
     "selectOperateBinary",
 ]
 
-from typing import AnyStr, List, Optional, Union
+from typing import List, Optional, Union
 
 # Constants
 NUL = 0
@@ -30,7 +30,7 @@ TRIP = 2
 
 
 def directOperateAnalog(
-    deviceName,  # type: AnyStr
+    deviceName,  # type: String
     index,  # type: int
     value,  # type: Union[int, float]
     variation=None,  # type: Optional[int]
@@ -55,7 +55,7 @@ def directOperateAnalog(
 
 
 def directOperateBinary(
-    deviceName,  # type: AnyStr
+    deviceName,  # type: String
     indexes,  # type: List[int]
     opType,  # type: int
     tcCode=None,  # type: Optional[int]
@@ -90,7 +90,7 @@ def directOperateBinary(
 
 
 def freezeAnalogs(deviceName, indexes=None):
-    # type: (AnyStr, Optional[List[int]]) -> None
+    # type: (String, Optional[List[int]]) -> None
     """Issues a freeze command on the given analog outputs.
 
     Args:
@@ -102,7 +102,7 @@ def freezeAnalogs(deviceName, indexes=None):
 
 
 def freezeAnalogsAtTime(deviceName, absoluteTime, intervalTime, indexes=None):
-    # type: (AnyStr, int, int, Optional[List[int]]) -> None
+    # type: (String, int, int, Optional[List[int]]) -> None
     """Issues a freeze command on the given analog outputs at the given
     time for the specified duration.
 
@@ -118,7 +118,7 @@ def freezeAnalogsAtTime(deviceName, absoluteTime, intervalTime, indexes=None):
 
 
 def freezeCounters(deviceName, indexes=None):
-    # type: (AnyStr, Optional[List[int]]) -> None
+    # type: (String, Optional[List[int]]) -> None
     """Issues a freeze command on the given counters.
 
     Args:
@@ -130,7 +130,7 @@ def freezeCounters(deviceName, indexes=None):
 
 
 def freezeCountersAtTime(deviceName, absoluteTime, intervalTime, indexes=None):
-    # type: (AnyStr, int, int, Optional[List[int]]) -> None
+    # type: (String, int, int, Optional[List[int]]) -> None
     """Issues a freeze command on the given counters at the given time
     for the specified duration.
 
@@ -146,7 +146,7 @@ def freezeCountersAtTime(deviceName, absoluteTime, intervalTime, indexes=None):
 
 
 def selectOperateAnalog(
-    deviceName,  # type: AnyStr
+    deviceName,  # type: String
     index,  # type: int
     value,  # type: Union[int, float]
     variation=None,  # type: Optional[int]
@@ -171,7 +171,7 @@ def selectOperateAnalog(
 
 
 def selectOperateBinary(
-    deviceName,  # type: AnyStr
+    deviceName,  # type: String
     indexes,  # type: List[int]
     opType,  # type: int
     tcCode=None,  # type: Optional[int]

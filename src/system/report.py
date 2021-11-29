@@ -13,18 +13,20 @@ __all__ = [
     "getReportNamesAsList",
 ]
 
-from typing import Any, AnyStr, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from java.lang import IllegalArgumentException
 
+String = Union[str, unicode]
+
 
 def executeAndDistribute(
-    path,  # type: AnyStr
-    project="project",  # type: Optional[AnyStr]
-    parameters=None,  # type: Optional[Dict[AnyStr, int]]
-    action=None,  # type: Optional[AnyStr]
-    actionSettings=None,  # type: Optional[Dict[AnyStr, Any]]
+    path,  # type: String
+    project="project",  # type: Optional[String]
+    parameters=None,  # type: Optional[Dict[String, int]]
+    action=None,  # type: Optional[String]
+    actionSettings=None,  # type: Optional[Dict[String, Any]]
 ):
     # type: (...) -> None
     """Executes and distributes a report.
@@ -56,10 +58,10 @@ def executeAndDistribute(
 
 
 def executeReport(
-    path,  # type: AnyStr
-    project="project",  # type: Optional[AnyStr]
-    parameters=None,  # type: Optional[Dict[AnyStr, int]]
-    fileType="pdf",  # type: Optional[AnyStr]
+    path,  # type: String
+    project="project",  # type: Optional[String]
+    parameters=None,  # type: Optional[Dict[String, int]]
+    fileType="pdf",  # type: Optional[String]
 ):
     # type: (...) -> Any
     """Immediately executes an existing report and returns a byte[] of
@@ -89,7 +91,7 @@ def executeReport(
 
 
 def getReportNamesAsDataset(project="project"):
-    # type: (Optional[AnyStr]) -> BasicDataset
+    # type: (Optional[String]) -> BasicDataset
     """Gets a data of all reports for a project.
 
     This dataset is particularly suited for display in a Tree View
@@ -114,7 +116,7 @@ def getReportNamesAsDataset(project="project"):
 
 
 def getReportNamesAsList(project="project"):
-    # type: (Optional[AnyStr]) -> List[AnyStr]
+    # type: (Optional[String]) -> List[String]
     """Gets a list of all reports for a project.
 
     Args:

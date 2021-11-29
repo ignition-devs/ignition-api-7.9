@@ -20,15 +20,17 @@ __all__ = [
     "replace",
 ]
 
-from typing import Any, AnyStr, List
+from typing import Any, List, Union
 
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
 from com.inductiveautomation.ignition.common.sqltags.history import AggregateInfo
 from java.util import Date
 
+String = Union[str, unicode]
+
 
 def browse(root):
-    # type: (AnyStr) -> List[BrowseResults]
+    # type: (String) -> List[BrowseResults]
     """Performs a browse at the given root.
 
     Args:
@@ -43,7 +45,7 @@ def browse(root):
 
 
 def getAggregates(serverName):
-    # type: (AnyStr) -> List[AggregateInfo]
+    # type: (String) -> List[AggregateInfo]
     """Will query the server for aggregates that it supports.
 
     Args:
@@ -58,7 +60,7 @@ def getAggregates(serverName):
 
 
 def getAttributes(serverName):
-    # type: (AnyStr) -> List[AggregateInfo]
+    # type: (String) -> List[AggregateInfo]
     """Queries the given server for the item attributes that are
     available with system.opchda.readAttributes().
 
@@ -74,7 +76,7 @@ def getAttributes(serverName):
 
 
 def getServers():
-    # type: () -> List[AnyStr]
+    # type: () -> List[String]
     """Returns a list of the OPC-HDA servers configured on the system.
 
     This call will return all configured and enabled servers, including
@@ -87,8 +89,8 @@ def getServers():
 
 
 def insert(
-    serverName,  # type: AnyStr
-    itemId,  # type: AnyStr
+    serverName,  # type: String
+    itemId,  # type: String
     value,  # type: Any
     date,  # type: Any
     quality,  # type: int
@@ -112,8 +114,8 @@ def insert(
 
 
 def insertReplace(
-    serverName,  # type: AnyStr
-    itemId,  # type: AnyStr
+    serverName,  # type: String
+    itemId,  # type: String
     value,  # type: Any
     date,  # type: Date
     quality,  # type: int
@@ -137,7 +139,7 @@ def insertReplace(
 
 
 def isServerAvailable(serverName):
-    # type: (AnyStr) -> bool
+    # type: (String) -> bool
     """Checks to see if the specified OPC-HDA server is defined,
     enabled, and connected.
 
@@ -153,9 +155,9 @@ def isServerAvailable(serverName):
 
 
 def readAttributes(
-    serverName,  # type: AnyStr
-    itemId,  # type: AnyStr
-    attributeIds,  # type: AnyStr
+    serverName,  # type: String
+    itemId,  # type: String
+    attributeIds,  # type: String
     startDate,  # type: Date
     endDate,  # type: Date
 ):
@@ -188,8 +190,8 @@ def readAttributes(
 
 
 def readProcessed(
-    serverName,  # type: AnyStr
-    itemIds,  # type: List[AnyStr]
+    serverName,  # type: String
+    itemIds,  # type: List[String]
     startDate,  # type: Date
     endDate,  # type: Date
     resampleIntervalMS,  # type: int
@@ -233,8 +235,8 @@ def readProcessed(
 
 
 def readRaw(
-    serverName,  # type: AnyStr
-    itemIds,  # type: List[AnyStr]
+    serverName,  # type: String
+    itemIds,  # type: List[String]
     startDate,  # type: Date
     endDate,  # type: Date
     maxValues,  # type: int
@@ -266,8 +268,8 @@ def readRaw(
 
 
 def replace(
-    serverName,  # type: AnyStr
-    itemId,  # type: AnyStr
+    serverName,  # type: String
+    itemId,  # type: String
     value,  # type: Any
     date,  # type: Date
     quality,  # type: int

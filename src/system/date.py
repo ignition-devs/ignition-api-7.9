@@ -53,9 +53,11 @@ __all__ = [
 
 from datetime import datetime
 from time import localtime, mktime
-from typing import AnyStr, Optional
+from typing import Optional, Union
 
 from java.util import Date, Locale
+
+String = Union[str, unicode]
 
 
 def _now():
@@ -222,7 +224,7 @@ def daysBetween(date_1, date_2):
 
 
 def format(date, format):
-    # type: (Date, AnyStr) -> AnyStr
+    # type: (Date, String) -> String
     """Returns the given date as a string, formatted according to a
     pattern.
 
@@ -441,7 +443,7 @@ def getSecond(date):
 
 
 def getTimezone():
-    # type: () -> AnyStr
+    # type: () -> String
     """Returns the ID of the current timezone.
 
     Returns:
@@ -664,8 +666,8 @@ def now():
 
 
 def parse(
-    dateString,  # type: AnyStr
-    formatString="yyyy-MM-dd HH:mm:ss",  # type: Optional[AnyStr]
+    dateString,  # type: String
+    formatString="yyyy-MM-dd HH:mm:ss",  # type: Optional[String]
     locale=Locale.ENGLISH,  # type: Optional[Locale]
 ):
     # type: (...) -> Date

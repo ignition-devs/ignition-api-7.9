@@ -34,7 +34,7 @@ __all__ = [
     "writeSynchronous",
 ]
 
-from typing import Any, AnyStr, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
@@ -46,20 +46,22 @@ from com.inductiveautomation.ignition.common.script.builtin.ialabs import (
 from com.inductiveautomation.ignition.common.tags.config import TagConfiguration
 from java.util import Date
 
+String = Union[str, unicode]
+
 
 def addTag(
-    parentPath,  # type: AnyStr
-    name,  # type: AnyStr
-    tagType,  # type: AnyStr
-    dataType,  # type: AnyStr
-    accessRights,  # type: AnyStr
+    parentPath,  # type: String
+    name,  # type: String
+    tagType,  # type: String
+    dataType,  # type: String
+    accessRights,  # type: String
     enabled,  # type: bool
     value,  # type: Any
-    attributes,  # type: Dict[AnyStr, Any]
-    parameters,  # type: Dict[AnyStr, Any]
-    overrides,  # type: Dict[AnyStr, Any]
-    alarmList,  # type: AnyStr
-    alarmConfig,  # type: Dict[AnyStr, Any]
+    attributes,  # type: Dict[String, Any]
+    parameters,  # type: Dict[String, Any]
+    overrides,  # type: Dict[String, Any]
+    alarmList,  # type: String
+    alarmConfig,  # type: Dict[String, Any]
 ):
     # type: (...) -> None
     """Adds a new tag in Ignition.
@@ -109,7 +111,7 @@ def addTag(
 
 
 def browseConfiguration(path, recursive):
-    # type: (AnyStr, bool) -> List[TagConfiguration]
+    # type: (String, bool) -> List[TagConfiguration]
     """Browses a folder path or UDT and returns Tag configuration
     information for each Tag within the specified path.
 
@@ -142,8 +144,8 @@ def browseConfiguration(path, recursive):
 
 
 def browseHistoricalTags(
-    path,  # type: AnyStr
-    nameFilters=None,  # type: Optional[List[AnyStr]]
+    path,  # type: String
+    nameFilters=None,  # type: Optional[List[String]]
     maxSize=None,  # type: Optional[int]
     continuationPoint=None,  # type: Optional[Any]
 ):
@@ -175,13 +177,13 @@ def browseHistoricalTags(
 
 
 def browseTags(
-    parentPath,  # type: AnyStr
-    tagPath=None,  # type: Optional[AnyStr]
-    tagType=None,  # type: Optional[AnyStr]
-    dataType=None,  # type: Optional[AnyStr]
-    udtParentType=None,  # type: Optional[AnyStr]
+    parentPath,  # type: String
+    tagPath=None,  # type: Optional[String]
+    tagType=None,  # type: Optional[String]
+    dataType=None,  # type: Optional[String]
+    udtParentType=None,  # type: Optional[String]
     recursive=False,  # type: Optional[bool]
-    sort="ASC",  # type: Optional[AnyStr]
+    sort="ASC",  # type: Optional[String]
 ):
     # type: (...) -> List[BrowseTag]
     """Returns an array of tags from a specific folder.
@@ -232,8 +234,8 @@ def browseTags(
 
 
 def browseTagsSimple(
-    parentPath,  # type: AnyStr
-    sort,  # type: AnyStr
+    parentPath,  # type: String
+    sort,  # type: String
 ):
     # type: (...) -> List[BrowseTag]
     """Returns a sorted array of tags from a specific folder.
@@ -258,8 +260,8 @@ def browseTagsSimple(
 
 
 def editAlarmConfig(
-    tagPaths,  # type: List[AnyStr]
-    alarmConfig,  # type: Dict[AnyStr, List[List[AnyStr]]]
+    tagPaths,  # type: List[String]
+    alarmConfig,  # type: Dict[String, List[List[String]]]
 ):
     # type: (...) -> None
     """Edit the alarm configuration of multiple existing tags in
@@ -281,12 +283,12 @@ def editAlarmConfig(
 
 
 def editTag(
-    tagPath,  # type: AnyStr
+    tagPath,  # type: String
     attributes=None,  # type: Optional[Dict]
     parameters=None,  # type: Optional[Dict]
-    accessRights=None,  # type: Optional[AnyStr]
+    accessRights=None,  # type: Optional[String]
     overrides=None,  # type: Optional[Dict]
-    alarmList=None,  # type: Optional[AnyStr]
+    alarmList=None,  # type: Optional[String]
     alarmConfig=None,  # type: Optional[Dict]
 ):
     # type: (...) -> None
@@ -335,15 +337,15 @@ def editTag(
 
 
 def editTags(
-    tagPaths,  # type: List[AnyStr]
+    tagPaths,  # type: List[String]
     attributes,  # type: Dict
     parameters,  # type: Dict
-    accessRights,  # type: AnyStr
+    accessRights,  # type: String
     overrides,  # type: Dict
-    alarmList,  # type: AnyStr
+    alarmList,  # type: String
     alarmConfig,  # type: Dict
-    provider="",  # type: Optional[AnyStr]
-    json=None,  # type: Optional[AnyStr]
+    provider="",  # type: Optional[String]
+    json=None,  # type: Optional[String]
 ):
     # type: (...) -> None
     """Edit multiple existing Tags in Ignition with a single call.
@@ -390,7 +392,7 @@ def editTags(
 
 
 def exists(tagPath):
-    # type: (AnyStr) -> bool
+    # type: (String) -> bool
     """Checks whether or not a tag with a given path exists.
 
     Args:
@@ -404,7 +406,7 @@ def exists(tagPath):
 
 
 def getAlarmStates(tagPath):
-    # type: (AnyStr) -> List[TagAlarmDefinition]
+    # type: (String) -> List[TagAlarmDefinition]
     """Returns an array of alarm definitions for a specific tag.
 
     Args:
@@ -433,7 +435,7 @@ def isOverlaysEnabled():
 
 
 def loadFromFile(filePath, provider, mode):
-    # type: (AnyStr, AnyStr, int) -> None
+    # type: (String, String, int) -> None
     """This function locates an exported tag file and loads the tags
     into the specified tag provider.
 
@@ -447,13 +449,13 @@ def loadFromFile(filePath, provider, mode):
 
 
 def queryTagCalculations(
-    paths,  # type: List[AnyStr]
-    calculations,  # type: List[AnyStr]
+    paths,  # type: List[String]
+    calculations,  # type: List[String]
     startDate=None,  # type: Optional[Date]
     endDate=None,  # type: Optional[Date]
     rangeHours=None,  # type: Optional[int]
     rangeMinutes=None,  # type: Optional[int]
-    aliases=None,  # type: Optional[List[AnyStr]]
+    aliases=None,  # type: Optional[List[String]]
     includeBoundingValues=True,  # type: Optional[bool]
     validatesSCExec=True,  # type: Optional[bool]
     noInterpolation=False,  # type: Optional[bool]
@@ -534,7 +536,7 @@ def queryTagCalculations(
 
 
 def queryTagDensity(paths, startDate, endDate):
-    # type: (List[AnyStr], Date, Date) -> BasicDataset
+    # type: (List[String], Date, Date) -> BasicDataset
     """Queries the Tag history system for information about the density
     of data.
 
@@ -564,18 +566,18 @@ def queryTagDensity(paths, startDate, endDate):
 
 
 def queryTagHistory(
-    paths,  # type: List[AnyStr]
+    paths,  # type: List[String]
     startDate=None,  # type: Optional[Date]
     endDate=None,  # type: Optional[Date]
     returnSize=-1,  # type: Optional[int]
-    aggregationMode="Average",  # type: Optional[AnyStr]
-    returnFormat="Wide",  # type: Optional[AnyStr]
-    columnNames=None,  # type: Optional[List[AnyStr]]
+    aggregationMode="Average",  # type: Optional[String]
+    returnFormat="Wide",  # type: Optional[String]
+    columnNames=None,  # type: Optional[List[String]]
     intervalHours=None,  # type: Optional[int]
     intervalMinutes=None,  # type: Optional[int]
     rangeHours=None,  # type: Optional[int]
     rangeMinutes=None,  # type: Optional[int]
-    aggregationModes=None,  # type: Optional[List[AnyStr]]
+    aggregationModes=None,  # type: Optional[List[String]]
     includeBoundingValues=None,  # type: Optional[bool]
     validateSCExec=None,  # type: Optional[bool]
     noInterpolation=None,  # type: Optional[bool]
@@ -677,7 +679,7 @@ def queryTagHistory(
 
 
 def read(tagPath):
-    # type: (AnyStr) -> BasicQualifiedValue
+    # type: (String) -> BasicQualifiedValue
     """Reads the value of the tag at the given tag path.
 
     Returns a qualified value object. You can read the value, quality,
@@ -701,7 +703,7 @@ def read(tagPath):
 
 
 def readAll(tagPaths):
-    # type: (List[AnyStr]) -> List[BasicQualifiedValue]
+    # type: (List[String]) -> List[BasicQualifiedValue]
     """Reads the values of each tag in the tag path list.
 
     Returns a sequence of qualified value objects. You can read the
@@ -722,7 +724,7 @@ def readAll(tagPaths):
 
 
 def removeTag(tagPath):
-    # type: (AnyStr) -> None
+    # type: (String) -> None
     """Removes a tag from Ignition.
 
     Args:
@@ -737,7 +739,7 @@ def removeTag(tagPath):
 
 
 def removeTags(tagPaths):
-    # type: (List[AnyStr]) -> None
+    # type: (List[String]) -> None
     """Removes multiple tags from Ignition with a single call.
 
     Args:
@@ -752,7 +754,7 @@ def removeTags(tagPaths):
 
 
 def scan(provider, scname):
-    # type: (AnyStr, AnyStr) -> None
+    # type: (String, String) -> None
     """Forces execution of a scan class.
 
     On a leased scan class, if both the fast and slow rate are set to 0,
@@ -778,9 +780,9 @@ def setOverlaysEnabled(enabled):
 
 
 def storeTagHistory(
-    historyprovider,  # type: AnyStr
-    tagprovider,  # type: AnyStr
-    paths,  # type: List[AnyStr]
+    historyprovider,  # type: String
+    tagprovider,  # type: String
+    paths,  # type: List[String]
     values,  # type: List[Any]
     qualities=None,  # type: Optional[List[int]]
     timestamps=None,  # type: Optional[List[Date]]
@@ -827,7 +829,7 @@ def storeTagHistory(
 
 
 def write(tagPath, value, suppressErrors=False):
-    # type: (AnyStr, Any, Optional[bool]) -> int
+    # type: (String, Any, Optional[bool]) -> int
     """Writes a value to a tag.
 
     Note that this function writes asynchronously. This means that the
@@ -849,7 +851,7 @@ def write(tagPath, value, suppressErrors=False):
 
 
 def writeAll(tagPaths, values):
-    # type: (List[AnyStr], List[Any]) -> List[int]
+    # type: (List[String], List[Any]) -> List[int]
     """Performs an asynchronous bulk write.
 
     Takes two sequences that must have the same number of entries. The
@@ -871,7 +873,7 @@ def writeAll(tagPaths, values):
 
 
 def writeAllSynchronous(
-    tagPaths,  # type: List[AnyStr]
+    tagPaths,  # type: List[String]
     values,  # type: List[Any]
     timeout=45000,  # type: Optional[int]
 ):
@@ -901,7 +903,7 @@ def writeAllSynchronous(
 
 
 def writeSynchronous(tagPath, value, timeout=45000):
-    # type: (AnyStr, Any, Optional[int]) -> None
+    # type: (String, Any, Optional[int]) -> None
     """Performs a write to a tag, synchronously.
 
     This means that you know at the end of this function whether or not
