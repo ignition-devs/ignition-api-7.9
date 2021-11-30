@@ -1,4 +1,4 @@
-__all__ = ["BasicQuality", "BasicQualifiedValue", "QualifiedValue", "Quality"]
+__all__ = ["BasicQualifiedValue", "BasicQuality", "QualifiedValue", "Quality"]
 
 
 class QualifiedValue(object):
