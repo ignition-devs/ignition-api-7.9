@@ -5,6 +5,9 @@ build-backend = "setuptools.build_meta"
 [tool.isort]
 profile = "black"
 
+[tool.mypy]
+python_version = 2.7
+
 [tool.pydocstyle]
 convention = "google"
 add_ignore = ["D205", "D415"]
