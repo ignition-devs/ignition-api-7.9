@@ -51,7 +51,6 @@ import getpass
 import json
 import os
 import platform
-import sys
 from typing import Any, Callable, Dict, List, Optional, Union
 
 import system.__version__ as version
@@ -73,27 +72,7 @@ String = Union[str, unicode]
 def beep():
     # type: () -> None
     """Tells the computer to make a "beep" sound."""
-    platforms = {
-        "linux1": "Linux",
-        "linux2": "Linux",
-        "darwin": "macOS",
-        "win32": "Windows",
-    }
-
-    if "java" in sys.platform:
-        Toolkit.getDefaultToolkit().beep()
-    elif sys.platform in platforms:
-        if platforms[sys.platform] == "Windows":
-            try:
-                import winsound
-
-                winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
-            except ImportError:
-                print("Beep!")
-        elif platforms[sys.platform] == "macOS":
-            os.system('say "beep"')
-    else:
-        print("Beep!")
+    Toolkit.getDefaultToolkit().beep()
 
 
 def execute(commands):
