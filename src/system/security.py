@@ -19,6 +19,7 @@ __all__ = [
 ]
 
 import getpass
+
 from typing import Optional, Tuple, Union
 
 from java.util import EventObject

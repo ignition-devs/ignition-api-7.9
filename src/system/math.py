@@ -27,9 +27,9 @@ __all__ = [
     "variance",
 ]
 
-from typing import List, Union
-
 import __builtin__ as builtins
+
+from typing import List, Union
 
 
 def geometricMean(values):
