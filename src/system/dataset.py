@@ -37,8 +37,9 @@ from typing import Any, Dict, List, Optional, Type, Union
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.ignition.common.script.builtin import DatasetUtilities
-from java.util import Locale
+from java.util import Date, Locale
 
+ColType = Union[Date, float, int, str, unicode]
 PyDataSet = DatasetUtilities.PyDataSet
 String = Union[str, unicode]
 
@@ -48,7 +49,7 @@ def addColumn(
     colIndex,  # type: int
     col,  # type: List[Any]
     colName,  # type: String
-    colType,  # type: Type
+    colType,  # type: Type[ColType]
 ):
     # type: (...) -> BasicDataset
     """Takes a dataset and returns a new dataset with a new column added
