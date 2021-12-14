@@ -9,6 +9,7 @@ __all__ = [
     "IllegalArgumentException",
     "Object",
     "RuntimeException",
+    "String",
     "Thread",
     "Throwable",
 ]
@@ -16,6 +17,10 @@ __all__ = [
 import __builtin__ as builtins
 import copy
 import time
+
+from typing import Union
+
+String = Union[str, unicode]
 
 
 class Object(object):
