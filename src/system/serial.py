@@ -19,12 +19,12 @@ __all__ = [
     "writeBytes",
 ]
 
-from typing import Any, Optional
+from typing import Any, Optional, Union
 
 from com.inductiveautomation.ignition.modules.serial.scripting import SerialScriptModule
-from java.lang import String
 
 SerialConfigurator = SerialScriptModule.SerialConfigurator
+String = Union[str, unicode]
 
 # Bit rate constants.
 BIT_RATE_110 = 110

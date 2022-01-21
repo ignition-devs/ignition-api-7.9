@@ -34,7 +34,7 @@ __all__ = [
     "writeSynchronous",
 ]
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
@@ -44,8 +44,9 @@ from com.inductiveautomation.ignition.common.script.builtin.ialabs import (
     TagAlarmDefinition,
 )
 from com.inductiveautomation.ignition.common.tags.config import TagConfiguration
-from java.lang import String
 from java.util import Date
+
+String = Union[str, unicode]
 
 
 def addTag(

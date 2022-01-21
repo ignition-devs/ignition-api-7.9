@@ -20,9 +20,9 @@ __all__ = [
 
 import socket
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
-from java.lang import String
+String = Union[str, unicode]
 
 
 def getExternalIpAddress():

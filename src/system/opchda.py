@@ -20,12 +20,13 @@ __all__ = [
     "replace",
 ]
 
-from typing import Any, List
+from typing import Any, List, Union
 
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
 from com.inductiveautomation.ignition.common.sqltags.history import AggregateInfo
-from java.lang import String
 from java.util import Date
+
+String = Union[str, unicode]
 
 
 def browse(root):
