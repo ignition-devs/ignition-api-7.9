@@ -3,7 +3,6 @@
 <!--- Badges --->
 ![GitHub last commit (7.9)](https://img.shields.io/github/last-commit/thecesrom/Ignition/7.9)
 [![GitHub contributors](https://img.shields.io/github/contributors/thecesrom/Ignition)](https://github.com/thecesrom/Ignition/graphs/contributors)
-[![GitHub license](https://img.shields.io/github/license/thecesrom/Ignition)](https://github.com/thecesrom/Ignition/blob/7.9/LICENSE)
 [![PyPI downloads](https://img.shields.io/pypi/dm/ignition-api)](https://pypi.org/project/ignition-api/)
 [![time tracker](https://wakatime.com/badge/github/thecesrom/Ignition.svg)](https://wakatime.com/badge/github/thecesrom/Ignition)
 [![Sourcery](https://img.shields.io/badge/Sourcery-enabled-brightgreen)](https://sourcery.ai)
