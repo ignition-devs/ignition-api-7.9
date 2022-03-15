@@ -1,50 +1,41 @@
-# Ignition
+# ignition-api 7.9
 
 <!--- Badges --->
-![GitHub last commit (7.9)](https://img.shields.io/github/last-commit/thecesrom/Ignition/7.9)
-[![GitHub contributors](https://img.shields.io/github/contributors/thecesrom/Ignition)](https://github.com/thecesrom/Ignition/graphs/contributors)
+![GitHub last commit (7.9)](https://img.shields.io/github/last-commit/ignition-api/7.9/main)
+[![GitHub contributors](https://img.shields.io/github/contributors/ignition-api/7.9)](https://github.com/ignition-api/7.9/graphs/contributors)
 [![PyPI downloads](https://img.shields.io/pypi/dm/ignition-api)](https://pypi.org/project/ignition-api/)
-[![time tracker](https://wakatime.com/badge/github/thecesrom/Ignition.svg)](https://wakatime.com/badge/github/thecesrom/Ignition)
 [![Sourcery](https://img.shields.io/badge/Sourcery-enabled-brightgreen)](https://sourcery.ai)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Imports: flake8](https://img.shields.io/badge/%20imports-flake8-%231674b1?style=flat&labelColor=ef8336)](https://flake8.pycqa.org/en/latest/)
-[![Join us on GitHub discussions](https://img.shields.io/badge/github-discussions-informational)](https://github.com/thecesrom/Ignition/discussions)
+[![Imports: pydocstyle](https://img.shields.io/badge/%20imports-pydocstyle-%231674b1?style=flat&labelColor=ef8336)](https://www.pydocstyle.org/en/stable/)
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ignition-api/8.1/main.svg)](https://results.pre-commit.ci/latest/github/ignition-api/8.1/main)
+[![Join us on GitHub discussions](https://img.shields.io/badge/github-discussions-informational)](https://github.com/ignition-api/discussions/discussions)
 
-Ignition is a set of packages and modules that allows developers to get code completion for Ignition Scripting API scripting functions in their IDE of choice.
+ignition-api is a Python package that allows developers to get code completion for Ignition Scripting API scripting functions in their IDE of choice.
 
-## Releases
+## Table of contents
 
-Check the [releases page](https://github.com/thecesrom/Ignition/releases) and download the one for your current version.
-
-If you can't find it, feel free to submit your request on our [Discussions](https://github.com/thecesrom/Ignition/discussions).
+- [Prerequisites](#prerequisites)
+- [Installation and usage](#installation-and-usage)
+  - [Installing with pip](#installing-with-pip)
+  - [Downloading from releases](#downloading-from-releases)
+    - [Using as a dependency in PyCharm](#using-as-a-dependency-in-pycharm)
+- [Project structure](#project-structure)
+  - [Packages](#packages)
+- [Contributing](#contributing)
+- [Discussions](#discussions)
+- [Contributors](#contributors)
+- [License](#license)
+- [Code of conduct](#code-of-conduct)
 
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
-* You have installed Python 2.7.18 ([download here](https://www.python.org/downloads/release/python-2718/))
-* You are familiar with [Ignition 7.9 Scripting Functions](https://docs.inductiveautomation.com/display/DOC79/Scripting+Functions)
-
-## Packages
-
-Ignition consists of the following packages:
-
-* com
-* java/javax
-* system
-
-### com
-
-These are libraries for some of Inductive Automation's Java packages and functions that are imported in `system` packages.
-
-### java/javax
-
-These are libraries for some Java packages and functions that are imported in `system` packages meant to be used on systems where no JDK can be installed, and the project interpreter is Python 2.
-
-### system
-
-Is a package that includes all Ignition Scripting Functions.
+- You have installed Python 2.7.18 ([download here](https://www.python.org/downloads/release/python-2718/))
+- You are familiar with [Ignition 7.9 Scripting Functions](https://docs.inductiveautomation.com/display/DOC79/Scripting+Functions)
 
 ## Installation and usage
 
@@ -58,11 +49,11 @@ The preferred method is to install it by running `pip`. It requires Python 2.7.1
 python2 -m pip install ignition-api==7.9.18.post7
 ```
 
-This will install it as package to your Python installation, which will allow you to call Ignition Scripting functions from Python's REPL, and get code completion using an IDE (we recommend PyCharm).
+This will install it as package to your Python installation, which will allow you to call Ignition Scripting functions from Python's REPL, and get code completion using an IDE such as PyCharm and Visual Studio Code.
 
 ```bash
 $ python2
-Python 2.7.18 (default, Nov  9 2020, 16:23:15) 
+Python 2.7.18 (default, Nov  9 2020, 16:23:15)
 [GCC Apple LLVM 12.0.0 (clang-1200.0.32.21)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> from __future__ import print_function
@@ -85,39 +76,71 @@ python2 -m pip uninstall ignition-api
 
 ### Downloading from releases
 
-You may also download the code targeted to your desired version from the [releases page](https://github.com/thecesrom/Ignition/releases) and add it as a dependency to your scripting project.
+You may also download the code targeted to your desired version from the [releases page](https://github.com/ignition-api/7.9/releases) and add it as a dependency to your scripting project.
 
-#### Using Ignition as a dependency on PyCharm
+#### Using as a dependency in PyCharm
 
-To include Ignition as a dependency on PyCharm, you will need to attach it to your project.
+To include ignition-api as a dependency in PyCharm, you will need to attach it to your project.
 
-1. Clone the repo or download from [releases](https://github.com/thecesrom/Ignition/releases)
-2. With your project open where you want to include `Ignition`, navigate to `File > Open` and select the `Ignition` project folder
+1. Clone the repo or download from [releases](https://github.com/ignition-api/7.9/releases)
+2. With your project open where you want to include `ignition-api`, navigate to `File > Open` and select the `ignition-api` project folder
 3. Choose `Attach` when prompted
-4. Under the `Ignition` project folder, right-click on the `src/` folder and choose `Mark Directory as > Sources Root`
+4. Under the `ignitition-api` project folder, right-click on the `src/` folder and choose `Mark Directory as > Sources Root`
 
-## Contributing to Ignition
+## Project structure
 
-To contribute to Ignition, follow these steps:
+### Packages
+
+Ignition consists of the following packages:
+
+- com.inductiveautomation
+- java
+- javax
+- org
+- system
+
+#### com.inductiveautomation
+
+This package includes supporting Inductive Automation's classes and interfaces. For more information, see documentation here: <http://files.inductiveautomation.com/sdk/javadoc/ignition79/795/index.html>.
+
+#### java/javax
+
+These packages include supporting Java classes and interfaces. For more information, see documentation here: <https://docs.oracle.com/javase/8/docs/api/index.html>.
+
+#### org.python
+
+This package includes supporting Jython classes and interfaces. For more information, see documentation here: <https://www.javadoc.io/doc/org.python/jython-standalone/2.5.3/index.html>.
+
+#### system
+
+This package includes all Ignition Scripting Functions. For more information, see documentation here: <https://docs.inductiveautomation.com/display/DOC79/Scripting+Functions>.
+
+## Contributing
+
+To contribute to this project, follow these steps:
 
 1. Fork this repository
 2. Create a local copy on your machine
 3. Create a branch
 4. Make your changes and commit them
-5. Push to the original branch
+5. Push to the `main` branch
 6. Create the pull request
 
 Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+### Discussions
+
+Feel free to post your questions and/or ideas at [Discussions](https://github.com/ignition-api/discussions/discussions).
 
 ## Contributors
 
 Thanks to everyone who has contributed to this project.
 
-Up-to-date list of contributors can be found [here](https://github.com/thecesrom/Ignition/graphs/contributors).
+Up-to-date list of contributors can be found [here](https://github.com/ignition-api/7.9/graphs/contributors).
 
 ## License
 
-See the [LICENSE](https://github.com/thecesrom/Ignition/blob/HEAD/LICENSE).
+See the [LICENSE](https://github.com/ignition-api/7.9/blob/HEAD/LICENSE).
 
 ## Code of conduct
 
