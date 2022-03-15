@@ -422,7 +422,7 @@ def inputBox(
     options = ["OK", "Cancel"]
 
     panel = JPanel()
-    label = JLabel(f"{message}: ")
+    label = JLabel("{}: ".format(message))
     panel.add(label)
     text_field = JTextField(25)
     text_field.setText(defaultText)
