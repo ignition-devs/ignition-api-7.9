@@ -869,7 +869,7 @@ def threadDump():
     Returns:
         The dump of the current running JVM.
     """
-    return "Ignition version: {}...".format(version.__version__)
+    return f"Ignition version: {version.__version__}..."
 
 
 def translate(
