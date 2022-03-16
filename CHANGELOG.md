@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [7.9.19] - 2022-03-15
+## [7.9.19] - 2022-03-16
+
+### CI
+
+- fix pypi upload workflow (#3) ([b870c17](https://github.com/ignition-api/7.9/commit/b870c1732f80baa0740ad730238c66044ec1bbf5))
 
 ### Documentation
 
