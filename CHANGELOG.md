@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [7.9.19] - 2022-03-15
 
 ### Documentation
 
@@ -12,6 +12,11 @@ All notable changes to this project will be documented in this file.
 ### Miscellaneous Tasks
 
 - cleanup `.pylintrc` ([49b806d](https://github.com/ignition-api/7.9/commit/49b806d2c3f5784c787ed0b4e44154bf31baff5b))
+- move project to github org ([e2027c6](https://github.com/ignition-api/7.9/commit/e2027c62bd305ba0e72a27f7c0e0f6b706d71f5c))
+
+### Refactor
+
+- Sourcery refactored main branch (#1) ([b32da16](https://github.com/ignition-api/7.9/commit/b32da1684291097711daa2b1955d8393c07169ce))
 
 ### Styling
 
