@@ -3,7 +3,7 @@
 <!--- Badges --->
 ![GitHub last commit (7.9)](https://img.shields.io/github/last-commit/ignition-api/7.9/main)
 [![GitHub contributors](https://img.shields.io/github/contributors/ignition-api/7.9)](https://github.com/ignition-api/7.9/graphs/contributors)
-[![PyPI downloads](https://img.shields.io/pypi/dm/ignition-api)](https://pypi.org/project/ignition-api/)
+[![Downloads](https://pepy.tech/badge/ignition-api)](https://pepy.tech/project/ignition-api)
 [![Sourcery](https://img.shields.io/badge/Sourcery-enabled-brightgreen)](https://sourcery.ai)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
