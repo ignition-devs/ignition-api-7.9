@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## [7.9.20] - 2022-04-14
+
+### Bug Fixes
+
+- update type hint for `html` arg (#17) ([8c9666d](https://github.com/ignition-api/7.9/commit/8c9666d1ed83dc1c6470c9263a70cb83eeda5f1d))
+
+### CI
+
+- update build action (#6) ([9a09177](https://github.com/ignition-api/7.9/commit/9a09177f179a7172614ab586e99e827bb78eb542))
+- add dependabot (#7) ([b338831](https://github.com/ignition-api/7.9/commit/b33883107ccccb99151f481969ab42019197d5e8))
+- use `deps` scope for pre-commit.ci (#10) ([921f20b](https://github.com/ignition-api/7.9/commit/921f20bf01896c8f451ebbcd59749311bc32a900))
+
+### Documentation
+
+- use pepy.tech for counting downloads (#12) ([1536717](https://github.com/ignition-api/7.9/commit/1536717548be7490ef800ca189da941edbe5c4c0))
+- add link to org CONTRIBUTING.md (#13) ([d9738ce](https://github.com/ignition-api/7.9/commit/d9738ce5201dc7c9c314dad843994354f104e303))
+
+### Miscellaneous Tasks
+
+- update `setup.cfg` to include `CHANGELOG.md` (#5) ([87e2edd](https://github.com/ignition-api/7.9/commit/87e2eddaf2c4055f0ac322bfff3bc779b6c3239c))
+
+### Build
+
+- bump actions/setup-python from 2 to 3 (#8) ([acac6f3](https://github.com/ignition-api/7.9/commit/acac6f35f8099b603256a3bc189a2b419f92f5de))
+- bump actions/checkout from 2 to 3 (#9) ([4e79b47](https://github.com/ignition-api/7.9/commit/4e79b47648a10a817a32d825baf2f6aa2658271d))
+- bump .pylintrc from 2.12.2 to 2.13.2 (#11) ([021ddde](https://github.com/ignition-api/7.9/commit/021ddde4a0f577862a3dad9dd15d75577876accb))
+- pre-commit autoupdate (#14) ([2041bb4](https://github.com/ignition-api/7.9/commit/2041bb4150d886492886d7aba2eae76e06061a7d))
+- update pylint configuration (#15) ([0abbfa7](https://github.com/ignition-api/7.9/commit/0abbfa7c160395c153ce64c81ae46c8425b4060a))
+
 ## [7.9.19] - 2022-03-16
 
 ### CI
