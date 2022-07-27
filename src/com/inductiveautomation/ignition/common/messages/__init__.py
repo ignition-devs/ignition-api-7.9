@@ -1,10 +1,12 @@
 __all__ = ["UIResponse"]
 
 from java.lang import Object
+from java.util import Locale
 
 
 class UIResponse(Object):
     def __init__(self, locale):
+        # type: (Locale) -> None
         self.locale = locale
 
     def attempt(self, method):

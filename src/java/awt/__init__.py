@@ -16,6 +16,8 @@ __all__ = [
     "Window",
 ]
 
+from typing import Any, Optional
+
 from java.lang import Object
 
 
@@ -40,6 +42,7 @@ class Color(Object):
     """
 
     def __init__(self, *args):
+        # type: (Any) -> None
         print(self, args)
 
 
@@ -57,6 +60,7 @@ class Container(Component):
     """
 
     def add(self, *args):
+        # type: (Any) -> Optional[Component]
         pass
 
 
@@ -78,11 +82,17 @@ class Toolkit(Object):
     components to particular native toolkit implementations.
     """
 
+    def __init__(self):
+        # type: () -> None
+        pass
+
     def beep(self):
+        # type: () -> None
         print(self, "Beep!")
 
     @staticmethod
     def getDefaultToolkit():
+        # type: () -> Toolkit
         return Toolkit()
 
 

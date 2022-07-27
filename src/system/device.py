@@ -16,11 +16,10 @@ __all__ = [
     "setDeviceHostname",
 ]
 
-from typing import Any, Dict, Union
+from typing import Any, Dict
 
 from com.inductiveautomation.ignition.common import BasicDataset
-
-String = Union[str, unicode]
+from java.lang import String
 
 
 def addDevice(
@@ -39,7 +38,7 @@ def addDevice(
     Args:
         deviceType: The device driver type. Possible values are listed
             in the Device Types table below.
-        deviceName: The name that will be given to the the new device
+        deviceName: The name that will be given to the new device
             connection.
         deviceProps: A dictionary of device connection properties and
             values. Each deviceType has different properties, but most

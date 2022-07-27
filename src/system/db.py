@@ -7,6 +7,47 @@ database.
 from __future__ import print_function
 
 __all__ = [
+    "ARRAY",
+    "BIGINT",
+    "BINARY",
+    "BIT",
+    "BLOB",
+    "BOOLEAN",
+    "CHAR",
+    "CLOB",
+    "DATALINK",
+    "DATE",
+    "DECIMAL",
+    "DISTINCT",
+    "DOUBLE",
+    "FLOAT",
+    "INTEGER",
+    "JAVA_OBJECT",
+    "LONGNVARCHAR",
+    "LONGVARBINARY",
+    "LONGVARCHAR",
+    "NCHAR",
+    "NCLOB",
+    "NULL",
+    "NUMERIC",
+    "NVARCHAR",
+    "ORACLE_CURSOR",
+    "OTHER",
+    "READ_COMMITTED",
+    "READ_UNCOMMITTED",
+    "REAL",
+    "REF",
+    "REPEATABLE_READ",
+    "ROWID",
+    "SERIALIZABLE",
+    "SMALLINT",
+    "SQLXML",
+    "STRUCT",
+    "TIME",
+    "TIMESTAMP",
+    "TINYINT",
+    "VARBINARY",
+    "VARCHAR",
     "addDatasource",
     "beginTransaction",
     "clearAllNamedQueryCaches",
@@ -35,18 +76,18 @@ __all__ = [
     "setDatasourceMaxConnections",
 ]
 
-from typing import Any, List, Optional, Union
+from typing import Any, List, Optional
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.ignition.common.script.builtin import (
     DatasetUtilities,
     SProcCall,
 )
+from java.lang import String
 from java.util import Date
 from javax.swing import JComponent
 
 PyDataSet = DatasetUtilities.PyDataSet
-String = Union[str, unicode]
 
 # Type codes
 # These are codes defined by the JDBC specification.
@@ -117,7 +158,7 @@ def addDatasource(
         description: Description of the datasource. Optional.
         connectUrl: Default is the connect URL for JDBC driver.
             Optional.
-        username: Username to login to the datasource with. Optional.
+        username: Username to log in to the datasource with. Optional.
         password: Password for the login. Optional.
         props: The extra connection parameters. Optional.
         validationQuery: Default is the validation query for the JDBC
@@ -449,7 +490,7 @@ def runPrepQuery(
             statement with placeholders (?) denoting where the arguments
             go.
         args: A list of arguments. Will be used in order to match each
-            each placeholder (?) found in the query.
+            placeholder (?) found in the query.
         database: The name of the database connection to execute
             against. If omitted or "", the project's default database
             connection will be used.
@@ -575,7 +616,7 @@ def runSFPrepUpdate(
 
 def runSFUpdateQuery(query, datasources):
     # type: (String, List[String]) -> bool
-    """Runs an query through the store and forward system and to
+    """Runs a query through the store and forward system and to
     multiple datasources at the same time.
 
     Args:
@@ -662,9 +703,9 @@ def runUpdateQuery(
     """Runs a query against a database connection, returning the number
     of rows affected.
 
-    Typically this is an UPDATE, INSERT, or DELETE query. If no database
-    is specified, or the database is the empty-string "", then the
-    current project's default database connection will be used.
+    Typically, this is an UPDATE, INSERT, or DELETE query. If no
+    database is specified, or the database is the empty-string "", then
+    the current project's default database connection will be used.
 
     Note that you may want to use the runPrepUpdate query if your query
     is constructed with user input (to avoid the user's input from

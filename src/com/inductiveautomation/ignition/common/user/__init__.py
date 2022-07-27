@@ -1,94 +1,74 @@
-__all__ = ["ContactInfo", "PyUser", "User"]
+__all__ = ["BasicUser", "ContactInfo", "PyUser", "User"]
 
-from java.lang import Object
+from typing import Any, List, Optional, Union
+
+from com.inductiveautomation.ignition.common import QualifiedPath
+from com.inductiveautomation.ignition.common.config import BasicProperty, Property
+from com.inductiveautomation.ignition.common.user.schedule import ScheduleAdjustment
+from java.lang import Object, String
 
 
 class ContactInfo(Object):
-    def __init__(self, contactType=None, value=None):
-        self.contactType = contactType
-        self.value = value
+    contactType = ""  # type: String
+    value = ""  # type: String
+
+    def __init__(self, *args):
+        # type: (Any) -> None
+        if len(args) == 2:
+            self.contactType = args[0]
+            self.value = args[1]
 
     def getContactType(self):
-        pass
+        # type: () -> String
+        return self.contactType
 
     def getValue(self):
-        pass
+        # type: () -> String
+        return self.value
 
     def setContactType(self, contactType):
-        pass
+        # type: (String) -> None
+        self.contactType = contactType
 
     def setValue(self, value):
-        pass
+        # type: (String) -> None
+        self.value = value
 
 
 class User(object):
-    _Badge = "badge"
-    _DEFAULT_SCHEDULE_NAME = "Always"
-    _FirstName = "John"
-    _Language = "en"
-    _LastName = "Doe"
-    _Notes = "These are some notes."
-    _Password = "password"
-    _Schedule = "Always"
-    _Username = "johdoe"
-    _USERNAME_PATTERN = r"[\p{Alnum}][ @\w.\s\-]{1, 49}"
-
-    @property
-    def Badge(self):
-        return self._Badge
-
-    @property
-    def DEFAULT_SCHEDULE_NAME(self):
-        return self._DEFAULT_SCHEDULE_NAME
-
-    @property
-    def FirstName(self):
-        return self._FirstName
-
-    @property
-    def Language(self):
-        return self._Language
-
-    @property
-    def LastName(self):
-        return self._LastName
-
-    @property
-    def Notes(self):
-        return self._Notes
-
-    @property
-    def Password(self):
-        return self._Password
-
-    @property
-    def Schedule(self):
-        return self._Schedule
-
-    @property
-    def Username(self):
-        return self._Username
-
-    @property
-    def USERNAME_PATTERN(self):
-        return self._USERNAME_PATTERN
+    Badge = BasicProperty("badge", str)  # type: BasicProperty
+    DEFAULT_SCHEDULE_NAME = "Always"
+    FirstName = BasicProperty("firstname", str)  # type: BasicProperty
+    Language = BasicProperty("language", str, "en")  # type: BasicProperty
+    LastName = BasicProperty("firstname", str)  # type: BasicProperty
+    Notes = BasicProperty("notes", str)  # type: BasicProperty
+    Password = BasicProperty("password", str)  # type: BasicProperty
+    Schedule = BasicProperty("schedule", str, "Always")  # type: BasicProperty
+    Username = BasicProperty("username", str)  # type: BasicProperty
+    USERNAME_PATTERN = r"[\p{Alnum}][ @\w.\s\-]{1, 49}"
 
     def getContactInfo(self):
+        # type: () -> List[ContactInfo]
         raise NotImplementedError
 
     def getId(self):
+        # type: () -> Any
         raise NotImplementedError
 
     def getPath(self):
+        # type: () -> QualifiedPath
         raise NotImplementedError
 
     def getProfileName(self):
+        # type: () -> String
         raise NotImplementedError
 
     def getRoles(self):
+        # type: () -> List[String]
         raise NotImplementedError
 
     def getScheduleAdjustments(self):
+        # type: () -> List[ScheduleAdjustment]
         raise NotImplementedError
 
 
@@ -123,9 +103,10 @@ class PyUser(User):
     has some methods that are more scripting friendly.
     """
 
-    _user = None
+    _user = None  # type: Optional[User]
 
     def __init__(self, user=None):
+        # type: (Optional[User]) -> None
         self._user = user
 
     def addContactInfo(self, *args):
@@ -147,10 +128,12 @@ class PyUser(User):
         pass
 
     def get(self, propertyName):
+        # type: (Union[Property, String]) -> Any
         print(self)
         return propertyName
 
     def getContactInfo(self):
+        # type: () -> List[ContactInfo]
         ci_email = ContactInfo("email", "johdoe@mycompany.com")
         ci_phone = ContactInfo("phone", "+1 5551324567")
         ci_sms = ContactInfo("sms", "+1 5557654321")
@@ -164,12 +147,15 @@ class PyUser(User):
         pass
 
     def getOrDefault(self, prop):
+        # type: (Property) -> Any
         print(self, prop)
 
     def getOrElse(self, property, value):
+        # type: (Property, Any) -> Any
         pass
 
     def getPath(self):
+        # type: () -> QualifiedPath
         pass
 
     def getProfileName(self):
@@ -179,6 +165,7 @@ class PyUser(User):
         pass
 
     def getRoles(self):
+        # type: () -> List[String]
         return ["Administrator", "Developer"]
 
     def getScheduleAdjustments(self):
@@ -203,9 +190,11 @@ class PyUser(User):
         pass
 
     def removeContactInfo(self, contactType, value):
+        # type: (String, String) -> None
         pass
 
     def removeRole(self, role):
+        # type: (String) -> None
         pass
 
     def removeScheduleAdjustment(self, start, end, available=True, note=None):
@@ -215,9 +204,11 @@ class PyUser(User):
         pass
 
     def setContactInfo(self, contactInfo):
+        # type: (List[ContactInfo]) -> None
         pass
 
     def setRoles(self, roles):
+        # type: (List[String]) -> None
         pass
 
     def setScheduleAdjustments(self, scheduleAdjustments):

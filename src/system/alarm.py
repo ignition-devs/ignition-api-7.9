@@ -19,13 +19,12 @@ __all__ = [
     "unshelve",
 ]
 
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple
 
 from com.inductiveautomation.ignition.common.alarming.evaluation import ShelvedPath
 from com.inductiveautomation.ignition.common.alarming.query import AlarmQueryResultImpl
+from java.lang import String
 from java.util import Date
-
-String = Union[str, unicode]
 
 
 def acknowledge(alarmIds, notes, username=None):

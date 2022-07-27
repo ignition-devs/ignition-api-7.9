@@ -38,9 +38,8 @@ from com.inductiveautomation.ignition.common.user.schedule import (
     AbstractScheduleModel,
     HolidayModel,
 )
+from java.lang import String
 from java.util import Date, Locale
-
-String = Union[str, unicode]
 
 
 def addHoliday(holiday):

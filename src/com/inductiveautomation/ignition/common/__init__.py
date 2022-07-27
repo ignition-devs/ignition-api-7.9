@@ -1,11 +1,16 @@
-__all__ = ["AbstractDataset", "BasicDataset", "Dataset"]
+__all__ = ["AbstractDataset", "BasicDataset", "Dataset", "QualifiedPath"]
+
+from typing import Any, List, Optional
+
+from com.inductiveautomation.ignition.common.sqltags.model.types import DataQuality
+from java.lang import Class, Object, String
 
 
 class Dataset(object):
     """A dataset is a collection of values arranged in a structured
     format.
 
-    Most datasets are two dimensional -- they can be viewed as a table
+    Most datasets are two-dimensional -- they can be viewed as a table
     with rows and columns being the two dimensions. Values in a dataset
     are usually accessed by specifying one index for each dimension of
     data (row and column for tables).
@@ -52,12 +57,18 @@ class Dataset(object):
 
 
 class AbstractDataset(Dataset):
-    _columnNames = None
-    _columnNamesLowercase = None
-    _columnTypes = None
-    _qualityCodes = None
+    _columnNames = None  # type: List[String]
+    _columnNamesLowercase = None  # type: List[String]
+    _columnTypes = None  # type: List[Class]
+    _qualityCodes = None  # type: Optional[List[List[DataQuality]]]
 
-    def __init__(self, columnNames, columnTypes, qualityCodes=None):
+    def __init__(
+        self,
+        columnNames,  # type: List[String]
+        columnTypes,  # type: List[Class]
+        qualityCodes=None,  # type: Optional[List[List[DataQuality]]]
+    ):
+        # type: (...) -> None
         self._columnNames = columnNames
         self._columnTypes = columnTypes
         self._qualityCodes = qualityCodes
@@ -110,8 +121,10 @@ class AbstractDataset(Dataset):
 
 
 class BasicDataset(AbstractDataset):
-    def __init__(self, columnNames=None, columnTypes=None):
-        super(BasicDataset, self).__init__(columnNames, columnTypes)
+    def __init__(self, *args):
+        # type: (Any) -> None
+        print(args)
+        super(BasicDataset, self).__init__([""], [Class()])
 
     def columnContainsNulls(self, col):
         pass
@@ -132,4 +145,15 @@ class BasicDataset(AbstractDataset):
         pass
 
     def setValueAt(self, row, col, value):
+        pass
+
+
+class QualifiedPath(Object):
+    def extend(self, id_, value):
+        pass
+
+    def getFirstPathComponent(self):
+        pass
+
+    def getFirstPathComponentId(self):
         pass
