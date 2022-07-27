@@ -2,11 +2,15 @@ from __future__ import print_function
 
 __all__ = ["BrowseResults", "Result", "TagInfoResult"]
 
+from typing import Any
+
+from com.inductiveautomation.ignition.common.sqltags.model import TagInfo
 from java.lang import Object
 
 
 class BrowseResults(Object):
     def __init__(self, *args):
+        # type: (Any) -> None
         pass
 
     def getContinuationPoint(self):
@@ -17,7 +21,7 @@ class BrowseResults(Object):
 
     def getResults(self):
         print(self)
-        return [TagInfoResult()]
+        return [TagInfoResult(TagInfo())]
 
     def getReturnedSize(self):
         pass
@@ -53,6 +57,10 @@ class Result(object):
 
 
 class TagInfoResult(Object, Result):
+    def __init__(self, value):
+        # type: (TagInfo) -> None
+        pass
+
     def getDisplayPath(self):
         pass
 

@@ -52,7 +52,7 @@ import json
 import os
 import platform
 
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 import system.__version__ as version
 from com.inductiveautomation.ignition.common import BasicDataset
@@ -62,12 +62,11 @@ from com.inductiveautomation.ignition.common.script.builtin import (
 )
 from com.inductiveautomation.ignition.common.util import LoggerEx
 from java.awt import Toolkit
-from java.lang import Thread
+from java.lang import String, Thread
 from java.util import Date
 
 PyDataSet = DatasetUtilities.PyDataSet
 RequestImpl = SystemUtilities.RequestImpl
-String = Union[str, unicode]
 
 
 def beep():
@@ -395,7 +394,7 @@ def getSystemFlags():
 
 
 def invokeAsynchronous(function):
-    # type: (Callable) -> Thread
+    # type: (Callable[..., Any]) -> Thread
     """Invokes (calls) the given Python function on a different thread.
 
     This means that calls to invokeAsynchronous will return immediately,
@@ -417,7 +416,7 @@ def invokeAsynchronous(function):
 
 
 def invokeLater(function, delay=0):
-    # type: (Callable, Optional[int]) -> None
+    # type: (Callable[..., Any], Optional[int]) -> None
     """Invokes (calls) the given Python function object after all of the
     currently processing and pending events are done being processed,
     or after a specified delay.
@@ -457,7 +456,7 @@ def jsonDecode(jsonString):
 
 
 def jsonEncode(pyObj, indentFactor=4):
-    # type: (Union[List, Dict], Optional[int]) -> String
+    # type: (Iterable[Any], int) -> String
     """Takes a Python object such as a list or dict and converts into a
     json string.
 
@@ -733,8 +732,8 @@ def sendRequestAsync(
     hostName=None,  # type: Optional[String]
     remoteServer=None,  # type: Optional[String]
     timeoutSec=None,  # type: Optional[int]
-    onSuccess=None,  # type: Optional[Callable]
-    onError=None,  # type: Optional[Callable]
+    onSuccess=None,  # type: Optional[Callable[..., Any]]
+    onError=None,  # type: Optional[Callable[..., Any]]
 ):
     # type: (...) -> RequestImpl
     """This function sends a message to the Gateway and expects a

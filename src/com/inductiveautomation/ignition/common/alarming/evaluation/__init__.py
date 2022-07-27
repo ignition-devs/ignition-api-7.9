@@ -1,13 +1,14 @@
 __all__ = ["ShelvedPath"]
 
+from typing import Any
+
 from java.lang import Object
 
 
 class ShelvedPath(Object):
-    def __init__(self, path=None, user=None, expiration=None):
-        self.path = path
-        self.user = user
-        self.expiration = expiration
+    def __init__(self, *args):
+        # type: (Any) -> None
+        print(args)
 
     def getExpiration(self):
         pass

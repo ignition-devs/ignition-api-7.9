@@ -107,9 +107,17 @@ This package includes supporting Inductive Automation's classes and interfaces. 
 
 These packages include supporting Java classes and interfaces. For more information, see documentation here: <https://docs.oracle.com/javase/8/docs/api/index.html>.
 
+#### org.apache
+
+This package includes supporting classes and interfaces from Apache Commons Lang API. For more information, see documentation here: <https://javadoc.io/doc/org.apache.commons/commons-lang3/3.3.2/index.html>
+
 #### org.python
 
 This package includes supporting Jython classes and interfaces. For more information, see documentation here: <https://www.javadoc.io/doc/org.python/jython-standalone/2.5.3/index.html>.
+
+#### org.slf4j
+
+This package includes supporting classes and interfaces from SLF4J API Module. For more information, see documentation here: <https://www.javadoc.io/doc/org.slf4j/slf4j-api/1.7.21/overview-summary.html>.
 
 #### system
 

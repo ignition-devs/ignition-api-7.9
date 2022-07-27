@@ -2,6 +2,7 @@ from __future__ import print_function
 
 __all__ = ["FPMIWindow"]
 
+from java.lang import String
 from javax.swing import JInternalFrame
 
 
@@ -22,6 +23,8 @@ class FPMIWindow(JInternalFrame):
     _path = "Path/To/Window"
 
     def __init__(self, name):
+        # type: (String) -> None
+        super(FPMIWindow, self).__init__()
         self.name = name
 
     def getPath(self):

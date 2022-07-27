@@ -1,5 +1,7 @@
 __all__ = ["AlarmQueryResult", "AlarmQueryResultImpl"]
 
+from typing import Any
+
 
 class AlarmQueryResult(object):
     """This is the result of a query against the alarming system, for
@@ -22,6 +24,7 @@ class AlarmQueryResult(object):
 
 class AlarmQueryResultImpl(AlarmQueryResult):
     def __init__(self, *args):
+        # type: (Any) -> None
         pass
 
     def getAssociatedDate(self, uuid):

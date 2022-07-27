@@ -1,6 +1,8 @@
 __all__ = ["BasicOPCBrowseElement", "OPCBrowseElement", "ServerBrowseElement"]
 
-from java.lang import Object
+from typing import Any, List
+
+from java.lang import Enum, Object
 
 
 class OPCBrowseElement(object):
@@ -22,6 +24,7 @@ class OPCBrowseElement(object):
 
 class BasicOPCBrowseElement(Object, OPCBrowseElement):
     def __init__(self, *args):
+        # type: (Any) -> None
         pass
 
     def getDataType(self):
@@ -37,6 +40,17 @@ class BasicOPCBrowseElement(Object, OPCBrowseElement):
         pass
 
     def getServerNodeId(self):
+        pass
+
+
+class BrowseElementType(Enum):
+    def isSubscribable(self):
+        # type: () -> bool
+        pass
+
+    @staticmethod
+    def values():
+        # type: () -> List[BrowseElementType]
         pass
 
 

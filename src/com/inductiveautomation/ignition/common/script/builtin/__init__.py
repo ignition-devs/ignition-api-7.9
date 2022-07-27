@@ -2,16 +2,22 @@ from __future__ import print_function
 
 __all__ = ["AbstractOPCUtilities", "DatasetUtilities", "SProcCall", "SystemUtilities"]
 
+from typing import List, Optional
+
 from com.inductiveautomation.ignition.common import BasicDataset, Dataset
+from com.inductiveautomation.ignition.common.opc import BrowseElementType
 from com.inductiveautomation.ignition.common.script.message import Request
-from java.lang import Object
+from java.lang import Object, String
 from java.util import Locale
 from org.python.core import PyObject
 
 
 class AbstractOPCUtilities(Object):
     def browseServer(self, opcServer, nodeId):
-        return [AbstractOPCUtilities.PyOPCTag(opcServer, nodeId, None, self.__class__)]
+        # type: (String, String) -> List[AbstractOPCUtilities.PyOPCTag]
+        return [
+            AbstractOPCUtilities.PyOPCTag(opcServer, nodeId, "", BrowseElementType())
+        ]
 
     def getServers(self):
         pass
@@ -44,6 +50,7 @@ class AbstractOPCUtilities(Object):
         _serverName = None
 
         def __init__(self, serverName, nodeId, displayName, elementType):
+            # type: (String, String, String, BrowseElementType) -> None
             self._serverName = serverName
             self._nodeId = nodeId
             self._displayName = displayName
@@ -187,6 +194,7 @@ class DatasetUtilities(Object):
         _ds = None
 
         def __init__(self, ds=None):
+            # type: (Optional[BasicDataset]) -> None
             self._ds = ds
 
         def __getitem__(self, item):
@@ -333,8 +341,11 @@ class SystemUtilities(Object):
     def parseTranslateArguments(*args, **kwargs):
         pass
 
-    class RequestImpl(Request):
+    class RequestImpl(Object, Request):
+        timeout = None  # type: int
+
         def __init__(self, timeout):
+            # type: (int) -> None
             self.timeout = timeout
 
         def checkTimeout(self):

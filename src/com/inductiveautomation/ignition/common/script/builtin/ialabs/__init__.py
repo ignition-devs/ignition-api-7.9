@@ -7,24 +7,37 @@ __all__ = [
     "TagAlarmProperty",
 ]
 
-from java.lang import Object
+from typing import List, Optional
+
+from com.inductiveautomation.ignition.common.opc import BrowseElementType
+from com.inductiveautomation.ignition.common.sqltags.model.types import (
+    DataType,
+    TagType,
+)
+from java.lang import Class, Object, String
 
 
 class BrowseTag(Object):
+    dataType = None  # type: DataType
+    name = None  # type: str
+    fullPath = None  # type: str
+    path = None  # type: str
+    type = None  # type: TagType
+    valueSource = None  # type: str
+
     def __init__(
         self,
-        name=None,
-        path=None,
-        fullPath=None,
-        type=None,
-        valueSource=None,
-        dataType=None,
+        name,  # type: str
+        path,  # type: str
+        fullPath,  # type: str
+        type_,  # type: TagType
+        valueSource,  # type: str
+        dataType,  # type: DataType
     ):
-        super(BrowseTag, self).__init__()
         self.name = name
         self.path = path
         self.fullPath = fullPath
-        self.type = type
+        self.type = type_
         self.valueSource = valueSource
         self.dataType = dataType
 
@@ -78,16 +91,17 @@ class BrowseTag(Object):
 class OPCBrowseTag(Object):
     def __init__(
         self,
-        opcServer=None,
-        type=None,
-        displayName=None,
-        displayPath=None,
-        dataType=None,
-        opcItemPath=None,
+        opcServer=None,  # type: Optional[str]
+        type_=None,  # type: Optional[BrowseElementType]
+        displayName=None,  # type: Optional[str]
+        displayPath=None,  # type: Optional[str]
+        dataType=None,  # type: Optional[Class]
+        opcItemPath=None,  # type: Optional[str]
     ):
+        # type: (...) -> None
         super(OPCBrowseTag, self).__init__()
         self.opcServer = opcServer
-        self.type = type
+        self.type = type_
         self.displayName = displayName
         self.displayPath = displayPath
         self.dataType = dataType
@@ -114,16 +128,18 @@ class OPCBrowseTag(Object):
 
 class TagAlarmDefinition(Object):
     def __init__(self, alarm, alarmProperties):
+        # type: (String, List[TagAlarmProperty]) -> None
         self.alarm = alarm
         self.alarmProperties = alarmProperties
 
     def getAlarmProperties(self):
         print(self)
-        return TagAlarmProperty()
+        return TagAlarmProperty("property", "type", Object())
 
 
 class TagAlarmProperty(Object):
-    def __init__(self, property=None, value=None, type=None):
+    def __init__(self, property, type, value):
+        # type: (String, String, Object) -> None
         self.property = property
         self.type = type
         self.value = value

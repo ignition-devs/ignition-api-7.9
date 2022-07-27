@@ -34,7 +34,7 @@ __all__ = [
     "writeSynchronous",
 ]
 
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 from com.inductiveautomation.ignition.common import BasicDataset
 from com.inductiveautomation.ignition.common.browsing import BrowseResults
@@ -42,11 +42,15 @@ from com.inductiveautomation.ignition.common.model.values import BasicQualifiedV
 from com.inductiveautomation.ignition.common.script.builtin.ialabs import (
     BrowseTag,
     TagAlarmDefinition,
+    TagAlarmProperty,
+)
+from com.inductiveautomation.ignition.common.sqltags.model.types import (
+    DataType,
+    TagType,
 )
 from com.inductiveautomation.ignition.common.tags.config import TagConfiguration
+from java.lang import Object, String
 from java.util import Date
-
-String = Union[str, unicode]
 
 
 def addTag(
@@ -230,7 +234,7 @@ def browseTags(
         recursive,
         sort,
     )
-    return [BrowseTag()]
+    return [BrowseTag("name", "path", "fullpath", TagType(), "valueSource", DataType())]
 
 
 def browseTagsSimple(
@@ -256,7 +260,7 @@ def browseTagsSimple(
         isExpression(), isQuery().
     """
     print(parentPath, sort)
-    return [BrowseTag()]
+    return [BrowseTag("name", "path", "fullpath", TagType(), "valueSource", DataType())]
 
 
 def editAlarmConfig(
@@ -284,12 +288,12 @@ def editAlarmConfig(
 
 def editTag(
     tagPath,  # type: String
-    attributes=None,  # type: Optional[Dict]
-    parameters=None,  # type: Optional[Dict]
+    attributes=None,  # type: Optional[Dict[String, Any]]
+    parameters=None,  # type: Optional[Dict[String, Any]]
     accessRights=None,  # type: Optional[String]
-    overrides=None,  # type: Optional[Dict]
+    overrides=None,  # type: Optional[Dict[String, Any]]
     alarmList=None,  # type: Optional[String]
-    alarmConfig=None,  # type: Optional[Dict]
+    alarmConfig=None,  # type: Optional[Dict[String, Any]]
 ):
     # type: (...) -> None
     """Edits an existing Tag in Ignition.
@@ -338,12 +342,12 @@ def editTag(
 
 def editTags(
     tagPaths,  # type: List[String]
-    attributes,  # type: Dict
-    parameters,  # type: Dict
+    attributes,  # type: Dict[String, Any]
+    parameters,  # type: Dict[String, Any]
     accessRights,  # type: String
-    overrides,  # type: Dict
+    overrides,  # type: Dict[String, Any]
     alarmList,  # type: String
-    alarmConfig,  # type: Dict
+    alarmConfig,  # type: Dict[String, Any]
     provider="",  # type: Optional[String]
     json=None,  # type: Optional[String]
 ):
@@ -420,7 +424,9 @@ def getAlarmStates(tagPath):
         An array of TagAlarmDefinition.
     """
     print(tagPath)
-    return [TagAlarmDefinition("alarm", None)]
+    return [
+        TagAlarmDefinition("alarm", [TagAlarmProperty("property", "type", Object())])
+    ]
 
 
 def isOverlaysEnabled():

@@ -7,6 +7,9 @@ __all__ = [
     "WindowUtilities",
 ]
 
+from typing import Any
+
+from java.awt import Component
 from java.awt.image import BufferedImage
 from java.lang import Object
 
@@ -93,9 +96,11 @@ class NavUtilities(INavUtilities):
 
 class PrintUtilities(Object):
     def __init__(self, app):
+        # type: (Any) -> None
         print(self, app)
 
     def createImage(self, c):
+        # type: (Component) -> BufferedImage
         print(self, c)
         width = height = imageType = 1
         return BufferedImage(width, height, imageType)

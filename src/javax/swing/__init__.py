@@ -5,6 +5,7 @@ to the maximum degree possible, work the same on all platforms.
 from __future__ import print_function
 
 __all__ = [
+    "Icon",
     "JComponent",
     "JFrame",
     "JInternalFrame",
@@ -15,8 +16,22 @@ __all__ = [
     "JTextField",
 ]
 
+from typing import Any, List, Optional
+
 from java.awt import Container, Frame
+from java.lang import String
 from javax.swing.text import JTextComponent
+
+
+class Icon(object):
+    def getIconHeight(self):
+        raise NotImplementedError
+
+    def getIconWidth(self):
+        raise NotImplementedError
+
+    def paintIcon(self, c, g, x, y):
+        raise NotImplementedError
 
 
 class JComponent(Container):
@@ -24,7 +39,9 @@ class JComponent(Container):
     containers.
     """
 
-    pass
+    def __init__(self):
+        # type: () -> None
+        pass
 
 
 class JFrame(Frame):
@@ -32,7 +49,9 @@ class JFrame(Frame):
     JFC/Swing component architecture.
     """
 
-    pass
+    def __init__(self, *args):
+        # type: (Any) -> None
+        pass
 
 
 class JInternalFrame(JComponent):
@@ -41,14 +60,26 @@ class JInternalFrame(JComponent):
     resizing, title display, and support for a menu bar.
     """
 
-    pass
+    def __init__(
+        self,
+        title=None,  # type: Optional[String]
+        resizable=None,  # type: Optional[bool]
+        closable=None,  # type: Optional[bool]
+        maximizable=None,  # type: Optional[bool]
+        iconifiable=None,  # type: Optional[bool]
+    ):
+        # type: (...) -> None
+        super(JInternalFrame, self).__init__()
+        print(title, resizable, closable, maximizable, iconifiable)
 
 
 class JLabel(JComponent):
     """A display area for a short text string or an image, or both."""
 
     def __init__(self, *args):
-        pass
+        # type: (Any) -> None
+        super(JLabel, self).__init__()
+        print(args)
 
 
 class JOptionPane(JComponent):
@@ -114,21 +145,27 @@ class JOptionPane(JComponent):
 
     @staticmethod
     def showMessageDialog(
-        parentComponent, message, title=None, messageType=None, icon=None
+        parentComponent,  # type: Optional[Any]
+        message,  # type: Any
+        title=None,  # type: Optional[String]
+        messageType=None,  # type: Optional[int]
+        icon=None,  # type: Optional[Icon]
     ):
+        # type: (...) -> None
         print(parentComponent, message, title, messageType, icon)
 
     @staticmethod
     def showOptionDialog(
-        parentComponent,
-        message,
-        title=None,
-        optionType=None,
-        messageType=None,
-        icon=None,
-        options=None,
-        initialValue=None,
+        parentComponent,  # type: Optional[Any]
+        message,  # type: Any
+        title=None,  # type: Optional[String]
+        optionType=None,  # type: Optional[int]
+        messageType=None,  # type: Optional[int]
+        icon=None,  # type: Optional[Icon]
+        options=None,  # type: Optional[List[Any]]
+        initialValue=None,  # type: Optional[Any]
     ):
+        # type: (...) -> int
         print(
             parentComponent,
             message,
@@ -145,14 +182,54 @@ class JOptionPane(JComponent):
 class JPanel(JComponent):
     """JPanel is a generic lightweight container."""
 
-    pass
+    def __init__(self, *args):
+        # type: (Any) -> None
+        super(JPanel, self).__init__()
+        print(args)
 
 
 class JPopupMenu(JComponent):
+    def __init__(self, label=None):
+        # type: (Optional[String]) -> None
+        super(JPopupMenu, self).__init__()
+        print(label)
 
-    pass
+    def addAncestorListener(self, listener):
+        pass
+
+    def addNotify(self):
+        pass
+
+    def createToolTip(self):
+        print(self)
+        return JToolTip()
+
+    @staticmethod
+    def getDefaultLocale():
+        pass
+
+    @staticmethod
+    def isLightweightComponent(c):
+        pass
+
+    @staticmethod
+    def setDefaultLocale(l):
+        pass
 
 
 class JTextField(JTextComponent):
     def __init__(self, *args):
+        # type: (Any) -> None
+        pass
+
+
+class JToolTip(JComponent):
+    def getAccessibleContext(self):
+        pass
+
+    def getComponent(self):
+        print(self)
+        return JComponent()
+
+    def getTipText(self):
         pass

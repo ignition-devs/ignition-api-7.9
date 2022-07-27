@@ -54,11 +54,10 @@ __all__ = [
 from datetime import datetime
 from time import localtime, mktime
 
-from typing import Optional, Union
+from typing import Optional
 
+from java.lang import String
 from java.util import Date, Locale
-
-String = Union[str, unicode]
 
 
 def _now():
@@ -345,7 +344,7 @@ def getHour12(date):
     # type: (Date) -> int
     """Extracts the hour from a date.
 
-    Uses a 12 hour clock, so noon and midnight are returned as 0.
+    Uses a 12-hour clock, so noon and midnight are returned as 0.
 
     Args:
         date: The date to use.
@@ -361,7 +360,7 @@ def getHour24(date):
     # type: (Date) -> int
     """Extracts the hour from a date.
 
-    Uses a 24 hour clock, so midnight is zero.
+    Uses a 24-hour clock, so midnight is zero.
 
     Args:
         date: The date to use.
@@ -526,7 +525,7 @@ def isAfter(date_1, date_2):
 
 def isBefore(date_1, date_2):
     # type: (Date, Date) -> bool
-    """Compares to dates to see if date_1 is before date_2.
+    """Compares two dates to see if date_1 is before date_2.
 
     Args:
         date_1: The first date.

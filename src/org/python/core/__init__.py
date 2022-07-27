@@ -1,6 +1,10 @@
 from __future__ import print_function
 
-__all__ = ["PyObject", "PyType"]
+from copy import PyStringMap
+
+__all__ = ["PyObject", "PyStringMap", "PyType"]
+
+from typing import Optional
 
 from java.lang import Object
 
@@ -11,6 +15,7 @@ class PyObject(Object):
     """
 
     def __init__(self, objType=None):
+        # type: (Optional[PyType]) -> None
         print(objType)
 
     def __abs__(self):
