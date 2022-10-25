@@ -19,7 +19,6 @@ __all__ = [
 ]
 
 import socket
-
 from typing import Any, Dict, List, Optional
 
 from java.lang import String
