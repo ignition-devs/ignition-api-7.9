@@ -51,8 +51,7 @@ import getpass
 import json
 import os
 import platform
-
-from typing import Any, Callable, Dict, Iterable, List, Optional, Union
+from typing import Any, Callable, Dict, Iterable, List, Optional
 
 import system.__version__ as version
 from com.inductiveautomation.ignition.common import BasicDataset
