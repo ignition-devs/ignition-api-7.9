@@ -1,4 +1,2 @@
 commitizen:
   name: cz_conventional_commits
-  tag_format: v$version
-  version: 7.9.21
