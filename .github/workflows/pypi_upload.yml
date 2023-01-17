@@ -2,14 +2,14 @@ name: PyPI Upload
 
 on:
   release:
-    types: [published]
+    types:
+      - published
 
 env:
   PYTHON_VERSION: 2.7
 
 jobs:
   upload:
-
     runs-on: ubuntu-20.04
 
     steps:
