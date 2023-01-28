@@ -6,7 +6,7 @@ on:
       - published
 
 env:
-  PYTHON_VERSION: 2.7
+  PYTHON_VERSION: "2.7"
 
 jobs:
   upload:
@@ -18,6 +18,15 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache Python
+        id: cache-python
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.pythonLocation }}
+          key: py${{ env.PYTHON_VERSION }}-${{ hashFiles('setup.cfg', '**/__version__.py') }}
+          restore-keys: |
+            py${{ env.PYTHON_VERSION }}-
 
       - name: Install dependencies
         run: |
