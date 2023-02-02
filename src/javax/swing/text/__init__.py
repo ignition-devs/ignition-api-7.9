@@ -3,7 +3,6 @@ from java.lang import String
 
 
 class JTextComponent(Container):
-
     _text = "Text"  # type: String
 
     def getText(self):
