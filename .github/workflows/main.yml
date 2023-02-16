@@ -9,21 +9,23 @@ on:
 
 env:
   PYTHON_VERSION: "3.10"
-  RUNNER_IMAGE: ubuntu-20.04
+  IMAGE: ubuntu-20.04
 
 jobs:
   tox:
     uses: thecesrom/workflows/.github/workflows/tox.yml@v1.1.1
     with:
-      image: ${{ env.RUNNER_IMAGE }}
+      image: ${{ env.IMAGE }}
 
   pre-commit:
     needs: tox
     uses: thecesrom/workflows/.github/workflows/pre-commit.yml@v1.1.1
+    with:
+      image: ${{ env.IMAGE }}
 
   pylint:
     needs: [tox, pre-commit]
-    runs-on: ${{ env.RUNNER_IMAGE }}
+    runs-on: ${{ env.IMAGE }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
