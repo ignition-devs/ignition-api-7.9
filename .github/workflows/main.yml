@@ -26,15 +26,16 @@ jobs:
 
   tox:
     needs: set-defaults
-    uses: thecesrom/workflows/.github/workflows/tox.yml@v1.1.1
+    uses: thecesrom/workflows/.github/workflows/tox.yml@v1.2.0
     with:
       image: ${{ needs.set-defaults.outputs.image }}
 
   pre-commit:
     needs: [set-defaults, tox]
-    uses: thecesrom/workflows/.github/workflows/pre-commit.yml@v1.1.1
+    uses: thecesrom/workflows/.github/workflows/pre-commit.yml@v1.2.0
     with:
       image: ${{ needs.set-defaults.outputs.image }}
+      skip-hooks: pylint
 
   pylint:
     needs: [set-defaults, tox, pre-commit]

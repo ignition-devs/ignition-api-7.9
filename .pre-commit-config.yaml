@@ -20,6 +20,13 @@ repos:
     hooks:
       - id: pydocstyle
         exclude: ^(src/com/|src/java/|src/javax/|src/org/)
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v2.41.0
     hooks:
