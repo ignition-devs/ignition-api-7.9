@@ -15,17 +15,17 @@ jobs:
   tox:
     uses: thecesrom/workflows/.github/workflows/tox.yml@v1.1.1
     with:
-      image: ${{ env.IMAGE }}
+      image: "${{ env.IMAGE }}"
 
   pre-commit:
     needs: tox
     uses: thecesrom/workflows/.github/workflows/pre-commit.yml@v1.1.1
     with:
-      image: ${{ env.IMAGE }}
+      image: "${{ env.IMAGE }}"
 
   pylint:
     needs: [tox, pre-commit]
-    runs-on: ${{ env.IMAGE }}
+    runs-on: "${{ env.IMAGE }}"
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
