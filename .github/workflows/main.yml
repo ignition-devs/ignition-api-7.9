@@ -7,11 +7,15 @@ on:
     branches:
       - main
 
+env:
+  PYTHON_VERSION: "3.10"
+  RUNNER_IMAGE: ubuntu-20.04
+
 jobs:
   tox:
     uses: thecesrom/workflows/.github/workflows/tox.yml@v1.1.1
     with:
-      image: ubuntu-20.04
+      image: ${{ env.RUNNER_IMAGE }}
 
   pre-commit:
     needs: tox
@@ -19,15 +23,15 @@ jobs:
 
   pylint:
     needs: [tox, pre-commit]
-    runs-on: ubuntu-22.04
+    runs-on: ${{ env.RUNNER_IMAGE }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.10
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Set Python version
         run: |
@@ -38,7 +42,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: py-${{ env.PY }}-ubuntu-22.04
+          key: py-${{ env.PY }}-${{ env.RUNNER_IMAGE }}
 
       - name: Install dependencies
         run: |
