@@ -9,13 +9,13 @@ on:
 
 jobs:
   tox:
-    uses: thecesrom/workflows/.github/workflows/tox.yml@v1.0.0
+    uses: thecesrom/workflows/.github/workflows/tox.yml@v1.1.1
     with:
       image: ubuntu-20.04
 
   pre-commit:
     needs: tox
-    uses: thecesrom/workflows/.github/workflows/pre-commit.yml@v1.1.0
+    uses: thecesrom/workflows/.github/workflows/pre-commit.yml@v1.1.1
 
   pylint:
     needs: [tox, pre-commit]
