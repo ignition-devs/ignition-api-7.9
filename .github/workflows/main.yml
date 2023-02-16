@@ -38,7 +38,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: py-${{ env.PY }}-${{ inputs.image }}
+          key: py-${{ env.PY }}-${{ ubuntu-22.04 }}
 
       - name: Install dependencies
         run: |
