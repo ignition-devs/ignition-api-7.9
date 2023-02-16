@@ -2,6 +2,17 @@ name: main
 
 on:
   workflow_dispatch:
+    inputs:
+      image:
+        description: The type of machine to run the job on.
+        required: false
+        type: string
+        default: ubuntu-20.04
+      python-version:
+        description: The Python version to install.
+        required: false
+        type: string
+        default: "3.10"
   pull_request:
   push:
     branches:
@@ -11,23 +22,25 @@ jobs:
   tox:
     uses: thecesrom/workflows/.github/workflows/tox.yml@v1.1.1
     with:
-      image: ubuntu-20.04
+      image: ${{ inputs.image }}
 
   pre-commit:
     needs: tox
     uses: thecesrom/workflows/.github/workflows/pre-commit.yml@v1.1.1
+    with:
+      image: ${{ inputs.image }}
 
   pylint:
     needs: [tox, pre-commit]
-    runs-on: ubuntu-22.04
+    runs-on: ${{ inputs.image }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.10
+      - name: Set up Python ${{ inputs.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: ${{ inputs.python-version }}
 
       - name: Set Python version
         run: |
@@ -38,7 +51,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: py-${{ env.PY }}-ubuntu-22.04
+          key: py-${{ env.PY }}-${{ inputs.image }}
 
       - name: Install dependencies
         run: |
