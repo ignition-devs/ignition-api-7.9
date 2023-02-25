@@ -2,63 +2,51 @@ name: main
 
 on:
   workflow_dispatch:
+    inputs:
+      image:
+        description: The type of machine to run the job on.
+        required: false
+        type: string
+        default: ubuntu-20.04
+      python-version:
+        description: Version of Python to use.
+        required: false
+        type: string
+        default: "3.10"
   pull_request:
   push:
     branches:
       - main
 
 jobs:
-  set-defaults:
-    runs-on: ubuntu-20.04
-    outputs:
-      image: ${{ steps.runner.outputs.image }}
-      python-version: ${{ steps.python.outputs.version }}
-    steps:
-      - name: Set default runner image
-        id: runner
-        run: |
-          echo "image=ubuntu-20.04" >> $GITHUB_OUTPUT
-
-      - name: Set default Python version
-        id: python
-        run: |
-          echo "version=3.10" >> $GITHUB_OUTPUT
-
   tox:
-    needs: set-defaults
-    uses: coatl-dev/workflows/.github/workflows/tox.yml@v1.2.0
-    with:
-      image: ${{ needs.set-defaults.outputs.image }}
+    uses: coatl-dev/workflows/.github/workflows/tox.yml@v2.0.0
 
   pre-commit:
-    needs: [set-defaults, tox]
-    uses: coatl-dev/workflows/.github/workflows/pre-commit.yml@v1.2.0
+    needs: [tox]
+    uses: coatl-dev/workflows/.github/workflows/pre-commit.yml@v2.0.0
     with:
-      image: ${{ needs.set-defaults.outputs.image }}
       skip-hooks: pylint
 
   pylint:
-    needs: [set-defaults, tox, pre-commit]
-    runs-on: ${{ needs.set-defaults.outputs.image }}
+    needs: [tox, pre-commit]
+    runs-on: ${{ inputs.image }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python ${{ needs.set-defaults.outputs.python-version }}
+      - name: Set up Python ${{ inputs.python-version }}
         uses: actions/setup-python@v4
+        id: py-setup
         with:
-          python-version: ${{ needs.set-defaults.outputs.python-version }}
-
-      - name: Set Python version
-        run: |
-          echo "PY=$(python --version)" >> $GITHUB_ENV
+          python-version: ${{ inputs.python-version }}
 
       - name: Cache Python
         id: cache-python
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: py-${{ env.PY }}-${{ needs.set-defaults.outputs.image }}
+          key: py-${{ steps.py-setup.outputs.python-version }}-${{ inputs.image }}
 
       - name: Install dependencies
         run: |
