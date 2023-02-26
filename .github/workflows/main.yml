@@ -9,14 +9,14 @@ on:
 
 jobs:
   tox:
-    uses: coatl-dev/workflows/.github/workflows/tox.yml@v2.0.1
+    uses: coatl-dev/workflows/.github/workflows/tox.yml@v2.1.0
 
   pre-commit:
     needs: [tox]
-    uses: coatl-dev/workflows/.github/workflows/pre-commit.yml@v2.0.1
+    uses: coatl-dev/workflows/.github/workflows/pre-commit.yml@v2.1.0
     with:
       skip-hooks: pylint
 
   pylint:
     needs: [tox, pre-commit]
-    uses: ./.github/workflows/pylint.yml
+    uses: coatl-dev/workflows/.github/pylint.yml@v2.1.0
