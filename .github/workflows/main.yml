@@ -25,6 +25,9 @@ jobs:
     name: proof-of-concept
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - uses: ./.github/actions/python2.7/black
         with:
           sources-root: src
