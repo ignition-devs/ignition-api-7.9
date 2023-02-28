@@ -21,17 +21,10 @@ jobs:
     needs: [tox, pre-commit]
     uses: coatl-dev/workflows/.github/workflows/pylint.yml@v2.1.0
 
-  black:
-    uses: ./.github/workflows/python2/black.yml
-    with:
-      sources-root: src
-
-  flake8:
-    uses: ./.github/workflows/python2/flake8.yml
-    with:
-      sources-root: src
-
-  mypy:
-    uses: ./.github/workflows/python2/mypy.yml
-    with:
-      sources-root: src
+  poc:
+    name: proof-of-concept
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: ./.github/actions/python2/black
+        with:
+          sources-root: src
