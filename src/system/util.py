@@ -108,8 +108,8 @@ def exit(force=False):
 
 def getAvailableLocales():
     # type: () -> List[String]
-    """Returns a collection of strings representing the Locales added
-    to the Translation Manager, such as 'en' for English.
+    """Returns a collection of strings representing the Locales added to
+    the Translation Manager, such as 'en' for English.
 
     Returns:
         A collection of strings representing the Locales added to the
@@ -147,8 +147,8 @@ def getClientId():
 
 def getConnectTimeout():
     # type: () -> int
-    """Returns the connect timeout in milliseconds for all
-    client-to-gateway communication.
+    """Returns the connect timeout in milliseconds for all client-to-
+    gateway communication.
 
     This is the maximum amount of time that communication operations to
     the Gateway will be given to connect. The default is 10,000ms (10
@@ -338,8 +338,8 @@ def getProperty(propertyName):
 
 def getReadTimeout():
     # type: () -> int
-    """Returns the read timeout in milliseconds for all
-    client-to-gateway communication.
+    """Returns the read timeout in milliseconds for all client-to-
+    gateway communication.
 
     This is the maximum amount of time allowed for a communication
     operation to complete. The default is 60,000 ms (1 minute).
@@ -417,8 +417,8 @@ def invokeAsynchronous(function):
 def invokeLater(function, delay=0):
     # type: (Callable[..., Any], Optional[int]) -> None
     """Invokes (calls) the given Python function object after all of the
-    currently processing and pending events are done being processed,
-    or after a specified delay.
+    currently processing and pending events are done being processed, or
+    after a specified delay.
 
     The function will be executed on the GUI, or event dispatch, thread.
     This is useful for events like propertyChange events, where the

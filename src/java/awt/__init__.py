@@ -48,7 +48,8 @@ class Color(Object):
 
 class Component(Object):
     """A component is an object having a graphical representation that
-    can be displayed on the screen and that can interact with the user.
+    can be displayed on the screen and that can interact with the
+    user.
     """
 
     pass
