@@ -84,8 +84,9 @@ class JLabel(JComponent):
 
 class JOptionPane(JComponent):
     """JOptionPane makes it easy to pop up a standard dialog box that
-    prompts users for a value or informs them of something. For
-    information about using JOptionPane, see How to Make Dialogs, a
+    prompts users for a value or informs them of something.
+
+    For information about using JOptionPane, see How to Make Dialogs, a
     section in The Java Tutorial.
     """
 

@@ -616,8 +616,8 @@ def runSFPrepUpdate(
 
 def runSFUpdateQuery(query, datasources):
     # type: (String, List[String]) -> bool
-    """Runs a query through the store and forward system and to
-    multiple datasources at the same time.
+    """Runs a query through the store and forward system and to multiple
+    datasources at the same time.
 
     Args:
         query: A query (typically an UPDATE, INSERT, or DELETE) to run.

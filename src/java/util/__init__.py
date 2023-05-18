@@ -81,12 +81,13 @@ class classproperty(property):  # pylint: disable=invalid-name
 
 class Locale(Object):
     """A Locale object represents a specific geographical, political, or
-    cultural region. An operation that requires a Locale to perform its
-    task is called locale-sensitive and uses the Locale to tailor
-    information for the user. For example, displaying a number is a
-    locale-sensitive operation; the number should be formatted according
-    to the customs and conventions of the user's native country, region,
-    or culture.
+    cultural region.
+
+    An operation that requires a Locale to perform its task is called
+    locale-sensitive and uses the Locale to tailor information for the
+    user. For example, displaying a number is a locale-sensitive
+    operation; the number should be formatted according to the customs
+    and conventions of the user's native country, region, or culture.
     """
 
     def __init__(self, language, country=None, variant=None):
